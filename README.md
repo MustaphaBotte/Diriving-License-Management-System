@@ -1,7 +1,7 @@
 # DVLD (Driving License Management System)
 
 ## Project Overview
-**DVLD** is a comprehensive Driving License Management System developed as part of **Course 19** on the **Programming Advices** platform.  
+**DLMS** is a comprehensive Driving License Management System developed as part of **Course 19** on the **Programming Advices** platform.  
 The project implements essential driving license services with custom features to streamline the management of driver records, license issuance, renewals, and related processes.
 
 
@@ -17,7 +17,7 @@ The project implements essential driving license services with custom features t
 - Accessed via **ADO.NET** for efficient database operations.
 
 ### Rich User Interface
-- Over **30 screens** with **reusable User Controls** to avoid code duplication.
+- Over **40 screens** with **reusable User Controls** to avoid code duplication.
 - Consistent UI design across the application.
 
 ### Advanced Data Handling
@@ -40,7 +40,7 @@ The project implements essential driving license services with custom features t
 
 ### Security Features
 - Secure login with username and password, with optional local credential storage.
-- **SQL Injection protection** via advanced input validation and stored procedures.
+- **SQL Injection protection** via input validation with(Ado.net)
 
 ### Event-Driven Communication
 - Use of **Delegates and Events** for smooth communication between forms and components.
@@ -59,13 +59,15 @@ The project implements essential driving license services with custom features t
 ## System Requirements
 - **Visual Studio Community 2022** (or later)
 - **SQL Server** (compatible version)
+- **.Net Framework
 
 
 
 ## Installation & Setup
 Clone or download the repository.
-Restore the provided SQL database (DVLD DB) from the GitHub files to your SQL Server instance.
+Restore the provided SQL database (DLMS DB) from the folder named Database your SQL Server instance.
 Update the connection string in the application to match your SQL Server credentials and database settings.
+(go to DLMS\Data_Access\Data_access\Connection_Settings)
 
 # DVLD (Driving License Management System)
 
@@ -89,4 +91,4 @@ For questions or support, connect with me on LinkedIn:
 ## Acknowledgements
 Special thanks to the Programming Advices platform for the original course content and guidance.
 
-This README is intended to provide a clear, concise, and professional overview of the DVLD project to assist developers, users, and contributors.
+This README is intended to provide a clear, concise, and professional overview of the DLMS project to assist developers, users, and contributors.
