@@ -80,8 +80,13 @@ Update the connection string in the application to match your SQL Server credent
 
 ## Project Structure
 - Three-tier architecture separating **Data Access**, **Business Logic**, and **User Interface** layers.
-- Extensive use of **Stored Procedures** for all database interactions.
 - Organized folders and subfolders for maintainability:
 
+##Contact & Support
+For questions or support, connect with me on LinkedIn:
+[Mustapha Botte](https://www.linkedin.com/in/mustapha-botte-559449327/)
 
+##Acknowledgements
+Special thanks to the Programming Advices platform for the original course content and guidance.
 
+This README is intended to provide a clear, concise, and professional overview of the DVLD project to assist developers, users, and contributors.
