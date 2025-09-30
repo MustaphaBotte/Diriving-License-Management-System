@@ -5,4 +5,8 @@ WITH MOVE 'DVLD' TO 'D:\System\Sql Server\MSSQL16.MSSQLSERVER1\MSSQL\DATA\DVLD.m
      REPLACE;
 	 
 	 
+
 -- please change the connection string file in data access	 
+-- and log to system using those info 
+-- Username =Msaqer77
+-- Pass     =1234
