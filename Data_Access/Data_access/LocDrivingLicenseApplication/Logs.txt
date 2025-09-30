@@ -1,0 +1,303 @@
+﻿Date Time  :8/18/2025 1:56:36 PM
+Error      :Incorrect syntax near ';'.
+StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.AddNewLocalDrivLicenApp(ClsApplication App, Int32 LicenseClassId, String& message) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 35
+
+
+====================================================================================================================
+Date Time  :8/22/2025 3:20:57 PM
+Error      :Invalid attempt to read when no data is present.
+StackTrace :   at Microsoft.Data.SqlClient.SqlDataReader.CheckDataIsReady(Int32 columnIndex, Boolean allowPartiallyReadColumn, Boolean permitAsync, String methodName)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValueInternal(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValue(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 103
+
+
+====================================================================================================================
+Date Time  :8/22/2025 4:09:18 PM
+Error      :Invalid attempt to read when no data is present.
+StackTrace :   at Microsoft.Data.SqlClient.SqlDataReader.CheckDataIsReady(Int32 columnIndex, Boolean allowPartiallyReadColumn, Boolean permitAsync, String methodName)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValueInternal(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValue(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 103
+
+
+====================================================================================================================
+Date Time  :8/22/2025 4:10:43 PM
+Error      :Invalid attempt to read when no data is present.
+StackTrace :   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValueInternal(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValue(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 103
+
+
+====================================================================================================================
+Date Time  :8/22/2025 4:17:55 PM
+Error      :Invalid attempt to read when no data is present.
+StackTrace :   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValueInternal(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValue(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 103
+
+
+====================================================================================================================
+Date Time  :8/22/2025 4:20:59 PM
+Error      :Invalid attempt to read when no data is present.
+StackTrace :   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValueInternal(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValue(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 103
+
+
+====================================================================================================================
+Date Time  :8/22/2025 4:24:37 PM
+Error      :Invalid attempt to read when no data is present.
+StackTrace :   at Microsoft.Data.SqlClient.SqlDataReader.CheckDataIsReady(Int32 columnIndex, Boolean allowPartiallyReadColumn, Boolean permitAsync, String methodName)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValueInternal(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetValue(Int32 i)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 103
+
+
+====================================================================================================================
+Date Time  :8/24/2025 3:24:30 PM
+Error      :ApplicationDate
+StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 106
+
+
+====================================================================================================================
+Date Time  :8/24/2025 3:24:33 PM
+Error      :ApplicationDate
+StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 106
+
+
+====================================================================================================================
+Date Time  :8/24/2025 3:24:45 PM
+Error      :ApplicationDate
+StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 106
+
+
+====================================================================================================================
+Date Time  :8/24/2025 3:24:46 PM
+Error      :ApplicationDate
+StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 106
+
+
+====================================================================================================================
+Date Time  :8/24/2025 3:27:21 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :8/24/2025 3:31:10 PM
+Error      :ApplicationDate
+StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 106
+
+
+====================================================================================================================
+Date Time  :8/24/2025 4:08:29 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :8/24/2025 4:08:35 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :8/24/2025 5:29:24 PM
+Error      :The multi-part identifier "My_LocalDLAView.LocDLA_ID" could not be bound.
+StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.Exists(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 165
+
+
+====================================================================================================================
+Date Time  :8/24/2025 5:30:28 PM
+Error      :The multi-part identifier "My_LocalDLAView.LocDLA_ID" could not be bound.
+StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.Exists(Int32 LocDriAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 165
+
+
+====================================================================================================================
+Date Time  :8/24/2025 6:10:08 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :8/24/2025 6:10:16 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :8/28/2025 10:44:10 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :8/28/2025 10:45:10 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :9/2/2025 11:16:22 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 136
+
+
+====================================================================================================================
+Date Time  :9/5/2025 5:05:01 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicantPersonIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 176
+
+
+====================================================================================================================
+Date Time  :9/5/2025 5:06:04 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicantPersonIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 176
+
+
+====================================================================================================================
+Date Time  :9/5/2025 5:06:55 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicantPersonIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 176
+
+
+====================================================================================================================
+Date Time  :9/8/2025 12:52:19 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/8/2025 1:27:08 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.LocDrivingLicense.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 4:30:11 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 4:40:06 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 4:47:58 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 4:51:34 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 5:16:53 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 7:03:11 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 7:05:39 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 7:17:29 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/16/2025 7:21:14 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 174
+
+
+====================================================================================================================
+Date Time  :9/17/2025 1:26:21 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 202
+
+
+====================================================================================================================
+Date Time  :9/17/2025 2:45:33 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(Int32 LocDriID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\localDrivingLicenseApplicationData.cs:line 202
+
+
+====================================================================================================================
