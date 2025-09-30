@@ -82,11 +82,11 @@ Update the connection string in the application to match your SQL Server credent
 - Three-tier architecture separating **Data Access**, **Business Logic**, and **User Interface** layers.
 - Organized folders and subfolders for maintainability:
 
-##Contact & Support
+## Contact & Support
 For questions or support, connect with me on LinkedIn:
 [Mustapha Botte](https://www.linkedin.com/in/mustapha-botte-559449327/)
 
-##Acknowledgements
+## Acknowledgements
 Special thanks to the Programming Advices platform for the original course content and guidance.
 
 This README is intended to provide a clear, concise, and professional overview of the DVLD project to assist developers, users, and contributors.
