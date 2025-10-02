@@ -304,9 +304,14 @@ namespace DesktopApp.PersonControl
             Person.Address = AddressTextBox.Text.Trim();
             Person.DateOfBirth = DateTimePicker.Value;
             Person.Gender = MaleRadioButton.Checked ? (byte)0 : (byte)1;
-            Person.ImagePath = UserPicture.Tag?.ToString() ?? "";
+            if(Person.ImagePath != UserPicture.Tag?.ToString())
+                   Person.ImagePath = UserPicture.Tag?.ToString() ?? "";
             Person.NationalityCountryID =Convert.ToInt16(CountriesBox.SelectedValue);
 
+        }
+        private void DeletePreviousPicture()
+        {
+            DLMS.BusinessLier.Person.PersonLogic.DeletePersonPicture(Person.ImagePath);
         }
         public bool Save()
         {
@@ -360,6 +365,8 @@ namespace DesktopApp.PersonControl
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
+                    if (Person.Mode == Entities.EnMode.Update && Person.ImagePath != "")
+                        DeletePreviousPicture();
                     FillTheObject();
                     bool Saveresult = DLMS.BusinessLier.Person.PersonLogic.Save(Person, out int NewPersonID);
 

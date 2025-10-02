@@ -31,7 +31,8 @@ namespace DLMS.BusinessLier.Person
 
             if (Prsn.ImagePath!="")
             {
-                if (File.Exists(path: Prsn.ImagePath))
+                bool FileExists = File.Exists(path: Prsn.ImagePath);
+                if (Prsn.Mode==Entities.EnMode.Update && FileExists)
                 {
                     string DestinationFolder = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Images\";
                     string FileName = Guid.NewGuid().ToString();
