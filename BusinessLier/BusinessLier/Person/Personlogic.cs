@@ -75,5 +75,25 @@ namespace DLMS.BusinessLier.Person
             return false;
         }
 
+        public static bool DeletePersonPicture(string? ImagePath)
+        {
+            if (!string.IsNullOrEmpty(ImagePath))
+            {
+                if (File.Exists(path: ImagePath))
+                {
+                    try
+                    {
+                        File.Delete(ImagePath);
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            return false;
+        }
     }
 }

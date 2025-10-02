@@ -55,26 +55,7 @@ namespace DesktopApp.PersonControl
             //  return false;
         }
 
-        private bool DeletePicture(string? ImagePath)
-        {
-            if (!string.IsNullOrEmpty(ImagePath))
-            {
-                if (File.Exists(path: ImagePath))
-                {
-                    try
-                    {
-                        File.Delete(ImagePath);
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-
-                }
-            }
-            return false;
-        }
+   
         private bool FillPicture(string Path)
         {
 
@@ -183,7 +164,7 @@ namespace DesktopApp.PersonControl
 
         private bool NamesValidator(string Name)
         {
-            return (!string.IsNullOrEmpty(Name) && !(Name.Length <= 1 || Name.Length > 20));
+            return (!string.IsNullOrEmpty(Name.Trim()) && !(Name.Length <= 1 || Name.Length > 20));
         }
         private void NametextBox_Leave(object sender, EventArgs e)
         {
@@ -211,7 +192,7 @@ namespace DesktopApp.PersonControl
             string Pattern = @"^(?:0[5-7]\d{8}|\+212[5-7]\d{8})$";
             bool result = Regex.IsMatch(Phone, Pattern);
 
-            return (!string.IsNullOrEmpty(Phone) && !(Phone.Length < 10 || Phone.Length > 20) && result == true);
+            return (!string.IsNullOrEmpty(Phone.Trim()) && !(Phone.Length < 10 || Phone.Length > 20) && result == true);
         }
         private void PhoneTextBox_Leave(object sender, EventArgs e)
         {
@@ -230,7 +211,7 @@ namespace DesktopApp.PersonControl
         private bool EmailValidator(string Mail)
         {
             string Pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            bool result = Regex.IsMatch(Mail, Pattern);
+            bool result = Regex.IsMatch(Mail.Trim(), Pattern);
             //if email=="" will return true email not required
             return (string.IsNullOrEmpty(Mail) || (result == true && Mail.Length <= 50));
         }
@@ -270,10 +251,13 @@ namespace DesktopApp.PersonControl
         {
             if (Person.Mode == Entities.EnMode.Update)
             {
-                IsExists = false;
-            }
+                if (Person.NationalNo == N)
+                       IsExists = false;
+                else
+                    IsExists = DLMS.BusinessLier.Person.PersonLogic.Exists(NationalNo: N.Trim());
+            }          
             else
-                IsExists = DLMS.BusinessLier.Person.PersonLogic.Exists(NationalNo: N);
+                IsExists = DLMS.BusinessLier.Person.PersonLogic.Exists(NationalNo: N.Trim());
             return (!string.IsNullOrEmpty(N) && !(N.Length < 6) && !IsExists);
         }
         private void NationalNotextbox_Leave(object sender, EventArgs e)
@@ -432,7 +416,7 @@ namespace DesktopApp.PersonControl
             {
                 UserPicture.Image.Dispose();
                 UserPicture.Image = null;
-                DeletePicture(Person.ImagePath);
+                DLMS.BusinessLier.Person.PersonLogic.DeletePersonPicture(Person.ImagePath);
                 Person.ImagePath = "";
             }
 
