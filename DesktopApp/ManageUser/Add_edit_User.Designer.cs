@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_edit_UserFrm));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges51 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges52 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges45 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges46 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges47 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges48 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges49 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges50 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             PagesTab = new Guna.UI2.WinForms.Guna2TabControl();
             FindPersonPage = new TabPage();
             NextButton = new Guna.UI2.WinForms.Guna2Button();
             guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             PersonControl = new DesktopApp.PersonControl.ShowInfoInControl();
-            guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            FilterGroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             FindButton = new Guna.UI2.WinForms.Guna2Button();
             FilterValueTextBox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -74,19 +74,19 @@
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             UserIdLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            errorProvider1 = new ErrorProvider(components);
-            StatucCheck = new Guna.UI2.WinForms.Guna2CheckBox();
-            ConfirmPasswordTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            PasswordTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             UsernameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            PasswordTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            ConfirmPasswordTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            StatucCheck = new Guna.UI2.WinForms.Guna2CheckBox();
+            FormTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            errorProvider1 = new ErrorProvider(components);
             PagesTab.SuspendLayout();
             FindPersonPage.SuspendLayout();
             guna2GroupBox2.SuspendLayout();
-            guna2GroupBox1.SuspendLayout();
+            FilterGroupBox1.SuspendLayout();
             AddUserPage.SuspendLayout();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
@@ -127,7 +127,7 @@
             FindPersonPage.BackColor = Color.LightSlateGray;
             FindPersonPage.Controls.Add(NextButton);
             FindPersonPage.Controls.Add(guna2GroupBox2);
-            FindPersonPage.Controls.Add(guna2GroupBox1);
+            FindPersonPage.Controls.Add(FilterGroupBox1);
             FindPersonPage.Location = new Point(4, 44);
             FindPersonPage.Name = "FindPersonPage";
             FindPersonPage.Padding = new Padding(3);
@@ -139,7 +139,7 @@
             // 
             NextButton.BorderRadius = 10;
             NextButton.BorderThickness = 1;
-            NextButton.CustomizableEdges = customizableEdges1;
+            NextButton.CustomizableEdges = customizableEdges27;
             NextButton.DisabledState.BorderColor = Color.DarkGray;
             NextButton.DisabledState.CustomBorderColor = Color.DarkGray;
             NextButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -149,7 +149,7 @@
             NextButton.ForeColor = Color.White;
             NextButton.Location = new Point(778, 454);
             NextButton.Name = "NextButton";
-            NextButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            NextButton.ShadowDecoration.CustomizableEdges = customizableEdges28;
             NextButton.Size = new Size(144, 39);
             NextButton.TabIndex = 23;
             NextButton.Text = "Next";
@@ -163,13 +163,13 @@
             guna2GroupBox2.BorderRadius = 25;
             guna2GroupBox2.Controls.Add(PersonControl);
             guna2GroupBox2.CustomBorderColor = Color.DimGray;
-            guna2GroupBox2.CustomizableEdges = customizableEdges3;
+            guna2GroupBox2.CustomizableEdges = customizableEdges29;
             guna2GroupBox2.FillColor = Color.Transparent;
             guna2GroupBox2.Font = new Font("Candara", 11.25F, FontStyle.Bold);
             guna2GroupBox2.ForeColor = Color.Black;
             guna2GroupBox2.Location = new Point(35, 124);
             guna2GroupBox2.Name = "guna2GroupBox2";
-            guna2GroupBox2.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2GroupBox2.ShadowDecoration.CustomizableEdges = customizableEdges30;
             guna2GroupBox2.Size = new Size(887, 326);
             guna2GroupBox2.TabIndex = 22;
             guna2GroupBox2.Text = "User Info";
@@ -184,33 +184,33 @@
             PersonControl.Size = new Size(879, 266);
             PersonControl.TabIndex = 1;
             // 
-            // guna2GroupBox1
+            // FilterGroupBox1
             // 
-            guna2GroupBox1.BorderColor = Color.DimGray;
-            guna2GroupBox1.BorderRadius = 30;
-            guna2GroupBox1.Controls.Add(guna2Button1);
-            guna2GroupBox1.Controls.Add(FindButton);
-            guna2GroupBox1.Controls.Add(FilterValueTextBox);
-            guna2GroupBox1.Controls.Add(FilterChoices);
-            guna2GroupBox1.Controls.Add(guna2HtmlLabel2);
-            guna2GroupBox1.CustomBorderColor = Color.DimGray;
-            guna2GroupBox1.CustomizableEdges = customizableEdges13;
-            guna2GroupBox1.FillColor = Color.Transparent;
-            guna2GroupBox1.Font = new Font("Candara", 11.25F, FontStyle.Bold);
-            guna2GroupBox1.ForeColor = Color.Black;
-            guna2GroupBox1.Location = new Point(35, 6);
-            guna2GroupBox1.Name = "guna2GroupBox1";
-            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2GroupBox1.Size = new Size(753, 112);
-            guna2GroupBox1.TabIndex = 3;
-            guna2GroupBox1.Text = "Filter";
+            FilterGroupBox1.BorderColor = Color.DimGray;
+            FilterGroupBox1.BorderRadius = 30;
+            FilterGroupBox1.Controls.Add(guna2Button1);
+            FilterGroupBox1.Controls.Add(FindButton);
+            FilterGroupBox1.Controls.Add(FilterValueTextBox);
+            FilterGroupBox1.Controls.Add(FilterChoices);
+            FilterGroupBox1.Controls.Add(guna2HtmlLabel2);
+            FilterGroupBox1.CustomBorderColor = Color.DimGray;
+            FilterGroupBox1.CustomizableEdges = customizableEdges39;
+            FilterGroupBox1.FillColor = Color.Transparent;
+            FilterGroupBox1.Font = new Font("Candara", 11.25F, FontStyle.Bold);
+            FilterGroupBox1.ForeColor = Color.Black;
+            FilterGroupBox1.Location = new Point(35, 6);
+            FilterGroupBox1.Name = "FilterGroupBox1";
+            FilterGroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            FilterGroupBox1.Size = new Size(753, 112);
+            FilterGroupBox1.TabIndex = 3;
+            FilterGroupBox1.Text = "Filter";
             // 
             // guna2Button1
             // 
             guna2Button1.BackColor = Color.Transparent;
             guna2Button1.BorderRadius = 15;
             guna2Button1.BorderThickness = 1;
-            guna2Button1.CustomizableEdges = customizableEdges5;
+            guna2Button1.CustomizableEdges = customizableEdges31;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -221,7 +221,7 @@
             guna2Button1.ImageAlign = HorizontalAlignment.Left;
             guna2Button1.Location = new Point(622, 49);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges32;
             guna2Button1.Size = new Size(114, 36);
             guna2Button1.TabIndex = 23;
             guna2Button1.Text = "Add";
@@ -234,7 +234,7 @@
             FindButton.BackColor = Color.Transparent;
             FindButton.BorderRadius = 15;
             FindButton.BorderThickness = 1;
-            FindButton.CustomizableEdges = customizableEdges7;
+            FindButton.CustomizableEdges = customizableEdges33;
             FindButton.DisabledState.BorderColor = Color.DarkGray;
             FindButton.DisabledState.CustomBorderColor = Color.DarkGray;
             FindButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -245,7 +245,7 @@
             FindButton.ImageAlign = HorizontalAlignment.Left;
             FindButton.Location = new Point(493, 49);
             FindButton.Name = "FindButton";
-            FindButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            FindButton.ShadowDecoration.CustomizableEdges = customizableEdges34;
             FindButton.Size = new Size(114, 36);
             FindButton.TabIndex = 22;
             FindButton.Text = "Find";
@@ -258,7 +258,7 @@
             FilterValueTextBox.BackColor = Color.Transparent;
             FilterValueTextBox.BorderColor = Color.Black;
             FilterValueTextBox.BorderRadius = 15;
-            FilterValueTextBox.CustomizableEdges = customizableEdges9;
+            FilterValueTextBox.CustomizableEdges = customizableEdges35;
             FilterValueTextBox.DefaultText = "";
             FilterValueTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             FilterValueTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -274,7 +274,7 @@
             FilterValueTextBox.Name = "FilterValueTextBox";
             FilterValueTextBox.PlaceholderText = "";
             FilterValueTextBox.SelectedText = "";
-            FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges36;
             FilterValueTextBox.Size = new Size(198, 36);
             FilterValueTextBox.TabIndex = 21;
             FilterValueTextBox.KeyPress += FilterValueTextBox_KeyPress;
@@ -284,7 +284,7 @@
             FilterChoices.BackColor = Color.Transparent;
             FilterChoices.BorderColor = Color.Black;
             FilterChoices.BorderRadius = 15;
-            FilterChoices.CustomizableEdges = customizableEdges11;
+            FilterChoices.CustomizableEdges = customizableEdges37;
             FilterChoices.DrawMode = DrawMode.OwnerDrawFixed;
             FilterChoices.DropDownStyle = ComboBoxStyle.DropDownList;
             FilterChoices.FillColor = Color.DimGray;
@@ -296,7 +296,7 @@
             FilterChoices.Items.AddRange(new object[] { "PersonID", "National_No" });
             FilterChoices.Location = new Point(94, 49);
             FilterChoices.Name = "FilterChoices";
-            FilterChoices.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            FilterChoices.ShadowDecoration.CustomizableEdges = customizableEdges38;
             FilterChoices.Size = new Size(178, 36);
             FilterChoices.TabIndex = 20;
             // 
@@ -330,7 +330,7 @@
             // 
             SaveButton.BorderRadius = 10;
             SaveButton.BorderThickness = 1;
-            SaveButton.CustomizableEdges = customizableEdges15;
+            SaveButton.CustomizableEdges = customizableEdges41;
             SaveButton.DisabledState.BorderColor = Color.DarkGray;
             SaveButton.DisabledState.CustomBorderColor = Color.DarkGray;
             SaveButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -340,7 +340,7 @@
             SaveButton.ForeColor = Color.White;
             SaveButton.Location = new Point(504, 445);
             SaveButton.Name = "SaveButton";
-            SaveButton.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            SaveButton.ShadowDecoration.CustomizableEdges = customizableEdges42;
             SaveButton.Size = new Size(144, 39);
             SaveButton.TabIndex = 31;
             SaveButton.Text = "Save";
@@ -352,7 +352,7 @@
             // 
             CancelButton.BorderRadius = 10;
             CancelButton.BorderThickness = 1;
-            CancelButton.CustomizableEdges = customizableEdges17;
+            CancelButton.CustomizableEdges = customizableEdges43;
             CancelButton.DisabledState.BorderColor = Color.DarkGray;
             CancelButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CancelButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -362,7 +362,7 @@
             CancelButton.ForeColor = Color.White;
             CancelButton.Location = new Point(322, 445);
             CancelButton.Name = "CancelButton";
-            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges44;
             CancelButton.Size = new Size(144, 39);
             CancelButton.TabIndex = 30;
             CancelButton.Text = "Cancel";
@@ -396,14 +396,14 @@
             guna2CustomGradientPanel1.Controls.Add(ConfirmPasswordTextBox);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel3);
             guna2CustomGradientPanel1.Controls.Add(StatucCheck);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges25;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges51;
             guna2CustomGradientPanel1.FillColor = Color.Transparent;
             guna2CustomGradientPanel1.FillColor2 = Color.Transparent;
             guna2CustomGradientPanel1.FillColor3 = Color.Transparent;
             guna2CustomGradientPanel1.FillColor4 = Color.Transparent;
             guna2CustomGradientPanel1.Location = new Point(300, 40);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges52;
             guna2CustomGradientPanel1.Size = new Size(382, 390);
             guna2CustomGradientPanel1.TabIndex = 29;
             // 
@@ -429,6 +429,32 @@
             guna2HtmlLabel7.TabIndex = 29;
             guna2HtmlLabel7.Text = "User Id";
             // 
+            // UsernameTextBox
+            // 
+            UsernameTextBox.BackColor = Color.Transparent;
+            UsernameTextBox.BorderColor = Color.Black;
+            UsernameTextBox.BorderRadius = 15;
+            UsernameTextBox.CustomizableEdges = customizableEdges45;
+            UsernameTextBox.DefaultText = "";
+            UsernameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            UsernameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            UsernameTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            UsernameTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            UsernameTextBox.FillColor = Color.DimGray;
+            UsernameTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            UsernameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            UsernameTextBox.ForeColor = Color.Black;
+            UsernameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            UsernameTextBox.Location = new Point(171, 129);
+            UsernameTextBox.Margin = new Padding(4);
+            UsernameTextBox.Name = "UsernameTextBox";
+            UsernameTextBox.PlaceholderText = "";
+            UsernameTextBox.SelectedText = "";
+            UsernameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges46;
+            UsernameTextBox.Size = new Size(198, 33);
+            UsernameTextBox.TabIndex = 22;
+            UsernameTextBox.Leave += UsernameTextBox_Leave;
+            // 
             // guna2HtmlLabel5
             // 
             guna2HtmlLabel5.BackColor = Color.Transparent;
@@ -439,6 +465,33 @@
             guna2HtmlLabel5.Size = new Size(78, 20);
             guna2HtmlLabel5.TabIndex = 28;
             guna2HtmlLabel5.Text = "Username";
+            // 
+            // PasswordTextBox
+            // 
+            PasswordTextBox.BackColor = Color.Transparent;
+            PasswordTextBox.BorderColor = Color.Black;
+            PasswordTextBox.BorderRadius = 15;
+            PasswordTextBox.CustomizableEdges = customizableEdges47;
+            PasswordTextBox.DefaultText = "";
+            PasswordTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            PasswordTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            PasswordTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            PasswordTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            PasswordTextBox.FillColor = Color.DimGray;
+            PasswordTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            PasswordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            PasswordTextBox.ForeColor = Color.Black;
+            PasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            PasswordTextBox.Location = new Point(171, 201);
+            PasswordTextBox.Margin = new Padding(4);
+            PasswordTextBox.Name = "PasswordTextBox";
+            PasswordTextBox.PasswordChar = '*';
+            PasswordTextBox.PlaceholderText = "";
+            PasswordTextBox.SelectedText = "";
+            PasswordTextBox.ShadowDecoration.CustomizableEdges = customizableEdges48;
+            PasswordTextBox.Size = new Size(198, 33);
+            PasswordTextBox.TabIndex = 23;
+            PasswordTextBox.Leave += PasswordTextBox_Leave;
             // 
             // guna2HtmlLabel4
             // 
@@ -451,6 +504,33 @@
             guna2HtmlLabel4.TabIndex = 27;
             guna2HtmlLabel4.Text = "Password";
             // 
+            // ConfirmPasswordTextBox
+            // 
+            ConfirmPasswordTextBox.BackColor = Color.Transparent;
+            ConfirmPasswordTextBox.BorderColor = Color.Black;
+            ConfirmPasswordTextBox.BorderRadius = 15;
+            ConfirmPasswordTextBox.CustomizableEdges = customizableEdges49;
+            ConfirmPasswordTextBox.DefaultText = "";
+            ConfirmPasswordTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            ConfirmPasswordTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            ConfirmPasswordTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            ConfirmPasswordTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            ConfirmPasswordTextBox.FillColor = Color.DimGray;
+            ConfirmPasswordTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            ConfirmPasswordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            ConfirmPasswordTextBox.ForeColor = Color.Black;
+            ConfirmPasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            ConfirmPasswordTextBox.Location = new Point(171, 286);
+            ConfirmPasswordTextBox.Margin = new Padding(4);
+            ConfirmPasswordTextBox.Name = "ConfirmPasswordTextBox";
+            ConfirmPasswordTextBox.PasswordChar = '*';
+            ConfirmPasswordTextBox.PlaceholderText = "";
+            ConfirmPasswordTextBox.SelectedText = "";
+            ConfirmPasswordTextBox.ShadowDecoration.CustomizableEdges = customizableEdges50;
+            ConfirmPasswordTextBox.Size = new Size(198, 33);
+            ConfirmPasswordTextBox.TabIndex = 24;
+            ConfirmPasswordTextBox.Leave += ConfirmPasswordTextBox_Leave;
+            // 
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.Transparent;
@@ -461,21 +541,6 @@
             guna2HtmlLabel3.Size = new Size(139, 20);
             guna2HtmlLabel3.TabIndex = 26;
             guna2HtmlLabel3.Text = "Confirm Password";
-            // 
-            // guna2HtmlLabel1
-            // 
-            guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Sitka Small", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel1.ForeColor = Color.White;
-            guna2HtmlLabel1.Location = new Point(337, 12);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(332, 50);
-            guna2HtmlLabel1.TabIndex = 3;
-            guna2HtmlLabel1.Text = "Users Management";
-            // 
-            // errorProvider1
-            // 
-            errorProvider1.ContainerControl = this;
             // 
             // StatucCheck
             // 
@@ -501,85 +566,20 @@
             StatucCheck.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
             StatucCheck.UseVisualStyleBackColor = false;
             // 
-            // ConfirmPasswordTextBox
+            // FormTitle
             // 
-            ConfirmPasswordTextBox.BackColor = Color.Transparent;
-            ConfirmPasswordTextBox.BorderColor = Color.Black;
-            ConfirmPasswordTextBox.BorderRadius = 15;
-            ConfirmPasswordTextBox.CustomizableEdges = customizableEdges23;
-            ConfirmPasswordTextBox.DefaultText = "";
-            ConfirmPasswordTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            ConfirmPasswordTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            ConfirmPasswordTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            ConfirmPasswordTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            ConfirmPasswordTextBox.FillColor = Color.DimGray;
-            ConfirmPasswordTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConfirmPasswordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            ConfirmPasswordTextBox.ForeColor = Color.Black;
-            ConfirmPasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConfirmPasswordTextBox.Location = new Point(171, 286);
-            ConfirmPasswordTextBox.Margin = new Padding(4);
-            ConfirmPasswordTextBox.Name = "ConfirmPasswordTextBox";
-            ConfirmPasswordTextBox.PasswordChar = '*';
-            ConfirmPasswordTextBox.PlaceholderText = "";
-            ConfirmPasswordTextBox.SelectedText = "";
-            ConfirmPasswordTextBox.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            ConfirmPasswordTextBox.Size = new Size(198, 33);
-            ConfirmPasswordTextBox.TabIndex = 24;
-            ConfirmPasswordTextBox.Leave += ConfirmPasswordTextBox_Leave;
+            FormTitle.BackColor = Color.Transparent;
+            FormTitle.Font = new Font("Sitka Small", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            FormTitle.ForeColor = Color.White;
+            FormTitle.Location = new Point(337, 12);
+            FormTitle.Name = "FormTitle";
+            FormTitle.Size = new Size(332, 50);
+            FormTitle.TabIndex = 3;
+            FormTitle.Text = "Users Management";
             // 
-            // PasswordTextBox
+            // errorProvider1
             // 
-            PasswordTextBox.BackColor = Color.Transparent;
-            PasswordTextBox.BorderColor = Color.Black;
-            PasswordTextBox.BorderRadius = 15;
-            PasswordTextBox.CustomizableEdges = customizableEdges21;
-            PasswordTextBox.DefaultText = "";
-            PasswordTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            PasswordTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            PasswordTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            PasswordTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            PasswordTextBox.FillColor = Color.DimGray;
-            PasswordTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            PasswordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            PasswordTextBox.ForeColor = Color.Black;
-            PasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            PasswordTextBox.Location = new Point(171, 201);
-            PasswordTextBox.Margin = new Padding(4);
-            PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.PasswordChar = '*';
-            PasswordTextBox.PlaceholderText = "";
-            PasswordTextBox.SelectedText = "";
-            PasswordTextBox.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            PasswordTextBox.Size = new Size(198, 33);
-            PasswordTextBox.TabIndex = 23;
-            PasswordTextBox.Leave += PasswordTextBox_Leave;
-            // 
-            // UsernameTextBox
-            // 
-            UsernameTextBox.BackColor = Color.Transparent;
-            UsernameTextBox.BorderColor = Color.Black;
-            UsernameTextBox.BorderRadius = 15;
-            UsernameTextBox.CustomizableEdges = customizableEdges19;
-            UsernameTextBox.DefaultText = "";
-            UsernameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            UsernameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            UsernameTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            UsernameTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            UsernameTextBox.FillColor = Color.DimGray;
-            UsernameTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            UsernameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            UsernameTextBox.ForeColor = Color.Black;
-            UsernameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            UsernameTextBox.Location = new Point(171, 129);
-            UsernameTextBox.Margin = new Padding(4);
-            UsernameTextBox.Name = "UsernameTextBox";
-            UsernameTextBox.PlaceholderText = "";
-            UsernameTextBox.SelectedText = "";
-            UsernameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            UsernameTextBox.Size = new Size(198, 33);
-            UsernameTextBox.TabIndex = 22;
-            UsernameTextBox.Leave += UsernameTextBox_Leave;
+            errorProvider1.ContainerControl = this;
             // 
             // Add_edit_UserFrm
             // 
@@ -588,7 +588,7 @@
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImage = Properties.Resources.wallpaperflare_com_wallpaper__3_;
             ClientSize = new Size(1041, 660);
-            Controls.Add(guna2HtmlLabel1);
+            Controls.Add(FormTitle);
             Controls.Add(PagesTab);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Add_edit_UserFrm";
@@ -596,8 +596,8 @@
             PagesTab.ResumeLayout(false);
             FindPersonPage.ResumeLayout(false);
             guna2GroupBox2.ResumeLayout(false);
-            guna2GroupBox1.ResumeLayout(false);
-            guna2GroupBox1.PerformLayout();
+            FilterGroupBox1.ResumeLayout(false);
+            FilterGroupBox1.PerformLayout();
             AddUserPage.ResumeLayout(false);
             AddUserPage.PerformLayout();
             guna2CustomGradientPanel1.ResumeLayout(false);
@@ -612,8 +612,8 @@
         private Guna.UI2.WinForms.Guna2TabControl PagesTab;
         private TabPage FindPersonPage;
         private TabPage AddUserPage;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel FormTitle;
+        private Guna.UI2.WinForms.Guna2GroupBox FilterGroupBox1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private PersonControl.ShowInfoInControl PersonControl;
         private Guna.UI2.WinForms.Guna2TextBox FilterValueTextBox;

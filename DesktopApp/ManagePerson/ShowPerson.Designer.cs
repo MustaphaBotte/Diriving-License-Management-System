@@ -50,6 +50,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ShowPerson";
             Text = "ShowPerson";
+            Load += ShowPerson_Load;
             ResumeLayout(false);
         }
 

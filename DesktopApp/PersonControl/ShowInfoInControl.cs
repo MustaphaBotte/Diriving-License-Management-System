@@ -16,7 +16,6 @@ namespace DesktopApp.PersonControl
     {
         private int PersonID=-1;
         public DLMS.EntitiesNamespace.Entities.ClsPerson? Person = new DLMS.EntitiesNamespace.Entities.ClsPerson();
-        private bool IsSubscribed = false;
         public bool IsControlFilled = false;
       
         public ShowInfoInControl()
@@ -95,6 +94,7 @@ namespace DesktopApp.PersonControl
                 IsControlFilled = true;
                 return true;
             }
+            ClearControl();
             return false;
         }
 
@@ -106,8 +106,7 @@ namespace DesktopApp.PersonControl
         {
             AddEditPersonFrm UserForm = new AddEditPersonFrm(Person.PersonId); 
             UserForm.SendSignalToRefresh += UserUpdated;
-            IsSubscribed = true;           
-            UserForm.Show();
+            UserForm.ShowDialog();
         }
         private void ClearControl()
         {

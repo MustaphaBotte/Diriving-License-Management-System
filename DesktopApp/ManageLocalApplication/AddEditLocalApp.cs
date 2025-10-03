@@ -140,7 +140,6 @@ namespace DesktopApp.ManageApplication
                    "Invalid Info", MessageBoxButtons.OK,
                    MessageBoxIcon.Exclamation);
 
-
                 return;
             }
             PersonControl.FillDataInControl(ID, NationalNo);
@@ -169,6 +168,7 @@ namespace DesktopApp.ManageApplication
 
                     return;
                 }
+                this.ValidateChildren();
                 SearchForPerson(ID);
             }
             if (Filter == "national_no")

@@ -17,8 +17,13 @@ namespace DesktopApp.ManageUser
         public Add_edit_UserFrm()
         {
             InitializeComponent();
+            this.FormTitle.Text = "Add New User";
         }
-
+        public Add_edit_UserFrm(int PersonID)
+        {
+            InitializeComponent();
+            SearchForPerson(PersonID,alreadyAUser:true);
+        }
 
         private void FillTheUserForm()
         {
@@ -54,6 +59,8 @@ namespace DesktopApp.ManageUser
             }
             if (alreadyAUser)
             {
+                this.FormTitle.Text = "Edit User Info";
+                FilterGroupBox1.Enabled = false;
                 Entities.ClsUser? User = UserLogic.FindUserByPersonID(ID);
                 if (User != null)
                 {
@@ -278,7 +285,11 @@ namespace DesktopApp.ManageUser
 
             if (FilterChoices.SelectedItem == null)
                 return;
+
             string? choice = FilterChoices.SelectedItem.ToString()?.ToLower();
+            if (choice != "" && (char)13 == e.KeyChar)
+                FindButton.PerformClick();
+
             if (choice == "personid")
             {
                 if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))

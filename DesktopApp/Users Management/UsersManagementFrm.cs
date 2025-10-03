@@ -299,7 +299,6 @@ namespace DesktopApp.UsersManagement
             {
                 return;
             }
-            ManageUser.Add_edit_UserFrm Frm = new ManageUser.Add_edit_UserFrm();
             int UserID = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["userid"].Value);
             int personId = Convert.ToInt32(Row.Cells["personid"].Value);
 
@@ -313,7 +312,8 @@ namespace DesktopApp.UsersManagement
                     return;
                 }
             }
-            Frm.SearchForPerson(personId, alreadyAUser: true);
+            ManageUser.Add_edit_UserFrm Frm = new ManageUser.Add_edit_UserFrm(personId);
+            //  Frm.SearchForPerson(personId, alreadyAUser: true); you can also do this
             Frm.ShowDialog();
         }
 
