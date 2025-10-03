@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DesktopApp.AllLicensesHistory;
+using DesktopApp.ManagePerson;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -126,7 +128,7 @@ namespace DesktopApp.Drivers
                 {
                     if (!Row.Cells[Filter].Value?.ToString()?.ToLower().Contains(FilterValueTextBox.Text.ToString().ToLower()) ?? false)
                     {
-                        Row.Visible = false; 
+                        Row.Visible = false;
                         RowCount -= 1;
                     }
                     else
@@ -134,7 +136,7 @@ namespace DesktopApp.Drivers
                         Row.Visible = true;
                     }
                 }
-            }          
+            }
             if (Filter == "CreatedDate")
             {
                 foreach (DataGridViewRow Row in DataGrid.Rows)
@@ -148,7 +150,7 @@ namespace DesktopApp.Drivers
 
                     if (((DateTime)Row.Cells["CreatedDate"].Value).Date != DateTimePicker.Value.Date)
                     {
-                        Row.Visible = false; 
+                        Row.Visible = false;
                         RowCount -= 1;
                     }
                     else
@@ -179,5 +181,32 @@ namespace DesktopApp.Drivers
             //For ReuseAbility
             FilterValueTextBox_TextChanged(sender, e);
         }
+
+        private void ShowInfoButton_Click(object sender, EventArgs e)
+        {
+            int PersonID = int.Parse(DataGrid.SelectedRows[0].Cells["PersonID"].Value?.ToString() ?? "");
+            ShowPerson Frm = new ShowPerson(PersonID);
+            Frm.ShowDialog();
+        }
+        private void DataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int PersonID = int.Parse(DataGrid.SelectedRows[e.RowIndex].Cells["PersonID"].Value?.ToString() ?? "");
+            ShowPerson Frm = new ShowPerson(PersonID);
+            Frm.ShowDialog();
+        }
+        private void DataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                DriversMenuStrip.Show(Cursor.Position);
+            }
+        }
+        private void ShowLicensesHistoryBtn_Click(object sender, EventArgs e)
+        {
+            int PersonID = int.Parse(DataGrid.SelectedRows[0].Cells["PersonID"].Value?.ToString() ?? "");
+            ShowAllLicensesHistoryFrm Frm = new ShowAllLicensesHistoryFrm(PersonID);
+            Frm.ShowDialog();
+        }
+
     }
 }

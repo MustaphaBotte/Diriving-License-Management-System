@@ -25,10 +25,10 @@ namespace DesktopApp.PersonControl
 
 
         public delegate void SignalToForm(int ID);
-        public event SignalToForm? SendSignalToForm;
+        public event SignalToForm? OnPersonAddedOrEdited;
 
         public delegate void SignalToFormToClose();
-        public event SignalToFormToClose? SendSignalToFormToClose;
+        public event SignalToFormToClose? OnClose;
 
         private bool AlternativeImage(byte? Gender)
         {
@@ -362,7 +362,7 @@ namespace DesktopApp.PersonControl
                 string Operation = Person.Mode == Entities.EnMode.Update ? "Update" : "Add";
 
                 DialogResult result = MessageBox.Show($"Are you sure you want to {Operation} that person", "Confirmation", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
                     if (Person.Mode == Entities.EnMode.Update && Person.ImagePath != "")
@@ -384,8 +384,8 @@ namespace DesktopApp.PersonControl
                         if(NewPersonID != -1)
                         {
                             Person.PersonId = NewPersonID;
-                        }                      
-                        SendSignalToForm?.Invoke(NewPersonID);
+                        }
+                        OnPersonAddedOrEdited?.Invoke(NewPersonID);
 
                         return true;
                     }
@@ -449,7 +449,7 @@ namespace DesktopApp.PersonControl
                   MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.OK)
             {
-                SendSignalToFormToClose?.Invoke();
+                OnClose?.Invoke();
             }
 
         }

@@ -27,11 +27,11 @@ namespace DesktopApp.ManagePerson
         {
             InitializeComponent();
             this._PersonID = PersonID;
-            personUserControl1.SendSignalToFormToClose += ControlClosed;
+            personUserControl1.OnClose += ControlClosed;
         }
         private void EditPersonFrm_Load(object sender, EventArgs e)
         {
-            personUserControl1.SendSignalToForm += PersonAddedOrUpdated;
+            personUserControl1.OnPersonAddedOrEdited += PersonAddedOrUpdated;
             if (this._PersonID==-1)
             {
                 this.Mode = Entities.EnMode.AddNew;

@@ -237,15 +237,17 @@ namespace DLMS.Data_access.Person
             string Query = @"select 
                               People.PersonID, People.NationalNo,
                               People.FirstName,People.SecondName, 
-                              People.LastName, People.DateOfBirth, 
+                              People.ThirdName,People.LastName, 
                               case when People.Gender=0 then 'Male' else 'Female' end as Gender,
+                              People.DateOfBirth,                             
                               People.Address,
                               people.phone,
                               People.Email,
+                              People.NationalityCountryID,
                               Countries.CountryName,
-                              People.ImagePath                             
-                             from people inner join countries on nationalitycountryid = 
-                             countries.countryid";
+                              People.ImagePath
+                              from people inner join countries on nationalitycountryid = 
+                              countries.countryid";
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
             SqlDataReader? Reader = null;
             try

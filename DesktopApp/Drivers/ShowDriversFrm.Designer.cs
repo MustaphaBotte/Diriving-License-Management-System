@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Guna2Button CloseButton;
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -54,17 +55,22 @@
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             RefreshButton = new Guna.UI2.WinForms.Guna2Button();
             DataGrid = new Guna.UI2.WinForms.Guna2DataGridView();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             DriverID = new DataGridViewTextBoxColumn();
             PersonID = new DataGridViewTextBoxColumn();
             FullName = new DataGridViewTextBoxColumn();
             NationalNo = new DataGridViewTextBoxColumn();
             CreatedDate = new DataGridViewTextBoxColumn();
             Active_Licenses = new DataGridViewTextBoxColumn();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            DriversMenuStrip = new ContextMenuStrip(components);
+            IssueInternationalLicenseBtn = new ToolStripMenuItem();
+            ShowLicensesHistoryBtn = new ToolStripMenuItem();
+            ShowInfoButton = new ToolStripMenuItem();
             CloseButton = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)DataGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
+            DriversMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // CloseButton
@@ -285,31 +291,8 @@
             DataGrid.ThemeStyle.RowsStyle.Height = 25;
             DataGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DataGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // guna2HtmlLabel1
-            // 
-            guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Cambria", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel1.Location = new Point(392, 1);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(156, 59);
-            guna2HtmlLabel1.TabIndex = 39;
-            guna2HtmlLabel1.Text = "Drivers";
-            // 
-            // guna2PictureBox1
-            // 
-            guna2PictureBox1.BackColor = Color.Transparent;
-            guna2PictureBox1.BackgroundImage = Properties.Resources.icons8_au_volant_100__1_2;
-            guna2PictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            guna2PictureBox1.CustomizableEdges = customizableEdges11;
-            guna2PictureBox1.FillColor = Color.Transparent;
-            guna2PictureBox1.ImageRotate = 0F;
-            guna2PictureBox1.Location = new Point(405, 64);
-            guna2PictureBox1.Name = "guna2PictureBox1";
-            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2PictureBox1.Size = new Size(131, 121);
-            guna2PictureBox1.TabIndex = 50;
-            guna2PictureBox1.TabStop = false;
+            DataGrid.CellDoubleClick += DataGrid_CellDoubleClick;
+            DataGrid.CellMouseClick += DataGrid_CellMouseClick;
             // 
             // DriverID
             // 
@@ -347,6 +330,65 @@
             Active_Licenses.Name = "Active_Licenses";
             Active_Licenses.ReadOnly = true;
             // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Cambria", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel1.Location = new Point(392, 1);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(156, 59);
+            guna2HtmlLabel1.TabIndex = 39;
+            guna2HtmlLabel1.Text = "Drivers";
+            // 
+            // guna2PictureBox1
+            // 
+            guna2PictureBox1.BackColor = Color.Transparent;
+            guna2PictureBox1.BackgroundImage = Properties.Resources.icons8_au_volant_100__1_2;
+            guna2PictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            guna2PictureBox1.CustomizableEdges = customizableEdges11;
+            guna2PictureBox1.FillColor = Color.Transparent;
+            guna2PictureBox1.ImageRotate = 0F;
+            guna2PictureBox1.Location = new Point(405, 64);
+            guna2PictureBox1.Name = "guna2PictureBox1";
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2PictureBox1.Size = new Size(131, 121);
+            guna2PictureBox1.TabIndex = 50;
+            guna2PictureBox1.TabStop = false;
+            // 
+            // DriversMenuStrip
+            // 
+            DriversMenuStrip.Items.AddRange(new ToolStripItem[] { IssueInternationalLicenseBtn, ShowLicensesHistoryBtn, ShowInfoButton });
+            DriversMenuStrip.Name = "PeopleMenuStrip";
+            DriversMenuStrip.ShowCheckMargin = true;
+            DriversMenuStrip.Size = new Size(347, 110);
+            // 
+            // IssueInternationalLicenseBtn
+            // 
+            IssueInternationalLicenseBtn.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            IssueInternationalLicenseBtn.Image = (Image)resources.GetObject("IssueInternationalLicenseBtn.Image");
+            IssueInternationalLicenseBtn.Name = "IssueInternationalLicenseBtn";
+            IssueInternationalLicenseBtn.Size = new Size(346, 28);
+            IssueInternationalLicenseBtn.Text = "Issue International License'";
+            // 
+            // ShowLicensesHistoryBtn
+            // 
+            ShowLicensesHistoryBtn.Font = new Font("Arial Black", 12F, FontStyle.Bold);
+            ShowLicensesHistoryBtn.Image = (Image)resources.GetObject("ShowLicensesHistoryBtn.Image");
+            ShowLicensesHistoryBtn.Name = "ShowLicensesHistoryBtn";
+            ShowLicensesHistoryBtn.Size = new Size(346, 28);
+            ShowLicensesHistoryBtn.Text = "Show Licenses History";
+            ShowLicensesHistoryBtn.TextImageRelation = TextImageRelation.Overlay;
+            ShowLicensesHistoryBtn.Click += ShowLicensesHistoryBtn_Click;
+            // 
+            // ShowInfoButton
+            // 
+            ShowInfoButton.Font = new Font("Arial Black", 12F, FontStyle.Bold);
+            ShowInfoButton.Image = Properties.Resources.show1;
+            ShowInfoButton.Name = "ShowInfoButton";
+            ShowInfoButton.Size = new Size(346, 28);
+            ShowInfoButton.Text = "Show Person Info";
+            ShowInfoButton.Click += ShowInfoButton_Click;
+            // 
             // ShowDriversFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -371,6 +413,7 @@
             Load += ShowDriversFrm_Load;
             ((System.ComponentModel.ISupportInitialize)DataGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
+            DriversMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -392,7 +435,10 @@
         private DataGridViewTextBoxColumn FullName;
         private DataGridViewTextBoxColumn NationalNo;
         private DataGridViewTextBoxColumn CreatedDate;
-        private DataGridViewTextBoxColumn Acssssssssssss;
         private DataGridViewTextBoxColumn Active_Licenses;
+        private ContextMenuStrip DriversMenuStrip;
+        private ToolStripMenuItem IssueInternationalLicenseBtn;
+        private ToolStripMenuItem ShowLicensesHistoryBtn;
+        private ToolStripMenuItem ShowInfoButton;
     }
 }

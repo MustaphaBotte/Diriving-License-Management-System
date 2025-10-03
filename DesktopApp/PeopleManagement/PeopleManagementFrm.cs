@@ -24,17 +24,71 @@ namespace DesktopApp.PeopleManagement
         {
             FilterChoices.Items.Add("None"); ;
             foreach (DataGridViewColumn Column in DataGrid.Columns)
-                FilterChoices.Items.Add(Column.Name);
+            {
+                if(!((List<string>)["ImagePath", "NationalityCountryID", "Address"]).Contains(Column.Name))
+                {
+                    FilterChoices.Items.Add(Column.Name);
+                }
+            }
 
             FilterChoices.SelectedIndex = 0;
-        }
+        }      
+        private void GridFiller()
+        {
+            DataGrid.AutoGenerateColumns = true;
+            DataGrid.DataSource = People;
+            DataGrid.Columns["ImagePath"].Visible = false;
+            DataGrid.Columns["NationalityCountryID"].Visible = false;
+            DataGrid.Columns["Address"].Visible = false;
 
-      
+            if (DataGrid.Rows.Count > 0)
+            {
+
+                DataGrid.Columns["PersonID"].HeaderText = "Person ID";
+                DataGrid.Columns["PersonID"].Width = 80;
+
+
+                DataGrid.Columns["NationalNo"].HeaderText = "National No";
+                DataGrid.Columns["NationalNo"].Width = 90;
+
+
+                DataGrid.Columns["FirstName"].HeaderText = "First Name";
+                DataGrid.Columns["FirstName"].Width = 120;
+
+
+                DataGrid.Columns["SecondName"].HeaderText = "Second Name";
+                DataGrid.Columns["SecondName"].Width = 140;
+
+
+                DataGrid.Columns["thirdName"].HeaderText = "Third Name";
+                DataGrid.Columns["ThirdName"].Width = 120;
+
+                DataGrid.Columns["LastName"].HeaderText = "Last Name";
+                DataGrid.Columns["LastName"].Width = 120;
+
+                DataGrid.Columns["Gender"].HeaderText = "Gender";
+                DataGrid.Columns["Gender"].Width = 60;
+
+                DataGrid.Columns["DateOfBirth"].HeaderText = "Date Of Birth";
+                DataGrid.Columns["DateOfBirth"].Width = 140;
+
+
+                DataGrid.Columns["CountryName"].HeaderText = "Nationality";
+                DataGrid.Columns["CountryName"].Width = 100;
+
+
+                DataGrid.Columns["phone"].HeaderText = "Phone";
+                DataGrid.Columns["phone"].Width = 100;
+
+                DataGrid.Columns["Email"].HeaderText = "Email";
+                DataGrid.Columns["Email"].Width = 150;
+            }
+
+        }
         private void FrmLoad(object sender, EventArgs e)
         {
 
             this.People = DLMS.BusinessLier.Person.PersonLogic.GetAllPeople();
-
             if (People == null)
             {
                 DataGrid.Visible = false;
@@ -42,11 +96,8 @@ namespace DesktopApp.PeopleManagement
                     icon: MessageBoxIcon.Information, buttons: MessageBoxButtons.OK);
                 return;
             }
-            DataGrid.AutoGenerateColumns = true;
-            DataGrid.DataSource = People;
-            ;
-            FillFilterList();
-           
+            GridFiller();
+            FillFilterList();           
             DataGrid.Visible = true;
             DataGrid.Refresh();
             this.RowsCountlabel.Text = DataGrid.RowCount.ToString();
@@ -58,21 +109,13 @@ namespace DesktopApp.PeopleManagement
                 PeopleMenuStrip.Show(Cursor.Position);
             }
         }
-
         private void RefreshTheGrid()
         {
-            this.People = DLMS.BusinessLier.Person.PersonLogic.GetAllPeople();
-            if (People == null)
-            {
-                DataGrid.Visible = false;
-                MessageBox.Show(text: "There is no data in database", caption: "No Data",
-                    icon: MessageBoxIcon.Information, buttons: MessageBoxButtons.OK);
-                return;
-            }
-            DataGrid.DataSource = People;
+            DataGrid.DataSource = "";
+            this.Cursor = Cursors.WaitCursor;
             DataGrid.Refresh();
+            GridFiller();
             this.RowsCountlabel.Text = DataGrid.RowCount.ToString();
-
         }
         private void EditPersonButton_Click(object sender, EventArgs e)
         {
@@ -182,7 +225,6 @@ namespace DesktopApp.PeopleManagement
 
 
         }
-
         private void ShowInfoButton_Click(object sender, EventArgs e)
         {
             if (sender == null)
@@ -205,26 +247,15 @@ namespace DesktopApp.PeopleManagement
 
             }
         }
-
         private void FilterValueTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            
             if (People == null)
                 return;
 
             string Value = FilterValueTextBox.Text;
 
-            //check if the event is from the date box
-            if (sender.GetType() == DateTimePicker.GetType())
-            {
-                if (DateTimePicker == null)
-                {
-                    People.DefaultView.RowFilter = "";
-                    return;
-                }
-            }
-
-            else if (string.IsNullOrEmpty(Value) || FilterChoices.SelectedItem == null)
+            if (FilterChoices.SelectedItem?.ToString() == "None")
             {
                 People.DefaultView.RowFilter = "";
                 return;
@@ -269,7 +300,6 @@ namespace DesktopApp.PeopleManagement
             if (column.DataType == typeof(bool) && bool.TryParse(Value, out bool _))
             {
                 Filter = $"{column.ColumnName} = '{Value}'";
-
             }
             try
             {
@@ -297,6 +327,8 @@ namespace DesktopApp.PeopleManagement
             {
                 FilterValueTextBox.Visible = false;
                 DateTimePicker.Visible = false;
+                if(People!=null)
+                      People.DefaultView.RowFilter="";
                 return;
             }
 
@@ -307,6 +339,7 @@ namespace DesktopApp.PeopleManagement
                 return;
             }
             FilterValueTextBox.Visible = true;
+            FilterValueTextBox.Focus();
             DateTimePicker.Visible = false;
             if (People != null)
             {
@@ -318,7 +351,6 @@ namespace DesktopApp.PeopleManagement
             //for reuseability
             FilterValueTextBox_TextChanged(sender, e);
         }
-
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
@@ -338,7 +370,6 @@ namespace DesktopApp.PeopleManagement
             this.Cursor = Cursors.Hand;
 
         }
-
         private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (FilterChoices.SelectedItem == null)
@@ -352,13 +383,11 @@ namespace DesktopApp.PeopleManagement
                 }
             }
         }
-
         private void PeopleManagementFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.People?.Clear();
             this.BackgroundImage?.Dispose();
         }
-
         private void DataGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             ShowInfoButton.PerformClick();
