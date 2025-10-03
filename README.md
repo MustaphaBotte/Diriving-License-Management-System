@@ -59,7 +59,7 @@ The project implements essential driving license services with custom features t
 ## System Requirements
 - **Visual Studio Community 2022** (or later)
 - **SQL Server** (compatible version)
-- **.Net Framework
+- **.Net Framework**
 
 
 
