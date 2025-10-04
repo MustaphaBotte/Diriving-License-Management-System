@@ -313,6 +313,7 @@ namespace DesktopApp.UsersManagement
                 }
             }
             ManageUser.Add_edit_UserFrm Frm = new ManageUser.Add_edit_UserFrm(personId);
+            Frm.SendSignaltoRefresh += RefreshTheGrid;
             //  Frm.SearchForPerson(personId, alreadyAUser: true); you can also do this
             Frm.ShowDialog();
         }

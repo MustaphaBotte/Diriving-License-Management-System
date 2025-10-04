@@ -12,11 +12,22 @@ namespace DLMS.BusinessLier.User
         public static Entities.ClsUser? FindUserByIdOrUser(int ID = -1, string Username = "")
         {
             Entities.ClsUser? user = UserData.GetUserByIdOrUsername(ID, Username);
+            if(user!=null)
+                  user.Person = DLMS.Data_access.Person.PersonData.FindPerson(user.PersonId);
             return user;
         }
         public static Entities.ClsUser? FindUserByPersonID(int ID)
         {
             Entities.ClsUser? user = UserData.GetUserByPersonId(ID);
+            if (user != null)
+                user.Person = DLMS.Data_access.Person.PersonData.FindPerson(user.PersonId);
+            return user;
+        }
+        public static Entities.ClsUser? FindUserByUserAndPass(string Username, string password)
+        {
+            Entities.ClsUser? user = Data_access.Users.UserData.GetUserByUserandPass(Username, Username);
+            if (user != null)
+                user.Person = DLMS.Data_access.Person.PersonData.FindPerson(user.PersonId);
             return user;
         }
 
@@ -37,11 +48,7 @@ namespace DLMS.BusinessLier.User
         {
             return Data_access.Users.UserData.IsUserExistsByPersonId(PersonID);
         }
-        public static Entities.ClsUser? FindUserByUserAndPass(string Username, string password )
-        {
-            return Data_access.Users.UserData.GetUserByUserandPass(Username, Username);
-        }
-
+  
         public static DataTable? GetAllUsers()
         {
             return Data_access.Users.UserData.GetAllusers();
@@ -50,7 +57,8 @@ namespace DLMS.BusinessLier.User
         public static bool Save(Entities.ClsUser User, out int NewUserID)
         {
             NewUserID = -1;
-            if (User == null) return false;
+            if (User == null)
+                return false;
           
           
             string SaveErrors = "";

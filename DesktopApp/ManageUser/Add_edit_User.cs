@@ -79,8 +79,6 @@ namespace DesktopApp.ManageUser
             {
                 return;
             }
-
-
             if (Filter == "personid")
             {
                 int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int OutPut) ? OutPut : 0;
@@ -100,11 +98,21 @@ namespace DesktopApp.ManageUser
                 {
                     MessageBox.Show("please Fill the National Number Field ", "Invalid National Number", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-
                     return;
                 }
                 SearchForPerson(NationalNo: NationNo);
             }
+            if (DLMS.BusinessLier.User.UserLogic.ExistsByPersonID(PersonControl.Person?.PersonId ?? 0))
+            {
+
+                MessageBox.Show($"The person with ID= {PersonControl.Person?.PersonId} already is a user please choose or create another person.", "integrity violation",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NextButton.Enabled = false;
+                PagesTab.Enabled = false;
+                return;
+            }
+            NextButton.Enabled = true;
+            SaveButton.Enabled = true;
         }
 
         private void ClearUserAndPassForm()
@@ -118,7 +126,7 @@ namespace DesktopApp.ManageUser
         }
         private void NextButton_Click(object sender, EventArgs e)
         {
-
+           
             PagesTab.SelectedIndex = 1;
         }
 
@@ -195,12 +203,12 @@ namespace DesktopApp.ManageUser
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            string usermane = UsernameTextBox.Text;
+            string NewUsermane = UsernameTextBox.Text;
             string password = PasswordTextBox.Text;
             string Cofpassword = ConfirmPasswordTextBox.Text;
             bool IsActive = StatucCheck.Checked;
 
-            if (usermane.Length < 4 || usermane.Length > 20 || password.Length < 4 || password.Length > 20)
+            if (NewUsermane.Length < 4 || NewUsermane.Length > 20 || password.Length < 4 || password.Length > 20)
             {
                 MessageBox.Show("please fill the fields (user and pass length must has length between 4 and 20 chars)", "Invalid Input",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return;
@@ -215,10 +223,7 @@ namespace DesktopApp.ManageUser
                 MessageBox.Show("something wrong please go back and find the person again", "Unkown Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return;
             }
-            User.UserName = usermane;
-            User.PersonId = this.Person.PersonId;
-            User.PassWord = password;
-            User.IsActive = IsActive;
+      
             string Operation = User.Mode == Entities.EnMode.AddNew ? "Add New User" : "Edit User Info";
 
             DialogResult = MessageBox.Show($"are you sure you want to do this operation?", "Confirmation",
@@ -236,6 +241,19 @@ namespace DesktopApp.ManageUser
                     return;
                 }
             }
+            if (User.Mode == Entities.EnMode.Update && NewUsermane.Trim() != User.UserName)
+            {
+                if (UserLogic.Exists(Username: this.UsernameTextBox.Text.Trim()))
+                {
+                    MessageBox.Show($"The Username:{this.UsernameTextBox.Text.Trim()} is already exists please choose another one", "Username not available",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            User.UserName = NewUsermane;
+            User.PersonId = this.Person.PersonId;
+            User.PassWord = password;
+            User.IsActive = IsActive;
             if (this.Save())
             {
                 this.UserIdLbl.Text = User.UserId.ToString();

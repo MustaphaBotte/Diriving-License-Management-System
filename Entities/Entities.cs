@@ -71,6 +71,7 @@ namespace DLMS.EntitiesNamespace
         {
             public int UserId { get; set; } = -1;
             public int PersonId { get; set; } = -1;
+            public ClsPerson? Person = new ClsPerson();
             public string UserName { get; set; } = "";
             public string PassWord { get; set; } = "";
             public bool IsActive { get; set; } = false;
@@ -79,7 +80,7 @@ namespace DLMS.EntitiesNamespace
 
             [JsonConstructor]
 
-            public ClsUser(int UserId, int PersonId, string UserName, string PassWord, bool IsActive)
+            public ClsUser(int UserId, int PersonId,string UserName, string PassWord, bool IsActive)
             {
                 this.UserId = UserId;
                 this.PersonId = PersonId;
@@ -88,7 +89,8 @@ namespace DLMS.EntitiesNamespace
                 this.IsActive = IsActive;
                 this.Mode = EnMode.Update;
             }
-            public ClsUser() { }
+            public ClsUser() 
+            { }
         }
 
         public class ClsApplicationType

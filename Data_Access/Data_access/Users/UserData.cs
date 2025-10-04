@@ -49,8 +49,6 @@ namespace DLMS.Data_access.Users
             }
             return null;
         }
-
-
         public static Entities.ClsUser? GetUserByUserandPass(string username, string pass)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(pass))
@@ -84,7 +82,46 @@ namespace DLMS.Data_access.Users
             }
             return null;
         }
+        public static Entities.ClsUser? GetUserByPersonId(int PersonID)
+        {
+            if (PersonID <= 0)
+            {
+                return null;
+            }
+            string Attribut = "PersonId";
+            string Query = $"select * from users where {Attribut} = @Value";
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(Query, connection);
+            command.Parameters.AddWithValue(parameterName: "@Value", value: PersonID);
 
+            SqlDataReader? Reader = null;
+            try
+            {
+                connection.Open();
+                Reader = command.ExecuteReader();
+                if (Reader.Read())
+                {
+                    return new Entities.ClsUser(Convert.ToInt32(Reader["UserId"]),
+                                         Convert.ToInt32(Reader["PersonId"]),
+                                         (string)Reader["UserName"],
+                                         (string)Reader["PassWord"],
+                                         (bool)Reader["IsActive"]
+                                          );
+                }
+
+                return null;
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                Reader?.Close();
+                connection.Close();
+            }
+            return null;
+        }
 
         public static bool Exists(int ID = -1, string username = "")
         {
@@ -152,46 +189,6 @@ namespace DLMS.Data_access.Users
                 connection.Close();
             }
             return false;
-        }
-        public static Entities.ClsUser? GetUserByPersonId(int PersonID)
-        {
-            if (PersonID <= 0)
-            { 
-                return null;
-            }
-            string Attribut = "PersonId";
-            string Query = $"select * from users where {Attribut} = @Value";
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            SqlCommand command = new SqlCommand(Query, connection);
-            command.Parameters.AddWithValue(parameterName: "@Value", value: PersonID);
-
-            SqlDataReader? Reader = null;
-            try
-            {
-                connection.Open();
-                Reader = command.ExecuteReader();
-                if (Reader.Read())
-                {
-                    return new Entities.ClsUser(Convert.ToInt32(Reader["UserId"]),
-                                         Convert.ToInt32(Reader["PersonId"]),
-                                         (string)Reader["UserName"],
-                                         (string)Reader["PassWord"],
-                                         (bool)Reader["IsActive"]
-                                          );
-                }
-
-                return null;
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                Reader?.Close();
-                connection.Close();
-            }
-            return null;
         }
         public static bool UpdateUser(Entities.ClsUser NewObj, ref string message)
         {
