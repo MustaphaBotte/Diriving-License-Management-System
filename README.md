@@ -25,6 +25,7 @@ The project implements essential driving license services with custom features t
 - **Full CRUD operations** (Create, Read, Update, Delete) with advanced search capabilities on all entities.
 
 ### Modular Management
+- **SignIn && SigUp**
 - **User Management**
 - **Person Records Management**
 - **Driver Records Management**
@@ -40,7 +41,8 @@ The project implements essential driving license services with custom features t
 
 ### Security Features
 - Secure login with username and password, with optional local credential storage.
-- **SQL Injection protection** via input validation with(Ado.net)
+- Password hashing using BCrypt algorithm with work factor 14
+- **SQL Injection protection** via input validation with(Ado.net).
 
 ### Event-Driven Communication
 - Use of **Delegates and Events** for smooth communication between forms and components.
@@ -65,7 +67,7 @@ The project implements essential driving license services with custom features t
 
 ## Installation & Setup
 Clone or download the repository.
-Restore the provided SQL database (DLMS DB) from the folder named Database your SQL Server instance.
+Restore the provided SQL database (DLMS DB) from the folder named Database to your SQL Server instance.
 Update the connection string in the application to match your SQL Server credentials and database settings.
 (go to DLMS\Data_Access\Data_access\Connection_Settings)
 
@@ -74,7 +76,7 @@ Update the connection string in the application to match your SQL Server credent
 ## Usage
 1. Launch the application.
 2. Login with the following credentials:
-   - **Username:** Msaqer77
+   - **Username:** Msaqer44
    - **Password:** 1234
 3. Navigate the application to manage licenses, users, and tests etc.
 
