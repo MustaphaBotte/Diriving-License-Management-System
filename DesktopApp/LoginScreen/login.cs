@@ -104,9 +104,22 @@ namespace DesktopApp.LoginScreen
         {
             if (ShowPassword.Checked)
             {
-                passwordTextbox.PasswordChar = '\0';return;
+                passwordTextbox.PasswordChar = '\0'; return;
             }
             passwordTextbox.PasswordChar = '*';
+        }
+        private void SignUpLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SignUpFrm Frm = new SignUpFrm();
+            Frm.OnUserCreated += (Entities.ClsUser user) =>
+            {
+                this.usernameTextbox.Text = user.UserName;
+                this.passwordTextbox.Text = user.PassWord;
+                this.RememberMeCheck.Checked = true;
+                SignInButton.PerformClick();
+            };
+            if(!Frm.IsDisposed)
+                Frm.ShowDialog();
         }
     }
 }

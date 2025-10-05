@@ -108,7 +108,7 @@ namespace DesktopApp.ManageUser
                 MessageBox.Show($"The person with ID= {PersonControl.Person?.PersonId} already is a user please choose or create another person.", "integrity violation",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 NextButton.Enabled = false;
-                PagesTab.Enabled = false;
+                SaveButton.Enabled = false;
                 return;
             }
             NextButton.Enabled = true;
@@ -186,8 +186,8 @@ namespace DesktopApp.ManageUser
         private bool Save()
         {
 
-
-            bool result = UserLogic.Save(User, out int ID);
+            string Errors = "";
+            bool result = UserLogic.Save(User, out int ID,ref Errors);
             if (result)
             {
                 // if the id is not -1 so its added a new user so we have to assign the id

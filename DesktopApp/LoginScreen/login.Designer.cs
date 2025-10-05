@@ -46,6 +46,7 @@
             passwordTextbox = new Guna.UI2.WinForms.Guna2TextBox();
             RememberMeCheck = new Guna.UI2.WinForms.Guna2CheckBox();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            SignUpLink = new LinkLabel();
             ShowPassword = new Guna.UI2.WinForms.Guna2CustomCheckBox();
             SignInButton = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -151,6 +152,7 @@
             guna2Panel1.BorderColor = Color.FromArgb(64, 64, 64);
             guna2Panel1.BorderRadius = 20;
             guna2Panel1.BorderThickness = 1;
+            guna2Panel1.Controls.Add(SignUpLink);
             guna2Panel1.Controls.Add(ShowPassword);
             guna2Panel1.Controls.Add(SignInButton);
             guna2Panel1.Controls.Add(guna2HtmlLabel3);
@@ -165,6 +167,19 @@
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2Panel1.Size = new Size(381, 346);
             guna2Panel1.TabIndex = 5;
+            // 
+            // SignUpLink
+            // 
+            SignUpLink.AutoSize = true;
+            SignUpLink.Font = new Font("Javanese Text", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SignUpLink.LinkColor = Color.DarkTurquoise;
+            SignUpLink.Location = new Point(177, 312);
+            SignUpLink.Name = "SignUpLink";
+            SignUpLink.Size = new Size(72, 34);
+            SignUpLink.TabIndex = 8;
+            SignUpLink.TabStop = true;
+            SignUpLink.Text = "Sing Up";
+            SignUpLink.LinkClicked += SignUpLink_LinkClicked;
             // 
             // ShowPassword
             // 
@@ -259,5 +274,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private ErrorProvider errorProvider1;
         private Guna.UI2.WinForms.Guna2CustomCheckBox ShowPassword;
+        private LinkLabel SignUpLink;
     }
 }

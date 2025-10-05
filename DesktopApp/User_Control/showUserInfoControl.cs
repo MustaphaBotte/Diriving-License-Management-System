@@ -5,9 +5,7 @@ namespace DesktopApp.User_Control
     public partial class showUserInfoControl : UserControl
     {
         private int userid = -1;
-        Entities.ClsUser? User = new Entities.ClsUser();
-        Entities.ClsPerson? Person =new Entities.ClsPerson();
-
+        public Entities.ClsUser? User = null;
         public showUserInfoControl()
         {
             InitializeComponent();

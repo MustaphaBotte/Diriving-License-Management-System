@@ -26,8 +26,9 @@ namespace DesktopApp.UsersManagement
         {
             FilterChoices.Items.Add("None"); ;
             foreach (DataGridViewColumn Column in DataGrid.Columns)
-                FilterChoices.Items.Add(Column.Name);
-
+            {
+               FilterChoices.Items.Add(Column.HeaderText);
+            }
             FilterChoices.SelectedIndex = 0;
         }
         private void UsersManagement_Load(object sender, EventArgs e)
@@ -43,6 +44,16 @@ namespace DesktopApp.UsersManagement
             }
             DataGrid.AutoGenerateColumns = true;
             DataGrid.DataSource = Users;
+            DataGrid.Columns[0].HeaderText = "User ID";
+            DataGrid.Columns[0].Width = 110;
+            DataGrid.Columns[1].HeaderText = "Person ID";
+            DataGrid.Columns[1].Width = 120;
+            DataGrid.Columns[2].HeaderText = "UserName";
+            DataGrid.Columns[2].Width = 120;
+            DataGrid.Columns[3].HeaderText = "Full Name";
+            DataGrid.Columns[3].Width = 350;
+            DataGrid.Columns[4].HeaderText = "Is Active";
+            DataGrid.Columns[4].Width = 120;
             DataGrid.Refresh();
             FillFilterList();
             DataGrid.Visible = true;
@@ -58,6 +69,7 @@ namespace DesktopApp.UsersManagement
         }
         private void RefreshTheGrid()
         {
+            this.Cursor = Cursors.WaitCursor;
             this.Users = DLMS.BusinessLier.User.UserLogic.GetAllUsers();
             if (Users == null)
             {
@@ -72,6 +84,7 @@ namespace DesktopApp.UsersManagement
             DataGrid.DataSource = Users;
             DataGrid.Refresh();
             this.RowsCountlabel.Text = DataGrid.RowCount.ToString();
+            this.Cursor = Cursors.Default;
         }
 
         private void FilterChoices_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,15 +98,20 @@ namespace DesktopApp.UsersManagement
             {
                 FilterValueTextBox.Visible = false;
                 FilterOfStatus.Visible = false;
+                AppLyFilter("");
                 return;
             }
-            if (FilterChoices.SelectedItem?.ToString()?.ToLower() == "isactive")
+            if (FilterChoices.SelectedItem?.ToString()?.ToLower() == "is active")
             {
+                FilterOfStatus.Focus();
+                FilterOfStatus.SelectedIndex = 0;
                 FilterValueTextBox.Visible = false;
                 FilterOfStatus.Visible = true;
                 return;
             }
+            FilterValueTextBox.Text = "";
             FilterValueTextBox.Visible = true;
+            FilterValueTextBox.Focus();
             FilterOfStatus.Visible = false;
         }
 
@@ -122,15 +140,16 @@ namespace DesktopApp.UsersManagement
             if (string.IsNullOrEmpty(Value) || FilterChoices.SelectedItem == null)
             {
                 Users.DefaultView.RowFilter = "";
+                FilterValueTextBox.Clear();
                 return;
             }
 
-            string? ColumnName = FilterChoices.SelectedItem?.ToString();
-            if (string.IsNullOrEmpty(ColumnName))
-                return;
+            int ColumnIndex = FilterChoices.SelectedIndex;
+            if (ColumnIndex == 0)
+                return; //if sameone break the visibility of text box while choosing none filter
 
             //Get the column object
-            DataColumn? column = Users.Columns[ColumnName];
+            DataColumn? column = Users.Columns[ColumnIndex-1];//-1 becuase the None is taking the first index;
             if (column == null)
             {
                 MessageBox.Show(text: "Invalid column or something else please try again or restart the program ", caption: "Technical Issue",
@@ -156,6 +175,7 @@ namespace DesktopApp.UsersManagement
                 Filter = $"CONVERT({column.ColumnName},'System.String') like '%{Value.ToString()}%'";
             }
             AppLyFilter(Filter);
+            this.RowsCountlabel.Text = Users.DefaultView.Count.ToString();
         }
 
         private void FilterOfStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,13 +187,13 @@ namespace DesktopApp.UsersManagement
             {
                 if (FilterOfStatus.SelectedItem == null)
                 {
-                    Users.DefaultView.RowFilter = string.Empty;
+                    Filter = string.Empty;
                     return;
                 }
                 if (((string)FilterOfStatus.SelectedItem).ToLower() == "all")
                 {
-                    Users.DefaultView.RowFilter = string.Empty;
-                    return;
+                    Filter = string.Empty;
+                    
                 }
                 else if (((string)FilterOfStatus.SelectedItem).ToLower() == "active")
                 {
@@ -304,10 +324,10 @@ namespace DesktopApp.UsersManagement
 
             if (!UserLogic.Exists(UserID))
             {
-               DialogResult Res = MessageBox.Show($"sorry the current user not exists you going now to create another one using that person id {personId}" +
-                    " .please refresh and try ", "User Not Found",
-                    MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                if(Res==DialogResult.Cancel)
+                DialogResult Res = MessageBox.Show($"sorry the current user not exists you going now to create another one using that person id {personId}" +
+                     " .please refresh and try ", "User Not Found",
+                     MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                if (Res == DialogResult.Cancel)
                 {
                     return;
                 }
@@ -369,7 +389,7 @@ namespace DesktopApp.UsersManagement
             if (FilterChoices.SelectedItem == null)
                 return;
             string? choice = FilterChoices.SelectedItem.ToString()?.ToLower();
-            if (choice == "userid" || choice == "personid")
+            if (choice == "user id" || choice == "person id")
             {
                 if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
@@ -377,6 +397,23 @@ namespace DesktopApp.UsersManagement
                 }
 
             }
+        }
+
+        private void DataGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (DataGrid.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            int UserID = int.Parse(DataGrid.Rows[e.RowIndex].Cells["UserID"]?.Value.ToString()??"0");
+            if (!UserLogic.Exists(UserID))
+            {
+                MessageBox.Show("sorry the current user not available .please refresh and try ", "User Not Found",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            ShowUserInfoFrm Frm = new ShowUserInfoFrm(UserID);
+            Frm.ShowDialog();
         }
     }
 }

@@ -49,39 +49,6 @@ namespace DLMS.Data_access.Users
             }
             return null;
         }
-        public static Entities.ClsUser? GetUserByUserandPass(string username, string pass)
-        {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(pass))
-            {
-                return null;
-            }
-            string Query = "select top 1  * from users where username = @username and password = @password";
-            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
-            SqlCommand command = new SqlCommand(Query, connection);
-            command.Parameters.AddWithValue("@username", username);
-            command.Parameters.AddWithValue("@password", pass);
-            try
-            {
-                connection.Open();
-                SqlDataReader Reader = command.ExecuteReader();
-                if (Reader.Read())
-                {
-                    Entities.ClsUser User = new Entities.ClsUser((int)Reader["UserId"],
-                                                 (int)Reader["PersonId"],
-                                                 (string)Reader["UserName"],
-                                                 (string)Reader["PassWord"],
-                                                 (bool)Reader["isActive"]);       
-                    return User;
-                }
-                return null;
-
-            }
-            catch (Exception ex)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, ex);
-            }
-            return null;
-        }
         public static Entities.ClsUser? GetUserByPersonId(int PersonID)
         {
             if (PersonID <= 0)
@@ -331,7 +298,8 @@ namespace DLMS.Data_access.Users
             DataTable Users = new DataTable();
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(cmdText: "select " +
-                "u.userid,u.personid,u.username,p.firstname,p.lastname,u.isactive" +
+                "u.userid,u.personid,u.username,"+
+                "p.firstname +' '+  p.secondname+' ' + p.thirdname+' ' + p.lastname as FullName,u.isactive" +
                 " from users u inner join people p on u.personid = p.personid", connection: connection);
             SqlDataReader? Reader = null;
             try
@@ -386,6 +354,34 @@ namespace DLMS.Data_access.Users
             return null;
 
         }
+        public static string? GetHash(string Username)
+        {
+            if (string.IsNullOrEmpty(Username))
+            {
+                return null;
+            }
+            string Query = "select top 1 password from users where username = @username";
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(Query, connection);
+            command.Parameters.AddWithValue(@"username", Username);
+            SqlDataReader? Reader = null;
+            try
+            {
+                connection.Open();
+                string? Hash = command.ExecuteScalar().ToString();
+                return Hash;
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                Reader?.Close();
+                connection.Close();
+            }
+            return null;
 
+        }
     }
 }

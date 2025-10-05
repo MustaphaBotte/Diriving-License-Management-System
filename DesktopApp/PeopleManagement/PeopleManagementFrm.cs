@@ -304,6 +304,7 @@ namespace DesktopApp.PeopleManagement
             try
             {
                 People.DefaultView.RowFilter = Filter;
+                this.RowsCountlabel.Text = People.DefaultView.Count.ToString();
             }
             catch
             {
@@ -340,6 +341,7 @@ namespace DesktopApp.PeopleManagement
             }
             FilterValueTextBox.Visible = true;
             FilterValueTextBox.Focus();
+            FilterValueTextBox.Clear();
             DateTimePicker.Visible = false;
             if (People != null)
             {

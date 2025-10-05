@@ -65,11 +65,7 @@ namespace DesktopApp.PersonControl
             catch
             {
                 return false;
-            }
-            finally
-            {
-
-            }
+            }           
         }
         public bool FillDataInControl(int ID=-1,string NationalNo="")
         {

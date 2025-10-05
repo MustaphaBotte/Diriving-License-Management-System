@@ -214,6 +214,7 @@
             DataGrid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DataGrid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             DataGrid.CellMouseClick += DataGrid_CellMouseClick;
+            DataGrid.CellMouseDoubleClick += DataGrid_CellMouseDoubleClick;
             // 
             // FilterChoices
             // 

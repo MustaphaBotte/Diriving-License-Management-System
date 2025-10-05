@@ -2,7 +2,7 @@
 using DLMS.EntitiesNamespace;
 using System.Text.Json;
 using System.Text;
-
+using BCrypt.Net;
 namespace DLMS.BusinessLier.Login
 {
     public static class LoginLogic
@@ -11,7 +11,7 @@ namespace DLMS.BusinessLier.Login
 
         public static Entities.ClsUser? GetUser(string username , string password ,bool rememberme = false)
         {
-            Entities.ClsUser? user = DLMS.Data_access.Users.UserData.GetUserByUserandPass(username, password);
+            Entities.ClsUser? user =DLMS.BusinessLier.User.UserLogic.FindUserByUserAndPass(username, password);
             if(user!=null)
             {
                 if(rememberme)
@@ -30,8 +30,9 @@ namespace DLMS.BusinessLier.Login
         public static void RememberTheUser(Entities.ClsUser user)
         {
             if (user == null) { return; }
-
+           
             string jsonformat = JsonSerializer.Serialize(user);
+            
             if (jsonformat != null)
             {
                 if (!File.Exists(RememberingFilePath))

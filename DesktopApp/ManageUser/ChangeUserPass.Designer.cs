@@ -79,6 +79,7 @@
             CurrentPassTextBox.Size = new Size(158, 33);
             CurrentPassTextBox.TabIndex = 29;
             CurrentPassTextBox.Leave += CurrentPassTextBox_Leave;
+            CurrentPassTextBox.Validating += CurrentPassTextBox_Validating;
             // 
             // ConfirmPasswordTextBox
             // 
@@ -106,6 +107,7 @@
             ConfirmPasswordTextBox.Size = new Size(158, 33);
             ConfirmPasswordTextBox.TabIndex = 31;
             ConfirmPasswordTextBox.Leave += ConfirmPasswordTextBox_Leave;
+            ConfirmPasswordTextBox.Validating += ConfirmPasswordTextBox_Validating;
             // 
             // PasswordTextBox
             // 
@@ -133,6 +135,7 @@
             PasswordTextBox.Size = new Size(158, 33);
             PasswordTextBox.TabIndex = 36;
             PasswordTextBox.Leave += PasswordTextBox_Leave;
+            PasswordTextBox.Validating += PasswordTextBox_Validating;
             // 
             // SaveButton
             // 
