@@ -47,6 +47,7 @@ namespace DesktopApp
 
         private void signOutButton_Click(object sender, EventArgs e)
         {
+            LogedInUser.ClslogedInUser.logedInUser = null;       
             this.ManageFormHide?.Invoke();
             this.Hide();
         }
@@ -74,14 +75,14 @@ namespace DesktopApp
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Entities.ClsUser? CurrentUser = DesktopApp.LogedInUser.ClslogedInUser.logedInUser;
-            if (CurrentUser == null)
+           
+            if (LogedInUser.ClslogedInUser.logedInUser == null)
             {
                 MessageBox.Show("We cant show your info right now. try again later", "Internal Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
-            ShowUserInfoFrm Frm = new ShowUserInfoFrm(CurrentUser.UserId);
+            ShowUserInfoFrm Frm = new ShowUserInfoFrm(LogedInUser.ClslogedInUser.logedInUser.UserId);
             Frm.ShowDialog();
         }
 

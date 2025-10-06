@@ -29,7 +29,7 @@ namespace DesktopApp.LoginScreen
 
         }
         private void CreateUser()
-        {          
+        {
             DialogResult Res = MessageBox.Show($"Person was Created successfully with ID={this.PersonID}.\n" +
                 $" are you sure you want to create a new user", "Confirmation", MessageBoxButtons.OKCancel,
             MessageBoxIcon.Question);
@@ -60,7 +60,7 @@ namespace DesktopApp.LoginScreen
             }
         }
 
-       
+
         void SignUpButton_Click(object sender, EventArgs e)
         {
             if (!this.ValidateChildren())
@@ -132,7 +132,7 @@ namespace DesktopApp.LoginScreen
         {
             this.TimeLabel.Text = "";
             this.TimeLabel.Visible = true;
-            for (byte i=1;i<=5;i++)
+            for (byte i = 5; i >= 1; i--)
             {
                 await Task.Delay(1000);
                 this.TimeLabel.Text = $"{i}s";
@@ -146,7 +146,7 @@ namespace DesktopApp.LoginScreen
                 this.PersonID = PrsnID;
                 Frm.Close();
             };
-            Frm.FormClosed += async(object? sender, FormClosedEventArgs e) =>
+            Frm.FormClosed += async (object? sender, FormClosedEventArgs e) =>
             {
                 if (this.PersonID != -1)
                     return;
@@ -168,6 +168,21 @@ namespace DesktopApp.LoginScreen
 
 
 
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

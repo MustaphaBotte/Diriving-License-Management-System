@@ -88,6 +88,7 @@ namespace DesktopApp.LoginScreen
 
                 MessageBox.Show("Wrong UserName or Password",
                     "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.usernameTextbox.Focus();
             }
 
         }
@@ -123,8 +124,18 @@ namespace DesktopApp.LoginScreen
                 this.RememberMeCheck.Checked = true;
                 SignInButton.PerformClick();
             };
-            if(!Frm.IsDisposed)
+            if (!Frm.IsDisposed)
                 Frm.ShowDialog();
+        }
+
+        private void guna2ImageRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

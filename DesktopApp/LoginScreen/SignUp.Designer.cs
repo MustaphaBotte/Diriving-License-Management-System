@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUpFrm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -37,13 +38,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUpFrm));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ConfpasswordTextbox = new Guna.UI2.WinForms.Guna2TextBox();
             SignUpButton = new Guna.UI2.WinForms.Guna2Button();
@@ -59,6 +60,7 @@
             ShowPassword = new Guna.UI2.WinForms.Guna2CustomCheckBox();
             ShowConfPass = new Guna.UI2.WinForms.Guna2CustomCheckBox();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            CloseButton = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
@@ -66,13 +68,9 @@
             // guna2HtmlLabel4
             // 
             guna2HtmlLabel4.BackColor = Color.Transparent;
-            guna2HtmlLabel4.Font = new Font("Sylfaen", 14.25F, FontStyle.Bold);
+            resources.ApplyResources(guna2HtmlLabel4, "guna2HtmlLabel4");
             guna2HtmlLabel4.ForeColor = Color.White;
-            guna2HtmlLabel4.Location = new Point(3, 201);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(167, 27);
-            guna2HtmlLabel4.TabIndex = 8;
-            guna2HtmlLabel4.Text = "Confirm Password";
             // 
             // ConfpasswordTextbox
             // 
@@ -86,17 +84,14 @@
             ConfpasswordTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             ConfpasswordTextbox.FillColor = Color.DimGray;
             ConfpasswordTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConfpasswordTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(ConfpasswordTextbox, "ConfpasswordTextbox");
             ConfpasswordTextbox.ForeColor = Color.White;
             ConfpasswordTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConfpasswordTextbox.Location = new Point(207, 195);
             ConfpasswordTextbox.Name = "ConfpasswordTextbox";
             ConfpasswordTextbox.PasswordChar = '*';
             ConfpasswordTextbox.PlaceholderText = "password";
             ConfpasswordTextbox.SelectedText = "";
             ConfpasswordTextbox.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            ConfpasswordTextbox.Size = new Size(200, 36);
-            ConfpasswordTextbox.TabIndex = 9;
             ConfpasswordTextbox.Validating += ConfpasswordTextbox_Validating;
             // 
             // SignUpButton
@@ -110,26 +105,20 @@
             SignUpButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             SignUpButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             SignUpButton.FillColor = Color.Black;
-            SignUpButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            resources.ApplyResources(SignUpButton, "SignUpButton");
             SignUpButton.ForeColor = Color.White;
-            SignUpButton.Location = new Point(128, 279);
             SignUpButton.Name = "SignUpButton";
             SignUpButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            SignUpButton.Size = new Size(180, 45);
-            SignUpButton.TabIndex = 6;
-            SignUpButton.Text = "Create User";
             SignUpButton.Click += SignUpButton_Click;
+            SignUpButton.MouseEnter += SignUp_Load;
+            SignUpButton.MouseLeave += CloseButton_MouseLeave;
             // 
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Font = new Font("Sylfaen", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            resources.ApplyResources(guna2HtmlLabel3, "guna2HtmlLabel3");
             guna2HtmlLabel3.ForeColor = Color.White;
-            guna2HtmlLabel3.Location = new Point(145, 40);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(88, 33);
-            guna2HtmlLabel3.TabIndex = 5;
-            guna2HtmlLabel3.Text = "Sign Up";
             // 
             // usernameTextbox
             // 
@@ -143,21 +132,18 @@
             usernameTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             usernameTextbox.FillColor = Color.DimGray;
             usernameTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            usernameTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(usernameTextbox, "usernameTextbox");
             usernameTextbox.ForeColor = Color.White;
             usernameTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            usernameTextbox.Location = new Point(207, 94);
             usernameTextbox.Name = "usernameTextbox";
             usernameTextbox.PlaceholderText = "username";
             usernameTextbox.SelectedText = "";
             usernameTextbox.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            usernameTextbox.Size = new Size(200, 36);
-            usernameTextbox.TabIndex = 2;
             usernameTextbox.Validating += usernameTextbox_Validating;
             // 
             // RememberMeCheck
             // 
-            RememberMeCheck.AutoSize = true;
+            resources.ApplyResources(RememberMeCheck, "RememberMeCheck");
             RememberMeCheck.Checked = true;
             RememberMeCheck.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
             RememberMeCheck.CheckedState.BorderRadius = 0;
@@ -165,11 +151,7 @@
             RememberMeCheck.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             RememberMeCheck.CheckState = CheckState.Checked;
             RememberMeCheck.ForeColor = Color.White;
-            RememberMeCheck.Location = new Point(160, 254);
             RememberMeCheck.Name = "RememberMeCheck";
-            RememberMeCheck.Size = new Size(104, 19);
-            RememberMeCheck.TabIndex = 4;
-            RememberMeCheck.Text = "Remember me";
             RememberMeCheck.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
             RememberMeCheck.UncheckedState.BorderRadius = 0;
             RememberMeCheck.UncheckedState.BorderThickness = 0;
@@ -178,13 +160,9 @@
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Sylfaen", 14.25F, FontStyle.Bold);
+            resources.ApplyResources(guna2HtmlLabel1, "guna2HtmlLabel1");
             guna2HtmlLabel1.ForeColor = Color.White;
-            guna2HtmlLabel1.Location = new Point(84, 149);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(86, 27);
-            guna2HtmlLabel1.TabIndex = 0;
-            guna2HtmlLabel1.Text = "Password";
             // 
             // passwordTextbox
             // 
@@ -198,29 +176,22 @@
             passwordTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             passwordTextbox.FillColor = Color.DimGray;
             passwordTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            passwordTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            resources.ApplyResources(passwordTextbox, "passwordTextbox");
             passwordTextbox.ForeColor = Color.White;
             passwordTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            passwordTextbox.Location = new Point(207, 144);
             passwordTextbox.Name = "passwordTextbox";
             passwordTextbox.PasswordChar = '*';
             passwordTextbox.PlaceholderText = "password";
             passwordTextbox.SelectedText = "";
             passwordTextbox.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            passwordTextbox.Size = new Size(200, 36);
-            passwordTextbox.TabIndex = 3;
             passwordTextbox.Validating += passwordTextbox_Validating;
             // 
             // guna2HtmlLabel2
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Sylfaen", 14.25F, FontStyle.Bold);
+            resources.ApplyResources(guna2HtmlLabel2, "guna2HtmlLabel2");
             guna2HtmlLabel2.ForeColor = Color.White;
-            guna2HtmlLabel2.Location = new Point(78, 98);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(92, 27);
-            guna2HtmlLabel2.TabIndex = 1;
-            guna2HtmlLabel2.Text = "Username";
             // 
             // errorProvider1
             // 
@@ -229,26 +200,16 @@
             // Warning
             // 
             Warning.BackColor = Color.Transparent;
-            Warning.Font = new Font("Sylfaen", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            resources.ApplyResources(Warning, "Warning");
             Warning.ForeColor = Color.Red;
-            Warning.Location = new Point(115, 430);
             Warning.Name = "Warning";
-            Warning.Size = new Size(753, 33);
-            Warning.TabIndex = 7;
-            Warning.Text = "Adding A Person Is Required For this Step :( From Will Be Closed In";
-            Warning.Visible = false;
             // 
             // TimeLabel
             // 
             TimeLabel.BackColor = Color.Transparent;
-            TimeLabel.Font = new Font("Sylfaen", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            resources.ApplyResources(TimeLabel, "TimeLabel");
             TimeLabel.ForeColor = Color.Lime;
-            TimeLabel.Location = new Point(483, 469);
             TimeLabel.Name = "TimeLabel";
-            TimeLabel.Size = new Size(91, 33);
-            TimeLabel.TabIndex = 8;
-            TimeLabel.Text = "Seconds";
-            TimeLabel.Visible = false;
             // 
             // ShowPassword
             // 
@@ -259,15 +220,12 @@
             ShowPassword.CheckedState.BorderThickness = 0;
             ShowPassword.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             ShowPassword.CheckMarkColor = Color.Black;
-            ShowPassword.CustomizableEdges = customizableEdges11;
+            ShowPassword.CustomizableEdges = customizableEdges12;
             ShowPassword.ForeColor = SystemColors.ControlLightLight;
-            ShowPassword.Location = new Point(368, 149);
+            resources.ApplyResources(ShowPassword, "ShowPassword");
             ShowPassword.Name = "ShowPassword";
-            ShowPassword.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            ShowPassword.Size = new Size(27, 23);
-            ShowPassword.TabIndex = 7;
+            ShowPassword.ShadowDecoration.CustomizableEdges = customizableEdges13;
             ShowPassword.Tag = "Pass";
-            ShowPassword.Text = "guna2CustomCheckBox1";
             ShowPassword.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
             ShowPassword.UncheckedState.BorderRadius = 2;
             ShowPassword.UncheckedState.BorderThickness = 0;
@@ -283,15 +241,12 @@
             ShowConfPass.CheckedState.BorderThickness = 0;
             ShowConfPass.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             ShowConfPass.CheckMarkColor = Color.Black;
-            ShowConfPass.CustomizableEdges = customizableEdges9;
+            ShowConfPass.CustomizableEdges = customizableEdges10;
             ShowConfPass.ForeColor = SystemColors.ControlLightLight;
-            ShowConfPass.Location = new Point(368, 201);
+            resources.ApplyResources(ShowConfPass, "ShowConfPass");
             ShowConfPass.Name = "ShowConfPass";
-            ShowConfPass.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            ShowConfPass.Size = new Size(27, 23);
-            ShowConfPass.TabIndex = 10;
+            ShowConfPass.ShadowDecoration.CustomizableEdges = customizableEdges11;
             ShowConfPass.Tag = "ConfPass";
-            ShowConfPass.Text = "guna2CustomCheckBox1";
             ShowConfPass.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
             ShowConfPass.UncheckedState.BorderRadius = 2;
             ShowConfPass.UncheckedState.BorderThickness = 0;
@@ -315,28 +270,37 @@
             guna2Panel1.Controls.Add(guna2HtmlLabel1);
             guna2Panel1.Controls.Add(passwordTextbox);
             guna2Panel1.Controls.Add(guna2HtmlLabel2);
-            guna2Panel1.CustomizableEdges = customizableEdges13;
-            guna2Panel1.Location = new Point(266, 78);
+            guna2Panel1.CustomizableEdges = customizableEdges14;
+            resources.ApplyResources(guna2Panel1, "guna2Panel1");
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2Panel1.Size = new Size(426, 346);
-            guna2Panel1.TabIndex = 6;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            // 
+            // CloseButton
+            // 
+            CloseButton.BackColor = Color.DarkGray;
+            CloseButton.CheckedState.Image = (Image)resources.GetObject("resource.Image");
+            CloseButton.Image = (Image)resources.GetObject("CloseButton.Image");
+            CloseButton.ImageOffset = new Point(0, 0);
+            CloseButton.ImageRotate = 0F;
+            resources.ApplyResources(CloseButton, "CloseButton");
+            CloseButton.Name = "CloseButton";
+            CloseButton.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            CloseButton.Click += CloseButton_Click;
+            CloseButton.MouseEnter += CloseButton_MouseEnter;
+            CloseButton.MouseLeave += CloseButton_MouseLeave;
             // 
             // SignUpFrm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             BackgroundImage = Properties.Resources.login3;
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(968, 565);
+            Controls.Add(CloseButton);
             Controls.Add(TimeLabel);
             Controls.Add(Warning);
             Controls.Add(guna2Panel1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Icon = (Icon)resources.GetObject("$this.Icon");
+            FormBorderStyle = FormBorderStyle.None;
             Name = "SignUpFrm";
-            Text = "SignUp";
             Load += SignUp_Load;
             Shown += SignUpFrm_Shown;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
@@ -362,5 +326,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2CustomCheckBox ShowConfPass;
         private Guna.UI2.WinForms.Guna2CustomCheckBox ShowPassword;
+        private Guna.UI2.WinForms.Guna2ImageRadioButton CloseButton;
     }
 }

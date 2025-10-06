@@ -40,6 +40,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginFrm));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             usernameTextbox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -51,6 +52,7 @@
             SignInButton = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             errorProvider1 = new ErrorProvider(components);
+            CloseButton = new Guna.UI2.WinForms.Guna2ImageRadioButton();
             guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -242,6 +244,22 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // CloseButton
+            // 
+            CloseButton.BackColor = Color.DarkGray;
+            CloseButton.CheckedState.Image = (Image)resources.GetObject("resource.Image");
+            CloseButton.Image = (Image)resources.GetObject("CloseButton.Image");
+            CloseButton.ImageOffset = new Point(0, 0);
+            CloseButton.ImageRotate = 0F;
+            CloseButton.Location = new Point(677, 12);
+            CloseButton.Name = "CloseButton";
+            CloseButton.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            CloseButton.Size = new Size(53, 39);
+            CloseButton.TabIndex = 6;
+            CloseButton.Click += CloseButton_Click;
+            CloseButton.MouseEnter += SignInButton_MouseEnter;
+            CloseButton.MouseLeave += SignInButton_MouseLeave;
+            // 
             // LoginFrm
             // 
             AcceptButton = SignInButton;
@@ -251,10 +269,12 @@
             BackgroundImage = Properties.Resources.login;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(742, 489);
+            Controls.Add(CloseButton);
             Controls.Add(guna2Panel1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginFrm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
@@ -275,5 +295,6 @@
         private ErrorProvider errorProvider1;
         private Guna.UI2.WinForms.Guna2CustomCheckBox ShowPassword;
         private LinkLabel SignUpLink;
+        private Guna.UI2.WinForms.Guna2ImageRadioButton CloseButton;
     }
 }
