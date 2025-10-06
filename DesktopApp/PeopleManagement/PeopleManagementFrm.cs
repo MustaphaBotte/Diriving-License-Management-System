@@ -113,6 +113,7 @@ namespace DesktopApp.PeopleManagement
         {
             DataGrid.DataSource = "";
             this.Cursor = Cursors.WaitCursor;
+            this.People= DLMS.BusinessLier.Person.PersonLogic.GetAllPeople();
             DataGrid.Refresh();
             GridFiller();
             this.RowsCountlabel.Text = DataGrid.RowCount.ToString();

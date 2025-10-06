@@ -29,8 +29,8 @@ namespace DesktopApp.ManageUser
         {
             UserIdLbl.Text = User.UserId.ToString();
             UsernameTextBox.Text = User.UserName;
-            PasswordTextBox.Text = User.PassWord;
-            ConfirmPasswordTextBox.Text = User.PassWord;
+            PasswordTextBox.Text = "";
+            ConfirmPasswordTextBox.Text = "";
             StatucCheck.Checked = User.IsActive;
         }
         public void SearchForPerson(int ID = -1, string NationalNo = "", bool alreadyAUser = false)
@@ -133,15 +133,21 @@ namespace DesktopApp.ManageUser
 
         private void UsernameTextBox_Leave(object sender, EventArgs e)
         {
-            Guna2TextBox obj = (Guna2TextBox)sender;
-            if (obj.Text.Length < 4 || obj.Text.Length > 20)
+            Guna2TextBox UsernameBox = (Guna2TextBox)sender;
+            if (UsernameBox.Text.Length < 4 || UsernameBox.Text.Length > 20)
             {
-                errorProvider1.SetError(obj, "username pass length must has length between 4 and 20 chars");
+                errorProvider1.SetError(UsernameBox, "username pass length must has length between 4 and 20 chars");
                 return;
             }
-            if (UserLogic.Exists(Username: obj.Text))
+            if(User.Mode==Entities.EnMode.Update && UsernameBox.Text.Trim()!= User.UserName && UserLogic.Exists(Username: UsernameBox.Text))
             {
-                errorProvider1.SetError(obj, "Username exists please choose another one");
+                errorProvider1.SetError(UsernameBox, "Username exists please choose another one");
+                return;
+            }
+            if (User.Mode == Entities.EnMode.AddNew && UserLogic.Exists(Username: UsernameBox.Text))
+            {
+                errorProvider1.SetError(UsernameBox, "Username exists please choose another one");
+                return;
             }
             else
             {

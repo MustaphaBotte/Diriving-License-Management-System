@@ -547,3 +547,21 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
 
 
 ====================================================================================================================
+Date Time  :10/5/2025 11:27:13 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.Users.UserData.GetHash(String Username) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Users\UserData.cs:line 371
+
+
+====================================================================================================================
+Date Time  :10/5/2025 11:27:17 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.Users.UserData.GetHash(String Username) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Users\UserData.cs:line 371
+
+
+====================================================================================================================
+Date Time  :10/6/2025 12:08:57 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.Users.UserData.GetHash(String Username) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Users\UserData.cs:line 371
+
+
+====================================================================================================================

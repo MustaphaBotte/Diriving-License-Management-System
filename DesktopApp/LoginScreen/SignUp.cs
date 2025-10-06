@@ -29,11 +29,9 @@ namespace DesktopApp.LoginScreen
 
         }
         private void CreateUser()
-        {
-           
-
+        {          
             DialogResult Res = MessageBox.Show($"Person was Created successfully with ID={this.PersonID}.\n" +
-                $" are you sure you want to create user a new user", "Confirmation", MessageBoxButtons.OKCancel,
+                $" are you sure you want to create a new user", "Confirmation", MessageBoxButtons.OKCancel,
             MessageBoxIcon.Question);
             if (Res == DialogResult.Cancel)
             {
@@ -122,7 +120,7 @@ namespace DesktopApp.LoginScreen
             }
             if (!Box.Checked)
             {
-                if (Box.Tag?.ToString() == "ConfPass")
+                if (Box.Tag?.ToString() == "Pass")
                 {
                     passwordTextbox.PasswordChar = '*'; return;
                 }
@@ -130,6 +128,16 @@ namespace DesktopApp.LoginScreen
             }
         }
 
+        private async Task PrintDeadLine()
+        {
+            this.TimeLabel.Text = "";
+            this.TimeLabel.Visible = true;
+            for (byte i=1;i<=5;i++)
+            {
+                await Task.Delay(1000);
+                this.TimeLabel.Text = $"{i}s";
+            }
+        }
         private void SignUpFrm_Shown(object sender, EventArgs e)
         {
             ManagePerson.AddEditPersonFrm Frm = new ManagePerson.AddEditPersonFrm();
@@ -138,7 +146,7 @@ namespace DesktopApp.LoginScreen
                 this.PersonID = PrsnID;
                 Frm.Close();
             };
-            Frm.FormClosed += (object? sender, FormClosedEventArgs e) =>
+            Frm.FormClosed += async(object? sender, FormClosedEventArgs e) =>
             {
                 if (this.PersonID != -1)
                     return;
@@ -148,8 +156,11 @@ namespace DesktopApp.LoginScreen
                 this.usernameTextbox.Enabled = false;
                 this.SignUpButton.Enabled = false;
                 Warning.Visible = true;
+                await PrintDeadLine();
+                this.Close();
             };
             Frm.ShowDialog();
+
         }
 
         private void SignUp_Load(object sender, EventArgs e)

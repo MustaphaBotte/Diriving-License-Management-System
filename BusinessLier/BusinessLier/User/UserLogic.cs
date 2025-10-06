@@ -72,7 +72,7 @@ namespace DLMS.BusinessLier.User
             return UserLogic.SaveInternally(User, ref Errors, ref NewUserID);
 
         }
-        private static bool VerifyPassword(string Pass, string Hash)
+        public static bool VerifyPassword(string Pass, string Hash)
         {   try
             {
                 return BCrypt.Net.BCrypt.Verify(Pass, Hash);
@@ -101,11 +101,12 @@ namespace DLMS.BusinessLier.User
         }
         private static bool SaveInternally(Entities.ClsUser User, ref string Errors, ref int ID)
         {
+            string PasswordToHash = User.PassWord;
+            string OldPass = User.PassWord;
             switch (User.Mode)
             {
                 case Entities.EnMode.AddNew:
-                    string PasswordToHash = User.PassWord;
-                    string OldPass = User.PassWord;
+                    
                     if (!HashPassword(ref PasswordToHash))
                     {
                         Errors = "Hashing password failed try again";
@@ -120,9 +121,20 @@ namespace DLMS.BusinessLier.User
                         return true;
                     }
                     break;
+
                 case Entities.EnMode.Update:
+                    if(User.PassWord.Length<=20)
+                    {
+                        if (!HashPassword(ref PasswordToHash))
+                        {
+                            Errors = "Hashing password failed try again";
+                            return false; //stop the process
+                        }
+                        User.PassWord = PasswordToHash;
+                    }
                     if (UserData.UpdateUser(User, ref Errors))
                     {
+                        User.PassWord = OldPass;
                         return true;
                     }
                     break;
