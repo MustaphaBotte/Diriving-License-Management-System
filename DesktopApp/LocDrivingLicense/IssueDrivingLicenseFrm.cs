@@ -56,7 +56,7 @@ namespace DesktopApp.IssueLocalDrivingLicense
             {   
                 Entities.ClsDriver Driver = new Entities.ClsDriver();
                 Driver.PersonID = this.ApplicantPersonID;
-                Driver.CreatedBy = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+                Driver.CreatedBy = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
                 Driver.CreationDate = DateTime.Now;
                 driverID = DLMS.BusinessLier.Driver.DriverLogic.AddNewDriver(Driver);
             }
@@ -70,7 +70,7 @@ namespace DesktopApp.IssueLocalDrivingLicense
             License.DriverID = driverID;
             License.ApplicationID = this.locDriApplication.ApplicantionID;
             License.LicenseClassID = this.locDriApplication.LicenseClassID;
-            License.CreatedByUserID = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            License.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
             License.IsActive = true;
             License.IssueDate = DateTime.Now;
             License.PaidFees = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceFees(this.locDriApplication.LicenseClassID);

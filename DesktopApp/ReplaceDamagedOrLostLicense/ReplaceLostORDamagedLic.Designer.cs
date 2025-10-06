@@ -204,6 +204,7 @@
             FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
             FilterValueTextBox.Size = new Size(198, 36);
             FilterValueTextBox.TabIndex = 21;
+            FilterValueTextBox.KeyPress += FilterValueTextBox_KeyPress;
             // 
             // guna2HtmlLabel2
             // 

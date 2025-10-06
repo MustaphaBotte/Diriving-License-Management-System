@@ -1,5 +1,5 @@
 ﻿using DLMS.EntitiesNamespace;
-namespace DLMS.BusinessLier
+namespace DesktopApp.LogedInUser
 {
     public sealed class ClslogedInUser
     {

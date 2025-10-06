@@ -60,7 +60,7 @@ namespace DesktopApp
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Entities.ClsUser? CurrentUser = ClslogedInUser.logedInUser;
+            Entities.ClsUser? CurrentUser = DesktopApp.LogedInUser.ClslogedInUser.logedInUser;
             if (CurrentUser == null)
             {
                 MessageBox.Show("We cant edit your password right now. try again later", "Internal Error", MessageBoxButtons.OK,
@@ -74,7 +74,7 @@ namespace DesktopApp
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Entities.ClsUser? CurrentUser = ClslogedInUser.logedInUser;
+            Entities.ClsUser? CurrentUser = DesktopApp.LogedInUser.ClslogedInUser.logedInUser;
             if (CurrentUser == null)
             {
                 MessageBox.Show("We cant show your info right now. try again later", "Internal Error", MessageBoxButtons.OK,
@@ -176,7 +176,7 @@ namespace DesktopApp
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             guna2ShadowPanel1.Width = this.Width;
-            this.Text += $" (Loged In User: {DLMS.BusinessLier.ClslogedInUser.logedInUser.UserName}";
+            this.Text += $" (Loged In User: {DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName}";
         }
     }
 }

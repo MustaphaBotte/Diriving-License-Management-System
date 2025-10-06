@@ -79,7 +79,7 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             decimal AppFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(AppTypeID); //3 or 4
             this.ApplicationFees.Text = AppFees.ToString();
             this.OldLicenseIdLbl.Text = License.LicenseID.ToString();
-            this.CreatedByLbl.Text = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserName;
+            this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
             this.totalfeesLbl.Text = (AppFees).ToString();
             this.ShowLicensesHistory.Enabled = true;
         }
@@ -134,7 +134,7 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             NewApp.ApplicationTypeId = (short)AppTypeID;
             NewApp.LastStatusDate = DateTime.Now;
             NewApp.PaidFees = AppTypeID == 3 ? LostFees : DamagedFees;
-            NewApp.CreatedByUserId = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            NewApp.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             string ER = "";
             int NewAppId = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(NewApp, ref ER);
@@ -254,13 +254,19 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
         private void ShowLicenseInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
-            if(!Frm.IsDisposed)
-                 Frm.ShowDialog();
+            if (!Frm.IsDisposed)
+                Frm.ShowDialog();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

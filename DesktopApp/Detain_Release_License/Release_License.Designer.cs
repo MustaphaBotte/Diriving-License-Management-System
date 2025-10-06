@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Release_LicenseFrm));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             SearchGroupBox = new Guna.UI2.WinForms.Guna2GroupBox();
             FindButton = new Guna.UI2.WinForms.Guna2Button();
             FilterValueTextBox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -85,13 +85,13 @@
             SearchGroupBox.Controls.Add(FilterValueTextBox);
             SearchGroupBox.Controls.Add(guna2HtmlLabel2);
             SearchGroupBox.CustomBorderColor = Color.DimGray;
-            SearchGroupBox.CustomizableEdges = customizableEdges19;
+            SearchGroupBox.CustomizableEdges = customizableEdges5;
             SearchGroupBox.FillColor = Color.Transparent;
             SearchGroupBox.Font = new Font("Candara", 11.25F, FontStyle.Bold);
             SearchGroupBox.ForeColor = Color.Black;
             SearchGroupBox.Location = new Point(66, 60);
             SearchGroupBox.Name = "SearchGroupBox";
-            SearchGroupBox.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            SearchGroupBox.ShadowDecoration.CustomizableEdges = customizableEdges6;
             SearchGroupBox.Size = new Size(722, 88);
             SearchGroupBox.TabIndex = 50;
             SearchGroupBox.Text = "Filter";
@@ -101,7 +101,7 @@
             FindButton.BackColor = Color.Transparent;
             FindButton.BorderRadius = 15;
             FindButton.BorderThickness = 1;
-            FindButton.CustomizableEdges = customizableEdges15;
+            FindButton.CustomizableEdges = customizableEdges1;
             FindButton.DisabledState.BorderColor = Color.DarkGray;
             FindButton.DisabledState.CustomBorderColor = Color.DarkGray;
             FindButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -112,7 +112,7 @@
             FindButton.ImageAlign = HorizontalAlignment.Left;
             FindButton.Location = new Point(338, 44);
             FindButton.Name = "FindButton";
-            FindButton.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            FindButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
             FindButton.Size = new Size(114, 36);
             FindButton.TabIndex = 22;
             FindButton.Text = "Find";
@@ -123,7 +123,7 @@
             FilterValueTextBox.BackColor = Color.Transparent;
             FilterValueTextBox.BorderColor = Color.Black;
             FilterValueTextBox.BorderRadius = 15;
-            FilterValueTextBox.CustomizableEdges = customizableEdges17;
+            FilterValueTextBox.CustomizableEdges = customizableEdges3;
             FilterValueTextBox.DefaultText = "";
             FilterValueTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             FilterValueTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -139,9 +139,10 @@
             FilterValueTextBox.Name = "FilterValueTextBox";
             FilterValueTextBox.PlaceholderText = "";
             FilterValueTextBox.SelectedText = "";
-            FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges4;
             FilterValueTextBox.Size = new Size(198, 36);
             FilterValueTextBox.TabIndex = 21;
+            FilterValueTextBox.KeyPress += FilterValueTextBox_KeyPress;
             // 
             // guna2HtmlLabel2
             // 
@@ -183,7 +184,7 @@
             CancelButton.BackColor = Color.Transparent;
             CancelButton.BorderRadius = 15;
             CancelButton.BorderThickness = 1;
-            CancelButton.CustomizableEdges = customizableEdges21;
+            CancelButton.CustomizableEdges = customizableEdges7;
             CancelButton.DisabledState.BorderColor = Color.DarkGray;
             CancelButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CancelButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -195,7 +196,7 @@
             CancelButton.ImageAlign = HorizontalAlignment.Left;
             CancelButton.Location = new Point(510, 613);
             CancelButton.Name = "CancelButton";
-            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
             CancelButton.Size = new Size(134, 36);
             CancelButton.TabIndex = 47;
             CancelButton.Text = "Cancel";
@@ -205,7 +206,7 @@
             IssueButton.BackColor = Color.Transparent;
             IssueButton.BorderRadius = 15;
             IssueButton.BorderThickness = 1;
-            IssueButton.CustomizableEdges = customizableEdges23;
+            IssueButton.CustomizableEdges = customizableEdges9;
             IssueButton.DisabledState.BorderColor = Color.DarkGray;
             IssueButton.DisabledState.CustomBorderColor = Color.DarkGray;
             IssueButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -217,7 +218,7 @@
             IssueButton.ImageAlign = HorizontalAlignment.Left;
             IssueButton.Location = new Point(650, 613);
             IssueButton.Name = "IssueButton";
-            IssueButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            IssueButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
             IssueButton.Size = new Size(131, 36);
             IssueButton.TabIndex = 46;
             IssueButton.Text = "Release";
@@ -248,12 +249,12 @@
             guna2GroupBox1.Controls.Add(guna2HtmlLabel20);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel22);
             guna2GroupBox1.CustomBorderColor = Color.Gray;
-            guna2GroupBox1.CustomizableEdges = customizableEdges27;
+            guna2GroupBox1.CustomizableEdges = customizableEdges13;
             guna2GroupBox1.Font = new Font("Sitka Text", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2GroupBox1.ForeColor = Color.Black;
             guna2GroupBox1.Location = new Point(50, 437);
             guna2GroupBox1.Name = "guna2GroupBox1";
-            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2GroupBox1.Size = new Size(752, 170);
             guna2GroupBox1.TabIndex = 45;
             guna2GroupBox1.Text = "Detain License Info";
@@ -339,7 +340,7 @@
             // 
             Notes.BorderColor = Color.Black;
             Notes.BorderRadius = 10;
-            Notes.CustomizableEdges = customizableEdges25;
+            Notes.CustomizableEdges = customizableEdges11;
             Notes.DefaultText = "";
             Notes.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             Notes.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -354,7 +355,7 @@
             Notes.Name = "Notes";
             Notes.PlaceholderText = "";
             Notes.SelectedText = "";
-            Notes.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            Notes.ShadowDecoration.CustomizableEdges = customizableEdges12;
             Notes.Size = new Size(447, 50);
             Notes.TabIndex = 45;
             // 

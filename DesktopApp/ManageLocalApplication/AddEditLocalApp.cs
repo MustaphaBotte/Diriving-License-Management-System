@@ -15,7 +15,6 @@ namespace DesktopApp.ManageApplication
         private bool IsEditMode = false;
         Dictionary<string, object> LocAppInfo = new Dictionary<string, object>();
 
-
         public delegate void Adding_SendSignalToRefreshTheGris(int NewLocAppId);
         public event Adding_SendSignalToRefreshTheGris OnAddingNewApp = delegate { };
 
@@ -67,11 +66,11 @@ namespace DesktopApp.ManageApplication
         }
         private void AddNewApp_Load(object sender, EventArgs e)
         {
+            FilterChoices.SelectedIndex = 0;
             if(this.IsEditMode)
             {
                 ChangeFormMode();
-                FillThePersonInfo();
-                
+                FillThePersonInfo();               
             }
             FillTheApplicationDefaultInfo();
         }
@@ -112,7 +111,7 @@ namespace DesktopApp.ManageApplication
         }
         private void FillTheApplicationDefaultInfo()
         {
-            CreatedByLbl.Text = ClslogedInUser.logedInUser != null ? ClslogedInUser.logedInUser.UserName : "loged In User";
+            CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser != null ? DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName : "loged In User";
             ApplicationDataLbl.Text = DateTime.Today.ToString("yyyy-MM-dd");
             if (!FillLicenseClassesInComboBox())
             {
@@ -267,7 +266,7 @@ namespace DesktopApp.ManageApplication
             App.ApplicationStatus = 1; // 1 means new
             App.LastStatusDate = DateTime.Now;
             App.PaidFees = getfeesOfLocalDrivingLicenseAplication();
-            App.CreatedByUserId = ClslogedInUser.logedInUser.UserId;
+            App.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             DialogResult Result = MessageBox.Show("Are you sure you want to Save", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (Result == DialogResult.Cancel)

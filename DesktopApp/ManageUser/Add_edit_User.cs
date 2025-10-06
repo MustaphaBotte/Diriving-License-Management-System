@@ -18,6 +18,7 @@ namespace DesktopApp.ManageUser
         {
             InitializeComponent();
             this.FormTitle.Text = "Add New User";
+            FilterChoices.SelectedIndex = 0;
         }
         public Add_edit_UserFrm(int PersonID)
         {

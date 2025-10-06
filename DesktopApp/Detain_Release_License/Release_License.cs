@@ -16,12 +16,12 @@ namespace DesktopApp.Detain_Release_License
     {
         DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
         int PersonID = -1;
-        public delegate void LicenseReleased(int LicID,Form Sender);
+        public delegate void LicenseReleased(int LicID, Form Sender);
         public event LicenseReleased OnLicenseReleased = delegate { };
-        public Release_LicenseFrm(int LicenseID=-1)
+        public Release_LicenseFrm(int LicenseID = -1)
         {
             InitializeComponent();
-            if(LicenseID!=-1)
+            if (LicenseID != -1)
             {
                 this.FilterValueTextBox.Text = LicenseID.ToString();
                 this.FindButton.PerformClick();
@@ -93,7 +93,7 @@ namespace DesktopApp.Detain_Release_License
             App.ApplicationTypeId = 5;//release
             App.LastStatusDate = DateTime.Now;
             App.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(5);
-            App.CreatedByUserId = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            App.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             string ER = "";
             int NewAppId = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(App, ref ER);
@@ -102,14 +102,14 @@ namespace DesktopApp.Detain_Release_License
                 MessageBox.Show($"We cant save the application in the moment refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int Result = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.ReLeaseLicense(License.LicenseID, DateTime.Now, DLMS.BusinessLier.ClslogedInUser.logedInUser
+            int Result = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.ReLeaseLicense(License.LicenseID, DateTime.Now, DesktopApp.LogedInUser.ClslogedInUser.logedInUser
                 .UserId, NewAppId);
-            if (Result==1)
+            if (Result == 1)
             {
                 MessageBox.Show($"License with Id= {License.LicenseID} released succesfully", "Operation success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.ShowLicenseInfo.Enabled = true;
                 this.AppIDLabel.Text = NewAppId.ToString();
-                this.OnLicenseReleased?.Invoke(License.LicenseID,this);
+                this.OnLicenseReleased?.Invoke(License.LicenseID, this);
             }
             else if (Result == -1)
             {
@@ -128,7 +128,7 @@ namespace DesktopApp.Detain_Release_License
 
         private void ShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID:License.LicenseID);
+            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
             Frm.ShowDialog();
         }
 
@@ -136,6 +136,12 @@ namespace DesktopApp.Detain_Release_License
         {
             ShowAllLicensesHistoryFrm Frm = new ShowAllLicensesHistoryFrm(this.PersonID);
             Frm.ShowDialog();
+        }
+
+        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

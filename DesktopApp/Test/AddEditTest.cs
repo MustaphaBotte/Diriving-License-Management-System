@@ -174,7 +174,7 @@ namespace DesktopApp.VisionTest
                 Application.ApplicationTypeId = 7;//retake test
                 Application.LastStatusDate = DateTime.Now;
                 Application.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(7);
-                Application.CreatedByUserId = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+                Application.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
                 RetakeAppID = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(Application, ref er);
 
             }
@@ -190,7 +190,7 @@ namespace DesktopApp.VisionTest
             appointment.TestTypeId = this.TestTypeID; 
             appointment.LocDLA_ID = Convert.ToInt32(this.Loc_DLA_IDLbl.Text);
             appointment.PaidFees = Mode == TestMode.ScheduleRetakeTest ? Convert.ToDecimal(this.FeesLbl.Text) + 5 : Convert.ToDecimal(this.FeesLbl.Text);
-            appointment.CreatedByUserId = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            appointment.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
             appointment.IsLocked = false;
             appointment.RetakeApplicationID = RetakeAppID;
 

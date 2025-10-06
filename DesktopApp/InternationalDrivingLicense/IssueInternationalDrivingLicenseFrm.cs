@@ -70,7 +70,7 @@ namespace DesktopApp.InternationalDrivingLicense
             this.FeesLbl.Text = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(6).ToString();
             this.I_L_LicenseIDLbl.Text = "N/A";
             this.LocalLicenseIDLbl.Text = this.License?.LicenseID.ToString();
-            this.CreatedBYLbl.Text = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserName;
+            this.CreatedBYLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
             ShowLicensesHistory.Enabled = true;
         }
         private void IssueInternationalDrivingLicenseFrm_Load(object sender, EventArgs e)
@@ -105,10 +105,10 @@ namespace DesktopApp.InternationalDrivingLicense
             internationalLicense.Application.ApplicantPersonId = this.Driver.PersonID;
             internationalLicense.Application.ApplicationStatus = 1; //new
             internationalLicense.Application.ApplicationTypeId = 6; //International License
-            internationalLicense.Application.CreatedByUserId = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            internationalLicense.Application.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
             internationalLicense.Application.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(6);
 
-            internationalLicense.CreatedByUserID = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            internationalLicense.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
             internationalLicense.DriverID = this.Driver.DriverID;
             internationalLicense.IssueUsingLocLicID = this.License.LicenseID;
             internationalLicense.IsActive = true;
@@ -167,6 +167,17 @@ namespace DesktopApp.InternationalDrivingLicense
         {
             ShowInternationalLicenseFrm Frm = new ShowInternationalLicenseFrm(this.InterNatLicID);
             Frm.ShowDialog();
+        }
+
+        private void FilterValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

@@ -1,14 +1,6 @@
 ﻿using DesktopApp.AllLicensesHistory;
 using DesktopApp.LocDrivingLicense;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 using static DLMS.EntitiesNamespace.Entities;
 
 namespace DesktopApp.RenewLicense
@@ -78,7 +70,7 @@ namespace DesktopApp.RenewLicense
             this.licenseFeesLbl.Text = licenseClassFees.ToString();
             this.OldLicenseIdLbl.Text = License.LicenseID.ToString();
             this.ExpDateLbl.Text = DateTime.Now.AddYears(DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceValidityLength(License.LicenseClassID)).ToString("yyyy-MM-dd");
-            this.CreatedByLbl.Text = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserName;
+            this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
             this.totalfeesLbl.Text = (AppFees + licenseClassFees).ToString();
             this.ShowLicensesHistory.Enabled = true;
         }
@@ -113,7 +105,7 @@ namespace DesktopApp.RenewLicense
             NewApp.ApplicationTypeId = 2;//renew
             NewApp.LastStatusDate = DateTime.Now;
             NewApp.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(2);
-            NewApp.CreatedByUserId = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            NewApp.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             string ER = "";
             int NewAppId = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(NewApp, ref ER);
@@ -184,8 +176,8 @@ namespace DesktopApp.RenewLicense
         private void ShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
-            if(!Frm.IsDisposed)
-                   Frm.ShowDialog();
+            if (!Frm.IsDisposed)
+                Frm.ShowDialog();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -196,6 +188,12 @@ namespace DesktopApp.RenewLicense
         private void RenewLicenseFrm_Load(object sender, EventArgs e)
         {
             this.FilterChoices.SelectedIndex = 0;
+        }
+
+        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

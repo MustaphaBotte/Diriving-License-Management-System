@@ -1,8 +1,10 @@
-﻿using DLMS.BusinessLier.Login;
+﻿using DLMS.BusinessLier;
 using DLMS.EntitiesNamespace;
 
 
 using Guna.UI2.WinForms;
+using System.Text.Json;
+using System.Text;
 namespace DesktopApp.LoginScreen
 {
     public partial class LoginFrm : Form
@@ -40,12 +42,15 @@ namespace DesktopApp.LoginScreen
             if (obj.Text == "")
             {
                 errorProvider1.SetError(obj, "Please Fill This Field");
+                return;
             }
+            errorProvider1.SetError(obj, null);
+
         }
 
         private void FillTheStoredUserInfo()
         {
-            Entities.ClsUser? user = LoginLogic.GetTheStoredUser();
+            Entities.ClsUser? user = DesktopApp.LocalCredential.ClsLocalCredential.GetTheStoredUser();
             if (user != null)
             {
                 usernameTextbox.Text = user.UserName;
@@ -57,7 +62,7 @@ namespace DesktopApp.LoginScreen
 
         private void SignIn(string username, string password, bool RememberMe)
         {
-            Entities.ClsUser? user = LoginLogic.GetUser(username, password, RememberMe);
+            Entities.ClsUser? user = DesktopApp.LocalCredential.ClsLocalCredential.GetUser(username, password, RememberMe);
             if (user != null)
             {
                 this.UserId = user.UserId;

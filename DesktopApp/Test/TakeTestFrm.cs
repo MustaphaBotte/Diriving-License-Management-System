@@ -141,7 +141,7 @@ namespace DesktopApp.VisionTest
             Test.TestResult = TestResult;
             Test.Notes = Notes;
             Test.TestAppointmentID = this.appointment.TestAppointmentId;
-            Test.CreatedByUserID = DLMS.BusinessLier.ClslogedInUser.logedInUser.UserId;
+            Test.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
            
 
             DialogResult Res = MessageBox.Show("Are you sure you want save that test", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
