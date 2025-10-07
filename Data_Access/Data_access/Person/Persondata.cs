@@ -133,7 +133,7 @@ namespace DLMS.Data_access.Person
             Entities.ClsPerson? OldObj = FindPerson(NewObj.PersonId);
             Dictionary<string, object>? DiffColumns = SharedFunctions.GetDiff(NewObj, OldObj, ref message);
 
-            //true so tell the user that we update nothing
+            //true; we tell the user that we update with success // but actually there is no changes to commit
             if (DiffColumns == null)
                 return true;
 

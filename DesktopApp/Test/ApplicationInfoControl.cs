@@ -40,7 +40,7 @@ namespace DesktopApp.VisionTest
             this.ApplicantLbl.Text = LocalAppInfo["FullName"].ToString();
             this.FeesLbl.Text = application.PaidFees.ToString();
             this.StatusLbl.Text = LocalAppInfo["Applicationstatus"].ToString();
-            this.Typelbl.Text = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationTypeByID(application.ApplicationId);
+            this.Typelbl.Text = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetAppTypeTitleByAppID(application.ApplicationId);
             this.DateLbl.Text = application.ApplicantionDate.ToString("dd/MM/yyyy");
             this.LastStatusDateLbl.Text = application.LastStatusDate.ToString("dd/MM/yyyy");
             this.CreatedByLbl.Text = DLMS.BusinessLier.User.UserLogic.GetUserNameByUserId(application.CreatedByUserId);

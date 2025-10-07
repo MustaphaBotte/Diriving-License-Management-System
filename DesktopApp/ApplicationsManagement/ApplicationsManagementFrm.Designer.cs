@@ -1,6 +1,6 @@
 ﻿namespace DesktopApp.ApplicationsManagement
 {
-    partial class ApplicationsManagementFrm
+    partial class AppTypesManagementFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationsManagementFrm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppTypesManagementFrm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -462,7 +462,7 @@
             showLicencesHistoryToolStripMenuItem.Text = "Show Licences History";
             showLicencesHistoryToolStripMenuItem.Click += showLicencesHistoryToolStripMenuItem_Click;
             // 
-            // ApplicationsManagementFrm
+            // AppTypesManagementFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -481,9 +481,9 @@
             Controls.Add(DataGrid);
             Controls.Add(guna2HtmlLabel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "ApplicationsManagementFrm";
+            Name = "AppTypesManagementFrm";
             Text = "Applications Management";
-            Load += ApplicationsManagementFrm_Load;
+            Load += AppTypesManagementFrm_Load;
             ((System.ComponentModel.ISupportInitialize)DataGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             LocApplicationsMenuStrip.ResumeLayout(false);

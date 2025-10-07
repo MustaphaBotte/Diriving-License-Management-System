@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ButtonManagePeople = new Guna.UI2.WinForms.Guna2Button();
             guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             DriversButton = new Guna.UI2.WinForms.Guna2Button();
@@ -80,7 +80,7 @@
             ButtonManagePeople.BackColor = Color.Transparent;
             ButtonManagePeople.BorderRadius = 15;
             ButtonManagePeople.BorderThickness = 1;
-            ButtonManagePeople.CustomizableEdges = customizableEdges1;
+            ButtonManagePeople.CustomizableEdges = customizableEdges11;
             ButtonManagePeople.DisabledState.BorderColor = Color.DarkGray;
             ButtonManagePeople.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonManagePeople.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -93,7 +93,7 @@
             ButtonManagePeople.Location = new Point(265, 7);
             ButtonManagePeople.Name = "ButtonManagePeople";
             ButtonManagePeople.PressedColor = Color.Transparent;
-            ButtonManagePeople.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            ButtonManagePeople.ShadowDecoration.CustomizableEdges = customizableEdges12;
             ButtonManagePeople.Size = new Size(215, 95);
             ButtonManagePeople.TabIndex = 0;
             ButtonManagePeople.Text = "Manage People";
@@ -122,7 +122,7 @@
             DriversButton.BackColor = Color.Transparent;
             DriversButton.BorderRadius = 15;
             DriversButton.BorderThickness = 1;
-            DriversButton.CustomizableEdges = customizableEdges3;
+            DriversButton.CustomizableEdges = customizableEdges13;
             DriversButton.DisabledState.BorderColor = Color.DarkGray;
             DriversButton.DisabledState.CustomBorderColor = Color.DarkGray;
             DriversButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -135,7 +135,7 @@
             DriversButton.Location = new Point(508, 7);
             DriversButton.Name = "DriversButton";
             DriversButton.PressedColor = Color.Transparent;
-            DriversButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            DriversButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
             DriversButton.Size = new Size(215, 95);
             DriversButton.TabIndex = 4;
             DriversButton.Text = "Drivers";
@@ -148,7 +148,7 @@
             ButtonApplications.BackColor = Color.Transparent;
             ButtonApplications.BorderRadius = 15;
             ButtonApplications.BorderThickness = 1;
-            ButtonApplications.CustomizableEdges = customizableEdges5;
+            ButtonApplications.CustomizableEdges = customizableEdges15;
             ButtonApplications.DisabledState.BorderColor = Color.DarkGray;
             ButtonApplications.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonApplications.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -161,7 +161,7 @@
             ButtonApplications.Location = new Point(24, 7);
             ButtonApplications.Name = "ButtonApplications";
             ButtonApplications.PressedColor = Color.Transparent;
-            ButtonApplications.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            ButtonApplications.ShadowDecoration.CustomizableEdges = customizableEdges16;
             ButtonApplications.Size = new Size(215, 95);
             ButtonApplications.TabIndex = 3;
             ButtonApplications.Text = "Applications";
@@ -174,7 +174,7 @@
             ButtonManageUsers.BackColor = Color.Transparent;
             ButtonManageUsers.BorderRadius = 15;
             ButtonManageUsers.BorderThickness = 1;
-            ButtonManageUsers.CustomizableEdges = customizableEdges7;
+            ButtonManageUsers.CustomizableEdges = customizableEdges17;
             ButtonManageUsers.DisabledState.BorderColor = Color.DarkGray;
             ButtonManageUsers.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonManageUsers.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -187,7 +187,7 @@
             ButtonManageUsers.Location = new Point(743, 7);
             ButtonManageUsers.Name = "ButtonManageUsers";
             ButtonManageUsers.PressedColor = Color.Transparent;
-            ButtonManageUsers.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            ButtonManageUsers.ShadowDecoration.CustomizableEdges = customizableEdges18;
             ButtonManageUsers.Size = new Size(215, 95);
             ButtonManageUsers.TabIndex = 2;
             ButtonManageUsers.Text = "Manage Users";
@@ -200,7 +200,7 @@
             ButtonAccountSettings.BackColor = Color.Transparent;
             ButtonAccountSettings.BorderRadius = 15;
             ButtonAccountSettings.BorderThickness = 1;
-            ButtonAccountSettings.CustomizableEdges = customizableEdges9;
+            ButtonAccountSettings.CustomizableEdges = customizableEdges19;
             ButtonAccountSettings.DisabledState.BorderColor = Color.DarkGray;
             ButtonAccountSettings.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonAccountSettings.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -213,7 +213,7 @@
             ButtonAccountSettings.Location = new Point(990, 7);
             ButtonAccountSettings.Name = "ButtonAccountSettings";
             ButtonAccountSettings.PressedColor = Color.Transparent;
-            ButtonAccountSettings.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            ButtonAccountSettings.ShadowDecoration.CustomizableEdges = customizableEdges20;
             ButtonAccountSettings.Size = new Size(235, 95);
             ButtonAccountSettings.TabIndex = 1;
             ButtonAccountSettings.Text = "Account Settings";

@@ -565,3 +565,9 @@ StackTrace :   at DLMS.Data_access.Users.UserData.GetHash(String Username) in D:
 
 
 ====================================================================================================================
+Date Time  :10/7/2025 3:00:27 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.Users.UserData.GetHash(String Username) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Users\UserData.cs:line 371
+
+
+====================================================================================================================

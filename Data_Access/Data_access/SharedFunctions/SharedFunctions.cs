@@ -164,9 +164,6 @@ namespace DLMS.Data_access
             return new object();
         }
 
-       // public static string GenerateAauid()
-
-
-
+  
     }
 }

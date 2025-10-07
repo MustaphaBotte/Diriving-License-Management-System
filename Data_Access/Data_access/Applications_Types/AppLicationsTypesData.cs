@@ -10,16 +10,14 @@ namespace DLMS.Data_access.Applications_Types
     public class AppLicationsTypesData
     {
         private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\LogFile.txt";
-        public static Entities.ClsApplicationType? GetApplicationTypeByIdOrName(int AppTypeID=-1 , string AppTypeName="")
+        public static Entities.ClsApplicationType? GetAppTypeById(int AppTypeID)
         {
-            if (AppTypeID == -1 && AppTypeName == "")
+            if (AppTypeID <=0 )
                 return null;
-            string Attribut = AppTypeID == -1 ? "applicationTypeTitle" : "applicationTypeid";
-            object Value = SharedFunctions.GetValueForQuery(AppTypeID, AppTypeName);
-            string query = $"select top 1 * from applicationtypes where {Attribut} = @Value ";
+            string query = $"select top 1 * from applicationtypes where applicationTypeid = @Value ";
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(cmdText:query, connection: connection);
-            command.Parameters.AddWithValue("@Value", Value);
+            command.Parameters.AddWithValue("@Value", AppTypeID);
             try
             {
                 connection.Open();
@@ -28,7 +26,7 @@ namespace DLMS.Data_access.Applications_Types
                 {
                     return new Entities.ClsApplicationType(Convert.ToInt32(reader["applicationtypeid"]),
                                                            (string)reader["applicationTypeTitle"],
-                                                           Convert.ToSingle(reader["applicationfees"].ToString())
+                                                           Convert.ToDecimal(reader["applicationfees"].ToString())
                                                            );
                 }
             }
@@ -79,10 +77,10 @@ namespace DLMS.Data_access.Applications_Types
         {
 
             string message = "";
-            Entities.ClsApplicationType? OldObj = GetApplicationTypeByIdOrName(UpdatedObj.ApplicationTypeId);
+            Entities.ClsApplicationType? OldObj = GetAppTypeById(UpdatedObj.ApplicationTypeId);
             Dictionary<string, object>? DiffColumns = SharedFunctions.GetDiff(UpdatedObj, OldObj, ref message);
 
-            //true so tell the user that we update nothing
+            //true; we tell the user that we update with success // but actually there is no changes to commit
             if (DiffColumns == null)
                 return true;
 
@@ -121,7 +119,7 @@ namespace DLMS.Data_access.Applications_Types
             }
             return false;
         }
-        public static decimal GetFeesOfApplication(int AppTypeID = -1)
+        public static decimal GetFeesOfApplication(int AppTypeID)
         {
             if (AppTypeID <=0 )
                 return 0m;
@@ -150,8 +148,7 @@ namespace DLMS.Data_access.Applications_Types
            // return 0m;
 
         }
-
-        public static string? GetApplicationTypeByID(int AppID)
+        public static string? GetAppTypeTitleByAppID(int AppID)
         {
             string Query = "select ApplicationTypeTitle from applications inner join " +
                 "applicationtypes on applicationtypes.applicationTypeid = applications.applicationtypeid" +

@@ -8,9 +8,9 @@ using DesktopApp.AllLicensesHistory;
 
 namespace DesktopApp.ApplicationsManagement
 {
-    public partial class ApplicationsManagementFrm : Form
+    public partial class AppTypesManagementFrm : Form
     {
-        public ApplicationsManagementFrm()
+        public AppTypesManagementFrm()
         {
             InitializeComponent();
         }
@@ -18,7 +18,7 @@ namespace DesktopApp.ApplicationsManagement
         private DataTable LocApplications = new DataTable();
         private int CurrentLocAppInProcess = -1;
         private int SelectedRowInProcess = -1;
-        private void ApplicationsManagementFrm_Load(object sender, EventArgs e)
+        private void AppTypesManagementFrm_Load(object sender, EventArgs e)
         {
             FillTheGrid();
         }

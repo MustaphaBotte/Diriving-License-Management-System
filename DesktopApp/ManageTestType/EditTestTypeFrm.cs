@@ -16,28 +16,28 @@ namespace DesktopApp.ManageTestType
 {
     public partial class EditTestTypeFrm : Form
     {
-        private int TestTypeId = -1;
+        private Entities.EnTestType _TestTypeId ;
         Entities.ClsTestType? TestType = null;
 
 
         public delegate void TheTestTypeEdited();
         public event TheTestTypeEdited TestTypeEdited = delegate { };
 
-        public EditTestTypeFrm(int TestTypeId)
+        public EditTestTypeFrm(Entities.EnTestType TestTypeID)
         {
-            this.TestTypeId = TestTypeId;
+            this._TestTypeId = TestTypeID;
             InitializeComponent();
         }
         private void EditTestTypeFrm_Load(object sender, EventArgs e)
         {
-            TestType = DLMS.BusinessLier.TestTypes.TestTypesLogic.GetTestTypeByIdOrtitle(this.TestTypeId);
+            TestType = DLMS.BusinessLier.TestTypes.TestTypesLogic.GetTestTypeById(this._TestTypeId);
             if (TestType == null)
             {
                 MessageBox.Show("Error while trying to show the edit environment please try again", "Internal Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 this.Close();
             }
-            this.TestTypeIDLAbel.Text = TestType?.TestTypeId.ToString();
+            this.TestTypeIDLAbel.Text = TestType?.TestTypeID.ToString();
             this.TestTypeTitleTextBox.Text = TestType?.TestTypetitle;
             this.TestTypeDescriptionTextBox.Text = TestType?.TestTypeDescription;
             this.TestTypeFeeTextBox.Text = TestType?.TestTypeFees.ToString();
@@ -62,7 +62,7 @@ namespace DesktopApp.ManageTestType
             string testName = TestTypeTitleTextBox.Text;
             string testdesc = TestTypeDescriptionTextBox.Text;
 
-            bool isFees = Single.TryParse(TestTypeFeeTextBox.Text, out Single Value);
+            bool isFees = decimal.TryParse(TestTypeFeeTextBox.Text, out decimal Value);
             if (testName.Length == 0)
             {
                 MessageBox.Show("Please enter a valid Test Name", "Data violation", MessageBoxButtons.OK,

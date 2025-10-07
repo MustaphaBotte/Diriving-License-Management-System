@@ -9,7 +9,7 @@ namespace DesktopApp.ManageAppType
 
 
         public delegate void ApptypeUpdated();
-        public event ApptypeUpdated ApplicationTypeedited = delegate { };
+        public event ApptypeUpdated ApplicationTypeEdited = delegate { };
         public EditAppTypeFrm(int AppTypeID)
         {
             InitializeComponent();
@@ -18,23 +18,21 @@ namespace DesktopApp.ManageAppType
 
         private void EditAppType_Load(object sender, EventArgs e)
         {
-            Apptype = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationTypeByIdOrName(this.AppTypeId);
+            Apptype = ApplicationTypesLogic.GetApplicationTypeByIdOrName(this.AppTypeId);
             if (Apptype == null)
             {
-                MessageBox.Show("Error while trying to show the edit environment please refresh and try again", "Internal Error", MessageBoxButtons.OK,
+                MessageBox.Show("Error while trying to show the edit Application type environment.\n please refresh and try again", "Internal Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 this.Close();
             }
             this.AppTypeIDLAbel.Text = Apptype?.ApplicationTypeId.ToString();
             this.AppTypeTitleTextBox.Text = Apptype?.ApplicationTypeTitle;
             this.AppTypeFeeTextBox.Text = Apptype?.ApplicationFees.ToString();
-
         }
 
         private void EditAppTypeFrm_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
-
         }
 
         private void EditAppTypeFrm_MouseLeave(object sender, EventArgs e)
@@ -50,16 +48,16 @@ namespace DesktopApp.ManageAppType
         private void SaveButton_Click(object sender, EventArgs e)
         {
             string appName = AppTypeTitleTextBox.Text;
-            bool isFees = Single.TryParse(AppTypeFeeTextBox.Text, out Single Value);
-            if (appName.Length == 0)
+            bool isFees = decimal.TryParse(AppTypeFeeTextBox.Text, out decimal Value);
+            if (appName.ToString().Trim().Length == 0)
             {
-                MessageBox.Show("Please enter a valid Application Name", "Data violation", MessageBoxButtons.OK,
+                MessageBox.Show("Please enter an valid Application Title", "Title Is Missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
             if (!isFees)
             {
-                MessageBox.Show("Please enter a valid Application Fees", "Data violation", MessageBoxButtons.OK,
+                MessageBox.Show("Please enter a valid Application Fees", "Invalid Fees", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -72,7 +70,7 @@ namespace DesktopApp.ManageAppType
                     MessageBox.Show($"Application type with ID: {Apptype.ApplicationTypeId} updated SuccessFully"
                         , "Operation Success", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                    this.ApplicationTypeedited?.Invoke();
+                    this.ApplicationTypeEdited?.Invoke();
                 }
                 else
                 {

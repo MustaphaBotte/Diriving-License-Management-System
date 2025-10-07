@@ -132,7 +132,7 @@ namespace DesktopApp.LoginScreen
         {
             this.TimeLabel.Text = "";
             this.TimeLabel.Visible = true;
-            for (byte i = 5; i >= 1; i--)
+            for (short i = 5; i >=0; i--)
             {
                 await Task.Delay(1000);
                 this.TimeLabel.Text = $"{i}s";
@@ -160,7 +160,6 @@ namespace DesktopApp.LoginScreen
                 this.Close();
             };
             Frm.ShowDialog();
-
         }
 
         private void SignUp_Load(object sender, EventArgs e)

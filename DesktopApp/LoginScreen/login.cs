@@ -110,7 +110,8 @@ namespace DesktopApp.LoginScreen
         {
             if (ShowPassword.Checked)
             {
-                passwordTextbox.PasswordChar = '\0'; return;
+                passwordTextbox.PasswordChar = '\0';
+                return;
             }
             passwordTextbox.PasswordChar = '*';
         }

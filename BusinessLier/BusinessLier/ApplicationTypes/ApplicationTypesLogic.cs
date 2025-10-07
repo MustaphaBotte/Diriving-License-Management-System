@@ -7,9 +7,9 @@ namespace DLMS.BusinessLier.ApplicationTypes
 {
     public class ApplicationTypesLogic
     {
-        public static Entities.ClsApplicationType? GetApplicationTypeByIdOrName(int AppTypeID = -1, string AppTypeName = "")
+        public static Entities.ClsApplicationType? GetApplicationTypeByIdOrName(int AppTypeID)
         {
-            return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(AppTypeID, AppTypeName);
+            return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetAppTypeById(AppTypeID);
         }
         public static DataTable? GetAllApplicationTypes()
         {
@@ -23,12 +23,11 @@ namespace DLMS.BusinessLier.ApplicationTypes
         {
             if (AppId <= 0 )
                 return 0m;
-
             return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetFeesOfApplication( AppId);
         }
-        public static string? GetApplicationTypeByID(int AppID)
+        public static string? GetAppTypeTitleByAppID(int AppID)
         {
-            return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByID(AppID);
+            return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetAppTypeTitleByAppID(AppID);
         }
     }
 }

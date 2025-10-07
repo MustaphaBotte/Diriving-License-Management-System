@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace DesktopApp.Applicatios_Management
+namespace DesktopApp.AppTypesManagement
 {
-    public partial class ApplicationsManagementFrm : Form
+    public partial class AppTypesManagementFrm : Form
     {
-        public ApplicationsManagementFrm()
+        public AppTypesManagementFrm()
         {
             InitializeComponent();
         }
 
-        private void ApplicationsManagementFrm_Load(object sender, EventArgs e)
+        private void AppTypesManagementFrm_Load(object sender, EventArgs e)
         {
             FillTheGrid();
         }
@@ -28,11 +28,20 @@ namespace DesktopApp.Applicatios_Management
             DataTable? ApplicationTypes = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetAllApplicationTypes();
             if (ApplicationTypes == null)
             {
-                MessageBox.Show("No Applications in the system for now plaese try again\n and if the problem persists please contact your admin",
+                MessageBox.Show("No Applications in the system for now please try again\n and if the problem persists please contact your admin",
                     "Empty Table", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
             DataGrid.AutoGenerateColumns = true;
             DataGrid.DataSource = ApplicationTypes;
+            DataGrid.Columns[0].HeaderText = "ID";
+            DataGrid.Columns[0].Width = 110;
+
+            DataGrid.Columns[1].HeaderText = "Title";
+            DataGrid.Columns[1].Width = 400;
+
+            DataGrid.Columns[2].HeaderText = "Fees";
+            DataGrid.Columns[2].Width = 100;
+
             DataGrid.Refresh();
             RowsCountlabel.Text = DataGrid.RowCount.ToString();
 
@@ -42,14 +51,25 @@ namespace DesktopApp.Applicatios_Management
             DataGrid.DataSource = "";
             DataGrid.Refresh();
             //for the animation
-            DataGrid.DataSource = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetAllApplicationTypes();
-            DataGrid.Refresh();
-            RowsCountlabel.Text = DataGrid.RowCount.ToString();
+            FillTheGrid();
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             refreshTheGrid();
+        }
+
+        private void EditAppTypeMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!DataGrid.SelectedRows[0].Cells.Contains(DataGrid.SelectedRows[0].Cells["applicationtypeid"]))
+            {
+                MessageBox.Show("Error while trying to show the edit environment refresh or reopen the app.", "Internal Error", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error); return;
+            }
+            int Id = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["applicationtypeid"].Value);
+            EditAppTypeFrm Frm = new EditAppTypeFrm(Id);
+            Frm.ApplicationTypeEdited += refreshTheGrid;
+            Frm.ShowDialog();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -66,20 +86,7 @@ namespace DesktopApp.Applicatios_Management
         {
             this.Cursor = Cursors.Default;
         }
-
-        private void EditAppTypeMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!DataGrid.SelectedRows[0].Cells.Contains(DataGrid.SelectedRows[0].Cells["applicationtypeid"]))
-            {
-                MessageBox.Show("Error while trying to show the edit environment refresh or reopen the app.", "Internal Error", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error); return;
-            }
-            int Id = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["applicationtypeid"].Value);
-            EditAppTypeFrm Frm = new EditAppTypeFrm(Id);
-            Frm.ApplicationTypeedited += refreshTheGrid;
-            Frm.ShowDialog();
-        }
-
+    
         private void DataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if(e.Button == MouseButtons.Right)

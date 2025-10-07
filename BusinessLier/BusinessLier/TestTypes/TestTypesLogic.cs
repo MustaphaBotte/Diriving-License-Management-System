@@ -3,11 +3,11 @@ using DLMS.EntitiesNamespace;
 using System.Data;
 namespace DLMS.BusinessLier.TestTypes
 {
-    public class TestTypesLogic
+    public  sealed class TestTypesLogic
     {
-        public static Entities.ClsTestType? GetTestTypeByIdOrtitle(int AppTypeID = -1, string AppTypeName = "")
+        public static Entities.ClsTestType? GetTestTypeById(Entities.EnTestType AppTypeID)
         {
-            return DLMS.Data_access.Test_Types.TestTypesData.GetTestTypeByIdOrTitle(AppTypeID, AppTypeName);
+            return DLMS.Data_access.Test_Types.TestTypesData.GetTestTypeById((int)AppTypeID);
         }
         public static DataTable? GetAllTestTypes()
         {
@@ -16,7 +16,6 @@ namespace DLMS.BusinessLier.TestTypes
         public static bool UpdateTestType(Entities.ClsTestType UpdatedObj)
         {
             return DLMS.Data_access.Test_Types.TestTypesData.UpdateTestType(UpdatedObj);
-
         }
 
     }

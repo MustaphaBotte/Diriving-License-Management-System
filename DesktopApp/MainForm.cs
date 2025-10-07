@@ -61,16 +61,14 @@ namespace DesktopApp
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Entities.ClsUser? CurrentUser = DesktopApp.LogedInUser.ClslogedInUser.logedInUser;
-            if (CurrentUser == null)
+            if (DesktopApp.LogedInUser.ClslogedInUser.logedInUser == null)
             {
                 MessageBox.Show("We cant edit your password right now. try again later", "Internal Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
-            ChangeUserPassFrm Frm = new ChangeUserPassFrm(CurrentUser.UserId);
+            ChangeUserPassFrm Frm = new ChangeUserPassFrm(DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId);
             Frm.ShowDialog();
-
         }
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,7 +91,7 @@ namespace DesktopApp
 
         private void AppTypesMenuItem_Click(object sender, EventArgs e)
         {
-            Applicatios_Management.ApplicationsManagementFrm Frm = new Applicatios_Management.ApplicationsManagementFrm();
+            AppTypesManagement.AppTypesManagementFrm Frm = new AppTypesManagement.AppTypesManagementFrm();
             Frm.Show();
 
         }
@@ -106,7 +104,7 @@ namespace DesktopApp
 
         private void manageApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ApplicationsManagement.ApplicationsManagementFrm Frm = new ApplicationsManagement.ApplicationsManagementFrm();
+            ApplicationsManagement.AppTypesManagementFrm Frm = new ApplicationsManagement.AppTypesManagementFrm();
             Frm.ShowDialog();
         }
 
@@ -165,7 +163,7 @@ namespace DesktopApp
         }
         private void RetakeTesttoolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ApplicationsManagementFrm Frm = new ApplicationsManagementFrm();
+            AppTypesManagementFrm Frm = new AppTypesManagementFrm();
             Frm.ShowDialog();
         }
 

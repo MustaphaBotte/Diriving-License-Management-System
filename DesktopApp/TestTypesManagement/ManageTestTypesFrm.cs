@@ -1,5 +1,6 @@
 ﻿using DesktopApp.ManageAppType;
 using DesktopApp.ManageTestType;
+using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,17 @@ namespace DesktopApp.ManageTests
             }
             DataGrid.AutoGenerateColumns = true;
             DataGrid.DataSource = Applications;
+            DataGrid.Columns[0].HeaderText = "ID";
+            DataGrid.Columns[0].Width = 120;
+
+            DataGrid.Columns[1].HeaderText = "Title";
+            DataGrid.Columns[1].Width = 200;
+
+            DataGrid.Columns[2].HeaderText = "Description";
+            DataGrid.Columns[2].Width = 400;
+
+            DataGrid.Columns[3].HeaderText = "Fees";
+            DataGrid.Columns[3].Width = 100;
             DataGrid.Refresh();
             RowsCountlabel.Text = DataGrid.RowCount.ToString();
         }
@@ -42,9 +54,7 @@ namespace DesktopApp.ManageTests
             DataGrid.DataSource = "";
             DataGrid.Refresh();
             //for the animation
-            DataGrid.DataSource = DLMS.BusinessLier.TestTypes.TestTypesLogic.GetAllTestTypes();
-            DataGrid.Refresh();
-            RowsCountlabel.Text = DataGrid.RowCount.ToString();
+            FillTheGrid();
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -81,11 +91,11 @@ namespace DesktopApp.ManageTests
         {
             if(!DataGrid.SelectedRows[0].Cells.Contains(DataGrid.SelectedRows[0].Cells["testtypeid"]))
             {
-                MessageBox.Show("Error while trying to show the edit environment refresh or reopen the app.", "Internal Error", MessageBoxButtons.OK,
+                MessageBox.Show("Error while trying to show the edit test type environment.\n please refresh or reopen the app.", "Internal Error", MessageBoxButtons.OK,
                    MessageBoxIcon.Error); return;
             }
             int Id = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["TestTypeid"].Value);
-            EditTestTypeFrm Frm = new EditTestTypeFrm(Id);
+            EditTestTypeFrm Frm = new EditTestTypeFrm((Entities.EnTestType)Id);
             Frm.TestTypeEdited += refreshTheGrid;
             Frm.ShowDialog();
         }

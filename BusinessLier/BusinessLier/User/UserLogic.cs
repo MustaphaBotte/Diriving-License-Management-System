@@ -86,7 +86,7 @@ namespace DLMS.BusinessLier.User
         {
             try
             {
-                Password = BCrypt.Net.BCrypt.HashPassword(Password, 14);
+                Password = BCrypt.Net.BCrypt.HashPassword(Password, 11);
                 return true;
             }
             catch

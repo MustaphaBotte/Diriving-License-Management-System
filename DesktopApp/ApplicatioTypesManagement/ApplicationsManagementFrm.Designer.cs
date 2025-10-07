@@ -1,6 +1,6 @@
-﻿namespace DesktopApp.Applicatios_Management
+﻿namespace DesktopApp.AppTypesManagement
 {
-    partial class ApplicationsManagementFrm
+    partial class AppTypesManagementFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationsManagementFrm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppTypesManagementFrm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
@@ -231,7 +231,7 @@
             EditAppTypeMenuItem.Text = "Edit Application Type";
             EditAppTypeMenuItem.Click += EditAppTypeMenuItem_Click;
             // 
-            // ApplicationsManagementFrm
+            // AppTypesManagementFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -248,9 +248,9 @@
             Controls.Add(DataGrid);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "ApplicationsManagementFrm";
-            Text = "ApplicationsManagementFrm";
-            Load += ApplicationsManagementFrm_Load;
+            Name = "AppTypesManagementFrm";
+            Text = "AppTypesManagementFrm";
+            Load += AppTypesManagementFrm_Load;
             ((System.ComponentModel.ISupportInitialize)DataGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ApplicationTypesMenuStrip.ResumeLayout(false);

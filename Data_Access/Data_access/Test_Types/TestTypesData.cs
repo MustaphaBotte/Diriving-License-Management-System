@@ -10,26 +10,25 @@ namespace DLMS.Data_access.Test_Types
     public class TestTypesData
     {
         private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\LogFile.txt";
-        public static Entities.ClsTestType? GetTestTypeByIdOrTitle(int TestTypeID = -1, string TestTypeTitle = "")
+        public static Entities.ClsTestType? GetTestTypeById(int TestTypeID)
         {
-            if (TestTypeID <=0 && TestTypeTitle == "")
+            if (TestTypeID <=0)
                 return null;
-            string Attribut = TestTypeID == -1 ? "TestTypeTitle" : "TestTypeID";
-            object Value = SharedFunctions.GetValueForQuery(TestTypeID, TestTypeTitle);
-            string query = $"select top 1 * from TestTypes where {Attribut} = @Value ";
+ 
+            string query = $"select top 1 * from TestTypes where TestTypeID = @Value ";
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(cmdText: query, connection: connection);
-            command.Parameters.AddWithValue("@Value", Value);
+            command.Parameters.AddWithValue("@Value", TestTypeID);
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Entities.ClsTestType(Convert.ToInt32(reader["TestTypeID"]),
+                    return new Entities.ClsTestType((Entities.EnTestType)Convert.ToInt32(reader["TestTypeID"]),
                                                            (string)reader["TestTypeTitle"],
                                                            (string)reader["TestTypeDescription"],
-                                                           Convert.ToSingle(reader["TestTypefees"].ToString())
+                                                           Convert.ToDecimal(reader["TestTypefees"].ToString())
                                                            );
                 }
             }
@@ -79,10 +78,10 @@ namespace DLMS.Data_access.Test_Types
         {
 
             string message = "";
-            Entities.ClsTestType? OldObj = GetTestTypeByIdOrTitle(UpdatedObj.TestTypeId);
+            Entities.ClsTestType? OldObj = GetTestTypeById((int)UpdatedObj.TestTypeID);
             Dictionary<string, object>? DiffColumns = SharedFunctions.GetDiff(UpdatedObj, OldObj, ref message);
 
-            //true so tell the user that we update nothing
+            //true; we tell the user that we update with success // but actually there is no changes to commit
             if (DiffColumns == null)
                 return true;
 
@@ -100,7 +99,7 @@ namespace DLMS.Data_access.Test_Types
 
                     continue;
                 }
-                Query += $"{ListDiffColumns[i].Key} = @Value{i} where testTypeId ={UpdatedObj.TestTypeId}";
+                Query += $"{ListDiffColumns[i].Key} = @Value{i} where testTypeId ={UpdatedObj.TestTypeID}";
                 command.Parameters.AddWithValue(parameterName: $@"Value{i}", value: ListDiffColumns[i].Value);
 
             }

@@ -9,6 +9,8 @@ namespace DLMS.EntitiesNamespace
             AddNew = 1,
             Update = 2
         }
+        public enum EnTestType { VisionTest = 1,WrittenTest=2,StreetTest=3 }
+
         public class ClsPerson
         {
             public int PersonId { get; set; } = -1;
@@ -97,9 +99,9 @@ namespace DLMS.EntitiesNamespace
         {
             public int ApplicationTypeId { private set; get; } = -1;
             public string ApplicationTypeTitle { set; get; } = string.Empty;
-            public float ApplicationFees { set; get; } = 0.0f;
+            public decimal ApplicationFees { set; get; } = 0.0m;
 
-            public ClsApplicationType(int ApplicationTypeId, string ApplicationTypeName, float ApplicationTypeFees)
+            public ClsApplicationType(int ApplicationTypeId, string ApplicationTypeName, decimal ApplicationTypeFees)
             {
                 this.ApplicationTypeId = ApplicationTypeId;
                 this.ApplicationTypeTitle = ApplicationTypeName;
@@ -110,15 +112,13 @@ namespace DLMS.EntitiesNamespace
 
         public class ClsTestType
         {
-            public int TestTypeId { private set; get; } = -1;
+            public EnTestType TestTypeID { set; get; }
             public string TestTypetitle { set; get; } = string.Empty;
             public string TestTypeDescription { set; get; } = string.Empty;
-
-            public float TestTypeFees { set; get; } = 0.0f;
-
-            public ClsTestType(int TestTypeId, string TestTypetitle, string TestTypeDescription, float TestTypeFees)
-            {
-                this.TestTypeId = TestTypeId;
+            public decimal TestTypeFees { set; get; } = 0.0m;
+            public ClsTestType(EnTestType TestTypeId, string TestTypetitle, string TestTypeDescription, decimal TestTypeFees)
+            { 
+                this.TestTypeID = TestTypeId;
                 this.TestTypetitle = TestTypetitle;
                 this.TestTypeDescription = TestTypeDescription;
                 this.TestTypeFees = TestTypeFees;
