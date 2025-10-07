@@ -373,7 +373,6 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
                 connection.Close();
             }
         }
-
         public static bool HasNewOrCompletedLicenseType(int ApplicantPersonID, int LicenseClassID)
         {
             if (ApplicantPersonID <= 0 || LicenseClassID<=0)
@@ -417,7 +416,6 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
 
 
         }
-
         public static int EditLocalDriLicApplicationClass(int Loc_DLA_ID, int NewLicenseClassID)
         {
 

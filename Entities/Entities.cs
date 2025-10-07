@@ -126,30 +126,10 @@ namespace DLMS.EntitiesNamespace
             public ClsTestType() { }
         }
 
-        public class ClsLicenseClass
-        {
-            public int LicenseCLassId { private set; get; } = -1;
-            public string ClassName { private set; get; } = "";
-            public string ClassDescription { private set; get; } = "";
-            public byte MinAllowedAge { private set; get; } = 0;
-            public byte DefaultValidityLength { private set; get; } = 0;
-            public decimal ClassFees { private set; get; } = 0.0m;
-
-            public ClsLicenseClass(int id, string name, string description, byte minAge, byte validity, decimal fees)
-            {
-                this.LicenseCLassId = id;
-                this.ClassName = name;
-                this.ClassDescription = description;
-                this.MinAllowedAge = minAge;
-                this.DefaultValidityLength = validity;
-                this.ClassFees = fees;
-            }
-            public ClsLicenseClass() { }
-        }
 
         public class ClsApplication
         {
-            public int ApplicationId { get;  set; } = -1;
+            public int ApplicationId { get; set; } = -1;
             public int ApplicantPersonId { get; set; } = -1;
 
             public DateTime ApplicantionDate { get; set; } = new DateTime();
@@ -180,6 +160,29 @@ namespace DLMS.EntitiesNamespace
             }
             public ClsApplication() { }
         }
+
+
+        public class ClsLicenseClass
+        {
+            public int LicenseCLassId { private set; get; } = -1;
+            public string ClassName { private set; get; } = "";
+            public string ClassDescription { private set; get; } = "";
+            public byte MinAllowedAge { private set; get; } = 0;
+            public byte DefaultValidityLength { private set; get; } = 0;
+            public decimal ClassFees { private set; get; } = 0.0m;
+
+            public ClsLicenseClass(int id, string name, string description, byte minAge, byte validity, decimal fees)
+            {
+                this.LicenseCLassId = id;
+                this.ClassName = name;
+                this.ClassDescription = description;
+                this.MinAllowedAge = minAge;
+                this.DefaultValidityLength = validity;
+                this.ClassFees = fees;
+            }
+            public ClsLicenseClass() { }
+        }
+
 
         public class ClsTestAppointment
         {
@@ -292,7 +295,6 @@ namespace DLMS.EntitiesNamespace
 
             public ClsLicense() { }
         }
-
         public class ClsInternationalLicense
         {
             public int InternationLicenseID { get; private set; } = -1;
@@ -351,10 +353,6 @@ namespace DLMS.EntitiesNamespace
             }
             public ClsDetainedLicense() { }
         }
-
-
-
-
 
     }
 }

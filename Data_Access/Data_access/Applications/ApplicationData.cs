@@ -43,7 +43,6 @@ namespace DLMS.Data_access.Applications
             }
             return false;
         }
-
         public static int AddNewApplication(Entities.ClsApplication application, ref string message)
         {
             if (application == null)
@@ -92,7 +91,42 @@ namespace DLMS.Data_access.Applications
 
             
         }
+        public static Entities.ClsApplication? GetApplicationByID(int AppID)
+        {
+            string Query = "select * from applications where applicationid = @ApplicationID";
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
+            command.Parameters.AddWithValue("@ApplicationID", AppID);
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.HasRows && Reader.Read())
+                {
+                    return new Entities.ClsApplication(
+                                                     Convert.ToInt32(Reader["ApplicationID"]),
+                                                     Convert.ToInt32(Reader["ApplicantPersonid"]),
+                                                     Convert.ToDateTime(Reader["Applicationdate"]),
+                                                     Convert.ToInt16(Reader["Applicationtypeid"]),
+                                                     Convert.ToByte(Reader["ApplicationStatus"]),
+                                                     Convert.ToDateTime(Reader["laststatusdate"]),
+                                                     Convert.ToDecimal(Reader["PaidFees"]),
+                                                     Convert.ToInt32(Reader["Createdbyuserid"])
+                                                     );
+                }
 
+
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return null;
+        }
         public static int  DeleteApplication (int applicationId)
         {
            
@@ -129,7 +163,6 @@ namespace DLMS.Data_access.Applications
             }
             return 0;
         }
-
         public static bool SetApplicationStatus(int AppID, byte Status)
         {
             if (Status > 3 || Status <= 0)
@@ -157,45 +190,7 @@ namespace DLMS.Data_access.Applications
             }
             return false;
         }
-
-        public static Entities.ClsApplication? GetApplicationByID(int AppID)
-        {
-            string Query = "select * from applications where applicationid = @ApplicationID";
-            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
-            SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
-            command.Parameters.AddWithValue("@ApplicationID", AppID);
-            try
-            {
-                connection.Open();
-                SqlDataReader Reader = command.ExecuteReader();
-                if(Reader.HasRows && Reader.Read())
-                {
-                    return new Entities.ClsApplication(
-                                                     Convert.ToInt32(Reader["ApplicationID"]),
-                                                     Convert.ToInt32(Reader["ApplicantPersonid"]),
-                                                     Convert.ToDateTime(Reader["Applicationdate"]),
-                                                     Convert.ToInt16(Reader["Applicationtypeid"]),
-                                                     Convert.ToByte(Reader["ApplicationStatus"]),
-                                                     Convert.ToDateTime(Reader["laststatusdate"]),
-                                                     Convert.ToDecimal(Reader["PaidFees"]),
-                                                     Convert.ToInt32(Reader["Createdbyuserid"])
-                                                     );
-                }
-
-
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return null;
-        }
-
-        public static int GetApplicationStatusByID(int AppID)
+        public static int  GetApplicationStatusByID(int AppID)
         {
             string Query = "select top 1 Applicationstatus from applications where applicationid = @ApplicationID";
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
@@ -218,6 +213,8 @@ namespace DLMS.Data_access.Applications
             }
             return 0;
         }
+
+
 
     }
 }

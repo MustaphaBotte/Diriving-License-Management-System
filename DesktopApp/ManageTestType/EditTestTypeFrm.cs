@@ -37,14 +37,14 @@ namespace DesktopApp.ManageTestType
                     MessageBoxIcon.Error);
                 this.Close();
             }
-            this.TestTypeIDLAbel.Text = TestType?.TestTypeID.ToString();
+            this.TestTypeIDLAbel.Text = ((int?)TestType?.TestTypeID)?.ToString();
             this.TestTypeTitleTextBox.Text = TestType?.TestTypetitle;
             this.TestTypeDescriptionTextBox.Text = TestType?.TestTypeDescription;
             this.TestTypeFeeTextBox.Text = TestType?.TestTypeFees.ToString();
         }
         private void CloseButton_MouseEnter(object sender, EventArgs e)
         {
-            Cursor = Cursors.Hand;
+            Cursor = Cursors.Hand;  
         }
 
         private void CloseButton_MouseLeave(object sender, EventArgs e)
@@ -63,13 +63,13 @@ namespace DesktopApp.ManageTestType
             string testdesc = TestTypeDescriptionTextBox.Text;
 
             bool isFees = decimal.TryParse(TestTypeFeeTextBox.Text, out decimal Value);
-            if (testName.Length == 0)
+            if (testName.ToString().Trim().Length == 0)
             {
                 MessageBox.Show("Please enter a valid Test Name", "Data violation", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
-            if (testdesc.Length == 0)
+            if (testdesc.ToString().Trim().Length == 0)
             {
                 MessageBox.Show("Please enter a valid Test Description", "Data violation", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -88,7 +88,7 @@ namespace DesktopApp.ManageTestType
                 TestType.TestTypeFees = Value;
                 if (TestTypesLogic.UpdateTestType(TestType))
                 {
-                    MessageBox.Show($"Test type with ID: {TestType.TestTypeId} updated SuccessFully"
+                    MessageBox.Show($"Test type with ID: {TestType.TestTypeID} updated SuccessFully"
                         , "Operation Success", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                     this.TestTypeEdited?.Invoke();

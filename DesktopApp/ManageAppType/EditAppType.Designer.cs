@@ -107,7 +107,7 @@
             AppTypeIDLAbel.BackColor = Color.Transparent;
             AppTypeIDLAbel.Font = new Font("Tahoma", 12F, FontStyle.Bold);
             AppTypeIDLAbel.ForeColor = SystemColors.ActiveCaptionText;
-            AppTypeIDLAbel.Location = new Point(264, 103);
+            AppTypeIDLAbel.Location = new Point(175, 103);
             AppTypeIDLAbel.Name = "AppTypeIDLAbel";
             AppTypeIDLAbel.Size = new Size(30, 21);
             AppTypeIDLAbel.TabIndex = 2;
