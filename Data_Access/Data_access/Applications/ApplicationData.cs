@@ -1,13 +1,12 @@
 ﻿using DLMS.Data_access.ConnectionSettings;
 using DLMS.EntitiesNamespace;
 using Microsoft.Data.SqlClient;
-using System.Data;
-using static System.Net.Mime.MediaTypeNames;
+
 
 
 namespace DLMS.Data_access.Applications
 {
-    public class ApplicationData
+    public static class ApplicationData
     {
         private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\Logs.txt";
       
@@ -66,7 +65,7 @@ namespace DLMS.Data_access.Applications
             SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
             command.Parameters.AddWithValue("@Applicantpersonid", application.ApplicantPersonId);
             command.Parameters.AddWithValue("@Applicaiondate", application.ApplicantionDate);
-            command.Parameters.AddWithValue("@Applicationdtypeid", application.ApplicationTypeId);
+            command.Parameters.AddWithValue("@Applicationdtypeid",(int)application.ApplicationType);
             command.Parameters.AddWithValue("@applicationStatus", application.ApplicationStatus);
             command.Parameters.AddWithValue("@LastStatusDate", application.LastStatusDate);
             command.Parameters.AddWithValue("@PaidFees", application.PaidFees);
@@ -107,8 +106,8 @@ namespace DLMS.Data_access.Applications
                                                      Convert.ToInt32(Reader["ApplicationID"]),
                                                      Convert.ToInt32(Reader["ApplicantPersonid"]),
                                                      Convert.ToDateTime(Reader["Applicationdate"]),
-                                                     Convert.ToInt16(Reader["Applicationtypeid"]),
-                                                     Convert.ToByte(Reader["ApplicationStatus"]),
+                                                     (Entities.ClsApplication.enApplicationType)Convert.ToInt16(Reader["Applicationtypeid"]),
+                                                     (Entities.ClsApplication.enApplicationStatus)(Reader["ApplicationStatus"]),
                                                      Convert.ToDateTime(Reader["laststatusdate"]),
                                                      Convert.ToDecimal(Reader["PaidFees"]),
                                                      Convert.ToInt32(Reader["Createdbyuserid"])
@@ -214,7 +213,84 @@ namespace DLMS.Data_access.Applications
             return 0;
         }
 
+        public static int  GetActiveApplicationID(uint PersonId, uint ApplicationTypeID)
+        {
+            string Query = @$"select Applications.ApplicationID
+                             from Applications 
+                             where ApplicationTypeID = @ApplicationTypeID
+                             and ApplicantPersonID= @ApplicantPersonID 
+                             and ApplicationStatus=1";
+
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue(parameterName: "@ApplicationTypeID", value: ApplicationTypeID);
+            command.Parameters.AddWithValue(parameterName: "@ApplicantPersonID", value: PersonId);
+
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+                if (int.TryParse(Result.ToString(), out int res))
+                {
+                    return res ;
+                }
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return -1;
+        }
+        public static bool DoesPersonHaveActiveApplication(uint PersonId, uint ApplicationTypeID)
+        {
+            return (GetActiveApplicationID(PersonId, ApplicationTypeID) > 0);
+        }
+        public static int  GetActiveApplicationIDForLicenseClass(uint PersonId, uint ApplicationTypeID,uint LicenseClassID)
+        {
+
+            string Query = @$"select Applications.ApplicationID
+                             from LocalDrivingLicenseApplications LDLA 
+                             inner join applications on LDLA.ApplicationID = applications.ApplicationID
+                             where applications.ApplicationStatus=1
+                             and applications.ApplicantPersonID= @ApplicantPersonID 
+                             and LDLA.LicenseClassID=@LicenseClassID"; 
+
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue(parameterName: "@ApplicationTypeID", value: ApplicationTypeID);
+            command.Parameters.AddWithValue(parameterName: "@ApplicantPersonID", value: PersonId);
+
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+                if (int.TryParse(Result.ToString(), out int res))
+                {
+                    return res;
+                }
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return -1;
 
 
+
+
+
+
+
+
+
+        }
     }
 }

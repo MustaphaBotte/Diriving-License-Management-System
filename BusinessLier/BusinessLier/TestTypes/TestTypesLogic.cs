@@ -5,7 +5,7 @@ namespace DLMS.BusinessLier.TestTypes
 {
     public  sealed class TestTypesLogic
     {
-        public static Entities.ClsTestType? GetTestTypeById(Entities.EnTestType AppTypeID)
+        public static Entities.ClsTestType? GetTestTypeById(Entities.ClsTestType.EnTestType AppTypeID)
         {
             return DLMS.Data_access.Test_Types.TestTypesData.GetTestTypeById((int)AppTypeID);
         }

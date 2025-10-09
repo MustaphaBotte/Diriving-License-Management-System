@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using DLMS.EntitiesNamespace;
+using System.Text.Json.Serialization;
 
 namespace DLMS.EntitiesNamespace
 {
@@ -9,7 +10,6 @@ namespace DLMS.EntitiesNamespace
             AddNew = 1,
             Update = 2
         }
-        public enum EnTestType { VisionTest = 1,WrittenTest=2,StreetTest=3 }
 
         public class ClsPerson
         {
@@ -110,8 +110,11 @@ namespace DLMS.EntitiesNamespace
             public ClsApplicationType() { }
         }
 
+
         public class ClsTestType
         {
+            public  enum EnTestType { VisionTest = 1, WrittenTest = 2, StreetTest = 3 }
+
             public EnTestType TestTypeID { set; get; }
             public string TestTypetitle { set; get; } = string.Empty;
             public string TestTypeDescription { set; get; } = string.Empty;
@@ -129,28 +132,35 @@ namespace DLMS.EntitiesNamespace
 
         public class ClsApplication
         {
+            public enum enApplicationType
+            {
+                LocalDrivingLicense = 1, RenewDrivingLicense = 2, ReplaceLostDrivingLicense = 3,
+                ReplaceDamagedDrivingLicense = 4, ReleaseDetainedDrivingLicsense = 5, NewInternationalLicense = 6, RetakeTest = 7
+            };
+            public enum enApplicationStatus { New = 1, Cancelled = 2, Completed = 3 };
+
             public int ApplicationId { get; set; } = -1;
             public int ApplicantPersonId { get; set; } = -1;
-
             public DateTime ApplicantionDate { get; set; } = new DateTime();
-            public short ApplicationTypeId { get; set; }
-
-            public byte ApplicationStatus { get; set; }
-
             public DateTime LastStatusDate { get; set; } = new DateTime();
-
             public decimal PaidFees { get; set; } = 0m;
             public int CreatedByUserId { get; set; } = -1;
 
+            public enApplicationType ApplicationType { get; set; }    
+            public enApplicationStatus ApplicationStatus { get; set; }
+            public Entities.ClsUser? CreatedByUser = null;
+            public Entities.ClsApplicationType? ApplicationTypeInfo = null;
+            public Entities.ClsPerson? ApplicantPersonInfo = null;
+
+
             public EnMode Mode = EnMode.AddNew;
 
-            public ClsApplication(int applicationId, int applicantPersonId, DateTime applicantionDate, short applicationTypeId,
-                                 byte applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserId)
+            public ClsApplication(int applicationId, int applicantPersonId, DateTime applicantionDate,
+                                 enApplicationType applicationType, enApplicationStatus applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserId)
             {
                 this.ApplicationId = applicationId;
                 this.ApplicantPersonId = applicantPersonId;
                 this.ApplicantionDate = applicantionDate;
-                this.ApplicationTypeId = applicationTypeId;
                 this.ApplicationStatus = applicationStatus;
                 this.LastStatusDate = lastStatusDate;
                 this.PaidFees = paidFees;

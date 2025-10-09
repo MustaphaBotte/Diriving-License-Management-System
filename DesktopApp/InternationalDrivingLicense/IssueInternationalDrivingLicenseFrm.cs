@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using DLMS.EntitiesNamespace;
+using System.ComponentModel.Design;
 
 namespace DesktopApp.InternationalDrivingLicense
 {
@@ -67,7 +68,7 @@ namespace DesktopApp.InternationalDrivingLicense
             this.IssueDateLbl.Text = DateTime.Now.ToString("yyyy/MM/dd");
             this.ExpirationDateLbl.Text = DateTime.Now.AddYears(1).ToString("yyyy/MM/dd");
             this.ApplicationDateLbl.Text = DateTime.Now.ToString("yyyy/MM/dd");
-            this.FeesLbl.Text = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(6).ToString();
+            this.FeesLbl.Text = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.NewInternationalLicense).ToString();
             this.I_L_LicenseIDLbl.Text = "N/A";
             this.LocalLicenseIDLbl.Text = this.License?.LicenseID.ToString();
             this.CreatedBYLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
@@ -103,10 +104,11 @@ namespace DesktopApp.InternationalDrivingLicense
             internationalLicense.Application.ApplicantionDate = DateTime.Now;
             internationalLicense.Application.LastStatusDate = DateTime.Now;
             internationalLicense.Application.ApplicantPersonId = this.Driver.PersonID;
-            internationalLicense.Application.ApplicationStatus = 1; //new
-            internationalLicense.Application.ApplicationTypeId = 6; //International License
+            internationalLicense.Application.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New; //new
+            internationalLicense.Application.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.NewInternationalLicense; ; //International License
             internationalLicense.Application.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-            internationalLicense.Application.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(6);
+            internationalLicense.Application.PaidFees = 
+            DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.NewInternationalLicense);
 
             internationalLicense.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
             internationalLicense.DriverID = this.Driver.DriverID;

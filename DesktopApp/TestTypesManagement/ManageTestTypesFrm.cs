@@ -95,7 +95,7 @@ namespace DesktopApp.ManageTests
                    MessageBoxIcon.Error); return;
             }
             int Id = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["TestTypeid"].Value);
-            EditTestTypeFrm Frm = new EditTestTypeFrm((Entities.EnTestType)Id);
+            EditTestTypeFrm Frm = new EditTestTypeFrm((Entities.ClsTestType.EnTestType)Id);
             Frm.TestTypeEdited += refreshTheGrid;
             Frm.ShowDialog();
         }

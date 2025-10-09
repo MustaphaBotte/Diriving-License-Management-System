@@ -1,5 +1,6 @@
 ﻿using DesktopApp.AllLicensesHistory;
 using DesktopApp.LocDrivingLicense;
+using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,8 +22,8 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
         public ReplaceLostORDamagedLicFrm()
         {
             InitializeComponent();
-            this.LostFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(3);
-            this.DamagedFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(4);
+            this.LostFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReplaceLostDrivingLicense);
+            this.DamagedFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReplaceDamagedDrivingLicense);
 
         }
         private void FindButton_Click(object sender, EventArgs e)
@@ -76,7 +77,8 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
         {
             int AppTypeID = AppType.SelectedIndex == 0 ? 3 : 4;
             this.AppDateLbl.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            decimal AppFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(AppTypeID); //3 or 4
+            decimal AppFees =
+             DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees((Entities.ClsApplication.enApplicationType)AppTypeID); //3 or 4
             this.ApplicationFees.Text = AppFees.ToString();
             this.OldLicenseIdLbl.Text = License.LicenseID.ToString();
             this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
@@ -128,10 +130,10 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             }
             int AppTypeID = (AppType.SelectedIndex == 0 ? 3 : 4);
             DLMS.EntitiesNamespace.Entities.ClsApplication NewApp = new DLMS.EntitiesNamespace.Entities.ClsApplication();
-            NewApp.ApplicationStatus = 1;
+            NewApp.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;
             NewApp.ApplicantPersonId = oldApp.ApplicantPersonId;
             NewApp.ApplicantionDate = DateTime.Now;
-            NewApp.ApplicationTypeId = (short)AppTypeID;
+            NewApp.ApplicationType = (DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType)((short)AppTypeID);
             NewApp.LastStatusDate = DateTime.Now;
             NewApp.PaidFees = AppTypeID == 3 ? LostFees : DamagedFees;
             NewApp.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;

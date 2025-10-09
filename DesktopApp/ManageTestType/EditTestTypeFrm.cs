@@ -16,14 +16,14 @@ namespace DesktopApp.ManageTestType
 {
     public partial class EditTestTypeFrm : Form
     {
-        private Entities.EnTestType _TestTypeId ;
+        private Entities.ClsTestType.EnTestType _TestTypeId ;
         Entities.ClsTestType? TestType = null;
 
 
         public delegate void TheTestTypeEdited();
         public event TheTestTypeEdited TestTypeEdited = delegate { };
 
-        public EditTestTypeFrm(Entities.EnTestType TestTypeID)
+        public EditTestTypeFrm(Entities.ClsTestType.EnTestType TestTypeID)
         {
             this._TestTypeId = TestTypeID;
             InitializeComponent();

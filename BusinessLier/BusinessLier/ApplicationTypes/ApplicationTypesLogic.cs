@@ -2,6 +2,7 @@
 using DLMS.EntitiesNamespace;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using static DLMS.EntitiesNamespace.Entities;
 
 namespace DLMS.BusinessLier.ApplicationTypes
 {
@@ -19,11 +20,9 @@ namespace DLMS.BusinessLier.ApplicationTypes
         { 
             return DLMS.Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(UpdatedObj);
         }
-        public static decimal  GetApplicationFees(int AppId)
+        public static decimal  GetApplicationFees(Entities.ClsApplication.enApplicationType AppType)
         {
-            if (AppId <= 0 )
-                return 0m;
-            return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetFeesOfApplication( AppId);
+            return DLMS.Data_access.Applications_Types.AppLicationsTypesData.GetFeesOfApplication((int)AppType);
         }
         public static string? GetAppTypeTitleByAppID(int AppID)
         {

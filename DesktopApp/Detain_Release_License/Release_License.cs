@@ -1,5 +1,6 @@
 ﻿using DesktopApp.AllLicensesHistory;
 using DesktopApp.LocDrivingLicense;
+using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,7 +70,8 @@ namespace DesktopApp.Detain_Release_License
             }
             this.PersonID = DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(License.DriverID)?.PersonID ?? 0;
             this.DetainIDLbl.Text = detainedLicense.DetainID.ToString();
-            decimal AppFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(5); // 5= release 
+            decimal AppFees = 
+            DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense); // 5= release 
             this.LicenseIDLbl.Text = detainedLicense.LicenseID.ToString();
             this.CreatedByLbl.Text = DLMS.BusinessLier.User.UserLogic.FindUserByIdOrUser(detainedLicense.CreatedByUserID)?.UserName;
             this.FineFeesLabel.Text = detainedLicense.Fees.ToString();
@@ -87,12 +89,12 @@ namespace DesktopApp.Detain_Release_License
             }
 
             DLMS.EntitiesNamespace.Entities.ClsApplication? App = new DLMS.EntitiesNamespace.Entities.ClsApplication();
-            App.ApplicationStatus = 1;
+            App.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;
             App.ApplicantPersonId = PersonID;
             App.ApplicantionDate = DateTime.Now;
-            App.ApplicationTypeId = 5;//release
+            App.ApplicationType =DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense;//release
             App.LastStatusDate = DateTime.Now;
-            App.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(5);
+            App.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense);
             App.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             string ER = "";

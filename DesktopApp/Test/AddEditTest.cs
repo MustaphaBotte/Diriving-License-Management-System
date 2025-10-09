@@ -1,4 +1,5 @@
 ﻿using DLMS.BusinessLier;
+using DLMS.EntitiesNamespace;
 using static DLMS.EntitiesNamespace.Entities;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -100,7 +101,7 @@ namespace DesktopApp.VisionTest
         private void FillRetakeTestInfo()
         {
             decimal TestFees = DLMS.BusinessLier.Test.Testlogic.GetTestFees(this.TestTypeID);
-            decimal AppFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(7);
+            decimal AppFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RetakeTest);
             decimal totalFees = TestFees + AppFees;
 
             this.AppFees.Text = AppFees.ToString();
@@ -170,10 +171,11 @@ namespace DesktopApp.VisionTest
                 DLMS.EntitiesNamespace.Entities.ClsApplication Application = new DLMS.EntitiesNamespace.Entities.ClsApplication();
                 Application.ApplicantPersonId = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(this.Loc_DLA_ID);
                 Application.ApplicantionDate = DateTime.Now;
-                Application.ApplicationStatus = 1;//new;
-                Application.ApplicationTypeId = 7;//retake test
+                Application.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;//new;
+                Application.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.RetakeTest; ;//retake test
                 Application.LastStatusDate = DateTime.Now;
-                Application.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(7);
+                Application.PaidFees = 
+                DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RetakeTest);
                 Application.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
                 RetakeAppID = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(Application, ref er);
 

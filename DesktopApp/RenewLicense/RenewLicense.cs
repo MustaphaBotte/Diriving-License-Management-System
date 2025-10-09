@@ -1,6 +1,6 @@
 ﻿using DesktopApp.AllLicensesHistory;
 using DesktopApp.LocDrivingLicense;
-
+using DLMS.EntitiesNamespace;
 using static DLMS.EntitiesNamespace.Entities;
 
 namespace DesktopApp.RenewLicense
@@ -64,7 +64,8 @@ namespace DesktopApp.RenewLicense
         {
             this.IssueDateLabel.Text = DateTime.Now.ToString("yyyy-MM-dd");
             this.AppDateLbl.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            decimal AppFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(2); //2 means Renew
+            decimal AppFees = 
+                DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RenewDrivingLicense); //2 means Renew
             this.ApplicationFees.Text = AppFees.ToString();
             decimal licenseClassFees = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceFees(License.LicenseClassID);
             this.licenseFeesLbl.Text = licenseClassFees.ToString();
@@ -99,12 +100,13 @@ namespace DesktopApp.RenewLicense
                 return;
             }
             DLMS.EntitiesNamespace.Entities.ClsApplication NewApp = new DLMS.EntitiesNamespace.Entities.ClsApplication();
-            NewApp.ApplicationStatus = 1;
+            NewApp.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;
             NewApp.ApplicantPersonId = oldApp.ApplicantPersonId;
             NewApp.ApplicantionDate = DateTime.Now;
-            NewApp.ApplicationTypeId = 2;//renew
+            NewApp.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.RenewDrivingLicense;//renew
             NewApp.LastStatusDate = DateTime.Now;
-            NewApp.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(2);
+            NewApp.PaidFees = 
+           DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RenewDrivingLicense);
             NewApp.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             string ER = "";

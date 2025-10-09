@@ -108,7 +108,6 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
                 connection.Close();
             }
         }
-
         public static Dictionary<string,object> GetLocalDrivingLicAppById(int LocDriAppID)
         {
             if (LocDriAppID <= 0)
@@ -148,7 +147,6 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             }
             return new Dictionary<string, object>();
         }
-
         public static Entities.ClsLocDriApplication? GetBasicLocDriLicAppInfo(int LocDriAppID)
         {
             if (LocDriAppID <= 0)
@@ -183,8 +181,69 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             }
             return null;
         }
+        public static bool Exists(int LocDriAppID)
+        {
+            if (LocDriAppID <= 0)
+            {
+                return false;
+            }
+            string Query = $"select case when exists (select 1 from My_LocalDLAView where My_LocalDLAView.LocDLA_ID = @Value) then 1 else 0 end as Result";
 
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue(parameterName: "@Value", value: LocDriAppID);
 
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+                if (int.TryParse(Result.ToString(), out int res))
+                {
+                    return (res == 1);
+                }
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return false;
+        }
+
+        public static bool DeleteLocalApplication(int LocAppId)
+        {
+
+            if (LocAppId <= 0)
+            {
+                return false;
+            }
+
+            string Query = "delete from LocalDrivingLicenseApplications where LocDLA_Id = @Id";
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
+
+            command.Parameters.AddWithValue("@Id", LocAppId);
+
+            try
+            {
+                connection.Open();
+                int RowsAffected = command.ExecuteNonQuery();
+
+                return RowsAffected > 0;
+            }
+            catch (SqlException Sq)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, Sq);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
         public static int GetApplicationIdByLocDriId(int LocDriID)
         {
             if (LocDriID <= 0)
@@ -213,7 +272,6 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             }
 
         }
-
         public static int GetApplicantPersonIdByLocDriId(int LocDriID)
         {
             if (LocDriID <= 0)
@@ -245,68 +303,7 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             }
 
         }
-        public static bool Exists(int LocDriAppID)
-        {
-            if (LocDriAppID <=0 )
-            {
-                return false;
-            }
-            string Query = $"select case when exists (select 1 from My_LocalDLAView where My_LocalDLAView.LocDLA_ID = @Value) then 1 else 0 end as Result";
-
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            command.Parameters.AddWithValue(parameterName: "@Value", value: LocDriAppID);
-
-            try
-            {
-                connection.Open();
-                object Result = command.ExecuteScalar();
-                if (int.TryParse(Result.ToString(), out int res))
-                {
-                    return (res == 1);
-                }
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return false;
-        }
-        public static bool DeleteLocalApplication(int LocAppId)
-        {
-
-            if (LocAppId <= 0)
-            {
-                return false;
-            }
-
-            string Query = "delete from LocalDrivingLicenseApplications where LocDLA_Id = @Id";
-            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
-            SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
-
-            command.Parameters.AddWithValue("@Id", LocAppId);
-
-            try
-            {
-                connection.Open();
-                int RowsAffected = command.ExecuteNonQuery();
-               
-                return RowsAffected>0;
-            }
-            catch (SqlException Sq)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, Sq);
-                return false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+  
         public static bool IsLocalApplicationCanceled(int LocAppId)
         {
             string Query = @$"select case when exists

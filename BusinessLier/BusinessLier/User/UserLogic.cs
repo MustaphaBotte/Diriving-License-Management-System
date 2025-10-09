@@ -13,14 +13,14 @@ namespace DLMS.BusinessLier.User
         public static Entities.ClsUser? FindUserByIdOrUser(int ID = -1, string Username = "")
         {
             Entities.ClsUser? user = UserData.GetUserByIdOrUsername(ID, Username);
-            if(user!=null)
+            if(user!= null && user.PersonId > 0)
                   user.Person = DLMS.Data_access.Person.PersonData.FindPerson(user.PersonId);
             return user;
         }
         public static Entities.ClsUser? FindUserByPersonID(int ID)
         {
             Entities.ClsUser? user = UserData.GetUserByPersonId(ID);
-            if (user != null)
+            if (user != null && user.PersonId>0)
                 user.Person = DLMS.Data_access.Person.PersonData.FindPerson(user.PersonId);
             return user;
         }
@@ -32,7 +32,7 @@ namespace DLMS.BusinessLier.User
                 return null;
             }
             Entities.ClsUser? user = Data_access.Users.UserData.GetUserByIdOrUsername(username:Username);
-            if (user != null)
+            if (user != null && user.PersonId > 0)
             {
                 user.Person = DLMS.Data_access.Person.PersonData.FindPerson(user.PersonId);
                 user.PassWord = password;

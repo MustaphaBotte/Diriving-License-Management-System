@@ -107,7 +107,7 @@ namespace DesktopApp.ManageApplication
 
         private decimal getfeesOfLocalDrivingLicenseAplication()
         {
-            return ApplicationTypesLogic.GetApplicationFees(1);
+            return ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.LocalDrivingLicense);
         }
         private void FillTheApplicationDefaultInfo()
         {
@@ -262,8 +262,8 @@ namespace DesktopApp.ManageApplication
             Entities.ClsApplication App = new Entities.ClsApplication();
             App.ApplicantPersonId = Person.PersonId;
             App.ApplicantionDate = DateTime.Now;
-            App.ApplicationTypeId = 1; // because the data is fixed in the application types
-            App.ApplicationStatus = 1; // 1 means new
+            App.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.LocalDrivingLicense;
+            App.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New; // 1 means new
             App.LastStatusDate = DateTime.Now;
             App.PaidFees = getfeesOfLocalDrivingLicenseAplication();
             App.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;

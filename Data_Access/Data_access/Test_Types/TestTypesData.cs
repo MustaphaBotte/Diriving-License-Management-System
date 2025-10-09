@@ -25,7 +25,7 @@ namespace DLMS.Data_access.Test_Types
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Entities.ClsTestType((Entities.EnTestType)Convert.ToInt32(reader["TestTypeID"]),
+                    return new Entities.ClsTestType((Entities.ClsTestType.EnTestType)Convert.ToInt32(reader["TestTypeID"]),
                                                            (string)reader["TestTypeTitle"],
                                                            (string)reader["TestTypeDescription"],
                                                            Convert.ToDecimal(reader["TestTypefees"].ToString())
