@@ -23,18 +23,57 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
             {
                 return -3;
             }       
-            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.AddNewLocalDrivLicenApp(App, LicenseClassID,ref message);
+            int NewAppId = DLMS.Data_access.Applications.ApplicationData.AddNewApplication(App, ref message);
+
+            int LocalAppId= DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.AddNewLocalDrivLicenApp(NewAppId, LicenseClassID,ref message);
+             if(LocalAppId<=0)
+                DLMS.Data_access.Applications.ApplicationData.DeleteApplication(LocalAppId);
+            return LocalAppId;
             //0 Internal Error
             //-1 Has An Open Application
             //-2 Has License
             // 1<x its Ok>>ID
+        }
+        public static int EditLocalDriLicApplicationClass(int Loc_DLA_ID, int NewLicenseClassID)
+        {
+            if (DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.IsLocalApplicationCanceled(Loc_DLA_ID))
+            {
+                return -2;
+            }
+            if (DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.IsLocalApplicationCompleted(Loc_DLA_ID))
+            {
+                return -3;
+            }
+            if (DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Loc_DLA_ID, 1) || DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(Loc_DLA_ID, 1))
+            {
+                return -5;
+            }
+            int Status = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.HasNewOrCompletedLicenseType(Loc_DLA_ID, NewLicenseClassID);
+
+            if (Status == 1)
+            {
+                return -4;
+            }
+            if (Status == 0)
+            {
+                if (DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.EditLocalDriLicApplicationClass(Loc_DLA_ID, NewLicenseClassID) == 1)
+                {
+                    return 1; //Edited succesfully
+                }
+            }
+            return 0;
+
+            //0 Internal Error
+            //-2 App Canceled
+            //-3 App Completed
+            //-4 means already has a one
+            // 1 Ok>>ID
         }
         public static bool Exists(int LocDriAppID)
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.Exists(LocDriAppID);
 
         }
-
         public static Entities.ClsLocDriApplication? GetLocDriLicAppInfo(int LocDriAppID)
         {
             Entities.ClsLocDriApplication? LocApp= DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetLocDriLicAppInfo(LocDriAppID);
@@ -52,6 +91,11 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetAllLocalApplications();
         }
+        public static int PassesTests(int Loc_DLA_ID)
+        {
+            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.PassedTests(Loc_DLA_ID);
+        }
+
         public static int GetAppIdByLocalDrivingId(int LocDriLicId)
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(LocDriLicId);
@@ -95,46 +139,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
             }
 
         }
-        public static int EditLocalDriLicApplicationClass(int Loc_DLA_ID, int NewLicenseClassID)
-        {
-            if(DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.IsLocalApplicationCanceled(Loc_DLA_ID))
-            {
-                return -2;
-            }
-            if (DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.IsLocalApplicationCompleted(Loc_DLA_ID))
-            {
-                return -3;
-            }
-            if(DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Loc_DLA_ID,1)|| DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(Loc_DLA_ID, 1))
-            {
-                return -5;
-            }
-            int Status = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.HasNewOrCompletedLicenseType(Loc_DLA_ID, NewLicenseClassID);
-      
-            if(Status ==1)
-            {
-                return -4;
-            }
-            if(Status==0)
-            {
-                if (DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.EditLocalDriLicApplicationClass(Loc_DLA_ID, NewLicenseClassID) == 1)
-                {
-                    return 1; //Edited succesfully
-                }
-            }         
-            return 0;
-
-            //0 Internal Error
-            //-2 App Canceled
-            //-3 App Completed
-            //-4 means already has a one
-            // 1 Ok>>ID
-        }
-
-        public static int PassesTests(int Loc_DLA_ID)
-        {
-            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.PassedTests(Loc_DLA_ID);
-        }
+       
 
     }
 }

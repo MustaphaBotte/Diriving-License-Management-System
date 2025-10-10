@@ -87,10 +87,10 @@ namespace DLMS.BusinessLier.Test
         {
             return DLMS.Data_access.Test.TestData.GetTestFees(TestTypeID);
         }
-        public static int FailingCount(int DriLicAppID, int TestTypeID)
+        public static int TrialCountPerTest(int DriLicAppID, int TestTypeID)
         {
             //if -1 its unknown due an internal error
-            return DLMS.Data_access.Test.TestData.HowManyTimeFailed(DriLicAppID, TestTypeID);
+            return DLMS.Data_access.Test.TestData.TrialCountPerTest(DriLicAppID, TestTypeID);
         }
         public static Entities.ClsTestAppointment? GetTestAppointmentBYID(int TestAppointmentID)
         {

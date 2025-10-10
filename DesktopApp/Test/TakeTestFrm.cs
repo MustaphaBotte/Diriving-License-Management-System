@@ -78,7 +78,7 @@ namespace DesktopApp.VisionTest
                 this.Loc_DLA_IDLbl.Text = LocalApplicationInfo.LocDriApplicationID.ToString();
                 this.ClassTitleLbl.Text = LocalApplicationInfo.LicenseClassInfo?.ClassName;
                 this.FullNameLbl.Text = LocalApplicationInfo.ApplicantPersonInfo?.FullName;
-                this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.FailingCount(appointment.LocDLA_ID, appointment.TestTypeId).ToString(); 
+                this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.TrialCountPerTest(appointment.LocDLA_ID, appointment.TestTypeId).ToString(); 
                 this.DateLabel.Text = appointment.TestAppointmentDate.ToString("yyyy-MM-dd");
                 this.FeesLbl.Text = appointment.PaidFees.ToString(); //get it from app table because maybe its a retake test so is possible to that app has +5 dollars
                 this.TestIdLabel.Text = "Not Taken Yet";

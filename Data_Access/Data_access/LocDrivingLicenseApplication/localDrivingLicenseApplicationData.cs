@@ -44,20 +44,14 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             return null;
 
         }
-        public static int AddNewLocalDrivLicenApp(Entities.ClsApplication App , int LicenseClassId,ref string message)
+        public static int AddNewLocalDrivLicenApp(int ApplicationID , int LicenseClassId,ref string message)
         {
-            int NewAppId = DLMS.Data_access.Applications.ApplicationData.AddNewApplication(App, ref message);
-            if (NewAppId <= 0)
-            {
-                return 0;
-            }
-
-
+            
             string Query = " insert into LocalDrivingLicenseApplications values(@ApplicationID, @LicenseClassID); SELECT SCOPE_IDENTITY()";
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
 
-            command.Parameters.AddWithValue("@ApplicationID", NewAppId);
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassId);
 
             try
@@ -69,9 +63,7 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             }
             catch (Exception Sq)
             {
-                // in this case we have to delete the stored application
                 message = Sq.Message;
-                DLMS.Data_access.Applications.ApplicationData.DeleteApplication(NewAppId);
                 DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, Sq);
                 return 0; // Cannot Add, foreign key constraint violation or error
             }
@@ -153,6 +145,51 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
             }
             return null;
         }
+        public static Entities.ClsLocDriApplication? GetLocDriLicAppInfoByApplicationID(int AppID)
+        {
+            if (AppID <= 0)
+                return null;
+
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            string Query = "select LocalDrivingLicenseApplications.* ,Applications.* from LocalDrivingLicenseApplications " +
+                " inner join applications on applications.ApplicationId= LocalDrivingLicenseApplications.applicationID" +
+                " where LocalDrivingLicenseApplications.ApplicationID = @ID";
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue("@ID", AppID);
+            SqlDataReader? Reader = null;
+            try
+            {
+                connection.Open();
+                Reader = command.ExecuteReader();
+                if (Reader != null && Reader.HasRows && Reader.Read())
+                {
+                    return new Entities.ClsLocDriApplication(
+                                                             Convert.ToInt32(Reader["LocalDrivingLicenseApplicationID"]),
+                                                             Convert.ToInt32(Reader["ApplicationID"]),
+                                                             Convert.ToInt32(Reader["LicenseClassID"]),
+                                                             Convert.ToInt32(Reader["ApplicantPersonID"]),
+                                                             Convert.ToDateTime(Reader["ApplicationDate"]),
+                                                             (DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType)Convert.ToInt32(Reader["ApplicationTypeId"]),
+                                                             (DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus)Convert.ToInt32(Reader["ApplicationStatus"]),
+                                                             Convert.ToDateTime(Reader["lastStatusDate"]),
+                                                             Convert.ToDecimal(Reader["paidFees"]),
+                                                             Convert.ToInt32(Reader["CreatedByUserId"])
+                                                             );
+                }
+                return null;
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                Reader?.Close();
+                connection.Close();
+            }
+            return null;
+        }
+
         public static bool Exists(int LocDriAppID)
         {
             if (LocDriAppID <= 0)
@@ -215,9 +252,6 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
 
 
         }
-
-
-
 
         public static bool DeleteLocalApplication(int LocAppId)
         {

@@ -199,7 +199,7 @@ namespace DLMS.Data_access.Test
             return 0m;
         }
 
-        public static int HowManyTimeFailed(int DriLicAppID,int TestTypeID)
+        public static int TrialCountPerTest(int DriLicAppID,int TestTypeID)
         {
             string Query = $@"select Count(R1.TestResult) from 
                                                           (select Tests.TestResult 

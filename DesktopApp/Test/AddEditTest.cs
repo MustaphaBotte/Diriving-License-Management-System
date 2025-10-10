@@ -93,7 +93,7 @@ namespace DesktopApp.VisionTest
             else
             this.LocAppDate.Value = DateTime.Now;
             this.FeesLbl.Text = DLMS.BusinessLier.Test.Testlogic.GetTestFees(this.TestTypeID).ToString();
-            this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.FailingCount(DriLicInfo.LocDriApplicationID, this.TestTypeID).ToString();
+            this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.TrialCountPerTest(DriLicInfo.LocDriApplicationID, this.TestTypeID).ToString();
             this.Mode = TestMode.ScheduleTest;
             this.RetakeTestGroupBox.Visible = false;
             ChangeMode();
