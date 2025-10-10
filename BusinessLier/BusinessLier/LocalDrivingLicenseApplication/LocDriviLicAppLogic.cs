@@ -34,18 +34,20 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.Exists(LocDriAppID);
 
         }
-        public static Dictionary<string,object> GetLocalDrivingLicAppById(int LocDriAppID)
-        {
-            if (LocDriAppID <= 0)
-                return new Dictionary<string, object>();
 
-            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetLocalDrivingLicAppById(LocDriAppID);
-        }
-        public static Entities.ClsLocDriApplication? GetBasicLocDriLicAppInfo(int LocDriAppID)
+        public static Entities.ClsLocDriApplication? GetLocDriLicAppInfo(int LocDriAppID)
         {
-            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetBasicLocDriLicAppInfo(LocDriAppID);
-
-       }
+            Entities.ClsLocDriApplication? LocApp= DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetLocDriLicAppInfo(LocDriAppID);
+            if(LocApp!=null)
+            {
+                LocApp.ApplicantPersonInfo = Person.PersonLogic.FindPerson(LocApp.ApplicantPersonId);
+                LocApp.CreatedByUser       = User.UserLogic.FindUserByIdOrUser(LocApp.CreatedByUserId);
+                LocApp.ApplicationTypeInfo = ApplicationTypes.ApplicationTypesLogic.GetApplicationTypeByIdOrName((int)LocApp.ApplicationType);
+                LocApp.LicenseClassInfo    = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetLisenceClassById(LocApp.LicenseClassID);
+                return LocApp;
+            }
+            return null;
+         }
         public static DataTable? GetAllLocalApplications()
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetAllLocalApplications();
@@ -129,7 +131,10 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
             // 1 Ok>>ID
         }
 
-        
+        public static int PassesTests(int Loc_DLA_ID)
+        {
+            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.PassedTests(Loc_DLA_ID);
+        }
 
     }
 }

@@ -66,7 +66,7 @@ namespace DLMS.Data_access.Applications
             command.Parameters.AddWithValue("@Applicantpersonid", application.ApplicantPersonId);
             command.Parameters.AddWithValue("@Applicaiondate", application.ApplicantionDate);
             command.Parameters.AddWithValue("@Applicationdtypeid",(int)application.ApplicationType);
-            command.Parameters.AddWithValue("@applicationStatus", application.ApplicationStatus);
+            command.Parameters.AddWithValue("@applicationStatus", (int)application.ApplicationStatus);
             command.Parameters.AddWithValue("@LastStatusDate", application.LastStatusDate);
             command.Parameters.AddWithValue("@PaidFees", application.PaidFees);
             command.Parameters.AddWithValue("@CreatedByUserID", application.CreatedByUserId);
@@ -107,7 +107,7 @@ namespace DLMS.Data_access.Applications
                                                      Convert.ToInt32(Reader["ApplicantPersonid"]),
                                                      Convert.ToDateTime(Reader["Applicationdate"]),
                                                      (Entities.ClsApplication.enApplicationType)Convert.ToInt16(Reader["Applicationtypeid"]),
-                                                     (Entities.ClsApplication.enApplicationStatus)(Reader["ApplicationStatus"]),
+                                                     (Entities.ClsApplication.enApplicationStatus)(byte)(Reader["ApplicationStatus"]),
                                                      Convert.ToDateTime(Reader["laststatusdate"]),
                                                      Convert.ToDecimal(Reader["PaidFees"]),
                                                      Convert.ToInt32(Reader["Createdbyuserid"])
@@ -127,9 +127,7 @@ namespace DLMS.Data_access.Applications
             return null;
         }
         public static int  DeleteApplication (int applicationId)
-        {
-           
-
+        {          
             string Query = " delete from applications where applicationid = @Value";
 
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());

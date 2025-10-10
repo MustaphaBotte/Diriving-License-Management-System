@@ -73,17 +73,17 @@ namespace DesktopApp.VisionTest
         }
         private void FillTestInfo()
         {
-            Dictionary<string, object> Loc_DLA_INFO = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(this.Loc_DLA_ID);
-            if (Loc_DLA_INFO.Count == 0)
+            Entities.ClsLocDriApplication? DriLicInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(this.Loc_DLA_ID);
+            if (DriLicInfo == null)
             {
                 MessageBox.Show("We can't show the local driving application details right now please refresh and try again", "internal error",
                 MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 this.Dispose();
                 return;
             }
-            this.Loc_DLA_IDLbl.Text = Loc_DLA_INFO["LocDLA_ID"].ToString();
-            this.ClassTitleLbl.Text = Loc_DLA_INFO["ClassName"].ToString();
-            this.FullNameLbl.Text = Loc_DLA_INFO["FullName"].ToString();
+            this.Loc_DLA_IDLbl.Text = DriLicInfo.LocDriApplicationID.ToString();
+            this.ClassTitleLbl.Text = DriLicInfo.LicenseClassInfo?.ClassName;
+            this.FullNameLbl.Text = DriLicInfo.ApplicantPersonInfo?.FullName;
             this.LocAppDate.MinDate = DateTime.Now;
             if(this.Mode == TestMode.EditTest)
             {
@@ -93,7 +93,7 @@ namespace DesktopApp.VisionTest
             else
             this.LocAppDate.Value = DateTime.Now;
             this.FeesLbl.Text = DLMS.BusinessLier.Test.Testlogic.GetTestFees(this.TestTypeID).ToString();
-            this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.FailingCount((int)Loc_DLA_INFO["LocDLA_ID"], this.TestTypeID).ToString();
+            this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.FailingCount(DriLicInfo.LocDriApplicationID, this.TestTypeID).ToString();
             this.Mode = TestMode.ScheduleTest;
             this.RetakeTestGroupBox.Visible = false;
             ChangeMode();
@@ -168,15 +168,15 @@ namespace DesktopApp.VisionTest
             string er = "";
             if (DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(this.Loc_DLA_ID, this.TestTypeID))
             {
-                DLMS.EntitiesNamespace.Entities.ClsApplication Application = new DLMS.EntitiesNamespace.Entities.ClsApplication();
+                ClsApplication Application = new ClsApplication();
                 Application.ApplicantPersonId = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(this.Loc_DLA_ID);
                 Application.ApplicantionDate = DateTime.Now;
-                Application.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;//new;
-                Application.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.RetakeTest; ;//retake test
+                Application.ApplicationStatus = ClsApplication.enApplicationStatus.New;//new;
+                Application.ApplicationType = ClsApplication.enApplicationType.RetakeTest; ;//retake test
                 Application.LastStatusDate = DateTime.Now;
                 Application.PaidFees = 
                 DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RetakeTest);
-                Application.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
+                Application.CreatedByUserId = LogedInUser.ClslogedInUser.logedInUser.UserId;
                 RetakeAppID = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(Application, ref er);
 
             }

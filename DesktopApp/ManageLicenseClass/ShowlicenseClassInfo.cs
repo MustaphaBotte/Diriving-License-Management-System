@@ -13,17 +13,15 @@ namespace DesktopApp.ManageLicenseClass
     public partial class ShowlicenseClassInfo : Form
     {
         private int LicenseClassID=-1;
-        private string Classname = "";
-        public ShowlicenseClassInfo(int LicenseClassID=-1,string Classname="")
+        public ShowlicenseClassInfo(int LicenseClassID)
         {
-            this.Classname = Classname;
             this.LicenseClassID = LicenseClassID;
             InitializeComponent();
         }
 
         private void ShowlicenseClassInfo_Load(object sender, EventArgs e)
         {
-            DLMS.EntitiesNamespace.Entities.ClsLicenseClass? LicClass = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetLisenceClassById(classname: this.Classname);
+            DLMS.EntitiesNamespace.Entities.ClsLicenseClass? LicClass = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetLisenceClassById(this.LicenseClassID);
             if(LicClass!=null)
             {
                 this.LicClassIdLabel.Text = LicClass.LicenseCLassId.ToString();
@@ -34,6 +32,8 @@ namespace DesktopApp.ManageLicenseClass
                 this.TitleLable.Text = LicClass.ClassName;
                 return;
             }
+            MessageBox.Show("We cant show this license class in the mement please refresh and try again", "Internal Error", MessageBoxButtons.OK
+                , MessageBoxIcon.Error);
             this.Close();
         }
     }

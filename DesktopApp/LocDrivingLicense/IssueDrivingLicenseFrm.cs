@@ -16,7 +16,7 @@ namespace DesktopApp.IssueLocalDrivingLicense
                 this.Close();
             }
             this.ApplicantPersonID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(Loc_DLA_ID);
-            locDriApplication = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetBasicLocDriLicAppInfo(Loc_DLA_ID);
+            locDriApplication = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(Loc_DLA_ID);
             if (locDriApplication == null || this.ApplicantPersonID<=0)
             {
                 MessageBox.Show("Sorry we cannot load certain data please refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

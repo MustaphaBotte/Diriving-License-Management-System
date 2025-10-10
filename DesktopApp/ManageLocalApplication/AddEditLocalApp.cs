@@ -13,7 +13,8 @@ namespace DesktopApp.ManageApplication
     {
         private Entities.ClsPerson? Person = null;
         private bool IsEditMode = false;
-        Dictionary<string, object> LocAppInfo = new Dictionary<string, object>();
+        Entities.ClsLocDriApplication? LocAppInfo = new DLMS.EntitiesNamespace.Entities.ClsLocDriApplication();
+
 
         public delegate void Adding_SendSignalToRefreshTheGris(int NewLocAppId);
         public event Adding_SendSignalToRefreshTheGris OnAddingNewApp = delegate { };
@@ -25,8 +26,8 @@ namespace DesktopApp.ManageApplication
         {         
             if(IsEditing)
             {
-                this.LocAppInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(Loc_DLA_ID);
-                if (LocAppInfo.Count == 0)
+                this.LocAppInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(Loc_DLA_ID);
+                if (LocAppInfo==null)
                 {
                     MessageBox.Show("We Cant edit this local application right now because data are lost :( please refresh try again", "Internal Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -54,7 +55,7 @@ namespace DesktopApp.ManageApplication
         }  
         private void FillThePersonInfo()
         {
-            SearchForPerson(NationalNo:this.LocAppInfo["NationalNo"].ToString());
+            SearchForPerson(LocAppInfo?.ApplicantPersonId??0);
             if(!PersonControl.IsControlFilled)
             {
                 MessageBox.Show($"We cant edit this local application in the moment please refresh and try again", "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,8 +93,8 @@ namespace DesktopApp.ManageApplication
                 LisenceClassesComboBox.DataSource = new BindingSource(classes, null);
                 LisenceClassesComboBox.ValueMember = "key";
                 LisenceClassesComboBox.DisplayMember = "value";
-                if(this.IsEditMode)
-                        LisenceClassesComboBox.SelectedItem = this.LocAppInfo["ClassName"];
+                if (this.IsEditMode)
+                    LisenceClassesComboBox.SelectedIndex = this.LocAppInfo?.LicenseClassInfo?.LicenseCLassId-1??0;
 
 
 
@@ -120,7 +121,7 @@ namespace DesktopApp.ManageApplication
                 this.Close();
             }
             if (IsEditMode)
-                this.Loc_DL_IdLbl.Text = this.LocAppInfo["LocDLA_ID"].ToString();
+                this.Loc_DL_IdLbl.Text = this.LocAppInfo?.LocDriApplicationID.ToString();
 
             ApplicationFeesLbl.Text = getfeesOfLocalDrivingLicenseAplication().ToString();
         }
@@ -273,10 +274,10 @@ namespace DesktopApp.ManageApplication
             {
                 return;
             }
-            short MinAgeAllod = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(LicenseId);
-            if (Person.DateOfBirth.AddYears(MinAgeAllod) > DateTime.Now)
+            short MinAllowedAge = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(LicenseId);
+            if (Person.DateOfBirth.AddYears(MinAllowedAge) > DateTime.Now)
             {
-                MessageBox.Show($"The minmum age allowed is {MinAgeAllod} years old", "Age rules violation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                MessageBox.Show($"The minmum age allowed is {MinAllowedAge} years old", "Age rules violation", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 return;
             }
             InsertNewLocalApp(App, LicenseId, out int NewLocDriAppId);          
@@ -299,14 +300,18 @@ namespace DesktopApp.ManageApplication
             int LicenseId = Convert.ToInt16(LisenceClassesComboBox.SelectedValue);
 
             int UpdatedLicenseClassID = Convert.ToInt16(LisenceClassesComboBox.SelectedValue);
-            int Loc_DLA_ID = int.TryParse(this.LocAppInfo["LocDLA_ID"].ToString(), out int Val) ? Val : -1;
             DialogResult Result = MessageBox.Show("Are you sure you want to Save", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (Result == DialogResult.Cancel)
             {
                 return;
             }
-
-            int result = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.EditLocalDriLicApplicationClass(Loc_DLA_ID, UpdatedLicenseClassID);
+            short MinAllowedAge = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(LicenseId);
+            if (Person.DateOfBirth.AddYears(MinAllowedAge) > DateTime.Now)
+            {
+                MessageBox.Show($"The minmum age allowed is {MinAllowedAge} years old", "Age rules violation", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                return;
+            }
+            int result = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.EditLocalDriLicApplicationClass(LocAppInfo.LocDriApplicationID, UpdatedLicenseClassID);
             if(result==1)
             {      
                 MessageBox.Show($"This local application has successfully updated to {LisenceClassesComboBox.SelectedItem}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

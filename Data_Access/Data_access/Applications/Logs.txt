@@ -473,3 +473,81 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
 
 
 ====================================================================================================================
+Date Time  :10/9/2025 10:46:03 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 10:46:12 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 10:46:28 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 10:46:30 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 10:46:36 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 10:46:38 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 10:47:29 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 11:10:55 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 11:10:57 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 11:11:22 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 11:13:50 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================
+Date Time  :10/9/2025 11:16:40 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'enApplicationStatus'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID)
+
+
+====================================================================================================================
+Date Time  :10/9/2025 11:17:50 PM
+Error      :Unable to cast object of type 'System.Byte' to type 'System.Int32'.
+StackTrace :   at DLMS.Data_access.Applications.ApplicationData.GetApplicationByID(Int32 AppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\ApplicationData.cs:line 105
+
+
+====================================================================================================================

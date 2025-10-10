@@ -29,8 +29,16 @@ namespace DesktopApp.ScheduleTest
         }
         private void FillTheGridByAppointments()
         {
-            int LOC_DLA_ID = int.TryParse(applicationInfoControl1.LocalAppInfo["LocDLA_ID"].ToString(), out int Val) ? Val : -1;
-            DataTable? Appointmnets = DLMS.BusinessLier.Test.Testlogic.GetAllTestsAppointByLocDLA_ID_andTestId(LOC_DLA_ID, this.TestTypeID);
+            if (applicationInfoControl1.LocalAppInfo1 == null)
+            {
+                MessageBox.Show("Local Applicaion not found please refresh and try again", "Internal Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+             this.LocApplicationID = applicationInfoControl1.LocalAppInfo1.LocDriApplicationID;
+            DataTable? Appointmnets = DLMS.BusinessLier.Test.Testlogic.GetAllTestsAppointByLocDLA_ID_andTestId(this.LocApplicationID, this.TestTypeID);
             if (Appointmnets != null)
             {
                 foreach (DataRow row in Appointmnets.Rows)
@@ -99,30 +107,29 @@ namespace DesktopApp.ScheduleTest
         }
         private void AddAppointment_Click(object sender, EventArgs e)
         {
-            if (applicationInfoControl1.LocalAppInfo.Count <= 0 || !applicationInfoControl1.LocalAppInfo.Keys.Contains("LocDLA_ID"))
+            if (applicationInfoControl1.LocalAppInfo1==null)
             {
                 MessageBox.Show("We can't add a new vision test appointment in the moment please close and refresh the grid", "Internal Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int LOC_DLA_ID = int.TryParse(applicationInfoControl1.LocalAppInfo["LocDLA_ID"].ToString(), out int Val) ? Val : -1;
             string TestName = this.TestTypeID == 1 ? "Vision" : this.TestTypeID == 2 ? "Writing" : this.TestTypeID == 3 ? "Street" : "";
             TestName += " Test";
 
           
-            if (DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LOC_DLA_ID, this.TestTypeID))
+            if (DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(this.LocApplicationID, this.TestTypeID))
             {
                 MessageBox.Show($"This person already succeded in the {TestName}", "Vision Test Rules",
                 MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            if (DLMS.BusinessLier.Test.Testlogic.HasOpenAppointment(LOC_DLA_ID, this.TestTypeID))
+            if (DLMS.BusinessLier.Test.Testlogic.HasOpenAppointment(this.LocApplicationID, this.TestTypeID))
             {
                 MessageBox.Show($"This person already has an incompleted {TestName}", "Vision Test Rules",
                 MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            if (DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(LOC_DLA_ID, this.TestTypeID))
+            if (DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(this.LocApplicationID, this.TestTypeID))
             {
                 DialogResult Res = MessageBox.Show($"This person already failed in the {TestName} no we will make an retake test", "Vision Test Rules",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -131,7 +138,7 @@ namespace DesktopApp.ScheduleTest
             }
 
             // i used 1 in the function argument cause data fixed in test types
-            AddEditTest Frm = new AddEditTest(LOC_DLA_ID,this.TestTypeID);
+            AddEditTest Frm = new AddEditTest(this.LocApplicationID, this.TestTypeID);
             Frm.adding_ReadyToRefresh += AddTheNewAppointmentToGrid;
             if (!Frm.IsDisposed)
             {
@@ -142,16 +149,15 @@ namespace DesktopApp.ScheduleTest
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (applicationInfoControl1.LocalAppInfo.Count <= 0 || !applicationInfoControl1.LocalAppInfo.Keys.Contains("LocDLA_ID"))
+            if (this.LocApplicationID<=0)
             {
                 MessageBox.Show("We can't edit this vision test appointment date in the moment please close and refresh the grid", "Internal Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int LOC_DLA_ID = int.TryParse(applicationInfoControl1.LocalAppInfo["LocDLA_ID"].ToString(), out int Val) ? Val : -1;
             int AppointmentID = int.TryParse(this.DataGrid.SelectedRows[0].Cells["AppointmentID"].Value.ToString(), out int Val2) ? Val2 : -1;
 
-            AddEditTest Frm = new AddEditTest(LOC_DLA_ID, this.TestTypeID,AppointmentID,true);
+            AddEditTest Frm = new AddEditTest(this.LocApplicationID,this.TestTypeID,AppointmentID,true);
             Frm.Editing_ReadyToRefresh += UpdateAppointmentRowDate;
             if(!Frm.IsDisposed)
                    Frm.ShowDialog();

@@ -4,46 +4,41 @@ namespace DesktopApp.VisionTest
     public partial class ApplicationInfoControl : UserControl
     {
         private int _LocalApplicationID = -1;
-        public Dictionary<string, object> LocalAppInfo = new Dictionary<string, object>();
-        DLMS.EntitiesNamespace.Entities.ClsApplication? application = new DLMS.EntitiesNamespace.Entities.ClsApplication();
+        public DLMS.EntitiesNamespace.Entities.ClsLocDriApplication? LocalAppInfo1 = new DLMS.EntitiesNamespace.Entities.ClsLocDriApplication();
+       // public Dictionary<string, object> LocalAppInfo = new Dictionary<string, object>();
         private bool ControlFilled = false;
         public ApplicationInfoControl()
         {
             InitializeComponent();
         }
-        public ApplicationInfoControl(int ApplicationID)
-        {
-            this._LocalApplicationID = ApplicationID;
-        }
+       
         private bool FillLocalDrivingLicenseAppInfo()
         {
-            LocalAppInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(this._LocalApplicationID);
-            if (LocalAppInfo.Count == 0)
+            LocalAppInfo1 = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(_LocalApplicationID);
+            if (LocalAppInfo1==null)
             {
                 return false;
             }
-            this.LocDLA_ID_LBL.Text = LocalAppInfo["LocDLA_ID"].ToString();
-            this.LicenseClassLBL.Text = LocalAppInfo["ClassName"].ToString();
-            this.PassedTestsLBL.Text = LocalAppInfo["PassedTests"].ToString() + "/3";
+            this.LocDLA_ID_LBL.Text = LocalAppInfo1.LocDriApplicationID.ToString();
+            this.LicenseClassLBL.Text = LocalAppInfo1.LicenseClassInfo?.ClassName;
+            this.PassedTestsLBL.Text =
+                DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.PassesTests(_LocalApplicationID).ToString() + "/3";
             return true;
         }
 
         private bool FillBasicAppInfo()
         {
-            int AppId = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetAppIdByLocalDrivingId(this._LocalApplicationID);
-            if (AppId == -1)
+            if (LocalAppInfo1==null)
                 return false;
-            application = DLMS.BusinessLier.Application.ApplicationLogic.GetApplicationByID(AppId);
-            if (application == null)
-                return false;
-            this.AppIDLbl.Text = application.ApplicationId.ToString();
-            this.ApplicantLbl.Text = LocalAppInfo["FullName"].ToString();
-            this.FeesLbl.Text = application.PaidFees.ToString();
-            this.StatusLbl.Text = LocalAppInfo["Applicationstatus"].ToString();
-            this.Typelbl.Text = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetAppTypeTitleByAppID(application.ApplicationId);
-            this.DateLbl.Text = application.ApplicantionDate.ToString("dd/MM/yyyy");
-            this.LastStatusDateLbl.Text = application.LastStatusDate.ToString("dd/MM/yyyy");
-            this.CreatedByLbl.Text = DLMS.BusinessLier.User.UserLogic.GetUserNameByUserId(application.CreatedByUserId);
+           
+            this.AppIDLbl.Text =LocalAppInfo1.ApplicantionID.ToString();
+            this.ApplicantLbl.Text = LocalAppInfo1.ApplicantPersonInfo?.FullName;
+            this.FeesLbl.Text = LocalAppInfo1.PaidFees.ToString();
+            this.StatusLbl.Text = LocalAppInfo1.ApplicationStatus.ToString();
+            this.Typelbl.Text = LocalAppInfo1.ApplicationType.ToString();
+            this.DateLbl.Text = LocalAppInfo1.ApplicantionDate.ToString("dd/MM/yyyy");
+            this.LastStatusDateLbl.Text = LocalAppInfo1.LastStatusDate.ToString("dd/MM/yyyy");
+            this.CreatedByLbl.Text = LocalAppInfo1.CreatedByUser?.UserName;
             return true;
         }
 
@@ -75,32 +70,31 @@ namespace DesktopApp.VisionTest
 
         private void ShowPersonInfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (application?.ApplicationId > 0)
+            if (LocalAppInfo1?.ApplicantPersonInfo?.PersonId > 0)
             {
-                DesktopApp.ManagePerson.ShowPerson Frm = new DesktopApp.ManagePerson.ShowPerson(application.ApplicantPersonId);
+                DesktopApp.ManagePerson.ShowPerson Frm = new DesktopApp.ManagePerson.ShowPerson(LocalAppInfo1.ApplicantPersonInfo.PersonId);
                 Frm.ShowDialog();
             }
         }
 
         private void PersonInfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (application == null || application.ApplicantPersonId <= 0)
-                return;
 
-            DesktopApp.ManagePerson.ShowPerson Frm = new DesktopApp.ManagePerson.ShowPerson(application.ApplicantPersonId);
-            Frm.ShowDialog();
+            if (LocalAppInfo1?.ApplicantPersonInfo?.PersonId > 0)
+            {
+                DesktopApp.ManagePerson.ShowPerson Frm = new DesktopApp.ManagePerson.ShowPerson(LocalAppInfo1.ApplicantPersonInfo.PersonId);
+                Frm.ShowDialog();
+            }
         }
 
         private void LicenseInfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (application == null || !LocalAppInfo.Keys.Contains("ClassName"))
+            if (LocalAppInfo1 == null || LocalAppInfo1.LicenseClassID<=0)
                 return;
-            string? ClassName = LocalAppInfo["ClassName"].ToString();
-            if( !string.IsNullOrEmpty(ClassName))
-            {
-                DesktopApp.ManageLicenseClass.ShowlicenseClassInfo Frm = new DesktopApp.ManageLicenseClass.ShowlicenseClassInfo(Classname:ClassName);
-                Frm.ShowDialog();
-            }
+            
+            DesktopApp.ManageLicenseClass.ShowlicenseClassInfo Frm = new DesktopApp.ManageLicenseClass.ShowlicenseClassInfo(LocalAppInfo1.LicenseClassID);
+            Frm.ShowDialog();
+            
         }
     }
 }

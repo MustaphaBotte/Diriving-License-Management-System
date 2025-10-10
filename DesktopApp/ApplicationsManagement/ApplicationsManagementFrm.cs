@@ -1,4 +1,5 @@
 ﻿using DLMS.EntitiesNamespace;
+using DLMS.BusinessLier.LocalDrivingLicenseApplication;
 using System.Data;
 using DLMS.BusinessLier;
 using DesktopApp.User_Control;
@@ -158,7 +159,7 @@ namespace DesktopApp.ApplicationsManagement
             }
             scheduleTestsToolStripMenuItems.Enabled = false;
 
-            int? LicenseClassID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetBasicLocDriLicAppInfo(LocDriLicAppId)?.LicenseClassID;
+            int? LicenseClassID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(LocDriLicAppId)?.LicenseClassID;
 
             if (AlreadyADriver)
             {
@@ -185,18 +186,21 @@ namespace DesktopApp.ApplicationsManagement
             if (LocApplications == null)
                 return;
 
-            Dictionary<string, object> NewLocDriApp = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(LocAppId);
+           // Dictionary<string, object> NewLocDriApp =LocDriviLicAppLogic.GetLocalDrivingLicAppById(LocAppId);
+            Entities.ClsLocDriApplication? locDriApplication = LocDriviLicAppLogic.GetLocDriLicAppInfo(LocAppId);
             DataRow Row = LocApplications.NewRow();
             try
             {
-                if (NewLocDriApp.Count > 0)
+                if (locDriApplication!=null)
                 {
-                    int Index = 0;
-                    foreach (object value in NewLocDriApp.Values)
-                    {
-                        Row[Index] = value ?? null;
-                        Index++;
-                    }
+                    Row[0] = locDriApplication.LocDriApplicationID;
+                    Row[1] = locDriApplication.LicenseClassInfo?.ClassName;
+                    Row[2] = locDriApplication.ApplicantPersonInfo?.NationalNo;
+                    Row[3] = locDriApplication.ApplicantPersonInfo?.FullName;
+                    Row[4] = locDriApplication.ApplicantionDate;
+                    Row[5] = LocDriviLicAppLogic.PassesTests(locDriApplication.LocDriApplicationID);
+                    Row[6] = locDriApplication.ApplicationStatus;
+                              
                     LocApplications.Rows.Add(Row);
                     DataGrid.ClearSelection();
                     DataGrid.Rows[0].Selected = true;
@@ -212,16 +216,17 @@ namespace DesktopApp.ApplicationsManagement
         {
             try
             {
-                Dictionary<string, object> NewInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(CurrentLocAppInProcess);
-                if (NewInfo.Count > 0)
+                Entities.ClsLocDriApplication? locDriApplication = LocDriviLicAppLogic.GetLocDriLicAppInfo(CurrentLocAppInProcess);
+                DataGrid.ReadOnly = false;
+                if (locDriApplication != null)
                 {
-                    byte index = 0;
-                    foreach (object Value in NewInfo.Values)
-                    {
-                        this.LocApplications.Columns[index].ReadOnly = false;
-                        LocApplications.Rows[this.SelectedRowInProcess][index] = Value;
-                        index++;
-                    }
+                     LocApplications.Rows[SelectedRowInProcess][0] = locDriApplication.LocDriApplicationID;
+                     LocApplications.Rows[SelectedRowInProcess][1] = locDriApplication.LicenseClassInfo?.ClassName;
+                     LocApplications.Rows[SelectedRowInProcess][2] = locDriApplication.ApplicantPersonInfo?.NationalNo;
+                     LocApplications.Rows[SelectedRowInProcess][3] = locDriApplication.ApplicantPersonInfo?.FullName;
+                     LocApplications.Rows[SelectedRowInProcess][4] = locDriApplication.ApplicantionDate;
+                     LocApplications.Rows[SelectedRowInProcess][5] = LocDriviLicAppLogic.PassesTests(locDriApplication.LocDriApplicationID);
+                     LocApplications.Rows[SelectedRowInProcess][6] = locDriApplication.ApplicationStatus;
                 }
             }
             catch
@@ -354,9 +359,8 @@ namespace DesktopApp.ApplicationsManagement
                 if (LocApplications != null && LocApplications.Columns.Contains("ApplicationStatus"))
                 {
                     LocApplications.Columns["ApplicationStatus"].ReadOnly = false;
-
+                    DataGrid.Rows[RowIndex].Cells["ApplicationStatus"].Value = "Canceled";
                 }
-                DataGrid.Rows[RowIndex].Cells["ApplicationStatus"].Value = "Canceled";
             }
         }
         private void RemoveARowById(int ID)
@@ -467,27 +471,6 @@ namespace DesktopApp.ApplicationsManagement
             }
         }
 
-        private void UpdateRowOfCurrentLocAppInProcess()
-        {
-            try
-            {
-                Dictionary<string, object> NewInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(CurrentLocAppInProcess);
-                if (NewInfo.Count > 0)
-                {
-                    byte index = 0;
-                    foreach (object Value in NewInfo.Values)
-                    {
-                        this.LocApplications.Columns[index].ReadOnly = false;
-                        LocApplications.Rows[this.SelectedRowInProcess][index] = Value;
-                        index++;
-                    }
-                }
-            }
-            catch
-            {
-                refreshTheGrid();
-            }
-        }
         private void ShowTestDestinationForm(int TestTypeID)
         {
             this.CurrentLocAppInProcess = int.TryParse(DataGrid.SelectedRows[0].Cells["LocDLA_ID"].Value.ToString(), out int Val) ? Val : 0;
@@ -495,7 +478,7 @@ namespace DesktopApp.ApplicationsManagement
             if (CurrentLocAppInProcess != 0)
             {
                 ScheduleTest.TestAppointmentFrm Frm = new ScheduleTest.TestAppointmentFrm(CurrentLocAppInProcess, TestTypeID);
-                Frm.OnApplicationInfoChanged += UpdateRowOfCurrentLocAppInProcess;
+                Frm.OnApplicationInfoChanged += ShowNewEditedInfoOfLocApp;
                 Frm.ShowDialog();
             }
         }
@@ -529,7 +512,7 @@ namespace DesktopApp.ApplicationsManagement
 
             int LocDLA_Id = int.TryParse(DataGrid.SelectedRows[0].Cells["LocDLA_Id"].Value.ToString(), out int LocDLAId) ? LocDLAId : 0;
             IssueLocalDrivingLicense.IssueDrivingLicenseFrm Frm = new IssueLocalDrivingLicense.IssueDrivingLicenseFrm(LocDLA_Id);
-            Frm.ON_LicenseSavedWithSuccess += UpdateRowOfCurrentLocAppInProcess;
+            Frm.ON_LicenseSavedWithSuccess += this.ShowNewEditedInfoOfLocApp;
             Frm.ShowDialog();
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLMS.EntitiesNamespace;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace DesktopApp.VisionTest
         DLMS.EntitiesNamespace.Entities.ClsTestAppointment? appointment = new DLMS.EntitiesNamespace.Entities.ClsTestAppointment();
         int Loc_Driving_Lic_App_ID = -1;
         private bool LockedForm = false;
+
         public delegate void added_SendSignalTorefreshTheFrid();
         public event added_SendSignalTorefreshTheFrid TestTaked_ReadyToRefresh = delegate { };
 
@@ -70,12 +72,12 @@ namespace DesktopApp.VisionTest
                 this.Close();
                 return;
             }
-            Dictionary<string, object> LocalApplicationInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocalDrivingLicAppById(appointment?.LocDLA_ID ?? -1);
-            if (appointment != null && LocalApplicationInfo.Count > 0)
+            Entities.ClsLocDriApplication? LocalApplicationInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(appointment?.LocDLA_ID ?? -1);
+            if (appointment != null && LocalApplicationInfo!=null)
             {
-                this.Loc_DLA_IDLbl.Text = appointment.LocDLA_ID.ToString();
-                this.ClassTitleLbl.Text = LocalApplicationInfo["ClassName"].ToString();
-                this.FullNameLbl.Text = LocalApplicationInfo["FullName"].ToString();
+                this.Loc_DLA_IDLbl.Text = LocalApplicationInfo.LocDriApplicationID.ToString();
+                this.ClassTitleLbl.Text = LocalApplicationInfo.LicenseClassInfo?.ClassName;
+                this.FullNameLbl.Text = LocalApplicationInfo.ApplicantPersonInfo?.FullName;
                 this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.FailingCount(appointment.LocDLA_ID, appointment.TestTypeId).ToString(); 
                 this.DateLabel.Text = appointment.TestAppointmentDate.ToString("yyyy-MM-dd");
                 this.FeesLbl.Text = appointment.PaidFees.ToString(); //get it from app table because maybe its a retake test so is possible to that app has +5 dollars

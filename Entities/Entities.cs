@@ -1,5 +1,7 @@
 ﻿using DLMS.EntitiesNamespace;
+using System;
 using System.Text.Json.Serialization;
+using static DLMS.EntitiesNamespace.Entities.ClsApplication;
 
 namespace DLMS.EntitiesNamespace
 {
@@ -19,6 +21,14 @@ namespace DLMS.EntitiesNamespace
             public string SecondName { get; set; } = "";
             public string? ThirdName { get; set; } = "";
             public string? LastName { get; set; } = "";
+
+            public string FullName
+            {
+                get
+                {
+                    return FirstName + " " + SecondName + " " + (ThirdName==""?"":ThirdName+" ")+ LastName + " ";
+                }
+            }
             public DateTime DateOfBirth { get; set; } = DateTime.Now;
 
             public byte Gender { get; set; }
@@ -161,6 +171,7 @@ namespace DLMS.EntitiesNamespace
                 this.ApplicationId = applicationId;
                 this.ApplicantPersonId = applicantPersonId;
                 this.ApplicantionDate = applicantionDate;
+                this.ApplicationType = applicationType;
                 this.ApplicationStatus = applicationStatus;
                 this.LastStatusDate = lastStatusDate;
                 this.PaidFees = paidFees;
@@ -170,6 +181,52 @@ namespace DLMS.EntitiesNamespace
             }
             public ClsApplication() { }
         }
+
+        public class ClsLocDriApplication: ClsApplication
+        {
+            public int LocDriApplicationID { get; private set; } = -1;
+            public int ApplicantionID { get; private set; } = -1;
+            public int LicenseClassID { get; private set; } = -1;
+            public  ClsLicenseClass? LicenseClassInfo = null;
+            public ClsLocDriApplication(int LocDriApplicationID, int ApplicantionID, int LicenseClassID,
+                 int applicantPersonId, DateTime applicantionDate,
+                 enApplicationType applicationType, enApplicationStatus applicationStatus, DateTime lastStatusDate, 
+                 decimal paidFees, int createdByUserId)
+            {
+                this.LocDriApplicationID = LocDriApplicationID;
+                this.LicenseClassID = LicenseClassID;
+                this.ApplicantionID = ApplicantionID;
+                this.ApplicationId = ApplicantionID;
+                this.ApplicationType = applicationType;
+                this.ApplicantPersonId = applicantPersonId;
+                this.ApplicantionDate = applicantionDate;
+                this.ApplicationStatus = applicationStatus;
+                this.LastStatusDate = lastStatusDate;
+                this.PaidFees = paidFees;
+                this.CreatedByUserId = createdByUserId;
+                this.Mode = EnMode.Update;
+            }
+            public ClsLocDriApplication() { }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public class ClsLicenseClass
@@ -245,19 +302,6 @@ namespace DLMS.EntitiesNamespace
             public ClsTest() { }
         }
 
-        public class ClsLocDriApplication
-        {
-            public int LocDriApplication { get; private set; } = -1;
-            public int ApplicantionID { get; private set; } = -1;
-            public int LicenseClassID { get; private set; } = -1;
-            public ClsLocDriApplication(int LocDriApplication, int ApplicantionID, int LicenseClassID)
-            {
-                this.LocDriApplication = LocDriApplication;
-                this.LicenseClassID = LicenseClassID;
-                this.ApplicantionID = ApplicantionID;
-            }
-            public ClsLocDriApplication() { }
-        }
         public class ClsDriver
         {
             public int DriverID { private set; get; } = -1;

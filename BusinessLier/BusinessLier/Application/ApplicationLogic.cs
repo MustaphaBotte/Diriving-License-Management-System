@@ -26,8 +26,8 @@ namespace DLMS.BusinessLier.Application
         }
         public static int DeleteApplication(int AppID)
         {          
-          //  if(DLMS.Data_access.Applications.ApplicationData.GetApplicationTypeByID(AppID))
             return  DLMS.Data_access.Applications.ApplicationData.DeleteApplication(AppID);
+            //in database we set the on delete cascade so deleting only the Main App will also delete the local app linked to it
         }
         public static Entities.ClsApplication? GetApplicationByID(int AppID)
         {
@@ -71,3 +71,4 @@ namespace DLMS.BusinessLier.Application
     }
 
 }
+ 
