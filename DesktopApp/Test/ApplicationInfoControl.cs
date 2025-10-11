@@ -4,18 +4,17 @@ namespace DesktopApp.VisionTest
     public partial class ApplicationInfoControl : UserControl
     {
         private int _LocalApplicationID = -1;
+        private DLMS.EntitiesNamespace.Entities.ClsLicense? _License = null;
         public DLMS.EntitiesNamespace.Entities.ClsLocDriApplication? LocalAppInfo1 = new DLMS.EntitiesNamespace.Entities.ClsLocDriApplication();
-       // public Dictionary<string, object> LocalAppInfo = new Dictionary<string, object>();
-        private bool ControlFilled = false;
         public ApplicationInfoControl()
         {
             InitializeComponent();
         }
-       
+
         private bool FillLocalDrivingLicenseAppInfo()
         {
             LocalAppInfo1 = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(_LocalApplicationID);
-            if (LocalAppInfo1==null)
+            if (LocalAppInfo1 == null)
             {
                 return false;
             }
@@ -28,10 +27,10 @@ namespace DesktopApp.VisionTest
 
         private bool FillBasicAppInfo()
         {
-            if (LocalAppInfo1==null)
+            if (LocalAppInfo1 == null)
                 return false;
-           
-            this.AppIDLbl.Text =LocalAppInfo1.ApplicantionID.ToString();
+
+            this.AppIDLbl.Text = LocalAppInfo1.ApplicantionID.ToString();
             this.ApplicantLbl.Text = LocalAppInfo1.ApplicantPersonInfo?.FullName;
             this.FeesLbl.Text = LocalAppInfo1.PaidFees.ToString();
             this.StatusLbl.Text = LocalAppInfo1.ApplicationStatus.ToString();
@@ -51,23 +50,19 @@ namespace DesktopApp.VisionTest
                      MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (Res == DialogResult.Retry)
                 {
-                    if (!FillLocalDrivingLicenseAppInfo() || !FillBasicAppInfo())
-                    {
-                        MessageBox.Show("We can't show the local driving application details right now please refresh and try again", "internal error",
-                             MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    }
+                    FillTheControlById(localApplicationID);
                 }
                 return false;
             }
+            this._License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(Loc_DLA_ID:this._LocalApplicationID);
+            if (this._License != null)
+            {
+                this.DriverLicenseLink.Visible = true;
+            }
+            else
+                this.DriverLicenseLink.Visible = false;
             return true;
         }
-
-        private void ApplicationInfoControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void ShowPersonInfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (LocalAppInfo1?.ApplicantPersonInfo?.PersonId > 0)
@@ -89,12 +84,22 @@ namespace DesktopApp.VisionTest
 
         private void LicenseInfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (LocalAppInfo1 == null || LocalAppInfo1.LicenseClassID<=0)
+            if (LocalAppInfo1 == null || LocalAppInfo1.LicenseClassID <= 0)
                 return;
-            
+
             DesktopApp.ManageLicenseClass.ShowlicenseClassInfo Frm = new DesktopApp.ManageLicenseClass.ShowlicenseClassInfo(LocalAppInfo1.LicenseClassID);
             Frm.ShowDialog();
-            
+
+        }
+
+        private void DriverLicenseLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (this._License != null)
+            {
+                DesktopApp.LocDrivingLicense.ShowLicenseFrm Frm = new DesktopApp.LocDrivingLicense.ShowLicenseFrm(LicenseID: _License.LicenseID);
+                if(!Frm.IsDisposed)
+                     Frm.ShowDialog();
+            }
         }
     }
 }

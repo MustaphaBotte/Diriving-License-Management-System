@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             FeesLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             TitleLable = new Guna.UI2.WinForms.Guna2HtmlLabel();
             LicClassIdLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ValLengthLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             MinAgeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            DescriptionLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Guna2SecondNameLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Guna2NationalNoLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Guna2FirstNameLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Guna2LastNameLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Guna2ThirdNameLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             Guna2PhoneLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DescriptionBox = new Guna.UI2.WinForms.Guna2TextBox();
             SuspendLayout();
             // 
             // FeesLabel
@@ -94,17 +96,6 @@
             MinAgeLabel.Size = new Size(24, 18);
             MinAgeLabel.TabIndex = 52;
             MinAgeLabel.Text = "???";
-            // 
-            // DescriptionLabel
-            // 
-            DescriptionLabel.BackColor = Color.Transparent;
-            DescriptionLabel.Font = new Font("Microsoft Sans Serif", 9.75F);
-            DescriptionLabel.ForeColor = SystemColors.ControlText;
-            DescriptionLabel.Location = new Point(211, 132);
-            DescriptionLabel.Name = "DescriptionLabel";
-            DescriptionLabel.Size = new Size(24, 18);
-            DescriptionLabel.TabIndex = 50;
-            DescriptionLabel.Text = "???";
             // 
             // Guna2SecondNameLbl
             // 
@@ -172,18 +163,43 @@
             Guna2PhoneLbl.TabIndex = 44;
             Guna2PhoneLbl.Text = "Class Fees";
             // 
+            // DescriptionBox
+            // 
+            DescriptionBox.BackColor = Color.Transparent;
+            DescriptionBox.BorderColor = Color.Black;
+            DescriptionBox.BorderRadius = 15;
+            DescriptionBox.CustomizableEdges = customizableEdges1;
+            DescriptionBox.DefaultText = "";
+            DescriptionBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            DescriptionBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            DescriptionBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            DescriptionBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            DescriptionBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            DescriptionBox.Font = new Font("Segoe UI", 9F);
+            DescriptionBox.ForeColor = Color.Black;
+            DescriptionBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            DescriptionBox.Location = new Point(211, 129);
+            DescriptionBox.Multiline = true;
+            DescriptionBox.Name = "DescriptionBox";
+            DescriptionBox.PlaceholderText = "";
+            DescriptionBox.ReadOnly = true;
+            DescriptionBox.SelectedText = "";
+            DescriptionBox.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            DescriptionBox.Size = new Size(450, 74);
+            DescriptionBox.TabIndex = 58;
+            // 
             // ShowlicenseClassInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ZA_19031;
-            ClientSize = new Size(666, 176);
+            ClientSize = new Size(666, 209);
+            Controls.Add(DescriptionBox);
             Controls.Add(FeesLabel);
             Controls.Add(TitleLable);
             Controls.Add(LicClassIdLabel);
             Controls.Add(ValLengthLabel);
             Controls.Add(MinAgeLabel);
-            Controls.Add(DescriptionLabel);
             Controls.Add(Guna2SecondNameLbl);
             Controls.Add(Guna2NationalNoLbl);
             Controls.Add(Guna2FirstNameLbl);
@@ -204,12 +220,12 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel LicClassIdLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel ValLengthLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel MinAgeLabel;
-        private Guna.UI2.WinForms.Guna2HtmlLabel DescriptionLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel Guna2SecondNameLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel Guna2NationalNoLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel Guna2FirstNameLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel Guna2LastNameLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel Guna2ThirdNameLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel Guna2PhoneLbl;
+        private Guna.UI2.WinForms.Guna2TextBox DescriptionBox;
     }
 }

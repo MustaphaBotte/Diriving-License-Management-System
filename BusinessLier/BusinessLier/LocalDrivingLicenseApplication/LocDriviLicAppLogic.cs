@@ -1,73 +1,120 @@
 ﻿using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
 {
     public class LocDriviLicAppLogic
     {
-        public static int AddNewLocalDrivingLicApplication(Entities.ClsApplication App,int LicenseClassID,ref string message)
+        public class ClsResultProvider
         {
-            if (App == null)
-                return 0;
-            List<short> Result = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceStatusOfAperson(App.ApplicantPersonId,LicenseClassID);
-            if(Result.Contains(1))
+            public int ResultCode;
+            public string ResultName="";
+            public string ResultMessage="";
+            public bool IsSuccess = false;
+            public int NewLocAppId;
+            public ClsResultProvider(int ResultCode, string ResultName, string ResultMessage, int NewLocAppId, bool IsSuccess)
             {
-                return -1;
+                this.ResultCode = ResultCode;
+                this.ResultName = ResultName;
+                this.ResultMessage = ResultMessage;
+                this.IsSuccess = IsSuccess;
+                this.NewLocAppId = NewLocAppId;
+            }
+        }
+
+        public static ClsResultProvider AddNewLocalDrivingLicApplication(Entities.ClsApplication App,int LicenseClassID,ref string message)
+        {
+            if (App == null || App.ApplicantPersonInfo==null)
+                return new ClsResultProvider(-1, "Internal Error",
+                     "the main application or person is null or empty", -1, false);
+            List<short> Result = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceStatusOfAperson(App.ApplicantPersonId,LicenseClassID);
+           
+            if (Result.Contains(1))
+            {
+                return new ClsResultProvider(-1, "system rules violation",
+                    "This person already has an incompleted application from this license type", -1, false);
+               
             }
             if(Result.Contains(3))
             {
-                return -3;
-            }       
-            int NewAppId = DLMS.Data_access.Applications.ApplicationData.AddNewApplication(App, ref message);
+                return new ClsResultProvider(-3, "system rules violation",
+                    "This person already has a License from this license class type", -1, false);
+               
+            }
+            short MinAllowedAge = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(LicenseClassID);
+            if (App.ApplicantPersonInfo?.DateOfBirth.AddYears(MinAllowedAge) > DateTime.Now)
+            {
 
+                return new ClsResultProvider(-4, "system rules violation",
+                    $"The minmum allowed age is {MinAllowedAge} years old", -1, false);              
+            } 
+
+            int NewAppId = DLMS.Data_access.Applications.ApplicationData.AddNewApplication(App, ref message);
             int LocalAppId= DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.AddNewLocalDrivLicenApp(NewAppId, LicenseClassID,ref message);
              if(LocalAppId<=0)
                 DLMS.Data_access.Applications.ApplicationData.DeleteApplication(LocalAppId);
-            return LocalAppId;
-            //0 Internal Error
-            //-1 Has An Open Application
-            //-2 Has License
-            // 1<x its Ok>>ID
+
+             return new ClsResultProvider(1, "Operation Success",
+             @$"Local Driving license app with Id= {LocalAppId} added successfully", LocalAppId, true);
+
+           
         }
-        public static int EditLocalDriLicApplicationClass(int Loc_DLA_ID, int NewLicenseClassID)
+        public static ClsResultProvider EditLocalDriLicApplicationClass(int Loc_DLA_ID, int NewLicenseClassID)
         {
             if (DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.IsLocalApplicationCanceled(Loc_DLA_ID))
             {
-                return -2;
+                return new ClsResultProvider(1, "System rules violation",
+                       @$"Local Driving license app with Id= {Loc_DLA_ID} Is Canceled you cannot edit it", -1, false);          
             }
             if (DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.IsLocalApplicationCompleted(Loc_DLA_ID))
             {
-                return -3;
+                return new ClsResultProvider(1, "System rules violation",
+                      @$"Local Driving license app with Id= {Loc_DLA_ID} Is Completed you cannot edit it", -1, false);
+               
             }
             if (DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Loc_DLA_ID, 1) || DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(Loc_DLA_ID, 1))
             {
-                return -5;
+                return new ClsResultProvider(1, "System rules violation",
+                   @$"This Person already pass some tests or has an open appointments releated to this application you cannot modify it", -1, false);
+            
             }
-            int Status = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.HasNewOrCompletedLicenseType(Loc_DLA_ID, NewLicenseClassID);
+            short MinAllowedAge = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(NewLicenseClassID);
+            int PersonID = GetApplicantPersonIdByLocDriId(Loc_DLA_ID);
+            Entities.ClsPerson? Person = DLMS.BusinessLier.Person.PersonLogic.FindPerson(PersonID);
+            if(Person!=null&& Person.DateOfBirth.AddYears(MinAllowedAge)> DateTime.Now)            
+            {
+                return new ClsResultProvider(1, "System rules violation",
+                   @$"The minimun allowed age is {MinAllowedAge} years old", -1, false);
+            }
 
+            int Status = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.HasNewOrCompletedLicenseType(Loc_DLA_ID, NewLicenseClassID);
+      
             if (Status == 1)
             {
-                return -4;
+                return new ClsResultProvider(1, "System rules violation",
+                   @$"This Person already has an application from this license class type", -1, false);
+
             }
             if (Status == 0)
             {
                 if (DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.EditLocalDriLicApplicationClass(Loc_DLA_ID, NewLicenseClassID) == 1)
                 {
-                    return 1; //Edited succesfully
+                    return new ClsResultProvider(1, "Operation Success",
+                     @$"Local Driving License Updated successfully", Loc_DLA_ID, true);
+                    //Edited succesfully
                 }
             }
-            return 0;
+            return  new ClsResultProvider(1, "Internal Error",
+                     @$"Due an internal error we cannot update in the moment", Loc_DLA_ID, false);
 
-            //0 Internal Error
-            //-2 App Canceled
-            //-3 App Completed
-            //-4 means already has a one
-            // 1 Ok>>ID
         }
         public static bool Exists(int LocDriAppID)
         {

@@ -81,7 +81,7 @@ namespace DesktopApp.PersonControl
                 this.THLabel.Text = Person.ThirdName;
                 this.NationalNLabel.Text = Person.NationalNo;
                 this.GenderLabel.Text = Person.Gender == 0 ? "Male" : "Female";
-                this.EmailLabel.Text = Person.Email;
+                this.EmailLabel.Text = Person.Email==""?"[No Email]": Person.Email;
                 this.PhoneLabel.Text = Person.Phone;
                 this.NationalityLabel.Text = Person.CountryInfo?.CountryName??"Unknown";     
                 this.AddressLabel.Text = Person.Address;

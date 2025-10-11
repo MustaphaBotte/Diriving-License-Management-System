@@ -52,6 +52,11 @@ namespace DesktopApp.ScheduleTest
                 }
                 RowsCountLabel.Text = DataGrid.Rows.Count.ToString();
             }
+            else if (Appointmnets == null)
+            {
+                MessageBox.Show("No Test Appointment Found!", "Set Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
         }
         private void SetFormTitleAndPicture()

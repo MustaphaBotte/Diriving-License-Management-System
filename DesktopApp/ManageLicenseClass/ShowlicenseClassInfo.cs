@@ -27,7 +27,7 @@ namespace DesktopApp.ManageLicenseClass
                 this.LicClassIdLabel.Text = LicClass.LicenseCLassId.ToString();
                 this.ValLengthLabel.Text = LicClass.DefaultValidityLength.ToString();
                 this.MinAgeLabel.Text = LicClass.MinAllowedAge.ToString();
-                this.DescriptionLabel.Text = LicClass.ClassDescription;
+                this.DescriptionBox.Text = LicClass.ClassDescription;
                 this.FeesLabel.Text = LicClass.ClassFees.ToString();
                 this.TitleLable.Text = LicClass.ClassName;
                 return;

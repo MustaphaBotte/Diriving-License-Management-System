@@ -33,6 +33,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            DriverLicenseLink = new LinkLabel();
             LicenseClassLBL = new Guna.UI2.WinForms.Guna2HtmlLabel();
             PassedTestsLBL = new Guna.UI2.WinForms.Guna2HtmlLabel();
             LocDLA_ID_LBL = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -74,6 +75,7 @@
             // guna2GroupBox1
             // 
             guna2GroupBox1.BorderRadius = 15;
+            guna2GroupBox1.Controls.Add(DriverLicenseLink);
             guna2GroupBox1.Controls.Add(LicenseClassLBL);
             guna2GroupBox1.Controls.Add(PassedTestsLBL);
             guna2GroupBox1.Controls.Add(LocDLA_ID_LBL);
@@ -91,6 +93,18 @@
             guna2GroupBox1.Size = new Size(785, 114);
             guna2GroupBox1.TabIndex = 2;
             guna2GroupBox1.Text = "local Driving License App Info";
+            // 
+            // DriverLicenseLink
+            // 
+            DriverLicenseLink.AutoSize = true;
+            DriverLicenseLink.Font = new Font("Sitka Small", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            DriverLicenseLink.Location = new Point(589, 83);
+            DriverLicenseLink.Name = "DriverLicenseLink";
+            DriverLicenseLink.Size = new Size(168, 23);
+            DriverLicenseLink.TabIndex = 8;
+            DriverLicenseLink.TabStop = true;
+            DriverLicenseLink.Text = "Show Driver License";
+            DriverLicenseLink.LinkClicked += DriverLicenseLink_LinkClicked;
             // 
             // LicenseClassLBL
             // 
@@ -131,10 +145,10 @@
             LicenseInfoLink.Font = new Font("Sitka Small", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LicenseInfoLink.Location = new Point(318, 83);
             LicenseInfoLink.Name = "LicenseInfoLink";
-            LicenseInfoLink.Size = new Size(151, 23);
+            LicenseInfoLink.Size = new Size(234, 23);
             LicenseInfoLink.TabIndex = 4;
             LicenseInfoLink.TabStop = true;
-            LicenseInfoLink.Text = "Show License Info";
+            LicenseInfoLink.Text = "Show License Class type Info";
             LicenseInfoLink.LinkClicked += LicenseInfoLink_LinkClicked;
             // 
             // guna2HtmlLabel4
@@ -513,5 +527,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel26;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel27;
         private LinkLabel PersonInfoLink;
+        private LinkLabel DriverLicenseLink;
     }
 }

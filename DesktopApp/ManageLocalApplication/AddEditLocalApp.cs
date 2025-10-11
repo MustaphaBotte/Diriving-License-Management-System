@@ -1,6 +1,6 @@
 ﻿using DLMS.BusinessLier.ApplicationTypes;
 using DesktopApp.ManagePerson;
-using DLMS.BusinessLier;
+using DLMS.BusinessLier.LocalDrivingLicenseApplication;
 using DLMS.BusinessLier.Person;
 using DLMS.EntitiesNamespace;
 using System.Data;
@@ -11,47 +11,43 @@ namespace DesktopApp.ManageApplication
 {
     public partial class AddEditLocalApp : Form
     {
-        private Entities.ClsPerson? Person = null;
-        private bool IsEditMode = false;
-        Entities.ClsLocDriApplication? LocAppInfo = new DLMS.EntitiesNamespace.Entities.ClsLocDriApplication();
-
-
         public delegate void Adding_SendSignalToRefreshTheGris(int NewLocAppId);
         public event Adding_SendSignalToRefreshTheGris OnAddingNewApp = delegate { };
 
         public delegate void Editing_SendSignalToRefreshTheGris();
         public event Editing_SendSignalToRefreshTheGris OnEditingApp = delegate { };
 
-        public AddEditLocalApp(bool IsEditing = false, int Loc_DLA_ID=-1)
-        {         
-            if(IsEditing)
+
+        Entities.ClsLocDriApplication? LocAppInfo = new DLMS.EntitiesNamespace.Entities.ClsLocDriApplication();
+        private Entities.ClsPerson? Person = null;
+        private enum Enmode {AddNew=1,Update=2}
+        private Enmode _Mode = Enmode.AddNew;
+       
+        public AddEditLocalApp()
+        {          
+            InitializeComponent();
+            this._Mode = Enmode.AddNew;
+        }
+        public AddEditLocalApp(int Loc_DLA_ID)
+        {
+            InitializeComponent();
+            this.LocAppInfo = LocDriviLicAppLogic.GetLocDriLicAppInfo(Loc_DLA_ID);
+            if (LocAppInfo==null)
             {
-                this.LocAppInfo = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(Loc_DLA_ID);
-                if (LocAppInfo==null)
-                {
                     MessageBox.Show("We Cant edit this local application right now because data are lost :( please refresh try again", "Internal Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                     this.Close(); 
                     return;
-                }
-                this.IsEditMode = true;
-            }           
-            InitializeComponent();
+            }
+            this._Mode = Enmode.Update;                  
         }    
-        private void guna2Button3_MouseEnter(object sender, EventArgs e)
-        {
-            this.Cursor = Cursors.Hand;
-        }
+     
 
-        private void FindButton_MouseLeave(object sender, EventArgs e)
-        {
-            this.Cursor = Cursors.Default;
-        }
-
-        private void ChangeFormMode()
+        private void ChangeFormTitlesToUpdate()
         {
             this.FormModeTitleLabel.Text = "Edit An Existing Local Driving License";
             this.Text = " Edit Application";
+            this._Mode = Enmode.Update;
         }  
         private void FillThePersonInfo()
         {
@@ -61,16 +57,16 @@ namespace DesktopApp.ManageApplication
                 MessageBox.Show($"We cant edit this local application in the moment please refresh and try again", "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            FilterChoices.SelectedIndex = 0;
+            FilterChoices.SelectedIndex = 0;//Id by default
             this.FindButton.Enabled = false;
             this.AddButton.Enabled = false;
         }
         private void AddNewApp_Load(object sender, EventArgs e)
         {
             FilterChoices.SelectedIndex = 0;
-            if(this.IsEditMode)
+            if(this._Mode==Enmode.Update)
             {
-                ChangeFormMode();
+                ChangeFormTitlesToUpdate();
                 FillThePersonInfo();               
             }
             FillTheApplicationDefaultInfo();
@@ -93,10 +89,8 @@ namespace DesktopApp.ManageApplication
                 LisenceClassesComboBox.DataSource = new BindingSource(classes, null);
                 LisenceClassesComboBox.ValueMember = "key";
                 LisenceClassesComboBox.DisplayMember = "value";
-                if (this.IsEditMode)
-                    LisenceClassesComboBox.SelectedIndex = this.LocAppInfo?.LicenseClassInfo?.LicenseCLassId-1??0;
-
-
+                if (this._Mode==Enmode.Update)
+                    LisenceClassesComboBox.SelectedIndex = this.LocAppInfo?.LicenseClassInfo?.LicenseCLassId-1??0;//select his current class
 
                 return true;
             }
@@ -120,13 +114,12 @@ namespace DesktopApp.ManageApplication
                     MessageBoxIcon.Error);
                 this.Close();
             }
-            if (IsEditMode)
+            if (this._Mode==Enmode.Update)
                 this.Loc_DL_IdLbl.Text = this.LocAppInfo?.LocDriApplicationID.ToString();
-
             ApplicationFeesLbl.Text = getfeesOfLocalDrivingLicenseAplication().ToString();
         }
 
-        public void SearchForPerson(int ID = -1, string NationalNo = "", bool alreadyAUser = false)
+        public void SearchForPerson(int ID = -1, string NationalNo = "")
         {
             if (ID == -1 && string.IsNullOrEmpty(NationalNo))
                 return;
@@ -157,7 +150,6 @@ namespace DesktopApp.ManageApplication
                 return;
             }
 
-
             if (Filter == "personid")
             {
                 int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int OutPut) ? OutPut : 0;
@@ -168,7 +160,6 @@ namespace DesktopApp.ManageApplication
 
                     return;
                 }
-                this.ValidateChildren();
                 SearchForPerson(ID);
             }
             if (Filter == "national_no")
@@ -189,14 +180,14 @@ namespace DesktopApp.ManageApplication
         {
             PagesTab.SelectedIndex = 1;
         }
-        private void GetTheAddedPersonIdFromTheChildForm(int PersonID)
-        {
-            SearchForPerson(PersonID);
-        }
+      
         private void AddButton_Click(object sender, EventArgs e)
         {
             AddEditPersonFrm Frm = new AddEditPersonFrm();
-            Frm.SendTheAddedPersonID += GetTheAddedPersonIdFromTheChildForm;
+            Frm.SendTheAddedPersonID += (int PersonID) =>
+            {
+                SearchForPerson(PersonID);
+            };
             Frm.ShowDialog();
         }
 
@@ -214,42 +205,23 @@ namespace DesktopApp.ManageApplication
 
             }
         }
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            PagesTab.SelectedIndex = 0;
-        }
+  
 
-      
-
-        private void InsertNewLocalApp(Entities.ClsApplication App ,int LicenseClassID,out int NewLocDriAppId )
+        private bool InsertNewLocalApp(Entities.ClsApplication App ,int LicenseClassID,out int NewLocDriAppId )
         {
             string message = "";
             NewLocDriAppId = -1;
-            int Result = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.AddNewLocalDrivingLicApplication(App, LicenseClassID,ref message);
+            LocDriviLicAppLogic.ClsResultProvider Result = LocDriviLicAppLogic.AddNewLocalDrivingLicApplication(App, LicenseClassID,ref message);
 
-            if(message!="")
+            MessageBoxIcon Icon = Result.ResultCode <= 0 ? MessageBoxIcon.Error : MessageBoxIcon.Information;
+            MessageBox.Show(Result.ResultMessage,Result.ResultName, MessageBoxButtons.OK, Icon);
+           
+            if (Result.NewLocAppId>0&& Result.IsSuccess)
             {
-                MessageBox.Show(message, "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                 NewLocDriAppId = Result.NewLocAppId;
+                 return true;
             }
-            if (Result==0)
-            {
-                MessageBox.Show("Operation failed Please Check The fields and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if(Result==-1)
-            {
-                MessageBox.Show("This person already has an incompleted application from this license type .", "system rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error); 
-                return;
-            }
-            if (Result == -3)
-            {
-                MessageBox.Show("This person already has an completed application from license type .", "system rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);  
-                return;
-            }
-            if (Result>0)
-            {
-                 NewLocDriAppId = Result;
-            }
+            return false;
         }
         private void AddNewLocApplication()
         {
@@ -262,28 +234,21 @@ namespace DesktopApp.ManageApplication
             
             Entities.ClsApplication App = new Entities.ClsApplication();
             App.ApplicantPersonId = Person.PersonId;
+            App.ApplicantPersonInfo = this.PersonControl.Person;          
             App.ApplicantionDate = DateTime.Now;
-            App.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.LocalDrivingLicense;
+            App.ApplicationType = Entities.ClsApplication.enApplicationType.LocalDrivingLicense;
             App.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New; // 1 means new
             App.LastStatusDate = DateTime.Now;
             App.PaidFees = getfeesOfLocalDrivingLicenseAplication();
-            App.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
+            App.CreatedByUserId =LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             DialogResult Result = MessageBox.Show("Are you sure you want to Save", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (Result == DialogResult.Cancel)
             {
                 return;
-            }
-            short MinAllowedAge = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(LicenseId);
-            if (Person.DateOfBirth.AddYears(MinAllowedAge) > DateTime.Now)
+            }                   
+            if (InsertNewLocalApp(App, LicenseId, out int NewLocDriAppId))
             {
-                MessageBox.Show($"The minmum age allowed is {MinAllowedAge} years old", "Age rules violation", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                return;
-            }
-            InsertNewLocalApp(App, LicenseId, out int NewLocDriAppId);          
-            if (NewLocDriAppId > 0)
-            {
-                MessageBox.Show("Local Driving license app added successfully ", "Operation success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Loc_DL_IdLbl.Text = NewLocDriAppId.ToString();
                 OnAddingNewApp?.Invoke(NewLocDriAppId);
                 this.Close();
@@ -306,54 +271,42 @@ namespace DesktopApp.ManageApplication
                 return;
             }
             short MinAllowedAge = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetMinimumAllowedAge(LicenseId);
-            if (Person.DateOfBirth.AddYears(MinAllowedAge) > DateTime.Now)
-            {
-                MessageBox.Show($"The minmum age allowed is {MinAllowedAge} years old", "Age rules violation", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                return;
-            }
-            int result = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.EditLocalDriLicApplicationClass(LocAppInfo.LocDriApplicationID, UpdatedLicenseClassID);
-            if(result==1)
+           
+            LocDriviLicAppLogic.ClsResultProvider ResultProvider = LocDriviLicAppLogic.EditLocalDriLicApplicationClass(LocAppInfo.LocDriApplicationID, UpdatedLicenseClassID);
+            if(ResultProvider.IsSuccess)
             {      
                 MessageBox.Show($"This local application has successfully updated to {LisenceClassesComboBox.SelectedItem}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.OnEditingApp?.Invoke();
                 this.Close();
                 return;
             }
-            if (result == -2)
-            {
-                MessageBox.Show($"This Application Is Canceled you cannot edit it", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (result == -3)
-            {
-                MessageBox.Show($"This Application Is completed you cannot edit it.", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (result == -4)
-            {
-                MessageBox.Show($"This Person already has an application from this license class type", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (result == -5)
-            {
-                MessageBox.Show($"This Person already pass some tests or has an open appointments releated to this application you cannot modify it", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (result == 0)
-            {
-                MessageBox.Show($"Due an internal error we cannot update to  {LisenceClassesComboBox.SelectedItem} in the moment please refresh and try again", "Operation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-   
+            MessageBox.Show(ResultProvider.ResultMessage, ResultProvider.ResultName, MessageBoxButtons.OK, MessageBoxIcon.Error);             
         }
         private void AddNewLocButton_Click(object sender, EventArgs e)
         {
-            if(!this.IsEditMode)
+            if(this._Mode==Enmode.AddNew)
             {
                 AddNewLocApplication();
                 return;
             }
             EditExistingLocApplication();
         }
+
+
+        private void guna2Button3_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+        private void FindButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
+        }
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            PagesTab.SelectedIndex = 0;
+        }
+
+
+
     }
 }

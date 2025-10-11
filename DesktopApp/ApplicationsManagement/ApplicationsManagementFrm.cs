@@ -16,7 +16,7 @@ namespace DesktopApp.ApplicationsManagement
             InitializeComponent();
         }
 
-        private DataTable LocApplications = new DataTable();
+        private DataTable? LocApplications = new DataTable();
         private int CurrentLocAppInProcess = -1;
         private int SelectedRowInProcess = -1;
         private void AppTypesManagementFrm_Load(object sender, EventArgs e)
@@ -25,10 +25,11 @@ namespace DesktopApp.ApplicationsManagement
         }
         private void FillFilterList()
         {
+            FilterChoices.Items.Clear();//remove any previous items
             FilterChoices.Items.Add("None"); ;
             foreach (DataGridViewColumn Column in DataGrid.Columns)
-                FilterChoices.Items.Add(Column.Name);
-
+                FilterChoices.Items.Add(Column.HeaderText);
+            
             FilterChoices.SelectedIndex = 1;
         }
         private void FillTheGrid()
@@ -40,29 +41,35 @@ namespace DesktopApp.ApplicationsManagement
                     "Empty Table", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            LocApplications.PrimaryKey =new DataColumn[]{ LocApplications.Columns[0] };
             DataGrid.AutoGenerateColumns = true;
             DataGrid.DataSource = LocApplications;
-            if (DataGrid.Columns.Contains("ApplicationDate"))
-            {
-                DataGrid.Sort(DataGrid.Columns["ApplicationDate"], ListSortDirection.Descending);
-                if (LocApplications.Columns.Contains("LocDLA_ID"))
-                    LocApplications.PrimaryKey = new DataColumn[] { LocApplications.Columns["LocDLA_ID"] };
-            }
+            DataGrid.Columns[0].HeaderText = "L.D.L.AppID";
+            DataGrid.Columns[0].Width = 120;
+
+            DataGrid.Columns[1].HeaderText = "Driving Class";
+            DataGrid.Columns[1].Width = 180;
+
+            DataGrid.Columns[2].HeaderText = "National No.";
+            DataGrid.Columns[2].Width = 100;
+
+            DataGrid.Columns[3].HeaderText = "Full Name";
+            DataGrid.Columns[3].Width = 250;
+
+            DataGrid.Columns[4].HeaderText = "Application Date";
+            DataGrid.Columns[4].Width = 170;
+
+            DataGrid.Columns[5].HeaderText = "Passed Tests";
+            DataGrid.Columns[5].Width = 80;
+
             DataGrid.Refresh();
             RowsCountlabel.Text = DataGrid.RowCount.ToString();
             FillFilterList();
-
-
         }
         private void refreshTheGrid()
         {
-            DataGrid.DataSource = "";
-            LocApplications = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetAllLocalApplications();
-            DataGrid.Refresh();
             FillTheGrid();
         }
-
         private void CloseButton_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
@@ -71,7 +78,6 @@ namespace DesktopApp.ApplicationsManagement
         {
             this.Cursor = Cursors.Default;
         }
-
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
@@ -96,87 +102,54 @@ namespace DesktopApp.ApplicationsManagement
         private void DataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
                 return;
-            }
 
             DisableAllOrEnableAllGridItems(false);
             int LocDriLicAppId = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["LocDLA_ID"].Value);
-            int PersonID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(LocDriLicAppId);
-            bool AlreadyADriver = DLMS.BusinessLier.Driver.DriverLogic.IsAlreadyDriver(PersonID);
+            Entities.ClsLocDriApplication? locDriApplication = LocDriviLicAppLogic.GetLocDriLicAppInfo(LocDriLicAppId);
+            if (locDriApplication == null)
+                return; //it will show all items disabled 
+
+            bool AlreadyADriver = DLMS.BusinessLier.Driver.DriverLogic.IsAlreadyDriver(locDriApplication.ApplicantPersonId);
             if(AlreadyADriver)
             {
                 showLicencesHistoryToolStripMenuItem.Enabled = true;
             }
-
-            string? Status = DataGrid.SelectedRows[0].Cells["ApplicationStatus"].Value?.ToString()?.ToLower();
-            if (Status == "completed")
+            if (locDriApplication.ApplicationStatus == Entities.ClsLocDriApplication.enApplicationStatus.Completed)
             {
                 showLicenseInfoToolStripMenuItem.Enabled = true;
                 LocApplicationsMenuStrip.Show(Cursor.Position);
                 return;
             }
-            if (Status == "canceled")
+            if (locDriApplication.ApplicationStatus == Entities.ClsLocDriApplication.enApplicationStatus.Cancelled)
             {
                 ShowInfoButton.Enabled = true;
                 DeleteButton.Enabled = true;
                 LocApplicationsMenuStrip.Show(Cursor.Position);
                 return;
             }
-            scheduleTestsToolStripMenuItems.Enabled = true;
             DeleteButton.Enabled = true;
             CancelButton.Enabled = true;
             EditButton.Enabled   = true;
 
-            if (!DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LocDriLicAppId, 1))
-            {
+            bool PassedVisionTest  = DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LocDriLicAppId, 1);
+            bool PassedWritingTest = DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LocDriLicAppId, 2);
+            bool PassedStreetTest  = DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LocDriLicAppId, 3);
 
-                SchedulevisionTestToolStripMenuItem.Enabled = true;
-                scheduleWritingTestToolStripMenuItem.Enabled = false;
-                scheduleStreetToolStripMenuItem.Enabled = false;
-                LocApplicationsMenuStrip.Show(Cursor.Position);
-                return;
-            }
-            else if (!DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LocDriLicAppId, 2))
-            {
-                SchedulevisionTestToolStripMenuItem.Enabled = false;
-                scheduleWritingTestToolStripMenuItem.Enabled = true;
-                scheduleStreetToolStripMenuItem.Enabled = false;
-                issueLicenseFirstTimeToolStripMenuItem.Enabled = false;
-                showLicenseInfoToolStripMenuItem.Enabled = false;
-                LocApplicationsMenuStrip.Show(Cursor.Position);
-                return;
-            }
-            else if (!DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(LocDriLicAppId, 3))
-            {
-                SchedulevisionTestToolStripMenuItem.Enabled = false;
-                scheduleWritingTestToolStripMenuItem.Enabled = false;
-                scheduleStreetToolStripMenuItem.Enabled = true;
-                issueLicenseFirstTimeToolStripMenuItem.Enabled = false;
-                showLicenseInfoToolStripMenuItem.Enabled = false;
-                LocApplicationsMenuStrip.Show(Cursor.Position);
-                return;
-            }
-            scheduleTestsToolStripMenuItems.Enabled = false;
+            scheduleTestsToolStripMenuItems.Enabled = (!PassedVisionTest || !PassedWritingTest || !PassedStreetTest) && 
+                                                      (locDriApplication.ApplicationStatus == Entities.ClsLocDriApplication.enApplicationStatus.New);
 
-            int? LicenseClassID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(LocDriLicAppId)?.LicenseClassID;
+            if(scheduleTestsToolStripMenuItems.Enabled)
+            {
+                SchedulevisionTestToolStripMenuItem.Enabled  = PassedVisionTest && (!PassedWritingTest && !PassedStreetTest);
+                scheduleWritingTestToolStripMenuItem.Enabled = !SchedulevisionTestToolStripMenuItem.Enabled;
+                scheduleStreetToolStripMenuItem.Enabled      = !scheduleWritingTestToolStripMenuItem.Enabled;
+            }
 
             if (AlreadyADriver)
             {
-                if (DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceStatusOfAperson(PersonID, (LicenseClassID == null ? -1 : Convert.ToInt32(LicenseClassID))).Contains(3))
-                {
-                    issueLicenseFirstTimeToolStripMenuItem.Enabled = false;
-                    showLicenseInfoToolStripMenuItem.Enabled = true;
-                }
-                else
-                {
-                    issueLicenseFirstTimeToolStripMenuItem.Enabled = true;
-                }
-            }
-            else
-            {
-                issueLicenseFirstTimeToolStripMenuItem.Enabled = true;
-                showLicenseInfoToolStripMenuItem.Enabled = false;
+                issueLicenseFirstTimeToolStripMenuItem.Enabled = !DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceStatusOfAperson(locDriApplication.ApplicantPersonId, locDriApplication.LicenseClassID).Contains(3);
+                showLicenseInfoToolStripMenuItem.Enabled = !issueLicenseFirstTimeToolStripMenuItem.Enabled;      
             }
             LocApplicationsMenuStrip.Show(Cursor.Position);
         }
@@ -186,7 +159,6 @@ namespace DesktopApp.ApplicationsManagement
             if (LocApplications == null)
                 return;
 
-           // Dictionary<string, object> NewLocDriApp =LocDriviLicAppLogic.GetLocalDrivingLicAppById(LocAppId);
             Entities.ClsLocDriApplication? locDriApplication = LocDriviLicAppLogic.GetLocDriLicAppInfo(LocAppId);
             DataRow Row = LocApplications.NewRow();
             try
@@ -201,7 +173,7 @@ namespace DesktopApp.ApplicationsManagement
                     Row[5] = LocDriviLicAppLogic.PassesTests(locDriApplication.LocDriApplicationID);
                     Row[6] = locDriApplication.ApplicationStatus;
                               
-                    LocApplications.Rows.Add(Row);
+                    LocApplications.Rows.InsertAt(Row,0);
                     DataGrid.ClearSelection();
                     DataGrid.Rows[0].Selected = true;
                 }
@@ -239,8 +211,8 @@ namespace DesktopApp.ApplicationsManagement
 
             if (FilterChoices.SelectedItem == null)
                 return;
-            string? choice = FilterChoices.SelectedItem.ToString()?.ToLower();
-            if (choice == "locdla_id" || choice == "passedtests")
+            string? choice = FilterChoices.SelectedItem.ToString();
+            if (choice == "L.D.L.AppID" || choice == "Passed Tests")
             {
                 if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
@@ -261,20 +233,26 @@ namespace DesktopApp.ApplicationsManagement
             {
                 FilterValueTextBox.Visible = false;
                 DateTimePicker.Visible = false;
+                this.LocApplications.DefaultView.RowFilter = "";
+                this.RowsCountlabel.Text = DataGrid.Rows.Count.ToString();
+
                 return;
             }
 
-            if (FilterChoices.SelectedItem.ToString()?.ToLower() == ("applicationdate"))
+            if (FilterChoices.SelectedItem.ToString()?.ToLower() == ("application date"))
             {
                 FilterValueTextBox.Visible = false;
                 DateTimePicker.Visible = true;
                 return;
             }
             FilterValueTextBox.Visible = true;
+            FilterValueTextBox.Text = "";
             DateTimePicker.Visible = false;
             if (LocApplications != null)
             {
                 LocApplications.DefaultView.RowFilter = string.Empty;
+                this.RowsCountlabel.Text = DataGrid.Rows.Count.ToString();
+
             }
         }
 
@@ -291,6 +269,7 @@ namespace DesktopApp.ApplicationsManagement
                 if (DateTimePicker == null)
                 {
                     LocApplications.DefaultView.RowFilter = "";
+                    this.RowsCountlabel.Text = DataGrid.Rows.Count.ToString();
                     return;
                 }
             }
@@ -298,10 +277,12 @@ namespace DesktopApp.ApplicationsManagement
             else if (string.IsNullOrEmpty(Value) || FilterChoices.SelectedItem == null)
             {
                 LocApplications.DefaultView.RowFilter = "";
+                this.RowsCountlabel.Text = DataGrid.Rows.Count.ToString();
+
                 return;
             }
 
-            string? ColumnName = FilterChoices.SelectedItem?.ToString();
+            string? ColumnName = LocApplications.Columns[FilterChoices.SelectedIndex-1]?.ToString(); //-1 becuase the none filter choice
             if (string.IsNullOrEmpty(ColumnName))
                 return;
 
@@ -339,7 +320,6 @@ namespace DesktopApp.ApplicationsManagement
             if (column.DataType == typeof(bool) && bool.TryParse(Value, out bool _))
             {
                 Filter = $"{column.ColumnName} = '{Value}'";
-
             }
             try
             {
@@ -349,7 +329,10 @@ namespace DesktopApp.ApplicationsManagement
             {
                 LocApplications.DefaultView.RowFilter = "";
             }
-
+            finally
+            {
+                this.RowsCountlabel.Text = DataGrid.Rows.Count.ToString();
+            }
         }
 
         private void ShowTheApplicationAsCanceled(int RowIndex)
@@ -419,7 +402,7 @@ namespace DesktopApp.ApplicationsManagement
             int Loc_DLA_ID = int.TryParse(DataGrid.SelectedRows[0].Cells["LocDLA_ID"].Value.ToString(), out int Loc_ID) ? Loc_ID : -1;
             this.CurrentLocAppInProcess = int.TryParse(DataGrid.SelectedRows[0].Cells["LocDLA_ID"].Value.ToString(), out int Row_Index) ? Row_Index : 0;
             this.SelectedRowInProcess = DataGrid.SelectedRows[0].Index;
-            ManageApplication.AddEditLocalApp Frm = new ManageApplication.AddEditLocalApp(true, Loc_DLA_ID);
+            ManageApplication.AddEditLocalApp Frm = new ManageApplication.AddEditLocalApp(Loc_DLA_ID);
             Frm.OnEditingApp += ShowNewEditedInfoOfLocApp;
             if (!Frm.IsDisposed)
             {
@@ -450,7 +433,7 @@ namespace DesktopApp.ApplicationsManagement
                     if (ResultOfDeletion == 1)
                     {
                         MessageBox.Show($"Local Driving Application With Id = {LocAppId} Was Deleted SuccessFully", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RowsToDelete.Add(LocAppId);
+                        RowsToDelete.Add(i);
                         continue;
                     }
                     if (ResultOfDeletion == -1)
@@ -527,7 +510,7 @@ namespace DesktopApp.ApplicationsManagement
         private void showLicencesHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int LocDLA_Id = int.TryParse(DataGrid.SelectedRows[0].Cells["LocDLA_Id"].Value.ToString(), out int LocDLAId) ? LocDLAId : 0;
-            int PersonID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(LocDLAId);
+            int PersonID = LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(LocDLAId);
             ShowAllLicensesHistoryFrm Frm = new ShowAllLicensesHistoryFrm(PersonID);
             Frm.ShowDialog();
         }
