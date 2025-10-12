@@ -1,4 +1,5 @@
 ﻿using DesktopApp.VisionTest;
+using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,12 +52,7 @@ namespace DesktopApp.ScheduleTest
                     DataGrid.Rows[RowIndex].Cells["IsLocked"].Value = row["IsLocked"];
                 }
                 RowsCountLabel.Text = DataGrid.Rows.Count.ToString();
-            }
-            else if (Appointmnets == null)
-            {
-                MessageBox.Show("No Test Appointment Found!", "Set Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            }          
 
         }
         private void SetFormTitleAndPicture()
@@ -98,7 +94,6 @@ namespace DesktopApp.ScheduleTest
                     DataGrid.Rows[rowIndex].Cells["PaidFees"].Value = Appointment.PaidFees;
                     DataGrid.Rows[rowIndex].Cells["CreatedByUserID"].Value = Appointment.CreatedByUserId;
                     DataGrid.Rows[rowIndex].Cells["IsLocked"].Value = Appointment.IsLocked;
-
                 }
             }
             catch
@@ -106,9 +101,9 @@ namespace DesktopApp.ScheduleTest
                 MessageBox.Show("Please refresh the grid", "refresh is required", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void UpdateAppointmentRowDate(DateTime newDate)
+        private void UpdateAppointmentRowDate(Entities.ClsTestAppointment Appointment)
         {
-            DataGrid.SelectedRows[0].Cells["AppointmentDate"].Value = newDate;
+            DataGrid.SelectedRows[0].Cells["AppointmentDate"].Value = Appointment.TestAppointmentDate;
         }
         private void AddAppointment_Click(object sender, EventArgs e)
         {
@@ -136,15 +131,14 @@ namespace DesktopApp.ScheduleTest
             }
             if (DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(this.LocApplicationID, this.TestTypeID))
             {
-                DialogResult Res = MessageBox.Show($"This person already failed in the {TestName} no we will make an retake test", "Vision Test Rules",
+                DialogResult Res = MessageBox.Show($"This person already failed in the {TestName} Would you like to schedule a retake for the test?", "Vision Test Rules",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (Res == DialogResult.No)
                     return;
             }
-
-            // i used 1 in the function argument cause data fixed in test types
-            AddEditTest Frm = new AddEditTest(this.LocApplicationID, this.TestTypeID);
-            Frm.adding_ReadyToRefresh += AddTheNewAppointmentToGrid;
+          
+            DesktopApp.Test.ScheduleTestFrm Frm = new DesktopApp.Test.ScheduleTestFrm(this.LocApplicationID, (DLMS.EntitiesNamespace.Entities.ClsTestType.EnTestType)this.TestTypeID);
+            Frm.OnAddNewAppointment += AddTheNewAppointmentToGrid;
             if (!Frm.IsDisposed)
             {
                 Frm.ShowDialog();
@@ -161,9 +155,8 @@ namespace DesktopApp.ScheduleTest
                 return;
             }
             int AppointmentID = int.TryParse(this.DataGrid.SelectedRows[0].Cells["AppointmentID"].Value.ToString(), out int Val2) ? Val2 : -1;
-
-            AddEditTest Frm = new AddEditTest(this.LocApplicationID,this.TestTypeID,AppointmentID,true);
-            Frm.Editing_ReadyToRefresh += UpdateAppointmentRowDate;
+            Test.ScheduleTestFrm Frm = new DesktopApp.Test.ScheduleTestFrm(AppointmentID);
+            Frm.OnEditAppointment += UpdateAppointmentRowDate;
             if(!Frm.IsDisposed)
                    Frm.ShowDialog();
         }

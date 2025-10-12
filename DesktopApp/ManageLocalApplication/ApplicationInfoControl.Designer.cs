@@ -1,4 +1,4 @@
-﻿namespace DesktopApp.VisionTest
+﻿namespace DesktopApp.ManageApplication
 {
     partial class ApplicationInfoControl
     {

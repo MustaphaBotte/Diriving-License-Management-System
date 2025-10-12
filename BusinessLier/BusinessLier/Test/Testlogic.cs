@@ -1,4 +1,5 @@
-﻿using DLMS.EntitiesNamespace;
+﻿using DLMS.BusinessLier.User;
+using DLMS.EntitiesNamespace;
 using System.Data;
 
 namespace DLMS.BusinessLier.Test
@@ -9,8 +10,74 @@ namespace DLMS.BusinessLier.Test
         {
             if (LocDLA_ID <= 0)
                 return false;
-            return DLMS.Data_access.Test.TestData.HasOpenAppointmentByLocDriLicAppID(LocDLA_ID,TestTypeID);
+            return DLMS.Data_access.Appointments.TestAppointmentsData.HasOpenAppointment(LocDLA_ID,TestTypeID);
         }
+        public static int AddNewTestAppointment(Entities.ClsTestAppointment Appointment)
+        {
+            if (HasOpenAppointment(Appointment.LocDLA_ID, Appointment.TestTypeId))
+            {
+                return -1;
+            }
+            if (DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Appointment.LocDLA_ID, Appointment.TestTypeId))
+            {
+                return -2;
+            }
+            if (Appointment.TestTypeId == 2 && !DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Appointment.LocDLA_ID, 1))
+            {
+                return -3;
+            }
+            if (Appointment.TestTypeId == 3 && !DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Appointment.LocDLA_ID, 2))
+            {
+                return -3;
+            }//return -3 twice because its a general info means you have to pass previous test
+            int NewAppID = DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(Appointment);
+            return NewAppID;
+        }
+        public static DataTable? GetAllTestsAppointByLocDLA_ID_andTestId(int LocDLA_ID, int TestTypeID)
+        {
+            if (LocDLA_ID <= 0)
+            {
+                return null;
+            }
+            return DLMS.Data_access.Appointments.TestAppointmentsData.GetAllAppointmentsBy_LDLAID_AndTestTypeID(LocDLA_ID, TestTypeID);
+        }
+        public static Entities.ClsTestAppointment? GetTestAppointmentBYID(int TestAppointmentID)
+        {
+            if (TestAppointmentID <= 0)
+                return null;
+            Entities.ClsTestAppointment? Appointment = DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(TestAppointmentID);
+            if(Appointment!=null)
+            {
+                Appointment.RetakeTestAppInfo = Appointment.RetakeApplicationID == null ? null : Application.ApplicationLogic.GetApplicationByID((int)Appointment.RetakeApplicationID);
+                Appointment.TestTypeInfo = TestTypes.TestTypesLogic.GetTestTypeById((Entities.ClsTestType.EnTestType)Appointment.TestTypeId);
+                Appointment.CreatedByUserInfo = UserLogic.FindUserByIdOrUser(ID: Appointment.CreatedByUserId);
+                return Appointment;
+            }
+            return null;
+        }
+        public bool IsAppointmentExists(int AppointmentID)
+        {
+            return DLMS.Data_access.Appointments.TestAppointmentsData.IsExists(AppointmentID);
+        }
+        public static bool IsAppointmentLocked(int AppointmentID)
+        {
+            return DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(AppointmentID);
+        }
+        public static bool EditTestAppointmentDateByAppointmentID(int AppointmentID, DateTime NewDate)
+        {
+            if (IsAppointmentLocked(AppointmentID))
+            {
+                return false;
+            }
+            if (NewDate.Date < DateTime.Now.Date)
+            {
+                return false;
+            }
+            return DLMS.Data_access.Appointments.TestAppointmentsData.EditTestAppointmentDateByAppointmentID(AppointmentID, NewDate);
+        }
+
+
+
         public static int AddNewTest(Entities.ClsTest test,int Loc_Driving_Lic_App_ID,int TestTypeID,int? RetakeAppID=-1 ,bool Retake = false)
         {
             if(IsAppointmentLocked(test.TestAppointmentID))
@@ -46,35 +113,6 @@ namespace DLMS.BusinessLier.Test
         {
             return DLMS.Data_access.Test.TestData.GetTestByAppointmentID(AppointmentID);
         }
-        public static int AddNewTestAppointment(Entities.ClsTestAppointment Appointment)
-        {
-            if(HasOpenAppointment(Appointment.LocDLA_ID,Appointment.TestTypeId))
-            {
-                return -1;
-            }
-            if (DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Appointment.LocDLA_ID, Appointment.TestTypeId))
-            {
-                return -2;
-            }
-            if (Appointment.TestTypeId == 2 && !DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Appointment.LocDLA_ID, 1))
-            {
-                return -3;
-            }
-            if (Appointment.TestTypeId == 3 && !DLMS.BusinessLier.Test.Testlogic.IsSucceededBefore(Appointment.LocDLA_ID, 2))
-            {
-                return -3;
-            }
-            int NewAppID = DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(Appointment);
-            return NewAppID;
-        }
-        public static DataTable? GetAllTestsAppointByLocDLA_ID_andTestId(int LocDLA_ID, int TestTypeID)
-        {
-            if(LocDLA_ID<=0)
-            {
-                return null;
-            }
-            return DLMS.Data_access.Appointments.TestAppointmentsData.GetAllAppointmentsBy_LDLAID_AndTestTypeID(LocDLA_ID,TestTypeID);
-        }
         public static bool IsFailedBefore(int DriLicAppID, int TestTypeID)
         {
             return DLMS.Data_access.Test.TestData.IsFailedBeforeInTest(DriLicAppID,  TestTypeID);        
@@ -92,38 +130,11 @@ namespace DLMS.BusinessLier.Test
             //if -1 its unknown due an internal error
             return DLMS.Data_access.Test.TestData.TrialCountPerTest(DriLicAppID, TestTypeID);
         }
-        public static Entities.ClsTestAppointment? GetTestAppointmentBYID(int TestAppointmentID)
-        {
-            //if -1 its unknown due an internal error
-            if (TestAppointmentID <= 0)
-                return null;
-            return DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(TestAppointmentID);
-        }
         public static bool LockTestAppointment(int AppointmentID)
         {
             return DLMS.Data_access.Appointments.TestAppointmentsData.LockTestAppointment(AppointmentID);
         }
 
-        public bool IsAppointmentExists(int AppointmentID)
-        {
-            return DLMS.Data_access.Appointments.TestAppointmentsData.IsExists(AppointmentID);
-        }
-        public static bool IsAppointmentLocked(int AppointmentID)
-        {
-            return DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(AppointmentID);
-        }
-        public static bool EditTestAppointmentDateByAppointmentID(int AppointmentID, DateTime NewDate)
-        {
-            if(IsAppointmentLocked(AppointmentID))
-            {
-                return false;
-            }
-            if(NewDate.Date < DateTime.Now.Date)
-            {
-                return false;
-            }
-            return DLMS.Data_access.Appointments.TestAppointmentsData.EditTestAppointmentDateByAppointmentID(AppointmentID, NewDate);
-        }
 
     }
 }

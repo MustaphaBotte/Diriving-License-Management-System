@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            applicationInfoControl1 = new DesktopApp.VisionTest.ApplicationInfoControl();
+            applicationInfoControl1 = new DesktopApp.ManageApplication.ApplicationInfoControl();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             SuspendLayout();
             // 
@@ -67,7 +67,7 @@
 
         #endregion
 
-        private VisionTest.ApplicationInfoControl applicationInfoControl1;
+        private ManageApplication.ApplicationInfoControl applicationInfoControl1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }

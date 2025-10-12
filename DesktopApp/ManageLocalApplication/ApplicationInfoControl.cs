@@ -1,5 +1,5 @@
 ﻿
-namespace DesktopApp.VisionTest
+namespace DesktopApp.ManageApplication
 {
     public partial class ApplicationInfoControl : UserControl
     {

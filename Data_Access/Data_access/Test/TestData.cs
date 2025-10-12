@@ -15,37 +15,6 @@ namespace DLMS.Data_access.Test
     {
       private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Test\Logs.txt";
       
-        public static bool HasOpenAppointmentByLocDriLicAppID(int DriLicAppID, int TestTypeID)
-        {
-            string Query = $"select case when exists (select top 1  1 from TestAppointments where testTypeID =@Value and testappointments.LocalDrivingLicenseApplicationID = @Value2 and Islocked=0)" +
-                $" then 1 else 0 end as Result";
-
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            command.Parameters.AddWithValue(parameterName: "@Value", TestTypeID);
-            command.Parameters.AddWithValue(parameterName: "@Value2", DriLicAppID);
-
-           
-            try
-            {
-                connection.Open();
-                object Result = command.ExecuteScalar();
-                if (int.TryParse(Result.ToString(), out int res))
-                {
-                    return (res == 1);
-                }
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return false;
-
-        }
        
         public static Entities.ClsTest? GetTestByAppointmentID(int TestAppointmentid)
         {

@@ -36,7 +36,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            applicationInfoControl1 = new DesktopApp.VisionTest.ApplicationInfoControl();
+            applicationInfoControl1 = new DesktopApp.ManageApplication.ApplicationInfoControl();
             SaveButton = new Guna.UI2.WinForms.Guna2Button();
             NotesTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -154,7 +154,7 @@
 
         #endregion
 
-        private VisionTest.ApplicationInfoControl applicationInfoControl1;
+        private ManageApplication.ApplicationInfoControl applicationInfoControl1;
         private Guna.UI2.WinForms.Guna2Button SaveButton;
         private Guna.UI2.WinForms.Guna2TextBox NotesTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;

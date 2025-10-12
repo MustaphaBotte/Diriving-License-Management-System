@@ -1,7 +1,7 @@
 ﻿using DLMS.EntitiesNamespace;
 using DLMS.BusinessLier.LocalDrivingLicenseApplication;
 using System.Data;
-using DLMS.BusinessLier;
+using DLMS.BusinessLier.LicenseClasse;
 using DesktopApp.User_Control;
 using Microsoft.VisualBasic.Devices;
 using System.ComponentModel;
@@ -141,16 +141,18 @@ namespace DesktopApp.ApplicationsManagement
 
             if(scheduleTestsToolStripMenuItems.Enabled)
             {
-                SchedulevisionTestToolStripMenuItem.Enabled  = PassedVisionTest && (!PassedWritingTest && !PassedStreetTest);
-                scheduleWritingTestToolStripMenuItem.Enabled = !SchedulevisionTestToolStripMenuItem.Enabled;
-                scheduleStreetToolStripMenuItem.Enabled      = !scheduleWritingTestToolStripMenuItem.Enabled;
+                SchedulevisionTestToolStripMenuItem.Enabled  = !PassedVisionTest;
+                scheduleWritingTestToolStripMenuItem.Enabled =  PassedVisionTest && !PassedWritingTest;
+                scheduleStreetToolStripMenuItem.Enabled      =  PassedWritingTest && !PassedStreetTest;
             }
+            bool HasLicense = LicenseClassLogic.GetlisenceStatusOfAperson(locDriApplication.ApplicantPersonId, locDriApplication.LicenseClassID).Contains(3);
+            issueLicenseFirstTimeToolStripMenuItem.Enabled = PassedStreetTest && PassedVisionTest && PassedWritingTest &&
+                !HasLicense;
+            //check if this person has this license before
 
-            if (AlreadyADriver)
-            {
-                issueLicenseFirstTimeToolStripMenuItem.Enabled = !DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceStatusOfAperson(locDriApplication.ApplicantPersonId, locDriApplication.LicenseClassID).Contains(3);
-                showLicenseInfoToolStripMenuItem.Enabled = !issueLicenseFirstTimeToolStripMenuItem.Enabled;      
-            }
+            showLicenseInfoToolStripMenuItem.Enabled = HasLicense;
+
+
             LocApplicationsMenuStrip.Show(Cursor.Position);
         }
 
@@ -243,6 +245,7 @@ namespace DesktopApp.ApplicationsManagement
             {
                 FilterValueTextBox.Visible = false;
                 DateTimePicker.Visible = true;
+                DateTimePicker.Value = DateTime.Now;
                 return;
             }
             FilterValueTextBox.Visible = true;
@@ -252,7 +255,6 @@ namespace DesktopApp.ApplicationsManagement
             {
                 LocApplications.DefaultView.RowFilter = string.Empty;
                 this.RowsCountlabel.Text = DataGrid.Rows.Count.ToString();
-
             }
         }
 
@@ -433,7 +435,7 @@ namespace DesktopApp.ApplicationsManagement
                     if (ResultOfDeletion == 1)
                     {
                         MessageBox.Show($"Local Driving Application With Id = {LocAppId} Was Deleted SuccessFully", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RowsToDelete.Add(i);
+                        RowsToDelete.Add(LocAppId);
                         continue;
                     }
                     if (ResultOfDeletion == -1)

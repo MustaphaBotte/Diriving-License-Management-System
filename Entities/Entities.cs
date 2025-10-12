@@ -210,6 +210,39 @@ namespace DLMS.EntitiesNamespace
         }
 
 
+        public class ClsTestAppointment
+        {
+            public int TestAppointmentId { get; private set; } = -1;
+            public int TestTypeId { get; set; } = -1;
+            public int LocDLA_ID { get; set; } = -1;
+            public DateTime TestAppointmentDate { get; set; } = new DateTime();
+            public bool IsLocked { get; set; } = false;
+            public decimal PaidFees { get; set; } = 0m;
+            public int CreatedByUserId { get; set; } = -1;
+
+            public int? RetakeApplicationID { get; set; } = null;
+            public ClsApplication? RetakeTestAppInfo = null;
+            public ClsTestType? TestTypeInfo = null;
+            public ClsUser? CreatedByUserInfo = null;
+
+            public EnMode Mode = EnMode.AddNew;
+
+            public ClsTestAppointment(int TestAppointmentId, int TestTypeId, DateTime TestAppointmentDate, int LocDLA_ID,
+                                 bool IsLocked, decimal paidFees, int createdByUserId, int? RetakeApplicationID)
+            {
+                this.TestAppointmentId = TestAppointmentId;
+                this.TestTypeId = TestTypeId;
+                this.LocDLA_ID = LocDLA_ID;
+                this.IsLocked = IsLocked;
+                this.TestAppointmentDate = TestAppointmentDate;
+                this.PaidFees = paidFees;
+                this.CreatedByUserId = createdByUserId;
+                this.RetakeApplicationID = RetakeApplicationID;
+                this.Mode = EnMode.Update;
+
+            }
+            public ClsTestAppointment() { }
+        }
 
 
 
@@ -251,35 +284,6 @@ namespace DLMS.EntitiesNamespace
         }
 
 
-        public class ClsTestAppointment
-        {
-            public int TestAppointmentId { get; private set; } = -1;
-            public int TestTypeId { get; set; } = -1;
-            public int LocDLA_ID { get; set; } = -1;
-            public DateTime TestAppointmentDate { get; set; } = new DateTime();
-            public bool IsLocked { get; set; } = false;
-            public decimal PaidFees { get; set; } = 0m;
-            public int CreatedByUserId { get; set; } = -1;
-
-            public int? RetakeApplicationID { get; set; } = null;
-            public EnMode Mode = EnMode.AddNew;
-
-            public ClsTestAppointment(int TestAppointmentId, int TestTypeId, DateTime TestAppointmentDate, int LocDLA_ID,
-                                 bool IsLocked, decimal paidFees, int createdByUserId,int? RetakeApplicationID)
-            {
-                this.TestAppointmentId = TestAppointmentId;
-                this.TestTypeId = TestTypeId;
-                this.LocDLA_ID = LocDLA_ID;
-                this.IsLocked = IsLocked;
-                this.TestAppointmentDate = TestAppointmentDate;
-                this.PaidFees = paidFees;
-                this.CreatedByUserId = createdByUserId;
-                this.RetakeApplicationID = RetakeApplicationID;
-                this.Mode = EnMode.Update;
-
-            }
-            public ClsTestAppointment() { }
-        }
 
         public class ClsTest
         {

@@ -35,6 +35,7 @@ namespace DesktopApp.VisionTest
             
             InitializeComponent();
         }
+
         private void SetTestPicture()
         {
             if (appointment.TestTypeId == 1)
