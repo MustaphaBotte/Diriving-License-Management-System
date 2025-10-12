@@ -72,8 +72,6 @@ namespace DLMS.Data_access.Driver
             }
             return false;
         }
-
-
         public static int GetDriverID(int PersonID)
         {
 
@@ -178,7 +176,7 @@ namespace DLMS.Data_access.Driver
             }
             return false;
         }
-        public static DLMS.EntitiesNamespace.Entities.ClsDriver? GetDriverById(int DriverID)
+        public static Entities.ClsDriver? GetDriverById(int DriverID)
         {
             if (DriverID <= 0)
             {
@@ -209,84 +207,42 @@ namespace DLMS.Data_access.Driver
                 connection.Close();
             }
             return null;
-        }      
-        public static DataTable? GetAllDriverLicenses(int DriverID)
+        }
+        public static Entities.ClsDriver? GetDriverByPersonId(int PersonID)
         {
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = @$"select Licenses.LicenseID,
-                              Licenses.ApplicationID,
-                              LicenseClasses.ClassName,
-                              Licenses.IssueDate,
-                              Licenses.ExpirationDate,
-                              Licenses.IsActive
-                              from Licenses
-                              inner join LicenseClasses on LicenseClasses.LicenseClassID = Licenses.LicenseClass
-                              where Licenses.DriverID=@ID";
+            if (PersonID <= 0)
+            {
+                return null;
+            }
+            string Query = $"select top 1 * from Drivers where PersonID = @Value";
+
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            command.Parameters.AddWithValue("@ID", DriverID);
-            SqlDataReader? Reader = null;
+            command.Parameters.AddWithValue(parameterName: "@Value", value: PersonID);
             try
             {
                 connection.Open();
-                Reader = command.ExecuteReader();
-                DataTable DriverLicenses = new DataTable();
-                if (Reader != null && Reader.HasRows)
+                SqlDataReader Reader = command.ExecuteReader();
+                if (Reader.Read() && Reader.HasRows)
                 {
-                    DriverLicenses.Load(Reader);
-                    return DriverLicenses;
+                    return new DLMS.EntitiesNamespace.Entities.ClsDriver(Reader.GetInt32(Reader.GetOrdinal("DriverID")),
+                                                                         Reader.GetInt32(Reader.GetOrdinal("PersonID")),
+                                                                         Reader.GetInt32(Reader.GetOrdinal("CreatedByUserID")),
+                                                                         Reader.GetDateTime(Reader.GetOrdinal("CreatedDate")));
                 }
-                return null;
             }
+
             catch (Exception EX)
             {
                 DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
             }
             finally
             {
-                Reader?.Close();
                 connection.Close();
             }
             return null;
-
         }
-        public static DataTable? GetAllInternationalDriverLicenses(int DriverID)
-        {
 
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = @$"select InternationalLicenses.InternationalLicenseID,
-                              InternationalLicenses.ApplicationID,
-                              InternationalLicenses.IssuedUsingLocalLicenseID,
-                              InternationalLicenses.IssueDate,
-                              InternationalLicenses.ExpirationDate,
-                              InternationalLicenses.IsActive
-                              from InternationalLicenses	  
-                              where InternationalLicenses.DriverID =@ID";
-            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            command.Parameters.AddWithValue("@ID", DriverID);
-            SqlDataReader? Reader = null;
-            try
-            {
-                connection.Open();
-                Reader = command.ExecuteReader();
-                DataTable DriverLicenses = new DataTable();
-                if (Reader != null && Reader.HasRows)
-                {
-                    DriverLicenses.Load(Reader);
-                    return DriverLicenses;
-                }
-                return null;
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                Reader?.Close();
-                connection.Close();
-            }
-            return null;
-
-        }
+       
     }
 }

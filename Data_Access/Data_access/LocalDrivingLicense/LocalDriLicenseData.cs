@@ -2,6 +2,7 @@
 using DLMS.EntitiesNamespace;
 using Microsoft.Data.SqlClient;
 using System.ComponentModel;
+using System.Data;
 
 namespace DLMS.Data_access.LocalDrivingLicense
 {
@@ -199,7 +200,126 @@ namespace DLMS.Data_access.LocalDrivingLicense
             return false;
         }
 
+        public static DataTable? GetAllDriverLicenses(int DriverID)
+        {
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            string Query = @$"select Licenses.LicenseID,
+                              Licenses.ApplicationID,
+                              LicenseClasses.ClassName,
+                              Licenses.IssueDate,
+                              Licenses.ExpirationDate,
+                              Licenses.IsActive
+                              from Licenses
+                              inner join LicenseClasses on LicenseClasses.LicenseClassID = Licenses.LicenseClass
+                              where Licenses.DriverID=@ID";
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue("@ID", DriverID);
+            SqlDataReader? Reader = null;
+            try
+            {
+                connection.Open();
+                Reader = command.ExecuteReader();
+                DataTable DriverLicenses = new DataTable();
+                if (Reader != null && Reader.HasRows)
+                {
+                    DriverLicenses.Load(Reader);
+                    return DriverLicenses;
+                }
+                return null;
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                Reader?.Close();
+                connection.Close();
+            }
+            return null;
 
+        }
+        public static DataTable? GetAllInternationalDriverLicenses(int DriverID)
+        {
+
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            string Query = @$"select InternationalLicenses.InternationalLicenseID,
+                              InternationalLicenses.ApplicationID,
+                              InternationalLicenses.IssuedUsingLocalLicenseID,
+                              InternationalLicenses.IssueDate,
+                              InternationalLicenses.ExpirationDate,
+                              InternationalLicenses.IsActive
+                              from InternationalLicenses	  
+                              where InternationalLicenses.DriverID =@ID";
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue("@ID", DriverID);
+            SqlDataReader? Reader = null;
+            try
+            {
+                connection.Open();
+                Reader = command.ExecuteReader();
+                DataTable DriverLicenses = new DataTable();
+                if (Reader != null && Reader.HasRows)
+                {
+                    DriverLicenses.Load(Reader);
+                    return DriverLicenses;
+                }
+                return null;
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                Reader?.Close();
+                connection.Close();
+            }
+            return null;
+
+        }
+
+        public static List<short> GetlisenceStatusOfAperson(int personID, int LicenseClassId)
+        {
+            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
+            string Query = "select  App.ApplicationStatus " +
+                          "from LocalDrivingLicenseApplications Loc " +
+                          "inner join Applications App on App.ApplicationID = Loc.ApplicationID " +
+                          " where App.ApplicantPersonID = @PrsnID and Loc.LicenseClassID = @LicClassID";
+
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue("@PrsnID", personID);
+            command.Parameters.AddWithValue("@LicClassID", LicenseClassId);
+
+
+            SqlDataReader? Reader = null;
+            try
+            {
+                connection.Open();
+                Reader = command.ExecuteReader();
+                List<short> ApplicationStatus = new List<short>();
+                if (Reader.HasRows)
+                {
+                    while (Reader.Read())
+                    {
+                        ApplicationStatus.Add(Convert.ToInt16(Reader["ApplicationStatus"]));
+                    }
+                }
+                return ApplicationStatus;
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                Reader?.Close();
+                connection.Close();
+
+            }
+            return new List<short>();
+            //this function will return all status of all previous applications
+        }
 
     }
 }

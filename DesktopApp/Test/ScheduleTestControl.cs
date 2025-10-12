@@ -118,7 +118,7 @@ namespace DesktopApp.Test
             this._TestTypeID = (ClsTestType.EnTestType)CurrentAppointment.TestTypeId;
             this.Loc_DLA_ID = CurrentAppointment.LocDLA_ID;
             FillTestInfo();
-            if (DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(this.Loc_DLA_ID, (int)this._TestTypeID))
+            if (DLMS.BusinessLier.Test.Testlogic.IsFailedBefore(this.Loc_DLA_ID, (int)this._TestTypeID)&& CurrentAppointment.RetakeApplicationID!=null)//show the retake info only if he take an retake test before
             {
                 FillRetakeTestInfo();
                 this._CreationMode = _EnCreationMode.ScheduleRetakeTest;

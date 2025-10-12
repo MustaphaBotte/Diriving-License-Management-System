@@ -20,8 +20,7 @@ namespace DesktopApp.ManageApplication
             }
             this.LocDLA_ID_LBL.Text = LocalAppInfo1.LocDriApplicationID.ToString();
             this.LicenseClassLBL.Text = LocalAppInfo1.LicenseClassInfo?.ClassName;
-            this.PassedTestsLBL.Text =
-                DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.PassesTests(_LocalApplicationID).ToString() + "/3";
+            this.PassedTestsLBL.Text = DLMS.BusinessLier.Test.Testlogic.PassesTests(_LocalApplicationID).ToString() + "/3";
             return true;
         }
 

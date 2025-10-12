@@ -145,7 +145,7 @@ namespace DesktopApp.ApplicationsManagement
                 scheduleWritingTestToolStripMenuItem.Enabled =  PassedVisionTest && !PassedWritingTest;
                 scheduleStreetToolStripMenuItem.Enabled      =  PassedWritingTest && !PassedStreetTest;
             }
-            bool HasLicense = LicenseClassLogic.GetlisenceStatusOfAperson(locDriApplication.ApplicantPersonId, locDriApplication.LicenseClassID).Contains(3);
+            bool HasLicense = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetlisenceStatusOfAperson(locDriApplication.ApplicantPersonId, locDriApplication.LicenseClassID).Contains(3);
             issueLicenseFirstTimeToolStripMenuItem.Enabled = PassedStreetTest && PassedVisionTest && PassedWritingTest &&
                 !HasLicense;
             //check if this person has this license before
@@ -172,7 +172,7 @@ namespace DesktopApp.ApplicationsManagement
                     Row[2] = locDriApplication.ApplicantPersonInfo?.NationalNo;
                     Row[3] = locDriApplication.ApplicantPersonInfo?.FullName;
                     Row[4] = locDriApplication.ApplicantionDate;
-                    Row[5] = LocDriviLicAppLogic.PassesTests(locDriApplication.LocDriApplicationID);
+                    Row[5] = DLMS.BusinessLier.Test.Testlogic.PassesTests(locDriApplication.LocDriApplicationID);
                     Row[6] = locDriApplication.ApplicationStatus;
                               
                     LocApplications.Rows.InsertAt(Row,0);
@@ -199,7 +199,7 @@ namespace DesktopApp.ApplicationsManagement
                      LocApplications.Rows[SelectedRowInProcess][2] = locDriApplication.ApplicantPersonInfo?.NationalNo;
                      LocApplications.Rows[SelectedRowInProcess][3] = locDriApplication.ApplicantPersonInfo?.FullName;
                      LocApplications.Rows[SelectedRowInProcess][4] = locDriApplication.ApplicantionDate;
-                     LocApplications.Rows[SelectedRowInProcess][5] = LocDriviLicAppLogic.PassesTests(locDriApplication.LocDriApplicationID);
+                     LocApplications.Rows[SelectedRowInProcess][5] = DLMS.BusinessLier.Test.Testlogic.PassesTests(locDriApplication.LocDriApplicationID);
                      LocApplications.Rows[SelectedRowInProcess][6] = locDriApplication.ApplicationStatus;
                 }
             }

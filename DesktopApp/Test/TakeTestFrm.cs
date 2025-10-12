@@ -81,7 +81,7 @@ namespace DesktopApp.VisionTest
                 this.FullNameLbl.Text = LocalApplicationInfo.ApplicantPersonInfo?.FullName;
                 this.TrialLbl.Text = DLMS.BusinessLier.Test.Testlogic.TrialCountPerTest(appointment.LocDLA_ID, appointment.TestTypeId).ToString(); 
                 this.DateLabel.Text = appointment.TestAppointmentDate.ToString("yyyy-MM-dd");
-                this.FeesLbl.Text = appointment.PaidFees.ToString(); //get it from app table because maybe its a retake test so is possible to that app has +5 dollars
+                this.FeesLbl.Text = appointment.PaidFees.ToString(); 
                 this.TestIdLabel.Text = "Not Taken Yet";
                 Loc_Driving_Lic_App_ID = appointment.LocDLA_ID;
 
@@ -94,10 +94,13 @@ namespace DesktopApp.VisionTest
                 this.LabelOfResultInfo.Visible = true;
                 this.TestResultLabel.Text = Test?.TestResult == true ? "Succeded" : "Failed";
                 this.TestResultLabel.ForeColor = Test?.TestResult == true ? Color.Green : Color.Red;
+
                 this.TestIdLabel.Text = Test?.TestID.ToString();
                 TakeTestGroupBox.Enabled = false;
                 this.SaveButton.Enabled = false;
                 this.LockedForm = true;
+                this.PassCheckedBox.Checked = (Test.TestResult);
+                this.FailCheckedBox.Checked = (Test.TestResult);
             }
         }
 
@@ -139,20 +142,20 @@ namespace DesktopApp.VisionTest
                 this.Close();
                 return;
             }
-            string Notes = this.NotesTextBox.Text.ToString();
             DLMS.EntitiesNamespace.Entities.ClsTest Test = new DLMS.EntitiesNamespace.Entities.ClsTest();
             Test.TestResult = TestResult;
-            Test.Notes = Notes;
+            Test.Notes = this.NotesTextBox.Text.ToString(); ;
             Test.TestAppointmentID = this.appointment.TestAppointmentId;
             Test.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-           
+            Test.TestAppointmentInfo = this.appointment;
+
 
             DialogResult Res = MessageBox.Show("Are you sure you want save that test", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Res == DialogResult.No)
             {
                 return;
             }
-            int NewTestID = DLMS.BusinessLier.Test.Testlogic.AddNewTest(Test, this.Loc_Driving_Lic_App_ID, appointment.TestTypeId,appointment.RetakeApplicationID,true);
+            int NewTestID = DLMS.BusinessLier.Test.Testlogic.AddNewTest(Test,appointment.RetakeApplicationID);
         
             if (NewTestID > 0)
             {
@@ -164,7 +167,8 @@ namespace DesktopApp.VisionTest
             if (NewTestID ==-2)
             {
                 MessageBox.Show($"You already Succedd in that test", "Operation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();                return;
+                this.Close();              
+                return;
             }
             if (NewTestID == -3)
             {

@@ -16,7 +16,6 @@ namespace DLMS.BusinessLier.Driver
         {
             return DLMS.Data_access.Driver.DriverData.GetAllDrivers();
         }
-
         public static bool IsAlreadyDriver(int PersonID)
         {
             return DLMS.Data_access.Driver.DriverData.AlreadyDriver(PersonID);
@@ -41,18 +40,27 @@ namespace DLMS.BusinessLier.Driver
             // otherwise operation success
             return NewDriverId;
         }
-        public static DLMS.EntitiesNamespace.Entities.ClsDriver? GetDriverById(int DriverID)
+        public static Entities.ClsDriver? GetDriverById(int DriverID)
         {
-            return DLMS.Data_access.Driver.DriverData.GetDriverById(DriverID);
+             Entities.ClsDriver? Driver = DLMS.Data_access.Driver.DriverData.GetDriverById(DriverID);
+            if(Driver!=null)
+            {
+                Driver.PersonInfo = DLMS.BusinessLier.Person.PersonLogic.FindPerson(Driver.PersonID);
+                return Driver;
+            }
+            return null;
         }
-        public static DataTable? GetAllLocalDriverLicenses(int DriverID)
+        public static Entities.ClsDriver? GetDriverByPersonId(int PersonId)
         {
-            return DLMS.Data_access.Driver.DriverData.GetAllDriverLicenses(DriverID);
+            Entities.ClsDriver? Driver = DLMS.Data_access.Driver.DriverData.GetDriverByPersonId(PersonId);
+            if (Driver != null)
+            {
+                Driver.PersonInfo = DLMS.BusinessLier.Person.PersonLogic.FindPerson(Driver.PersonID);
+                return Driver;
+            }
+            return null;
         }
-        public static DataTable? GetAllInternationalDriverLicenses(int DriverID)
-        {
-            return DLMS.Data_access.Driver.DriverData.GetAllInternationalDriverLicenses(DriverID);
-        }
+       
 
     }
 }

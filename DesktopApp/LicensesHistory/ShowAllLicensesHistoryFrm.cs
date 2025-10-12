@@ -28,7 +28,7 @@ namespace DesktopApp.AllLicensesHistory
         }
         private void FillLocalLicenses()
         {
-            DataTable? LocalLicenses = DLMS.BusinessLier.Driver.DriverLogic.GetAllLocalDriverLicenses(this.DriverId);
+            DataTable? LocalLicenses = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetAllLocalDriverLicenses(this.DriverId);
             if (LocalLicenses == null)
                 return;
             foreach (DataRow Row in LocalLicenses.Rows)
@@ -46,7 +46,7 @@ namespace DesktopApp.AllLicensesHistory
         }
         private void FillInternationalLicenses()
         {
-            DataTable? InternationalLicenses = DLMS.BusinessLier.Driver.DriverLogic.GetAllInternationalDriverLicenses(this.DriverId);
+            DataTable? InternationalLicenses = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetAllInternationalDriverLicenses(this.DriverId);
             if (InternationalLicenses == null)
                 return;
             foreach (DataRow Row in InternationalLicenses.Rows)

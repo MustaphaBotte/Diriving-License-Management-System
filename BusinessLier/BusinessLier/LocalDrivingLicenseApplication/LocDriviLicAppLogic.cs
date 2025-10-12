@@ -35,7 +35,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
             if (App == null || App.ApplicantPersonInfo==null)
                 return new ClsResultProvider(-1, "Internal Error",
                      "the main application or person is null or empty", -1, false);
-            List<short> Result = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceStatusOfAperson(App.ApplicantPersonId,LicenseClassID);
+            List<short> Result = LocalDrivingLicense.LocalDrivingLicenseLogic.GetlisenceStatusOfAperson(App.ApplicantPersonId,LicenseClassID);
            
             if (Result.Contains(1))
             {
@@ -137,12 +137,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
         public static DataTable? GetAllLocalApplications()
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetAllLocalApplications();
-        }
-        public static int PassesTests(int Loc_DLA_ID)
-        {
-            return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.PassedTests(Loc_DLA_ID);
-        }
-
+        }      
         public static int GetAppIdByLocalDrivingId(int LocDriLicId)
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetApplicationIdByLocDriId(LocDriLicId);

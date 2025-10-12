@@ -293,6 +293,8 @@ namespace DLMS.EntitiesNamespace
             public string Notes { get; set; } = string.Empty;
             public int CreatedByUserID { get; set; } = -1;
 
+            public ClsTestAppointment? TestAppointmentInfo = null;
+
             public EnMode Mode = EnMode.AddNew;
             public ClsTest(int testID, int testAppointmentID, bool testResult, string notes, int createdByUserID)
             {
@@ -310,6 +312,8 @@ namespace DLMS.EntitiesNamespace
         {
             public int DriverID { private set; get; } = -1;
             public int PersonID { set; get; } = -1;
+
+            public ClsPerson? PersonInfo = null;
             public int CreatedBy { set; get; } = -1;
             public DateTime CreationDate { set; get; } = DateTime.Now;
             public ClsDriver(int DriverID, int PersonID, int CreatedBy, DateTime CreationDate)

@@ -39,47 +39,7 @@ namespace DLMS.Data_access.LicenceClasses
             }
             return null;
         }
-        public static List<short> GetlisenceStatusOfAperson(int personID , int LicenseClassId)
-        {
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query ="select  App.ApplicationStatus "+
-                          "from LocalDrivingLicenseApplications Loc "+
-                          "inner join Applications App on App.ApplicationID = Loc.ApplicationID "+
-                          " where App.ApplicantPersonID = @PrsnID and Loc.LicenseClassID = @LicClassID";
-
-            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            command.Parameters.AddWithValue("@PrsnID", personID);
-            command.Parameters.AddWithValue("@LicClassID", LicenseClassId);
-
-
-            SqlDataReader? Reader = null;
-            try
-            {
-                connection.Open();
-                Reader = command.ExecuteReader();
-                List<short> ApplicationStatus = new List<short>();
-                if (Reader.HasRows)
-                {
-                    while(Reader.Read())
-                    {
-                        ApplicationStatus.Add(Convert.ToInt16(Reader["ApplicationStatus"]));
-                    }
-                }
-                return ApplicationStatus;
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                Reader?.Close();
-                connection.Close();
-                
-            }
-            return new List<short>();
-
-        }
+     
         public static decimal GetlisenceFees(int LicenseClassId)
         {
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
@@ -204,7 +164,7 @@ namespace DLMS.Data_access.LicenceClasses
 
         }
 
-       
+     
 
     }
 }

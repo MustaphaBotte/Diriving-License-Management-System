@@ -1,6 +1,7 @@
 ﻿using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,6 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
             }
             return NewLicenseID;
         }
-
         public static DLMS.EntitiesNamespace.Entities.ClsLicense? GetLicenseByLicIDOrLocDriID(int licenseID=-1,int Loc_DLA_ID=-1)
         {
             if(licenseID ==-1 && Loc_DLA_ID == -1)
@@ -39,7 +39,21 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
         {
             return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISDetained(LicenseID);
         }
+        public static DataTable? GetAllLocalDriverLicenses(int DriverID)
+        {
+            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetAllDriverLicenses(DriverID);
+        }
+        public static DataTable? GetAllInternationalDriverLicenses(int DriverID)
+        {
+            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetAllInternationalDriverLicenses(DriverID);
+        }
 
+        public static List<short> GetlisenceStatusOfAperson(int personID, int LicenseClassId)
+        {
+            if (personID <= 0 || LicenseClassId <= 0)
+                return new List<short>();
 
+            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetlisenceStatusOfAperson(personID, LicenseClassId);
+        }
     }
 }

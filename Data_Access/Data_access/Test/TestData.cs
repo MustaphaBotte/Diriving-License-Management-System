@@ -235,6 +235,36 @@ namespace DLMS.Data_access.Test
 
         }
 
-       
+        public static int PassedTests(int LocDriAppID)
+        {
+
+            if (LocDriAppID <= 0)
+                return -1;
+            string Query = "select top 1 My_LocalDLAView.PassedTests from My_LocalDLAView where LOcDLA_ID = @ID";
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
+
+            command.Parameters.AddWithValue("@ID", LocDriAppID);
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+                int ID = int.TryParse(Result.ToString(), out int res) ? res : -1;
+                return ID;
+            }
+            catch (Exception Ex)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, Ex);
+                return -1;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+        }
+
     }
 }
