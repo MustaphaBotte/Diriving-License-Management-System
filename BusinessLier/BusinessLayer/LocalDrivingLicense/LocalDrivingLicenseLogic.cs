@@ -1,10 +1,7 @@
 ﻿using DLMS.EntitiesNamespace;
-using System;
-using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DLMS.BusinessLier.LocalDrivingLicense
 {
@@ -29,7 +26,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
             }
             return NewLicenseID;
         }
-        public static DLMS.EntitiesNamespace.Entities.ClsLicense? GetLicenseByLicIDOrLocDriID(int licenseID=-1,int Loc_DLA_ID=-1)
+        public static Entities.ClsLicense? GetLicenseByLicIDOrLocDriID(int licenseID=-1,int Loc_DLA_ID=-1)
         {
             if(licenseID ==-1 && Loc_DLA_ID == -1)
                 return null;
@@ -39,6 +36,22 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
         {
             return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISDetained(LicenseID);
         }
+
+        public static bool ISActive(int LicenseID)
+        {
+            //return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISActive(LicenseID);
+            return false;
+        }
+        public static bool DiActivateLicense(int LicenseID)
+        {
+            return false; //return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.DiActivateLicense(LicenseID);
+        }
+        public static bool ActivatetLicense(int LicenseID)
+        {
+            return false; // return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ActivatetLicense(LicenseID);
+        }
+
+
         public static DataTable? GetAllLocalDriverLicenses(int DriverID)
         {
             return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetAllDriverLicenses(DriverID);
@@ -47,7 +60,6 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
         {
             return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetAllInternationalDriverLicenses(DriverID);
         }
-
         public static List<short> GetlisenceStatusOfAperson(int personID, int LicenseClassId)
         {
             if (personID <= 0 || LicenseClassId <= 0)
@@ -55,5 +67,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
 
             return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetlisenceStatusOfAperson(personID, LicenseClassId);
         }
+
+
     }
 }

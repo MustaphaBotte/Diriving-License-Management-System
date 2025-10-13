@@ -41,7 +41,7 @@ namespace DLMS.BusinessLier.Release_Detain_License
             bool Result = DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.ReleaseLicense(LicenseID, ReleaseDate, ReleasedBy, ReleasedAppID);
             if (Result)
             {
-                DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ActivatetLicense(LicenseID);
+                DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ActivatetLicense(LicenseID);
                 return 1;
             }
             return 0;

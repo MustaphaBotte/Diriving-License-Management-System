@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entiti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_Access", "Data_Access\Data_Access.csproj", "{2046E903-AB77-78D5-E5E2-18B6FE386A25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLier", "BusinessLier\BusinessLier.csproj", "{EC86EBE7-B6F3-63A0-4C5E-520903D48301}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLier\BusinessLayer.csproj", "{EC86EBE7-B6F3-63A0-4C5E-520903D48301}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApp", "DesktopApp\DesktopApp.csproj", "{C2D6B88F-B2E7-533C-23A6-045E66A89CE0}"
 EndProject

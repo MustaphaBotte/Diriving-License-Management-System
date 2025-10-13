@@ -17,7 +17,7 @@ namespace DLMS.BusinessLier.InternationDriLicense
                 return -4;
             }
 
-            if(!DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISActive(internationalLicense.IssueUsingLocLicID))
+            if(!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISActive(internationalLicense.IssueUsingLocLicID))
             {
                 return -2;
             }
