@@ -37,34 +37,34 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            FilterGroupBox = new Guna.UI2.WinForms.Guna2GroupBox();
             FilterChoices = new Guna.UI2.WinForms.Guna2ComboBox();
             FindButton = new Guna.UI2.WinForms.Guna2Button();
             FilterValueTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             licenseControl1 = new LicenseControl();
-            guna2GroupBox2.SuspendLayout();
+            FilterGroupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // guna2GroupBox2
+            // FilterGroupBox
             // 
-            guna2GroupBox2.BorderColor = Color.DimGray;
-            guna2GroupBox2.BorderRadius = 30;
-            guna2GroupBox2.Controls.Add(FilterChoices);
-            guna2GroupBox2.Controls.Add(FindButton);
-            guna2GroupBox2.Controls.Add(FilterValueTextBox);
-            guna2GroupBox2.Controls.Add(guna2HtmlLabel2);
-            guna2GroupBox2.CustomBorderColor = Color.DimGray;
-            guna2GroupBox2.CustomizableEdges = customizableEdges7;
-            guna2GroupBox2.FillColor = Color.Transparent;
-            guna2GroupBox2.Font = new Font("Candara", 11.25F, FontStyle.Bold);
-            guna2GroupBox2.ForeColor = Color.Black;
-            guna2GroupBox2.Location = new Point(3, 3);
-            guna2GroupBox2.Name = "guna2GroupBox2";
-            guna2GroupBox2.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2GroupBox2.Size = new Size(753, 88);
-            guna2GroupBox2.TabIndex = 35;
-            guna2GroupBox2.Text = "Filter";
+            FilterGroupBox.BorderColor = Color.DimGray;
+            FilterGroupBox.BorderRadius = 30;
+            FilterGroupBox.Controls.Add(FilterChoices);
+            FilterGroupBox.Controls.Add(FindButton);
+            FilterGroupBox.Controls.Add(FilterValueTextBox);
+            FilterGroupBox.Controls.Add(guna2HtmlLabel2);
+            FilterGroupBox.CustomBorderColor = Color.DimGray;
+            FilterGroupBox.CustomizableEdges = customizableEdges7;
+            FilterGroupBox.FillColor = Color.Transparent;
+            FilterGroupBox.Font = new Font("Candara", 11.25F, FontStyle.Bold);
+            FilterGroupBox.ForeColor = Color.Black;
+            FilterGroupBox.Location = new Point(3, 3);
+            FilterGroupBox.Name = "FilterGroupBox";
+            FilterGroupBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            FilterGroupBox.Size = new Size(753, 88);
+            FilterGroupBox.TabIndex = 35;
+            FilterGroupBox.Text = "Filter";
             // 
             // FilterChoices
             // 
@@ -135,6 +135,7 @@
             FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges6;
             FilterValueTextBox.Size = new Size(198, 36);
             FilterValueTextBox.TabIndex = 21;
+            FilterValueTextBox.TextChanged += FilterValueTextBox_TextChanged;
             FilterValueTextBox.KeyPress += FilterValueTextBox_KeyPress;
             // 
             // guna2HtmlLabel2
@@ -160,17 +161,17 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(licenseControl1);
-            Controls.Add(guna2GroupBox2);
+            Controls.Add(FilterGroupBox);
             Name = "LicenseControlWithFilter";
             Size = new Size(764, 375);
-            guna2GroupBox2.ResumeLayout(false);
-            guna2GroupBox2.PerformLayout();
+            FilterGroupBox.ResumeLayout(false);
+            FilterGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
+        private Guna.UI2.WinForms.Guna2GroupBox FilterGroupBox;
         private Guna.UI2.WinForms.Guna2ComboBox FilterChoices;
         private Guna.UI2.WinForms.Guna2Button FindButton;
         private Guna.UI2.WinForms.Guna2TextBox FilterValueTextBox;

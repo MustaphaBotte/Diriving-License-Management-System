@@ -114,7 +114,6 @@ namespace DesktopApp.Detain_Release_License
         {
             this.ShowLicenseInfo.Enabled = true;
             this.ShowLicensesHistory.Enabled = true;
-            FillAppInfo();
             if (License.ExpirationDate < DateTime.Now)
             {
                 MessageBox.Show($"This license is expired.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -127,6 +126,7 @@ namespace DesktopApp.Detain_Release_License
                 this.IssueButton.Enabled = false;
                 return;
             }
+            FillAppInfo();
 
             this.IssueButton.Enabled = true;
         }

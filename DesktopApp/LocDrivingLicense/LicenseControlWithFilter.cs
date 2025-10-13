@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DLMS.EntitiesNamespace;
+using Guna.UI2.WinForms;
 
 namespace DesktopApp.LocDrivingLicense
 {
@@ -19,35 +20,26 @@ namespace DesktopApp.LocDrivingLicense
             this.FilterChoices.SelectedIndex = 0;
         }
 
-        private int _LicenseID = -1;
-        private Entities.ClsLicense? _License=null;
+
         public int LicenseID
         {
             get
             {
-                return this._LicenseID;
+                return this.licenseControl1.LicenseID;
             }
         }
         public Entities.ClsLicense? License
         {
             get
             {
-                return this._License;
+                return this.licenseControl1.License;
             }
         }
 
         public delegate void Del_OnLicenseSelected(int LicenseID);
-        public event Del_OnLicenseSelected OnLicenseSelected =delegate{ };
+        public event Del_OnLicenseSelected OnLicenseSelected = delegate { };
 
 
-        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-
-            if (e.KeyChar == (char)Keys.Enter)
-                FindButton.PerformClick();
-        }
 
         private void FindButton_MouseEnter(object sender, EventArgs e)
         {
@@ -64,14 +56,13 @@ namespace DesktopApp.LocDrivingLicense
             if (this.FilterValueTextBox.Text == "")
             {
                 MessageBox.Show("License Id cannot be empty", "Invalid License Id ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
-            int ID =Convert.ToInt32(this.FilterValueTextBox.Text);
+            int ID = Convert.ToInt32(this.FilterValueTextBox.Text);
             if (this.FilterChoices.SelectedIndex == 0)
             {
                 if (this.licenseControl1.LoadByLicenseID(ID))
                 {
-                    this._License = licenseControl1._License;
                     this.OnLicenseSelected?.Invoke(licenseControl1.LicenseID);
                 }
             }
@@ -79,7 +70,6 @@ namespace DesktopApp.LocDrivingLicense
             {
                 if (this.licenseControl1.LoadByLocDriID(ID))
                 {
-                    this._License = licenseControl1._License;
                     this.OnLicenseSelected?.Invoke(licenseControl1.LicenseID);
                 }
             }
@@ -87,9 +77,30 @@ namespace DesktopApp.LocDrivingLicense
 
         public void FindByID(int LicenseID)
         {
-            this.FilterValueTextBox.Text = LicenseID.ToString();
+            FilterGroupBox.Enabled = false;
             this.FindButton.PerformClick();
         }
- 
+        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+
+            if (e.KeyChar == (char)Keys.Enter)
+                FindButton.PerformClick();
+        }
+
+        private void FilterValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(! int.TryParse(((Guna2TextBox)sender).Text,out int res))
+            {
+                FilterValueTextBox.Text = "";
+            }
+                 
+        }
+
+        public void LicenseTextFocus()
+        {
+            this.FilterValueTextBox.Focus();
+        }
     }
 }

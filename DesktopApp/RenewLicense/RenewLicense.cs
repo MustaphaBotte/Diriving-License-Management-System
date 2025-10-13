@@ -142,7 +142,6 @@ namespace DesktopApp.RenewLicense
         {
             this.ShowLicenseInfo.Enabled = true;
             this.ShowLicensesHistory.Enabled = true;
-            FillAppInfo();
             if (License.ExpirationDate > DateTime.Now)
             {
                 MessageBox.Show($"This license has not expired yet.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -155,7 +154,7 @@ namespace DesktopApp.RenewLicense
                 IssueButton.Enabled = false;
                 return;
             }
-           
+            FillAppInfo();
             this.IssueButton.Enabled = true;
         }
         private void RenewLicenseFrm_Load(object sender, EventArgs e)
