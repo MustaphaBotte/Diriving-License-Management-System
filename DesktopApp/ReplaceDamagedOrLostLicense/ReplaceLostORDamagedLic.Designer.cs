@@ -28,32 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReplaceLostORDamagedLicFrm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReplaceLostORDamagedLicFrm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             AppType = new Guna.UI2.WinForms.Guna2ComboBox();
-            FilterChoices = new Guna.UI2.WinForms.Guna2ComboBox();
-            FindButton = new Guna.UI2.WinForms.Guna2Button();
-            FilterValueTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ShowLicenseInfo = new LinkLabel();
             ShowLicensesHistory = new LinkLabel();
             CancelButton = new Guna.UI2.WinForms.Guna2Button();
@@ -75,41 +62,18 @@
             guna2HtmlLabel22 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel24 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel25 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            licenseControl1 = new DesktopApp.LocDrivingLicense.LicenseControl();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2GroupBox2.SuspendLayout();
+            licenseControlWithFilter1 = new DesktopApp.LocDrivingLicense.LicenseControlWithFilter();
             guna2GroupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // guna2GroupBox2
-            // 
-            guna2GroupBox2.BorderColor = Color.DimGray;
-            guna2GroupBox2.BorderRadius = 30;
-            guna2GroupBox2.Controls.Add(guna2HtmlLabel5);
-            guna2GroupBox2.Controls.Add(AppType);
-            guna2GroupBox2.Controls.Add(FilterChoices);
-            guna2GroupBox2.Controls.Add(FindButton);
-            guna2GroupBox2.Controls.Add(FilterValueTextBox);
-            guna2GroupBox2.Controls.Add(guna2HtmlLabel2);
-            guna2GroupBox2.CustomBorderColor = Color.DimGray;
-            guna2GroupBox2.CustomizableEdges = customizableEdges9;
-            guna2GroupBox2.FillColor = Color.Transparent;
-            guna2GroupBox2.Font = new Font("Candara", 11.25F, FontStyle.Bold);
-            guna2GroupBox2.ForeColor = Color.Black;
-            guna2GroupBox2.Location = new Point(16, 51);
-            guna2GroupBox2.Name = "guna2GroupBox2";
-            guna2GroupBox2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2GroupBox2.Size = new Size(929, 88);
-            guna2GroupBox2.TabIndex = 42;
-            guna2GroupBox2.Text = "Filter";
             // 
             // guna2HtmlLabel5
             // 
             guna2HtmlLabel5.BackColor = Color.Transparent;
             guna2HtmlLabel5.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2HtmlLabel5.ForeColor = Color.Firebrick;
-            guna2HtmlLabel5.Location = new Point(627, 50);
+            guna2HtmlLabel5.Location = new Point(778, 68);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(129, 20);
             guna2HtmlLabel5.TabIndex = 25;
@@ -130,98 +94,18 @@
             AppType.ForeColor = Color.Black;
             AppType.ItemHeight = 30;
             AppType.Items.AddRange(new object[] { "Lost License", "Damaged License" });
-            AppType.Location = new Point(762, 43);
+            AppType.Location = new Point(778, 94);
             AppType.Name = "AppType";
             AppType.ShadowDecoration.CustomizableEdges = customizableEdges2;
             AppType.Size = new Size(142, 36);
             AppType.TabIndex = 24;
             AppType.SelectedIndexChanged += AppType_SelectedIndexChanged;
             // 
-            // FilterChoices
-            // 
-            FilterChoices.BackColor = Color.Transparent;
-            FilterChoices.BorderColor = Color.Black;
-            FilterChoices.BorderRadius = 15;
-            FilterChoices.CustomizableEdges = customizableEdges3;
-            FilterChoices.DrawMode = DrawMode.OwnerDrawFixed;
-            FilterChoices.DropDownStyle = ComboBoxStyle.DropDownList;
-            FilterChoices.FillColor = Color.DimGray;
-            FilterChoices.FocusedColor = Color.FromArgb(94, 148, 255);
-            FilterChoices.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            FilterChoices.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            FilterChoices.ForeColor = Color.Black;
-            FilterChoices.ItemHeight = 30;
-            FilterChoices.Items.AddRange(new object[] { "LicenseID", "Loc_DLA_ID" });
-            FilterChoices.Location = new Point(111, 43);
-            FilterChoices.Name = "FilterChoices";
-            FilterChoices.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            FilterChoices.Size = new Size(178, 36);
-            FilterChoices.TabIndex = 23;
-            // 
-            // FindButton
-            // 
-            FindButton.BackColor = Color.Transparent;
-            FindButton.BorderRadius = 15;
-            FindButton.BorderThickness = 1;
-            FindButton.CustomizableEdges = customizableEdges5;
-            FindButton.DisabledState.BorderColor = Color.DarkGray;
-            FindButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            FindButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            FindButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            FindButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            FindButton.ForeColor = Color.Black;
-            FindButton.Image = (Image)resources.GetObject("FindButton.Image");
-            FindButton.ImageAlign = HorizontalAlignment.Left;
-            FindButton.Location = new Point(501, 43);
-            FindButton.Name = "FindButton";
-            FindButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            FindButton.Size = new Size(114, 36);
-            FindButton.TabIndex = 22;
-            FindButton.Text = "Find";
-            FindButton.Click += FindButton_Click_1;
-            // 
-            // FilterValueTextBox
-            // 
-            FilterValueTextBox.BackColor = Color.Transparent;
-            FilterValueTextBox.BorderColor = Color.Black;
-            FilterValueTextBox.BorderRadius = 15;
-            FilterValueTextBox.CustomizableEdges = customizableEdges7;
-            FilterValueTextBox.DefaultText = "";
-            FilterValueTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            FilterValueTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            FilterValueTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            FilterValueTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            FilterValueTextBox.FillColor = Color.DimGray;
-            FilterValueTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            FilterValueTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            FilterValueTextBox.ForeColor = Color.Black;
-            FilterValueTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            FilterValueTextBox.Location = new Point(296, 43);
-            FilterValueTextBox.Margin = new Padding(4);
-            FilterValueTextBox.Name = "FilterValueTextBox";
-            FilterValueTextBox.PlaceholderText = "";
-            FilterValueTextBox.SelectedText = "";
-            FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            FilterValueTextBox.Size = new Size(198, 36);
-            FilterValueTextBox.TabIndex = 21;
-            FilterValueTextBox.KeyPress += FilterValueTextBox_KeyPress;
-            // 
-            // guna2HtmlLabel2
-            // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.ForeColor = Color.Firebrick;
-            guna2HtmlLabel2.Location = new Point(27, 50);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(78, 20);
-            guna2HtmlLabel2.TabIndex = 19;
-            guna2HtmlLabel2.Text = "Search By";
-            // 
             // ShowLicenseInfo
             // 
             ShowLicenseInfo.AutoSize = true;
             ShowLicenseInfo.Enabled = false;
-            ShowLicenseInfo.Location = new Point(246, 656);
+            ShowLicenseInfo.Location = new Point(168, 643);
             ShowLicenseInfo.Name = "ShowLicenseInfo";
             ShowLicenseInfo.Size = new Size(102, 15);
             ShowLicenseInfo.TabIndex = 41;
@@ -233,7 +117,7 @@
             // 
             ShowLicensesHistory.AutoSize = true;
             ShowLicensesHistory.Enabled = false;
-            ShowLicensesHistory.Location = new Point(95, 656);
+            ShowLicensesHistory.Location = new Point(38, 643);
             ShowLicensesHistory.Name = "ShowLicensesHistory";
             ShowLicensesHistory.Size = new Size(124, 15);
             ShowLicensesHistory.TabIndex = 40;
@@ -246,7 +130,7 @@
             CancelButton.BackColor = Color.Transparent;
             CancelButton.BorderRadius = 15;
             CancelButton.BorderThickness = 1;
-            CancelButton.CustomizableEdges = customizableEdges11;
+            CancelButton.CustomizableEdges = customizableEdges3;
             CancelButton.DisabledState.BorderColor = Color.DarkGray;
             CancelButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CancelButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -256,9 +140,9 @@
             CancelButton.ForeColor = Color.Black;
             CancelButton.Image = (Image)resources.GetObject("CancelButton.Image");
             CancelButton.ImageAlign = HorizontalAlignment.Left;
-            CancelButton.Location = new Point(559, 656);
+            CancelButton.Location = new Point(501, 646);
             CancelButton.Name = "CancelButton";
-            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
             CancelButton.Size = new Size(134, 36);
             CancelButton.TabIndex = 39;
             CancelButton.Text = "Cancel";
@@ -271,7 +155,7 @@
             IssueButton.BackColor = Color.Transparent;
             IssueButton.BorderRadius = 15;
             IssueButton.BorderThickness = 1;
-            IssueButton.CustomizableEdges = customizableEdges13;
+            IssueButton.CustomizableEdges = customizableEdges5;
             IssueButton.DisabledState.BorderColor = Color.DarkGray;
             IssueButton.DisabledState.CustomBorderColor = Color.DarkGray;
             IssueButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -281,9 +165,9 @@
             IssueButton.ForeColor = Color.Black;
             IssueButton.Image = (Image)resources.GetObject("IssueButton.Image");
             IssueButton.ImageAlign = HorizontalAlignment.Left;
-            IssueButton.Location = new Point(715, 656);
+            IssueButton.Location = new Point(641, 646);
             IssueButton.Name = "IssueButton";
-            IssueButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            IssueButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
             IssueButton.Size = new Size(131, 36);
             IssueButton.TabIndex = 38;
             IssueButton.Text = "Replace";
@@ -314,13 +198,13 @@
             guna2GroupBox1.Controls.Add(guna2HtmlLabel24);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel25);
             guna2GroupBox1.CustomBorderColor = Color.Gray;
-            guna2GroupBox1.CustomizableEdges = customizableEdges17;
+            guna2GroupBox1.CustomizableEdges = customizableEdges9;
             guna2GroupBox1.Font = new Font("Sitka Text", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2GroupBox1.ForeColor = Color.Black;
-            guna2GroupBox1.Location = new Point(95, 417);
+            guna2GroupBox1.Location = new Point(12, 416);
             guna2GroupBox1.Name = "guna2GroupBox1";
-            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            guna2GroupBox1.Size = new Size(762, 236);
+            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2GroupBox1.Size = new Size(764, 224);
             guna2GroupBox1.TabIndex = 37;
             guna2GroupBox1.Text = "Replace License Info";
             // 
@@ -328,7 +212,7 @@
             // 
             Notes.BorderColor = Color.Black;
             Notes.BorderRadius = 10;
-            Notes.CustomizableEdges = customizableEdges15;
+            Notes.CustomizableEdges = customizableEdges7;
             Notes.DefaultText = "";
             Notes.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             Notes.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -343,7 +227,7 @@
             Notes.Name = "Notes";
             Notes.PlaceholderText = "";
             Notes.SelectedText = "";
-            Notes.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            Notes.ShadowDecoration.CustomizableEdges = customizableEdges8;
             Notes.Size = new Size(447, 58);
             Notes.TabIndex = 45;
             // 
@@ -512,13 +396,6 @@
             guna2HtmlLabel25.TabIndex = 14;
             guna2HtmlLabel25.Text = "Application Fees";
             // 
-            // licenseControl1
-            // 
-            licenseControl1.Location = new Point(95, 139);
-            licenseControl1.Name = "licenseControl1";
-            licenseControl1.Size = new Size(762, 272);
-            licenseControl1.TabIndex = 36;
-            // 
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
@@ -541,28 +418,33 @@
             guna2HtmlLabel6.TabIndex = 43;
             guna2HtmlLabel6.Text = "Replace License ";
             // 
+            // licenseControlWithFilter1
+            // 
+            licenseControlWithFilter1.Location = new Point(12, 45);
+            licenseControlWithFilter1.Name = "licenseControlWithFilter1";
+            licenseControlWithFilter1.Size = new Size(760, 375);
+            licenseControlWithFilter1.TabIndex = 44;
+            // 
             // ReplaceLostORDamagedLicFrm
             // 
-            AcceptButton = FindButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ZA_19035;
-            ClientSize = new Size(959, 697);
+            ClientSize = new Size(927, 692);
+            Controls.Add(licenseControlWithFilter1);
+            Controls.Add(guna2HtmlLabel5);
             Controls.Add(guna2HtmlLabel6);
-            Controls.Add(guna2GroupBox2);
+            Controls.Add(AppType);
             Controls.Add(ShowLicenseInfo);
             Controls.Add(ShowLicensesHistory);
             Controls.Add(CancelButton);
             Controls.Add(IssueButton);
             Controls.Add(guna2GroupBox1);
-            Controls.Add(licenseControl1);
             Controls.Add(guna2HtmlLabel1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ReplaceLostORDamagedLicFrm";
             Text = "Replace Lost OR Damaged License";
             Load += ReplaceLostORDamagedLicFrm_Load;
-            guna2GroupBox2.ResumeLayout(false);
-            guna2GroupBox2.PerformLayout();
             guna2GroupBox1.ResumeLayout(false);
             guna2GroupBox1.PerformLayout();
             ResumeLayout(false);
@@ -570,14 +452,8 @@
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2ComboBox AppType;
-        private Guna.UI2.WinForms.Guna2ComboBox FilterChoices;
-        private Guna.UI2.WinForms.Guna2Button FindButton;
-        private Guna.UI2.WinForms.Guna2TextBox FilterValueTextBox;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private LinkLabel ShowLicenseInfo;
         private LinkLabel ShowLicensesHistory;
         private Guna.UI2.WinForms.Guna2Button CancelButton;
@@ -599,8 +475,8 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel22;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel24;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel25;
-        private LocDrivingLicense.LicenseControl licenseControl1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private LocDrivingLicense.LicenseControlWithFilter licenseControlWithFilter1;
     }
 }

@@ -72,6 +72,33 @@ namespace DLMS.Data_access.Driver
             }
             return false;
         }
+        public static bool Exists(int DriverID)
+        {
+            string Query = $"select case when exists " +
+               $"(select 1 from Drivers where DriverID = @Value) then 1 else 0 end as Result";
+
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
+            command.Parameters.AddWithValue(parameterName: "@Value", value: DriverID);
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+                if (int.TryParse(Result.ToString(), out int res))
+                {
+                    return (res == 1);
+                }
+            }
+            catch (Exception EX)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return false;
+        }
         public static int GetDriverID(int PersonID)
         {
 

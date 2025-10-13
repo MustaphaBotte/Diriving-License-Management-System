@@ -134,6 +134,19 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
             }
             return null;
          }
+        public static Entities.ClsLocDriApplication? GetLocDriLicAppInfoByApplicationID(int AppID)
+        {
+            Entities.ClsLocDriApplication? LocApp = Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetLocDriLicAppInfoByApplicationID(AppID);
+            if (LocApp != null)
+            {
+                LocApp.ApplicantPersonInfo = Person.PersonLogic.FindPerson(LocApp.ApplicantPersonId);
+                LocApp.CreatedByUser = User.UserLogic.FindUserByIdOrUser(LocApp.CreatedByUserId);
+                LocApp.ApplicationTypeInfo = ApplicationTypes.ApplicationTypesLogic.GetApplicationTypeByIdOrName((int)LocApp.ApplicationType);
+                LocApp.LicenseClassInfo = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetLisenceClassById(LocApp.LicenseClassID);
+                return LocApp;
+            }
+            return null;
+        }
         public static DataTable? GetAllLocalApplications()
         {
             return DLMS.Data_access.localDrivingLicenseApplication.localDrivingLicenseApplicationData.GetAllLocalApplications();

@@ -1,6 +1,7 @@
 ﻿using DLMS.EntitiesNamespace;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 
 namespace DLMS.BusinessLier.LocalDrivingLicense
@@ -9,6 +10,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
     {
         public static int AddNewLocalDrivinLicense(Entities.ClsLicense License)
         {
+
             if (BusinessLier.Driver.DriverLogic.HasLicenseBefore(License.DriverID, License.LicenseClassID))
             {
                 return -2;
@@ -18,6 +20,16 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
             {
                 return -3;
             }
+            int LocAppID= DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfoByApplicationID(License.ApplicationID)?.LocDriApplicationID??-1;
+            if(!Test.Testlogic.PassedAllTests(LocAppID))
+            {
+                return -4;
+            }
+            if (!DLMS.BusinessLier.Driver.DriverLogic.Exists(License.DriverID) )
+            {
+                return 0; //internal error ui dev didnt create a new driver;
+            }
+           
             int NewLicenseID = DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.AddNewLocalDrivinLicense(License);
             // -1 data intergrity violation -- 0 error  >1 good -- -2has lic before -3 app locked;
             if(NewLicenseID>0)
@@ -30,25 +42,31 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
         {
             if(licenseID ==-1 && Loc_DLA_ID == -1)
                 return null;
-            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetLicenseByLicIDOrLoc_DLA_ID(licenseID, Loc_DLA_ID);
+            Entities.ClsLicense? License = DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.GetLicenseByLicIDOrLoc_DLA_ID(licenseID, Loc_DLA_ID);
+            if(License!=null)
+            {
+                License.DriverInfo = Driver.DriverLogic.GetDriverById(License.DriverID);
+                License.LicenseClassInfo = LicenseClasse.LicenseClassLogic.GetLisenceClassById(License.LicenseClassID);
+                License.DetainInfo = Release_Detain_License.Release_Detain_LicenseLogic.FindbyID(License.LicenseID);
+                return License;
+            }
+            return null;
         }
         public static bool ISDetained(int LicenseID)
         {
             return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISDetained(LicenseID);
         }
-
         public static bool ISActive(int LicenseID)
         {
-            //return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISActive(LicenseID);
-            return false;
+            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ISActive(LicenseID);
         }
         public static bool DiActivateLicense(int LicenseID)
         {
-            return false; //return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.DiActivateLicense(LicenseID);
+            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.DiActivateLicense(LicenseID);
         }
         public static bool ActivatetLicense(int LicenseID)
         {
-            return false; // return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ActivatetLicense(LicenseID);
+            return DLMS.Data_access.LocalDrivingLicense.LocalDriLicenseData.ActivatetLicense(LicenseID);
         }
 
 

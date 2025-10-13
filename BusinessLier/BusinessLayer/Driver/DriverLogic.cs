@@ -21,6 +21,10 @@ namespace DLMS.BusinessLier.Driver
             return DLMS.Data_access.Driver.DriverData.AlreadyDriver(PersonID);
 
         }
+        public static bool Exists(int DriverID)
+        {
+            return DLMS.Data_access.Driver.DriverData.Exists(DriverID);
+        }
         public static int GetDriverID(int PersonID)
         {
             return DLMS.Data_access.Driver.DriverData.GetDriverID(PersonID);

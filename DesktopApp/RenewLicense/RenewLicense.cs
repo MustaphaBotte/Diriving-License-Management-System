@@ -8,56 +8,10 @@ namespace DesktopApp.RenewLicense
     public partial class RenewLicenseFrm : Form
     {
         DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
-        int NewLicenseID = -1;
+        int CurrentLicenseID = -1;
         public RenewLicenseFrm()
         {
             InitializeComponent();
-        }
-
-        private void FindButton_Click(object sender, EventArgs e)
-        {
-            this.ShowLicenseInfo.Enabled = false;
-            int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int Res) ? Res : -1;
-            if (FilterChoices.SelectedItem?.ToString() == "LicenseID")
-            {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(LicenseID: ID))
-                {
-                    MessageBox.Show($"License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: ID);
-            }
-            else
-            {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(Loc_DLA_ID: ID))
-                {
-                    MessageBox.Show($"Local Driving License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(Loc_DLA_ID: ID);
-            }
-            if (License == null)
-            {
-                MessageBox.Show($"Internal Error : license not found", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
-            this.ShowLicensesHistory.Enabled = true;
-            if (!License.IsActive)
-            {
-                MessageBox.Show($"We cant renew your license because its inactive", "License InActive", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                IssueButton.Enabled = false;
-                return;
-            }
-            if (License.ExpirationDate > DateTime.Now)
-            {
-                MessageBox.Show($"This license has not expired yet.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                IssueButton.Enabled = false;
-                return;
-            }
-
-            FillAppInfo();
-            this.IssueButton.Enabled = true;
         }
 
         private void FillAppInfo()
@@ -73,7 +27,6 @@ namespace DesktopApp.RenewLicense
             this.ExpDateLbl.Text = DateTime.Now.AddYears(DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceValidityLength(License.LicenseClassID)).ToString("yyyy-MM-dd");
             this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
             this.totalfeesLbl.Text = (AppFees + licenseClassFees).ToString();
-            this.ShowLicensesHistory.Enabled = true;
         }
 
         private void CancelButton_MouseEnter(object sender, EventArgs e)
@@ -131,7 +84,7 @@ namespace DesktopApp.RenewLicense
             Newlicense.ExpirationDate = DateTime.Now.AddYears(DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceValidityLength(OldLicense.LicenseClassID));
             Newlicense.IssueDate = DateTime.Now;
             Newlicense.PaidFees = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceFees(OldLicense.LicenseClassID);
-            Newlicense.IssueReason = 2;// renew
+            Newlicense.IssueReason = Entities.ClsLicense.enIssueReason.Renew;// renew
             Newlicense.Notes = this.Notes.Text;
             Newlicense.LicenseClassID = OldLicense.LicenseClassID;
             int NewLicenseID = DLMS.BusinessLier.RenewLicense.RenewLicenseLogic.RenewLicense(Newlicense, OldLicense, ref ER);
@@ -139,11 +92,10 @@ namespace DesktopApp.RenewLicense
             {
                 MessageBox.Show($"Operation success your new license application ID is {NewLicenseID}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.License = Newlicense;
-                this.NewLicenseID = NewLicenseID;
+                this.CurrentLicenseID = NewLicenseID;
                 IssueButton.Enabled = false;
                 this.R_L_ApplicationIDLbl.Text = Newlicense.ApplicationID.ToString();
                 this.RenewedLicenseIdLabel.Text = NewLicenseID.ToString();
-                this.ShowLicenseInfo.Enabled = true;
                 return;
             }
             if (NewLicenseID == -1)
@@ -177,7 +129,7 @@ namespace DesktopApp.RenewLicense
 
         private void ShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
+            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: CurrentLicenseID);
             if (!Frm.IsDisposed)
                 Frm.ShowDialog();
         }
@@ -186,16 +138,35 @@ namespace DesktopApp.RenewLicense
         {
             this.Close();
         }
-
+        private void CheckLicenseStatus()
+        {
+            this.ShowLicenseInfo.Enabled = true;
+            this.ShowLicensesHistory.Enabled = true;
+            FillAppInfo();
+            if (License.ExpirationDate > DateTime.Now)
+            {
+                MessageBox.Show($"This license has not expired yet.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IssueButton.Enabled = false;
+                return;
+            }
+            if (!License.IsActive)
+            {
+                MessageBox.Show($"We cant renew your license because its inactive", "License InActive", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IssueButton.Enabled = false;
+                return;
+            }
+           
+            this.IssueButton.Enabled = true;
+        }
         private void RenewLicenseFrm_Load(object sender, EventArgs e)
         {
-            this.FilterChoices.SelectedIndex = 0;
+            this.licenseControlWithFilter1.OnLicenseSelected += (int LicenseID) =>
+            {
+                this.License = licenseControlWithFilter1.License;
+                this.CurrentLicenseID = LicenseID;
+                CheckLicenseStatus();
+            };
         }
 
-        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
     }
 }

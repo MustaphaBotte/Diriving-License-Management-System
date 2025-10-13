@@ -15,14 +15,14 @@ namespace DesktopApp.IssueLocalDrivingLicense
             {
                 this.Close();
             }
-            this.ApplicantPersonID = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetApplicantPersonIdByLocDriId(Loc_DLA_ID);
             locDriApplication = DLMS.BusinessLier.LocalDrivingLicenseApplication.LocDriviLicAppLogic.GetLocDriLicAppInfo(Loc_DLA_ID);
-            if (locDriApplication == null || this.ApplicantPersonID<=0)
+            if (locDriApplication == null)
             {
                 MessageBox.Show("Sorry we cannot load certain data please refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
+            this.ApplicantPersonID = locDriApplication.ApplicantPersonId;
         }
 
         private void CloseButton_MouseEnter(object sender, EventArgs e)
@@ -37,7 +37,12 @@ namespace DesktopApp.IssueLocalDrivingLicense
 
         private void IssueDrivingLicenseFrm_Load(object sender, EventArgs e)
         {
-
+            if(! DLMS.BusinessLier.Test.Testlogic.PassedAllTests(this.locDriApplication.LocDriApplicationID))
+            {
+                MessageBox.Show("Sorry you must pass all the tests", "Tests Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -45,29 +50,18 @@ namespace DesktopApp.IssueLocalDrivingLicense
             this.Close();
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private int CreateDriver()
         {
-            int driverID = -1;
-            if (DLMS.BusinessLier.Driver.DriverLogic.IsAlreadyDriver(ApplicantPersonID))
-            {
-                driverID = DLMS.BusinessLier.Driver.DriverLogic.GetDriverID(ApplicantPersonID);
-            }
-            else
-            {   
-                Entities.ClsDriver Driver = new Entities.ClsDriver();
-                Driver.PersonID = this.ApplicantPersonID;
-                Driver.CreatedBy = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-                Driver.CreationDate = DateTime.Now;
-                driverID = DLMS.BusinessLier.Driver.DriverLogic.AddNewDriver(Driver);
-            }
-            if(driverID<=0)
-            {
-                MessageBox.Show("We cannot add driver in the moment please refresh try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
+            Entities.ClsDriver Driver = new Entities.ClsDriver();
+            Driver.PersonID = this.ApplicantPersonID;
+            Driver.CreatedBy = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
+            Driver.CreationDate = DateTime.Now;
+            return  DLMS.BusinessLier.Driver.DriverLogic.AddNewDriver(Driver);
+        }
+        private  Entities.ClsLicense CreateLiceseObject(int DriverID)
+        {
             DLMS.EntitiesNamespace.Entities.ClsLicense License = new DLMS.EntitiesNamespace.Entities.ClsLicense();
-            License.DriverID = driverID;
+            License.DriverID = DriverID;
             License.ApplicationID = this.locDriApplication.ApplicantionID;
             License.LicenseClassID = this.locDriApplication.LicenseClassID;
             License.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
@@ -77,14 +71,33 @@ namespace DesktopApp.IssueLocalDrivingLicense
             int ValidityLength = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceValidityLength(this.locDriApplication.LicenseClassID);
             License.ExpirationDate = ValidityLength <= 0 ? DateTime.Now : DateTime.Now.AddYears(ValidityLength);
             License.Notes = this.NotesTextBox.Text;
-            License.IssueReason = 1;
+            License.IssueReason = Entities.ClsLicense.enIssueReason.FirstTime;
             //1-FirstTime, 2-Renew, 3-Replacement for Damaged, 4- Replacement for Lost.
-
+            return License;
+        }
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
             DialogResult Result = MessageBox.Show($"Are you sure you want to save", "Confirmation ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(Result == DialogResult.No)
+            if (Result == DialogResult.No)
             {
                 return;
             }
+            int driverID = -1;
+            if (DLMS.BusinessLier.Driver.DriverLogic.IsAlreadyDriver(ApplicantPersonID))
+            {
+                driverID = DLMS.BusinessLier.Driver.DriverLogic.GetDriverID(ApplicantPersonID);
+            }
+            driverID = CreateDriver();
+            if(driverID<=0)
+            {
+                MessageBox.Show("We cannot add driver in the moment please refresh try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+            Entities.ClsLicense License = CreateLiceseObject(driverID);
+            
+
+
             int NewLicenseID = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.AddNewLocalDrivinLicense(License);
             if(NewLicenseID>0)
             {
@@ -112,7 +125,13 @@ namespace DesktopApp.IssueLocalDrivingLicense
                 this.Close();
                 return;
             }
-            MessageBox.Show($"Due an internal error we cannot save in the moment please refresh and try again", "Operation failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (NewLicenseID == -4)
+            {
+                MessageBox.Show($"You must pass all the tests", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
+                MessageBox.Show($"Due an internal error we cannot save in the moment please refresh and try again", "Operation failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }

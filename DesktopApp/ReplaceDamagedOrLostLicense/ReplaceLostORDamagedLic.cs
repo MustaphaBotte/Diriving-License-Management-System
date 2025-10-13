@@ -16,7 +16,7 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
     public partial class ReplaceLostORDamagedLicFrm : Form
     {
         DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
-        int NewLicenseID = -1;
+        int CurrentLicensID = -1;
         decimal DamagedFees = 0;
         decimal LostFees = 0;
         public ReplaceLostORDamagedLicFrm()
@@ -26,37 +26,23 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             this.DamagedFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReplaceDamagedDrivingLicense);
 
         }
-        private void FindButton_Click(object sender, EventArgs e)
+        private void ReplaceLostORDamagedLicFrm_Load(object sender, EventArgs e)
         {
-            this.ShowLicenseInfo.Enabled = false;
-            int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int Res) ? Res : -1;
-            if (FilterChoices.SelectedItem?.ToString() == "LicenseID")
+            AppType.SelectedIndex = 0;
+            this.AppType.SelectedIndex = 0;
+            this.licenseControlWithFilter1.OnLicenseSelected += (int LicenseID) =>
             {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(LicenseID: ID))
-                {
-                    MessageBox.Show($"License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: ID);
-            }
-            else
-            {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(Loc_DLA_ID: ID))
-                {
-                    MessageBox.Show($"Local Driving License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(Loc_DLA_ID: ID);
-            }
-            if (License == null)
-            {
-                MessageBox.Show($"Internal Error : license not found", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
-            this.ShowLicensesHistory.Enabled = true;
+                this.License = licenseControlWithFilter1.License;
+                CheckLicenseStatus();
+            };
+        }
 
-            if (License.ExpirationDate < DateTime.Now)
+        private void CheckLicenseStatus()
+        {
+            this.ShowLicenseInfo.Enabled = true;
+            this.ShowLicensesHistory.Enabled = true; FillAppInfo();
+
+            if (License?.ExpirationDate < DateTime.Now)
             {
                 MessageBox.Show($"This license was expired .\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}\n" +
                     $"please renew it", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -65,14 +51,14 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             }
             if (!License.IsActive)
             {
-                MessageBox.Show($"TWe cant replace your license because its inactive", "License InActive", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"We cant replace your license because its inactive", "License InActive", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 IssueButton.Enabled = false;
                 return;
             }
-            ShowLicenseInfo.Enabled = true;
-            FillAppInfo();
+            
             this.IssueButton.Enabled = true;
         }
+
         private void FillAppInfo()
         {
             int AppTypeID = AppType.SelectedIndex == 0 ? 3 : 4;
@@ -83,36 +69,18 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             this.OldLicenseIdLbl.Text = License.LicenseID.ToString();
             this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
             this.totalfeesLbl.Text = (AppFees).ToString();
-            this.ShowLicensesHistory.Enabled = true;
-        }
-        private void ShowLicensesHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            int PersonID = DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(License.DriverID)?.PersonID ?? 0;
-            ShowAllLicensesHistoryFrm Frm = new ShowAllLicensesHistoryFrm(PersonID);
-            Frm.ShowDialog();
         }
 
-        private void ShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
-            Frm.ShowDialog();
-        }
         private void CancelButton_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
         }
-
         private void CancelButton_MouseLeave(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
 
         }
 
-        private void ReplaceLostORDamagedLicFrm_Load(object sender, EventArgs e)
-        {
-            AppType.SelectedIndex = 0;
-            this.FilterChoices.SelectedIndex = 0;
-        }
 
         private void IssueButton_Click(object sender, EventArgs e)
         {
@@ -122,21 +90,21 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
                 return;
             }
 
-            DLMS.EntitiesNamespace.Entities.ClsApplication? oldApp = DLMS.BusinessLier.Application.ApplicationLogic.GetApplicationByID(License.ApplicationID);
+            Entities.ClsApplication? oldApp = DLMS.BusinessLier.Application.ApplicationLogic.GetApplicationByID(License.ApplicationID);
             if (oldApp == null)
             {
                 MessageBox.Show($"Something wrong please refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             int AppTypeID = (AppType.SelectedIndex == 0 ? 3 : 4);
-            DLMS.EntitiesNamespace.Entities.ClsApplication NewApp = new DLMS.EntitiesNamespace.Entities.ClsApplication();
-            NewApp.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;
+            Entities.ClsApplication NewApp = new Entities.ClsApplication();
+            NewApp.ApplicationStatus = Entities.ClsApplication.enApplicationStatus.New;
             NewApp.ApplicantPersonId = oldApp.ApplicantPersonId;
             NewApp.ApplicantionDate = DateTime.Now;
-            NewApp.ApplicationType = (DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType)((short)AppTypeID);
+            NewApp.ApplicationType = (Entities.ClsApplication.enApplicationType)((int)AppTypeID);
             NewApp.LastStatusDate = DateTime.Now;
             NewApp.PaidFees = AppTypeID == 3 ? LostFees : DamagedFees;
-            NewApp.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
+            NewApp.CreatedByUserId = LogedInUser.ClslogedInUser.logedInUser.UserId;
 
             string ER = "";
             int NewAppId = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(NewApp, ref ER);
@@ -145,14 +113,14 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
                 MessageBox.Show($"We cant save the application in the moment refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DLMS.EntitiesNamespace.Entities.ClsLicense? OldLicense = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: License.LicenseID);
+            Entities.ClsLicense? OldLicense = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: License.LicenseID);
             if (OldLicense == null)
             {
                 MessageBox.Show($"We cant save the application because the old license was not found \n refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            DLMS.EntitiesNamespace.Entities.ClsLicense Newlicense = new DLMS.EntitiesNamespace.Entities.ClsLicense();
+            Entities.ClsLicense Newlicense = new Entities.ClsLicense();
             Newlicense.ApplicationID = NewAppId;
             Newlicense.DriverID = OldLicense.DriverID;
             Newlicense.IsActive = true;
@@ -160,7 +128,7 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             Newlicense.ExpirationDate = OldLicense.ExpirationDate;
             Newlicense.IssueDate = OldLicense.IssueDate;
             Newlicense.PaidFees = OldLicense.PaidFees;
-            Newlicense.IssueReason = AppTypeID == 3 ? 4 : 3;
+            Newlicense.IssueReason = (Entities.ClsLicense.enIssueReason)(AppTypeID == 3 ? 4 : 3);
             Newlicense.Notes = this.Notes.Text;
             Newlicense.LicenseClassID = OldLicense.LicenseClassID;
             int NewLicenseID = DLMS.BusinessLier.ReplaceLostOrDamagedLic.ReplaceLostOrDamagedLicLogic.ReplaceLicense(Newlicense, OldLicense, ref ER);
@@ -168,11 +136,10 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             {
                 MessageBox.Show($"Operation success your new license application ID is {NewLicenseID}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.License = Newlicense;
-                this.NewLicenseID = NewLicenseID;
+                this.CurrentLicensID = NewLicenseID;
                 IssueButton.Enabled = false;
                 this.REP_L_ApplicationIDLbl.Text = Newlicense.ApplicationID.ToString();
                 this.ReplacedLicenseIdLabel.Text = NewLicenseID.ToString();
-                this.ShowLicenseInfo.Enabled = true;
                 return;
             }
             if (NewLicenseID == -1)
@@ -182,7 +149,7 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             }
             if (NewLicenseID == -2)
             {
-                MessageBox.Show($"We cant replace your license because its inactive", "License InActive", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($" We cant replace your license because its inactive", "License Inctive", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (NewLicenseID == -3)
@@ -198,48 +165,6 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
             }
         }
 
-        private void FindButton_Click_1(object sender, EventArgs e)
-        {
-            int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int Res) ? Res : -1;
-            if (FilterChoices.SelectedItem?.ToString() == "LicenseID")
-            {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(LicenseID: ID))
-                {
-                    MessageBox.Show($"License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: ID);
-            }
-            else
-            {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(Loc_DLA_ID: ID))
-                {
-                    MessageBox.Show($"Local Driving License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(Loc_DLA_ID: ID);
-            }
-            if (License == null)
-            {
-                MessageBox.Show($"Internal Error : license not found", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
-            if (!License.IsActive)
-            {
-                MessageBox.Show($"We cant replace your license because its inactive", "License InActive", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                IssueButton.Enabled = false;
-                return;
-            }
-            if (License.ExpirationDate < DateTime.Now)
-            {
-                MessageBox.Show($"This license was expired yet.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}\n"
-                    , "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            FillAppInfo();
-            this.IssueButton.Enabled = true;
-        }
 
         private void AppType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -255,7 +180,7 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
 
         private void ShowLicenseInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
+            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: CurrentLicensID);
             if (!Frm.IsDisposed)
                 Frm.ShowDialog();
         }
@@ -263,12 +188,6 @@ namespace DesktopApp.ReplaceDamagedOrLostLicense
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
         }
     }
 }

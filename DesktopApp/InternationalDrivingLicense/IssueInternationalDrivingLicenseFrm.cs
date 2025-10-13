@@ -17,7 +17,7 @@ namespace DesktopApp.InternationalDrivingLicense
             int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int Res) ? Res : -1;
             if (FilterChoices.SelectedItem?.ToString() == "LicenseID")
             {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(LicenseID: ID))
+                if (!this.licenseControl1.LoadByLicenseID(LicenseID: ID))
                 {
                     MessageBox.Show($"License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -26,7 +26,7 @@ namespace DesktopApp.InternationalDrivingLicense
             }
             else
             {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(Loc_DLA_ID: ID))
+                if (!this.licenseControl1.LoadByLocDriID(ID))
                 {
                     MessageBox.Show($"Local Driving License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

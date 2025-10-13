@@ -105,6 +105,7 @@ namespace DesktopApp.ApplicationsManagement
                 return;
 
             DisableAllOrEnableAllGridItems(false);
+
             int LocDriLicAppId = Convert.ToInt32(DataGrid.SelectedRows[0].Cells["LocDLA_ID"].Value);
             Entities.ClsLocDriApplication? locDriApplication = LocDriviLicAppLogic.GetLocDriLicAppInfo(LocDriLicAppId);
             if (locDriApplication == null)
@@ -151,8 +152,6 @@ namespace DesktopApp.ApplicationsManagement
             //check if this person has this license before
 
             showLicenseInfoToolStripMenuItem.Enabled = HasLicense;
-
-
             LocApplicationsMenuStrip.Show(Cursor.Position);
         }
 
@@ -504,7 +503,8 @@ namespace DesktopApp.ApplicationsManagement
         private void showLicenseInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int LocDLA_Id = int.TryParse(DataGrid.SelectedRows[0].Cells["LocDLA_Id"].Value.ToString(), out int LocDLAId) ? LocDLAId : 0;
-            DesktopApp.LocDrivingLicense.ShowLicenseFrm Frm = new LocDrivingLicense.ShowLicenseFrm(LocDLA_Id);
+            int LicenseID = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(Loc_DLA_ID: LocDLA_Id)?.LicenseID??-1;
+            DesktopApp.LocDrivingLicense.ShowLicenseFrm Frm = new LocDrivingLicense.ShowLicenseFrm(LicenseID);
             if (!Frm.IsDisposed)
                 Frm.ShowDialog();
         }

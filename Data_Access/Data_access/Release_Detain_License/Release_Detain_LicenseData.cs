@@ -56,7 +56,7 @@ namespace DLMS.Data_access.Release_Detain_License
             }
             return -1;
         }
-        public static ClsDetainedLicense FindByID(int LicenseID)
+        public static ClsDetainedLicense? FindByID(int LicenseID)
         {
             string Query = "SELECT top 1 DetainID, LicenseID, FineFees, CreatedByUserID, IsReleased, " +
                            "DetainDate, ReleaseDate, ReleaseApplicationID, ReleasedByUserID " +
@@ -189,7 +189,7 @@ namespace DLMS.Data_access.Release_Detain_License
                              from detainedlicenses 
                              inner join Licenses on Licenses.LicenseID =  detainedlicenses.LicenseID
                              inner join Drivers on Drivers.DriverID = Licenses.DriverID
-                             inner join People on Drivers.PersonID = People.PersonID
+                             inner join People on Drivers.PersonID = People.PersonID order by DetainDate desc
                              ";
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
             SqlDataReader? Reader = null;

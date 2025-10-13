@@ -417,7 +417,6 @@
             Controls.Add(guna2GroupBox1);
             Name = "LicenseControl";
             Size = new Size(760, 277);
-            Load += LicenseControl_Load;
             guna2GroupBox1.ResumeLayout(false);
             guna2GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DriverPictureBox).EndInit();

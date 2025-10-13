@@ -16,6 +16,9 @@ namespace DesktopApp.Detain_Release_License
     public partial class Release_LicenseFrm : Form
     {
         DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
+        int CurrentLicenseId = -1;
+
+
         int PersonID = -1;
         public delegate void LicenseReleased(int LicID, Form Sender);
         public event LicenseReleased OnLicenseReleased = delegate { };
@@ -23,42 +26,9 @@ namespace DesktopApp.Detain_Release_License
         {
             InitializeComponent();
             if (LicenseID != -1)
-            {
-                this.FilterValueTextBox.Text = LicenseID.ToString();
-                this.FindButton.PerformClick();
-                this.FindButton.Enabled = false;
-            }
+                this.CurrentLicenseId = LicenseID;
         }
-
-        private void FindButton_Click(object sender, EventArgs e)
-        {
-
-            this.ShowLicenseInfo.Enabled = false;
-            int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int Res) ? Res : -1;
-            if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(LicenseID: ID))
-            {
-                MessageBox.Show($"License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-
-            }
-            this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: ID);
-
-            if (License == null)
-            {
-                MessageBox.Show($"Internal Error : license not found", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
-            this.ShowLicensesHistory.Enabled = true;
-            if (!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(License.LicenseID))
-            {
-                MessageBox.Show($"This license is not detained", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.IssueButton.Enabled = false;
-                return;
-            }
-            FillAppInfo();
-            this.IssueButton.Enabled = true;
-        }
+    
         private void FillAppInfo()
         {
 
@@ -70,7 +40,7 @@ namespace DesktopApp.Detain_Release_License
             }
             this.PersonID = DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(License.DriverID)?.PersonID ?? 0;
             this.DetainIDLbl.Text = detainedLicense.DetainID.ToString();
-            decimal AppFees = 
+            decimal AppFees =
             DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense); // 5= release 
             this.LicenseIDLbl.Text = detainedLicense.LicenseID.ToString();
             this.CreatedByLbl.Text = DLMS.BusinessLier.User.UserLogic.FindUserByIdOrUser(detainedLicense.CreatedByUserID)?.UserName;
@@ -92,7 +62,7 @@ namespace DesktopApp.Detain_Release_License
             App.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;
             App.ApplicantPersonId = PersonID;
             App.ApplicantionDate = DateTime.Now;
-            App.ApplicationType =DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense;//release
+            App.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense;//release
             App.LastStatusDate = DateTime.Now;
             App.PaidFees = DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.ReleaseDetainedDrivingLicsense);
             App.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
@@ -140,10 +110,37 @@ namespace DesktopApp.Detain_Release_License
             Frm.ShowDialog();
         }
 
-        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void CheckLicenseStatus()
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
+            this.ShowLicenseInfo.Enabled = true;
+            this.ShowLicensesHistory.Enabled = true;
+            FillAppInfo();
+            if (License.ExpirationDate < DateTime.Now)
+            {
+                MessageBox.Show($"This license is expired.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IssueButton.Enabled = false;
+                return;
+            }
+            if (!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(License.LicenseID))
+            {
+                MessageBox.Show($"This license is not detained", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.IssueButton.Enabled = false;
+                return;
+            }
+
+            this.IssueButton.Enabled = true;
+        }
+        private void Release_LicenseFrm_Load(object sender, EventArgs e)
+        {
+            
+            this.licenseControlWithFilter1.OnLicenseSelected += (int LicenseID) =>
+            {
+                this.License = licenseControlWithFilter1.License;
+                this.CurrentLicenseId = LicenseID;
+                CheckLicenseStatus();
+            };
+            if (CurrentLicenseId != -1)
+                licenseControlWithFilter1.FindByID(CurrentLicenseId);
         }
     }
 }

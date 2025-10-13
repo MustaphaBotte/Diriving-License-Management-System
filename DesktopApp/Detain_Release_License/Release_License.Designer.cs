@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Release_LicenseFrm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -37,16 +35,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            SearchGroupBox = new Guna.UI2.WinForms.Guna2GroupBox();
-            FindButton = new Guna.UI2.WinForms.Guna2Button();
-            FilterValueTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ShowLicenseInfo = new LinkLabel();
             ShowLicensesHistory = new LinkLabel();
             CancelButton = new Guna.UI2.WinForms.Guna2Button();
@@ -70,90 +60,10 @@
             RenewedLicenseIdLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel20 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel22 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            licenseControl1 = new DesktopApp.LocDrivingLicense.LicenseControl();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            SearchGroupBox.SuspendLayout();
+            licenseControlWithFilter1 = new DesktopApp.LocDrivingLicense.LicenseControlWithFilter();
             guna2GroupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // SearchGroupBox
-            // 
-            SearchGroupBox.BackColor = Color.Transparent;
-            SearchGroupBox.BorderColor = Color.DimGray;
-            SearchGroupBox.BorderRadius = 30;
-            SearchGroupBox.Controls.Add(FindButton);
-            SearchGroupBox.Controls.Add(FilterValueTextBox);
-            SearchGroupBox.Controls.Add(guna2HtmlLabel2);
-            SearchGroupBox.CustomBorderColor = Color.DimGray;
-            SearchGroupBox.CustomizableEdges = customizableEdges5;
-            SearchGroupBox.FillColor = Color.Transparent;
-            SearchGroupBox.Font = new Font("Candara", 11.25F, FontStyle.Bold);
-            SearchGroupBox.ForeColor = Color.Black;
-            SearchGroupBox.Location = new Point(66, 60);
-            SearchGroupBox.Name = "SearchGroupBox";
-            SearchGroupBox.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            SearchGroupBox.Size = new Size(722, 88);
-            SearchGroupBox.TabIndex = 50;
-            SearchGroupBox.Text = "Filter";
-            // 
-            // FindButton
-            // 
-            FindButton.BackColor = Color.Transparent;
-            FindButton.BorderRadius = 15;
-            FindButton.BorderThickness = 1;
-            FindButton.CustomizableEdges = customizableEdges1;
-            FindButton.DisabledState.BorderColor = Color.DarkGray;
-            FindButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            FindButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            FindButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            FindButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            FindButton.ForeColor = Color.Black;
-            FindButton.Image = (Image)resources.GetObject("FindButton.Image");
-            FindButton.ImageAlign = HorizontalAlignment.Left;
-            FindButton.Location = new Point(338, 44);
-            FindButton.Name = "FindButton";
-            FindButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            FindButton.Size = new Size(114, 36);
-            FindButton.TabIndex = 22;
-            FindButton.Text = "Find";
-            FindButton.Click += FindButton_Click;
-            // 
-            // FilterValueTextBox
-            // 
-            FilterValueTextBox.BackColor = Color.Transparent;
-            FilterValueTextBox.BorderColor = Color.Black;
-            FilterValueTextBox.BorderRadius = 15;
-            FilterValueTextBox.CustomizableEdges = customizableEdges3;
-            FilterValueTextBox.DefaultText = "";
-            FilterValueTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            FilterValueTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            FilterValueTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            FilterValueTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            FilterValueTextBox.FillColor = Color.DimGray;
-            FilterValueTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            FilterValueTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            FilterValueTextBox.ForeColor = Color.Black;
-            FilterValueTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            FilterValueTextBox.Location = new Point(124, 44);
-            FilterValueTextBox.Margin = new Padding(4);
-            FilterValueTextBox.Name = "FilterValueTextBox";
-            FilterValueTextBox.PlaceholderText = "";
-            FilterValueTextBox.SelectedText = "";
-            FilterValueTextBox.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            FilterValueTextBox.Size = new Size(198, 36);
-            FilterValueTextBox.TabIndex = 21;
-            FilterValueTextBox.KeyPress += FilterValueTextBox_KeyPress;
-            // 
-            // guna2HtmlLabel2
-            // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.ForeColor = Color.Firebrick;
-            guna2HtmlLabel2.Location = new Point(27, 50);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(82, 20);
-            guna2HtmlLabel2.TabIndex = 19;
-            guna2HtmlLabel2.Text = "License ID";
             // 
             // ShowLicenseInfo
             // 
@@ -184,7 +94,7 @@
             CancelButton.BackColor = Color.Transparent;
             CancelButton.BorderRadius = 15;
             CancelButton.BorderThickness = 1;
-            CancelButton.CustomizableEdges = customizableEdges7;
+            CancelButton.CustomizableEdges = customizableEdges1;
             CancelButton.DisabledState.BorderColor = Color.DarkGray;
             CancelButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CancelButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -196,7 +106,7 @@
             CancelButton.ImageAlign = HorizontalAlignment.Left;
             CancelButton.Location = new Point(510, 613);
             CancelButton.Name = "CancelButton";
-            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            CancelButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
             CancelButton.Size = new Size(134, 36);
             CancelButton.TabIndex = 47;
             CancelButton.Text = "Cancel";
@@ -206,7 +116,7 @@
             IssueButton.BackColor = Color.Transparent;
             IssueButton.BorderRadius = 15;
             IssueButton.BorderThickness = 1;
-            IssueButton.CustomizableEdges = customizableEdges9;
+            IssueButton.CustomizableEdges = customizableEdges3;
             IssueButton.DisabledState.BorderColor = Color.DarkGray;
             IssueButton.DisabledState.CustomBorderColor = Color.DarkGray;
             IssueButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -218,7 +128,7 @@
             IssueButton.ImageAlign = HorizontalAlignment.Left;
             IssueButton.Location = new Point(650, 613);
             IssueButton.Name = "IssueButton";
-            IssueButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            IssueButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
             IssueButton.Size = new Size(131, 36);
             IssueButton.TabIndex = 46;
             IssueButton.Text = "Release";
@@ -249,12 +159,12 @@
             guna2GroupBox1.Controls.Add(guna2HtmlLabel20);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel22);
             guna2GroupBox1.CustomBorderColor = Color.Gray;
-            guna2GroupBox1.CustomizableEdges = customizableEdges13;
+            guna2GroupBox1.CustomizableEdges = customizableEdges7;
             guna2GroupBox1.Font = new Font("Sitka Text", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2GroupBox1.ForeColor = Color.Black;
             guna2GroupBox1.Location = new Point(50, 437);
             guna2GroupBox1.Name = "guna2GroupBox1";
-            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2GroupBox1.Size = new Size(752, 170);
             guna2GroupBox1.TabIndex = 45;
             guna2GroupBox1.Text = "Detain License Info";
@@ -340,7 +250,7 @@
             // 
             Notes.BorderColor = Color.Black;
             Notes.BorderRadius = 10;
-            Notes.CustomizableEdges = customizableEdges11;
+            Notes.CustomizableEdges = customizableEdges5;
             Notes.DefaultText = "";
             Notes.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             Notes.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -355,7 +265,7 @@
             Notes.Name = "Notes";
             Notes.PlaceholderText = "";
             Notes.SelectedText = "";
-            Notes.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            Notes.ShadowDecoration.CustomizableEdges = customizableEdges6;
             Notes.Size = new Size(447, 50);
             Notes.TabIndex = 45;
             // 
@@ -469,14 +379,6 @@
             guna2HtmlLabel22.TabIndex = 17;
             guna2HtmlLabel22.Text = "Craeetd By";
             // 
-            // licenseControl1
-            // 
-            licenseControl1.BackColor = Color.Transparent;
-            licenseControl1.Location = new Point(50, 154);
-            licenseControl1.Name = "licenseControl1";
-            licenseControl1.Size = new Size(772, 277);
-            licenseControl1.TabIndex = 44;
-            // 
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
@@ -488,25 +390,29 @@
             guna2HtmlLabel1.TabIndex = 43;
             guna2HtmlLabel1.Text = "Release License ";
             // 
+            // licenseControlWithFilter1
+            // 
+            licenseControlWithFilter1.Location = new Point(50, 60);
+            licenseControlWithFilter1.Name = "licenseControlWithFilter1";
+            licenseControlWithFilter1.Size = new Size(764, 375);
+            licenseControlWithFilter1.TabIndex = 50;
+            // 
             // Release_LicenseFrm
             // 
-            AcceptButton = FindButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ZA_19036;
             ClientSize = new Size(873, 658);
-            Controls.Add(SearchGroupBox);
+            Controls.Add(licenseControlWithFilter1);
             Controls.Add(ShowLicenseInfo);
             Controls.Add(ShowLicensesHistory);
             Controls.Add(CancelButton);
             Controls.Add(IssueButton);
             Controls.Add(guna2GroupBox1);
-            Controls.Add(licenseControl1);
             Controls.Add(guna2HtmlLabel1);
             Name = "Release_LicenseFrm";
             Text = "Release_License";
-            SearchGroupBox.ResumeLayout(false);
-            SearchGroupBox.PerformLayout();
+            Load += Release_LicenseFrm_Load;
             guna2GroupBox1.ResumeLayout(false);
             guna2GroupBox1.PerformLayout();
             ResumeLayout(false);
@@ -514,11 +420,6 @@
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2GroupBox SearchGroupBox;
-        private Guna.UI2.WinForms.Guna2Button FindButton;
-        private Guna.UI2.WinForms.Guna2TextBox FilterValueTextBox;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private LinkLabel ShowLicenseInfo;
         private LinkLabel ShowLicensesHistory;
         private Guna.UI2.WinForms.Guna2Button CancelButton;
@@ -535,7 +436,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel RenewedLicenseIdLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel20;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel22;
-        private LocDrivingLicense.LicenseControl licenseControl1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel AppIDLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
@@ -544,5 +444,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel TotalFeesLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel AppFeesLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private LocDrivingLicense.LicenseControlWithFilter licenseControlWithFilter1;
     }
 }

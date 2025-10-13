@@ -16,62 +16,47 @@ namespace DesktopApp.Detain_Release_License
     {
         public delegate void LicenseDetained(int LicID, Form Sender);
         public event LicenseDetained OnLicenseDetained = delegate { };
+
+        DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
+        int CurrentLinseceId = -1;
         public DetainLicenseFrm(int LicenseID = -1)
         {
             InitializeComponent();
             if (LicenseID != -1)
             {
-                this.FilterValueTextBox.Text = LicenseID.ToString();
-                this.FindButton.PerformClick();
-                this.FindButton.Enabled = false;
+                this.licenseControlWithFilter1.FindByID(LicenseID);              
             }
         }
-        DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
-        private void FindButton_Click(object sender, EventArgs e)
+        private void DetainLicenseFrm_Load(object sender, EventArgs e)
         {
-            this.ShowLicenseInfo.Enabled = false;
-            int ID = int.TryParse(FilterValueTextBox.Text.ToString(), out int Res) ? Res : -1;
-            if (FilterChoices.SelectedItem?.ToString() == "LicenseID")
+            this.licenseControlWithFilter1.OnLicenseSelected += (int LicenseID) =>
             {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(LicenseID: ID))
-                {
-                    MessageBox.Show($"License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: ID);
-            }
-            else
-            {
-                if (!this.licenseControl1.FillTheControlByLoc_DLA_IDOr_LicenseID(Loc_DLA_ID: ID))
-                {
-                    MessageBox.Show($"Local Driving License with ID = {ID} not found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(Loc_DLA_ID: ID);
-            }
-            if (License == null)
-            {
-                MessageBox.Show($"Internal Error : license not found", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
+                this.License = licenseControlWithFilter1.License;
+                this.CurrentLinseceId = LicenseID;
+                CheckLicenseStatus();
+            };
+
+
+        }
+      
+        private void CheckLicenseStatus()
+        {
+            this.ShowLicenseInfo.Enabled = true;
             this.ShowLicensesHistory.Enabled = true;
+            FillAppInfo();
             if (DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(License.LicenseID))
             {
                 MessageBox.Show($"License Already in detain", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.IssueButton.Enabled = false;
                 return;
-            }
-
-            FillAppInfo();
+            }           
             this.IssueButton.Enabled = true;
         }
         private void FillAppInfo()
         {
             this.DetainDateLbl.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            this.LicenseIDLbl.Text = License.LicenseID.ToString();
+            this.LicenseIDLbl.Text = License?.LicenseID.ToString();
             this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
-            this.ShowLicensesHistory.Enabled = true;
         }
 
         private void CancelButton_MouseEnter(object sender, EventArgs e)
@@ -130,10 +115,7 @@ namespace DesktopApp.Detain_Release_License
 
         }
 
-        private void DetainLicenseFrm_Load(object sender, EventArgs e)
-        {
-            this.FilterChoices.SelectedIndex = 0;
-        }
+       
 
         private void ShowLicensesHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -144,7 +126,7 @@ namespace DesktopApp.Detain_Release_License
 
         private void ShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: License.LicenseID);
+            ShowLicenseFrm Frm = new ShowLicenseFrm(LicenseID: CurrentLinseceId);
             Frm.ShowDialog();
         }
 

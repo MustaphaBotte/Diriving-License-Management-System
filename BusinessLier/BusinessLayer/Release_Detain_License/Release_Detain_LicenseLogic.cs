@@ -18,14 +18,13 @@ namespace DLMS.BusinessLier.Release_Detain_License
             return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.DetainLicense(DLicense);
             //if -1 not detained
         }
-        public static DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? FindbyID(int DetainID)
+        public static DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? FindbyID(int LicenseID)
         {
-            if (!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(DetainID))
+            if (!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(LicenseID))
             {
                 return null;
             }
-            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(DetainID);
-
+            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(LicenseID);
         }
         public static int ReLeaseLicense(int LicenseID, DateTime ReleaseDate, int ReleasedBy, int ReleasedAppID)
         {

@@ -246,22 +246,6 @@ namespace DLMS.EntitiesNamespace
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public class ClsLicenseClass
         {
             public int LicenseCLassId { private set; get; } = -1;
@@ -282,8 +266,6 @@ namespace DLMS.EntitiesNamespace
             }
             public ClsLicenseClass() { }
         }
-
-
 
         public class ClsTest
         {
@@ -326,6 +308,8 @@ namespace DLMS.EntitiesNamespace
         }
         public class ClsLicense
         {
+            public enum enIssueReason { FirstTime = 1, Renew = 2, DamagedReplacement = 3, LostReplacement = 4 };
+
             public int LicenseID { get; private set; } = -1;
             public int ApplicationID { get; set; } = -1;
             public int DriverID { get; set; } = -1;
@@ -335,7 +319,11 @@ namespace DLMS.EntitiesNamespace
             public string Notes { get; set; } = string.Empty;
             public decimal PaidFees { get; set; } = 0.0m;
             public bool IsActive { get; set; } = false;
-            public int IssueReason { get; set; } = -1;
+
+            public enIssueReason IssueReason= enIssueReason.FirstTime;
+            public ClsDriver? DriverInfo = null;
+            public ClsLicenseClass? LicenseClassInfo = null;
+            public ClsDetainedLicense? DetainInfo = null;
             public int CreatedByUserID { get; set; } = -1;
 
             public ClsLicense(int licenseID, int applicationID, int driverID, int licenseClass,
@@ -351,7 +339,7 @@ namespace DLMS.EntitiesNamespace
                 this.Notes = notes;
                 this.PaidFees = PaidFees;
                 this.IsActive = isActive;
-                this.IssueReason = issueReason;
+                this.IssueReason = (enIssueReason) issueReason;
                 this.CreatedByUserID = createdByUserID;
             }
 
