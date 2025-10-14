@@ -377,15 +377,15 @@ namespace DLMS.EntitiesNamespace
             public int DetainID { get; private set; } = -1;
             public int LicenseID { get;  set; } = -1;
             public decimal Fees { set; get; } = 0;
-            public int? ReleaseByUserID { get; set; } = null;
             public int CreatedByUserID { get; set; } = -1;
             public bool IsReleased { get; set; } = false;
 
             public DateTime DetainDate { get; set; }
             public DateTime? ReleaseDate { get; set; } = null;
-            public int? ReleaseApplicationID { get; set; } = null;
             public int? ReleasedByUserID { get; set; } = null;
+            public int? ReleaseApplicationID { get; set; } = null;
 
+            public ClsLicense? LicensenInfo = null;
             public ClsDetainedLicense(int detainID, int licenseID, decimal fees,
                                        int createdByUserID, bool isReleased,
                                        DateTime detainDate, DateTime? releaseDate,

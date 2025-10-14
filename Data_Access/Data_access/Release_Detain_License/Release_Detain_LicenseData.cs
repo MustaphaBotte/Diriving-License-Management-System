@@ -15,7 +15,7 @@ namespace DLMS.Data_access.Release_Detain_License
     public class Release_Detain_LicenseData
     {
         private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\LogFile.txt";
-        public static int DetainLicense(DLMS.EntitiesNamespace.Entities.ClsDetainedLicense DLicense)
+        public static int DetainLicense(ClsDetainedLicense DLicense)
         {
 
             if (DLicense == null)
@@ -56,11 +56,11 @@ namespace DLMS.Data_access.Release_Detain_License
             }
             return -1;
         }
-        public static ClsDetainedLicense? FindByID(int LicenseID)
+        public static ClsDetainedLicense? FindByLicenseID(int LicenseID)
         {
             string Query = "SELECT top 1 DetainID, LicenseID, FineFees, CreatedByUserID, IsReleased, " +
                            "DetainDate, ReleaseDate, ReleaseApplicationID, ReleasedByUserID " +
-                           "FROM DetainedLicenses WHERE LicenseID = @LicenseID and IsReleased=0";
+                           "FROM DetainedLicenses WHERE LicenseID = @LicenseID";
 
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(Query, connection);
@@ -98,24 +98,55 @@ namespace DLMS.Data_access.Release_Detain_License
 
             return null;
         }
+        public static ClsDetainedLicense? FindByDetainID(int DetainID)
+        {
+            string Query = "SELECT top 1 DetainID, LicenseID, FineFees, CreatedByUserID, IsReleased, " +
+                           "DetainDate, ReleaseDate, ReleaseApplicationID, ReleasedByUserID " +
+                           "FROM DetainedLicenses WHERE DetainID = @DetainID ";
+
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(Query, connection);
+            command.Parameters.AddWithValue("@DetainID", DetainID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new ClsDetainedLicense(
+
+                         Convert.ToInt32(reader["DetainID"]),
+                         Convert.ToInt32(reader["LicenseID"]),
+                         Convert.ToDecimal(reader["FineFees"]),
+                         Convert.ToInt32(reader["CreatedByUserID"]),
+                         Convert.ToBoolean(reader["IsReleased"]),
+                         Convert.ToDateTime(reader["DetainDate"]),
+                         reader["ReleaseDate"] == DBNull.Value ? null : Convert.ToDateTime(reader["ReleaseDate"]),
+                         reader["ReleasedByUserID"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["ReleasedByUserID"]),
+                         reader["ReleaseApplicationID"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["ReleaseApplicationID"])
+                         );
+                }
+            }
+            catch (Exception EX)
+            {
+                SharedFunctions.WriteError(LogFilePath, EX);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return null;
+        }
+
+
+
         public static DataTable? GetCompletedInfoByDetainedID(int DetainID)
         {
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = @$"select detainedlicenses.DetainID,
-                                detainedlicenses.LicenseID,
-                                detainedlicenses.DetainDate,
-                                detainedlicenses.FineFees,
-                                detainedlicenses.IsReleased,
-                                detainedlicenses.ReleaseDate,
-                                detainedlicenses.ReleaseApplicationID,
-                                people.NationalNo,
-                                people.FirstName+' '+people.SecondName+' '+people.ThirdName+' '+people.LastName As FullName
-                                from detainedlicenses 
-                                inner join Licenses on Licenses.LicenseID =  detainedlicenses.LicenseID
-                                inner join Drivers on Drivers.DriverID = Licenses.DriverID
-                                inner join People on Drivers.PersonID = People.PersonID
-                                where detainid=@DetainID
-                                ";         
+            string Query = @$"select * from Detained_License_View where detainid=@DetainID";         
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
             command.Parameters.AddWithValue("@DetainID", DetainID);
             SqlDataReader? Reader = null;
@@ -177,20 +208,7 @@ namespace DLMS.Data_access.Release_Detain_License
         public static DataTable? GetAllDetainedLicenses()
         {
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = @$"select detainedlicenses.DetainID,
-                             detainedlicenses.LicenseID,
-                             detainedlicenses.DetainDate,
-                             detainedlicenses.FineFees,
-                             detainedlicenses.IsReleased,
-                             detainedlicenses.ReleaseDate,
-                             detainedlicenses.ReleaseApplicationID,
-                             people.NationalNo,
-                             people.FirstName+' '+people.SecondName+' '+people.ThirdName+' '+people.LastName as FullName
-                             from detainedlicenses 
-                             inner join Licenses on Licenses.LicenseID =  detainedlicenses.LicenseID
-                             inner join Drivers on Drivers.DriverID = Licenses.DriverID
-                             inner join People on Drivers.PersonID = People.PersonID order by DetainDate desc
-                             ";
+            string Query = @$"select * from Detained_License_View order by DetainDate desc";
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
             SqlDataReader? Reader = null;
             try

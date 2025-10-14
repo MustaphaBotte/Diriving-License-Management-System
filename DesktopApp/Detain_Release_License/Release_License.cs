@@ -32,7 +32,7 @@ namespace DesktopApp.Detain_Release_License
         private void FillAppInfo()
         {
 
-            DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? detainedLicense = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.FindbyID(License.LicenseID);
+            DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? detainedLicense = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.FindbyLicenseID(License.LicenseID);
             if (detainedLicense == null)
             {
                 MessageBox.Show($"This license is not detained or not exists", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

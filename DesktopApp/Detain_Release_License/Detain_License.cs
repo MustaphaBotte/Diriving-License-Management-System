@@ -90,7 +90,7 @@ namespace DesktopApp.Detain_Release_License
             DLicense.LicenseID = this.License.LicenseID;
             DLicense.Fees = FineFees;
             DLicense.ReleaseApplicationID = null;
-            DLicense.ReleaseByUserID = null;
+            DLicense.ReleasedByUserID = null;
             DLicense.ReleaseApplicationID = null;
             int DetainID = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.DetainLicense(DLicense);
             if (DetainID > 0)

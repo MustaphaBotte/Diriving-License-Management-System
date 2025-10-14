@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLMS.EntitiesNamespace;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,14 +19,36 @@ namespace DLMS.BusinessLier.Release_Detain_License
             return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.DetainLicense(DLicense);
             //if -1 not detained
         }
-        public static DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? FindbyID(int LicenseID)
+        public static DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? FindbyLicenseID(int LicenseID)
         {
-            if (!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(LicenseID))
+           
+            Entities.ClsDetainedLicense? D_License = Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByLicenseID(LicenseID);
+            if(D_License!=null)
             {
-                return null;
+                D_License.LicensenInfo = Data_access.LocalDrivingLicense.LocalDriLicenseData.GetLicenseByLicIDOrLoc_DLA_ID(licenseID: D_License.LicenseID);
+                return D_License;
             }
-            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(LicenseID);
+            return null;
         }
+        public static DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? FindbyDetainID(int DetainID)
+        {          
+            Entities.ClsDetainedLicense? D_License = Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByDetainID(DetainID);
+            if (D_License != null)
+            {
+                D_License.LicensenInfo = Data_access.LocalDrivingLicense.LocalDriLicenseData.GetLicenseByLicIDOrLoc_DLA_ID(licenseID: D_License.LicenseID);
+            }
+            return null;
+        }
+        public static DataTable? GetAllDetainedLicenses()
+        {
+            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.GetAllDetainedLicenses();
+        }
+        public static DataTable? GetCompletedInfoByDetainedID(int DetainID)
+        {
+            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.GetCompletedInfoByDetainedID(DetainID);
+        }
+
+
         public static int ReLeaseLicense(int LicenseID, DateTime ReleaseDate, int ReleasedBy, int ReleasedAppID)
         {
             if (!DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.ISDetained(LicenseID))
@@ -45,13 +68,6 @@ namespace DLMS.BusinessLier.Release_Detain_License
             }
             return 0;
         }
-        public static DataTable? GetAllDetainedLicenses()
-        {
-            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.GetAllDetainedLicenses();
-        }
-        public static DataTable? GetCompletedInfoByDetainedID(int DetainID)
-        {
-            return DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.GetCompletedInfoByDetainedID(DetainID);
-        }
+
     }
 }

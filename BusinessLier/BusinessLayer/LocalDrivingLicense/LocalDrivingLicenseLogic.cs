@@ -50,7 +50,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
             {
                 License.DriverInfo = Driver.DriverLogic.GetDriverById(License.DriverID);
                 License.LicenseClassInfo = LicenseClasse.LicenseClassLogic.GetLisenceClassById(License.LicenseClassID);
-                License.DetainInfo = Release_Detain_License.Release_Detain_LicenseLogic.FindbyID(License.LicenseID);
+                License.DetainInfo = Release_Detain_License.Release_Detain_LicenseLogic.FindbyLicenseID(License.LicenseID);
                 return License;
             }
             return null;

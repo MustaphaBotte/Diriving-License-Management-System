@@ -263,8 +263,19 @@ namespace DesktopApp.Detain_Release_License
         {
             if (Sender != null && !Sender.IsDisposed)
                 Sender.Close();
+
             if (this.CurrentRowInProcess != -1)
-                DataGrid.Rows[CurrentRowInProcess].Cells["IsReleased"].Value = true;
+            {
+                DLMS.EntitiesNamespace.Entities.ClsDetainedLicense? D_License = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.FindbyLicenseID(LicenseID);
+                if (D_License != null)
+                {
+                    DataGrid.Rows[CurrentRowInProcess].Cells["IsReleased"].Value = true;
+                    DataGrid.Rows[CurrentRowInProcess].Cells["ReleaseDate"].Value = D_License.ReleaseDate;
+                    DataGrid.Rows[CurrentRowInProcess].Cells["ReleaseAppID"].Value = D_License.ReleaseApplicationID;
+                }
+                else
+                    RefreshButton.PerformClick();
+            }
             
         }
         private void ChangeSpecificLicenseRowStatus(int LicenseID,Form Sender)

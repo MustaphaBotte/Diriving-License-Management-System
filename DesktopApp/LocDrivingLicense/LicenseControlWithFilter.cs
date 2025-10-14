@@ -80,7 +80,10 @@ namespace DesktopApp.LocDrivingLicense
             if(DisableSearch)
                  FilterGroupBox.Enabled = false;
             if (RaiseEvent)
+            {
+                this.FilterValueTextBox.Text = LicenseID.ToString();
                 this.FindButton.PerformClick();
+            }
             else
                 this.licenseControl1.LoadByLicenseID(LicenseID);
         }
