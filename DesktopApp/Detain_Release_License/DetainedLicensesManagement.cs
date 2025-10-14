@@ -1,6 +1,7 @@
 ﻿using DesktopApp.AllLicensesHistory;
 using DesktopApp.LocDrivingLicense;
 using DesktopApp.ManagePerson;
+using DLMS.EntitiesNamespace;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -294,24 +295,24 @@ namespace DesktopApp.Detain_Release_License
         {
             if (Sender!=null &&!Sender.IsDisposed)
                 Sender.Close();
-            DataTable? DLicense = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.GetCompletedInfoByDetainedID(DetainID);
+            Entities.ClsDetainedLicense? D_License = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.FindbyDetainID(DetainID);
 
-            if (DLicense == null || DLicense.Rows.Count == 0)
+            if (D_License == null)
             {
                 MessageBox.Show("To view new detained licenses please refresh", "New License Detained", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             DataGridViewRow Row = new DataGridViewRow();
             Row.CreateCells(DataGrid);
-            Row.Cells[DataGrid.Columns["DetainID"].Index].Value = DLicense.Rows[0]["DetainID"];
-            Row.Cells[DataGrid.Columns["LicenseID"].Index].Value = DLicense.Rows[0]["LicenseID"];
-            Row.Cells[DataGrid.Columns["D_Date"].Index].Value = DLicense.Rows[0]["DetainDate"];
-            Row.Cells[DataGrid.Columns["IsReleased"].Index].Value = DLicense.Rows[0]["IsReleased"];
-            Row.Cells[DataGrid.Columns["FineFees"].Index].Value = DLicense.Rows[0]["FineFees"];
-            Row.Cells[DataGrid.Columns["ReleaseDate"].Index].Value = DLicense.Rows[0]["ReleaseDate"];
-            Row.Cells[DataGrid.Columns["N_No"].Index].Value = DLicense.Rows[0]["NationalNo"];
-            Row.Cells[DataGrid.Columns["FullName"].Index].Value = DLicense.Rows[0]["FullName"];
-            Row.Cells[DataGrid.Columns["ReleaseAppID"].Index].Value = DLicense.Rows[0]["ReleaseApplicationID"];
+            Row.Cells[DataGrid.Columns["DetainID"].Index].Value = D_License.DetainID;
+            Row.Cells[DataGrid.Columns["LicenseID"].Index].Value = D_License.LicenseID; 
+            Row.Cells[DataGrid.Columns["D_Date"].Index].Value = D_License.DetainDate;
+            Row.Cells[DataGrid.Columns["IsReleased"].Index].Value = D_License.IsReleased;
+            Row.Cells[DataGrid.Columns["FineFees"].Index].Value = D_License.Fees;
+            Row.Cells[DataGrid.Columns["ReleaseDate"].Index].Value = D_License.ReleaseDate;
+            Row.Cells[DataGrid.Columns["N_No"].Index].Value = D_License?.LicensenInfo?.DriverInfo?.PersonInfo?.NationalNo;
+            Row.Cells[DataGrid.Columns["FullName"].Index].Value = D_License?.LicensenInfo?.DriverInfo?.PersonInfo?.FullName;
+            Row.Cells[DataGrid.Columns["ReleaseAppID"].Index].Value = D_License?.ReleaseApplicationID;
             DataGrid.Rows.Insert(0, Row);
             DataGrid.ClearSelection();
             Row.Selected = true;

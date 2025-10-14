@@ -25,7 +25,13 @@ namespace DLMS.BusinessLier.Release_Detain_License
             Entities.ClsDetainedLicense? D_License = Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByLicenseID(LicenseID);
             if(D_License!=null)
             {
+                //if i made only this  D_License.LicensenInfo = --- i wil get infinite calls between license and detainlicense object
                 D_License.LicensenInfo = Data_access.LocalDrivingLicense.LocalDriLicenseData.GetLicenseByLicIDOrLoc_DLA_ID(licenseID: D_License.LicenseID);
+                if (D_License.LicensenInfo != null)
+                {
+                    D_License.LicensenInfo.DriverInfo = DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(D_License.LicensenInfo.DriverID);
+                    D_License.LicensenInfo.LicenseClassInfo = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetLisenceClassById(D_License.LicensenInfo.LicenseClassID);
+                }
                 return D_License;
             }
             return null;
@@ -36,6 +42,12 @@ namespace DLMS.BusinessLier.Release_Detain_License
             if (D_License != null)
             {
                 D_License.LicensenInfo = Data_access.LocalDrivingLicense.LocalDriLicenseData.GetLicenseByLicIDOrLoc_DLA_ID(licenseID: D_License.LicenseID);
+                if(D_License.LicensenInfo !=null)
+                {
+                    D_License.LicensenInfo.DriverInfo = DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(D_License.LicensenInfo.DriverID);
+                    D_License.LicensenInfo.LicenseClassInfo = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetLisenceClassById(D_License.LicensenInfo.LicenseClassID);
+                }
+                return D_License;
             }
             return null;
         }

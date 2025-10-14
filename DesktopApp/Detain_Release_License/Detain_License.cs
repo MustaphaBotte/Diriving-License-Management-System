@@ -95,7 +95,7 @@ namespace DesktopApp.Detain_Release_License
             int DetainID = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.DetainLicense(DLicense);
             if (DetainID > 0)
             {
-                MessageBox.Show($"license Detain SuccessFyllt\n Detain ID ={DetainID}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"license Detain SuccessFully\n Detain ID ={DetainID}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.ShowLicenseInfo.Enabled = true;
                 this.DetainIDLbl.Text = (DetainID).ToString();
                 this.IssueButton.Enabled = false;
