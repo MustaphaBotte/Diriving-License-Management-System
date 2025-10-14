@@ -37,9 +37,11 @@ namespace DesktopApp.AllLicensesHistory
             }
         }
         private void OnPersonSelected(int PersonID)
-        {
-            this.licensesHistoryControl1.Clear();
-            this.licensesHistoryControl1.LoadByPersonID(PersonID);
+        {   
+            if(PersonID==-1)
+                this.licensesHistoryControl1.Clear();
+            else
+                this.licensesHistoryControl1.LoadByPersonID(PersonID);
         }
     }
 }

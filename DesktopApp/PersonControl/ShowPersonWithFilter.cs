@@ -65,22 +65,22 @@ namespace DesktopApp.PersonControl
             if (FilterChoices.SelectedIndex == 0)
             {
                 int ID = Convert.ToInt32(this.FilterValueTextBox.Text);
-                if (this.showInfoInControl1.FillDataInControl(ID))
-                {
-                    this.OnPersonSelected.Invoke(showInfoInControl1.PersonID);
-                }
-                return;
+                this.showInfoInControl1.FillDataInControl(ID);               
+                this.OnPersonSelected.Invoke(showInfoInControl1.PersonID);
+                
+                if (showInfoInControl1.PersonID == -1)
+                    MessageBox.Show($"Person With ID={ID} Not Found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             else if (this.FilterChoices.SelectedIndex == 1)
             {
                 string N_No = this.FilterValueTextBox.Text.Trim();
-                if (this.showInfoInControl1.FillDataInControl(NationalNo: N_No))
-                {
-                    this.OnPersonSelected.Invoke(showInfoInControl1.PersonID);
-                }
-                return;
+                this.showInfoInControl1.FillDataInControl(NationalNo: N_No);              
+                this.OnPersonSelected.Invoke(showInfoInControl1.PersonID);
+                
+                if(showInfoInControl1.PersonID==-1)
+                    MessageBox.Show($"Person With National Number ={N_No} Not Found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            MessageBox.Show("Person Not Found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ShowPersonWithFilter_Load(object sender, EventArgs e)

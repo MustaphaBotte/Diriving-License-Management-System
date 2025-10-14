@@ -90,7 +90,7 @@ namespace DesktopApp.PersonControl
                 IsControlFilled = true;
                 return true;
             }
-            //ClearControl();
+            ClearControl();
             return false;
         }
 
