@@ -14,7 +14,7 @@ namespace DesktopApp.PersonControl
 {
     public partial class ShowInfoInControl : UserControl
     {
-        private int PersonID=-1;
+        public int PersonID=-1;
         public DLMS.EntitiesNamespace.Entities.ClsPerson? Person = new DLMS.EntitiesNamespace.Entities.ClsPerson();
         public bool IsControlFilled = false;
       
@@ -90,7 +90,7 @@ namespace DesktopApp.PersonControl
                 IsControlFilled = true;
                 return true;
             }
-            ClearControl();
+            //ClearControl();
             return false;
         }
 

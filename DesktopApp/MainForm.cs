@@ -47,7 +47,7 @@ namespace DesktopApp
 
         private void signOutButton_Click(object sender, EventArgs e)
         {
-            LogedInUser.ClslogedInUser.logedInUser = null;       
+            LogedInUser.ClslogedInUser.logedInUser = null;
             this.ManageFormHide?.Invoke();
             this.Hide();
         }
@@ -73,7 +73,7 @@ namespace DesktopApp
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
             if (LogedInUser.ClslogedInUser.logedInUser == null)
             {
                 MessageBox.Show("We cant show your info right now. try again later", "Internal Error", MessageBoxButtons.OK,
@@ -169,13 +169,18 @@ namespace DesktopApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            this.Text = $" (Loged In User: {DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName}";
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             guna2ShadowPanel1.Width = this.Width;
-            this.Text += $" (Loged In User: {DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName}";
+        }
+
+        private void showPersonLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllLicensesHistory.ShowAllLicensesHistoryFrm Frm = new AllLicensesHistory.ShowAllLicensesHistoryFrm();
+            Frm.ShowDialog();
         }
     }
 }

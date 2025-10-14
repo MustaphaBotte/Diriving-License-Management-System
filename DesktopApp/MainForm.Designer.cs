@@ -70,6 +70,7 @@
             detainLicenseToolStripMenuItem1 = new ToolStripMenuItem();
             releaseLicenseToolStripMenuItem1 = new ToolStripMenuItem();
             SecondmanageDetainedLicensesToolStripMenuItem = new ToolStripMenuItem();
+            showPersonLicensesToolStripMenuItem = new ToolStripMenuItem();
             guna2ShadowPanel1.SuspendLayout();
             AccountsettingMenuStrip.SuspendLayout();
             ApplicationsMenuStrip.SuspendLayout();
@@ -258,9 +259,9 @@
             // 
             // ApplicationsMenuStrip
             // 
-            ApplicationsMenuStrip.Items.AddRange(new ToolStripItem[] { manageApplicationsToolStripMenuItem, drivingLicenseServicesToolStripMenuItem, dToolStripMenuItem, TestTypesMenuItem, AppTypesMenuItem, detainLicensesToolStripMenuItem });
+            ApplicationsMenuStrip.Items.AddRange(new ToolStripItem[] { manageApplicationsToolStripMenuItem, drivingLicenseServicesToolStripMenuItem, dToolStripMenuItem, TestTypesMenuItem, AppTypesMenuItem, detainLicensesToolStripMenuItem, showPersonLicensesToolStripMenuItem });
             ApplicationsMenuStrip.Name = "contextMenuStrip1";
-            ApplicationsMenuStrip.Size = new Size(276, 140);
+            ApplicationsMenuStrip.Size = new Size(276, 188);
             // 
             // manageApplicationsToolStripMenuItem
             // 
@@ -413,6 +414,15 @@
             SecondmanageDetainedLicensesToolStripMenuItem.Text = "Manage Detained Licenses";
             SecondmanageDetainedLicensesToolStripMenuItem.Click += manageDetainedLicensesToolStripMenuItem_Click;
             // 
+            // showPersonLicensesToolStripMenuItem
+            // 
+            showPersonLicensesToolStripMenuItem.Font = new Font("Book Antiqua", 12F, FontStyle.Bold);
+            showPersonLicensesToolStripMenuItem.Image = Properties.Resources.LicenseView_400;
+            showPersonLicensesToolStripMenuItem.Name = "showPersonLicensesToolStripMenuItem";
+            showPersonLicensesToolStripMenuItem.Size = new Size(275, 26);
+            showPersonLicensesToolStripMenuItem.Text = "Show Person Licenses";
+            showPersonLicensesToolStripMenuItem.Click += showPersonLicensesToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -465,5 +475,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem RetakeTesttoolStripMenuItem1;
         private ToolStripMenuItem releaseDetainLicenseToolStripMenuItem;
+        private ToolStripMenuItem showPersonLicensesToolStripMenuItem;
     }
 }

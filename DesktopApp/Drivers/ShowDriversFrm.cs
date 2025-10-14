@@ -36,6 +36,7 @@ namespace DesktopApp.Drivers
                 FilterChoices.Items.Add(Column.Name);
 
             FilterChoices.SelectedIndex = 1;
+            this.FilterValueTextBox.Focus();
         }
         private void FillTheGrid()
         {
@@ -117,8 +118,8 @@ namespace DesktopApp.Drivers
                 foreach (DataGridViewRow Row in DataGrid.Rows)
                 {
                     Row.Visible = true;
-                    this.RowsCountlabel.Text = RowCount.ToString();
                 }
+                this.RowsCountlabel.Text = RowCount.ToString();
                 return;
             }
 

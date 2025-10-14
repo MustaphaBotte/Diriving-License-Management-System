@@ -10,7 +10,10 @@ namespace DLMS.BusinessLier.LocalDrivingLicense
     {
         public static int AddNewLocalDrivinLicense(Entities.ClsLicense License)
         {
-
+            if (DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(License.DriverID) == null)
+            {
+                return 0; // because the front end must make a request to create a new driver for traking who create that driver
+            }
             if (BusinessLier.Driver.DriverLogic.HasLicenseBefore(License.DriverID, License.LicenseClassID))
             {
                 return -2;
