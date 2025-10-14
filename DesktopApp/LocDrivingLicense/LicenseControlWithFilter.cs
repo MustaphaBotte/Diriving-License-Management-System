@@ -75,10 +75,14 @@ namespace DesktopApp.LocDrivingLicense
             }
         }
 
-        public void FindByID(int LicenseID)
+        public void FindByID(int LicenseID,bool DisableSearch=true,bool RaiseEvent= true)
         {
-            FilterGroupBox.Enabled = false;
-            this.FindButton.PerformClick();
+            if(DisableSearch)
+                 FilterGroupBox.Enabled = false;
+            if (RaiseEvent)
+                this.FindButton.PerformClick();
+            else
+                this.licenseControl1.LoadByLicenseID(LicenseID);
         }
         private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {

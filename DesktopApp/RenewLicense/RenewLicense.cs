@@ -21,12 +21,15 @@ namespace DesktopApp.RenewLicense
             decimal AppFees = 
                 DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RenewDrivingLicense); //2 means Renew
             this.ApplicationFees.Text = AppFees.ToString();
-            decimal licenseClassFees = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceFees(License.LicenseClassID);
+            decimal licenseClassFees = this.licenseControlWithFilter1.License.LicenseClassInfo.ClassFees;
             this.licenseFeesLbl.Text = licenseClassFees.ToString();
             this.OldLicenseIdLbl.Text = License.LicenseID.ToString();
-            this.ExpDateLbl.Text = DateTime.Now.AddYears(DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceValidityLength(License.LicenseClassID)).ToString("yyyy-MM-dd");
+            this.ExpDateLbl.Text = DateTime.Now.AddYears(this.licenseControlWithFilter1.License.LicenseClassInfo.DefaultValidityLength).ToString("yyyy-MM-dd");
             this.CreatedByLbl.Text = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserName;
             this.totalfeesLbl.Text = (AppFees + licenseClassFees).ToString();
+            this.R_L_ApplicationIDLbl.Text = "N/A";
+            this.RenewedLicenseIdLabel.Text = "N/A";
+
         }
 
         private void CancelButton_MouseEnter(object sender, EventArgs e)
@@ -45,57 +48,19 @@ namespace DesktopApp.RenewLicense
             {
                 return;
             }
+            string _Notes = this.Notes.Text;
 
-            DLMS.EntitiesNamespace.Entities.ClsApplication? oldApp = DLMS.BusinessLier.Application.ApplicationLogic.GetApplicationByID(License.ApplicationID);
-            if (oldApp == null)
-            {
-                MessageBox.Show($"Something wrong please refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            DLMS.EntitiesNamespace.Entities.ClsApplication NewApp = new DLMS.EntitiesNamespace.Entities.ClsApplication();
-            NewApp.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New;
-            NewApp.ApplicantPersonId = oldApp.ApplicantPersonId;
-            NewApp.ApplicantionDate = DateTime.Now;
-            NewApp.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.RenewDrivingLicense;//renew
-            NewApp.LastStatusDate = DateTime.Now;
-            NewApp.PaidFees = 
-           DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.RenewDrivingLicense);
-            NewApp.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-
-            string ER = "";
-            int NewAppId = DLMS.BusinessLier.Application.ApplicationLogic.AddNewApplication(NewApp, ref ER);
-            if (NewAppId <= 0)
-            {
-                MessageBox.Show($"We cant save the application in the moment refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            DLMS.EntitiesNamespace.Entities.ClsLicense? OldLicense = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID: License.LicenseID);
-            if (OldLicense == null)
-            {
-                MessageBox.Show($"We cant save the application because the old license was not found \n refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            DLMS.EntitiesNamespace.Entities.ClsLicense Newlicense = new DLMS.EntitiesNamespace.Entities.ClsLicense();
-            Newlicense.ApplicationID = NewAppId;
-            Newlicense.DriverID = OldLicense.DriverID;
-            Newlicense.IsActive = true;
-            Newlicense.CreatedByUserID = OldLicense.CreatedByUserID;
-            Newlicense.ExpirationDate = DateTime.Now.AddYears(DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceValidityLength(OldLicense.LicenseClassID));
-            Newlicense.IssueDate = DateTime.Now;
-            Newlicense.PaidFees = DLMS.BusinessLier.LicenseClasse.LicenseClassLogic.GetlisenceFees(OldLicense.LicenseClassID);
-            Newlicense.IssueReason = Entities.ClsLicense.enIssueReason.Renew;// renew
-            Newlicense.Notes = this.Notes.Text;
-            Newlicense.LicenseClassID = OldLicense.LicenseClassID;
-            int NewLicenseID = DLMS.BusinessLier.RenewLicense.RenewLicenseLogic.RenewLicense(Newlicense, OldLicense, ref ER);
+            int NewLicenseID = DLMS.BusinessLier.RenewLicense.RenewLicenseLogic.RenewLicense(this.CurrentLicenseID,LogedInUser.ClslogedInUser.logedInUser.UserId, _Notes,out int NewAppID);
             if (NewLicenseID > 0)
             {
                 MessageBox.Show($"Operation success your new license application ID is {NewLicenseID}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.License = Newlicense;
+                this.License = DLMS.BusinessLier.LocalDrivingLicense.LocalDrivingLicenseLogic.GetLicenseByLicIDOrLocDriID(licenseID:CurrentLicenseID);
                 this.CurrentLicenseID = NewLicenseID;
                 IssueButton.Enabled = false;
-                this.R_L_ApplicationIDLbl.Text = Newlicense.ApplicationID.ToString();
+                this.R_L_ApplicationIDLbl.Text = NewAppID.ToString();
                 this.RenewedLicenseIdLabel.Text = NewLicenseID.ToString();
+                this.licenseControlWithFilter1.FindByID(NewLicenseID,DisableSearch: false,RaiseEvent: false);
+                this.ShowLicenseInfo.Enabled = true;
                 return;
             }
             if (NewLicenseID == -1)
@@ -110,7 +75,7 @@ namespace DesktopApp.RenewLicense
             }
             if (NewLicenseID == -3)
             {
-                MessageBox.Show($"We cant renew your license because its not expired. \n Expiration Date: {OldLicense.ExpirationDate}", "Not Expired Yet", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"We cant renew your license because its not expired. \n Expiration Date: {License?.ExpirationDate}", "Not Expired Yet", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (NewLicenseID == 0)
@@ -142,6 +107,9 @@ namespace DesktopApp.RenewLicense
         {
             this.ShowLicenseInfo.Enabled = true;
             this.ShowLicensesHistory.Enabled = true;
+            this.R_L_ApplicationIDLbl.Text = "N/A";
+            this.RenewedLicenseIdLabel.Text = "N/A";
+
             if (License.ExpirationDate > DateTime.Now)
             {
                 MessageBox.Show($"This license has not expired yet.\n The Expiration date is {License.ExpirationDate.ToString("yyyy-MM-dd")}", "Operation Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -159,11 +127,14 @@ namespace DesktopApp.RenewLicense
         }
         private void RenewLicenseFrm_Load(object sender, EventArgs e)
         {
+            this.licenseControlWithFilter1.LicenseTextFocus();
+
             this.licenseControlWithFilter1.OnLicenseSelected += (int LicenseID) =>
             {
                 this.License = licenseControlWithFilter1.License;
                 this.CurrentLicenseID = LicenseID;
                 CheckLicenseStatus();
+                this.ShowLicenseInfo.Enabled = false;
             };
         }
 

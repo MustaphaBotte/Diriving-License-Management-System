@@ -382,7 +382,7 @@
             ShowLicenseInfo.Size = new Size(102, 15);
             ShowLicenseInfo.TabIndex = 33;
             ShowLicenseInfo.TabStop = true;
-            ShowLicenseInfo.Text = "Show License Info";
+            ShowLicenseInfo.Text = "Show New License Info";
             ShowLicenseInfo.LinkClicked += ShowLicenseInfo_LinkClicked;
             // 
             // ShowLicensesHistory

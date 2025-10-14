@@ -51,7 +51,6 @@
             REP_L_ApplicationIDLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             CreatedByLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            totalfeesLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ApplicationFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ReplacedLicenseIdLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             OldLicenseIdLbl = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -60,7 +59,6 @@
             guna2HtmlLabel18 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel20 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel22 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel24 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel25 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -186,7 +184,6 @@
             guna2GroupBox1.Controls.Add(REP_L_ApplicationIDLbl);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel15);
             guna2GroupBox1.Controls.Add(CreatedByLbl);
-            guna2GroupBox1.Controls.Add(totalfeesLbl);
             guna2GroupBox1.Controls.Add(ApplicationFees);
             guna2GroupBox1.Controls.Add(ReplacedLicenseIdLabel);
             guna2GroupBox1.Controls.Add(OldLicenseIdLbl);
@@ -195,7 +192,6 @@
             guna2GroupBox1.Controls.Add(guna2HtmlLabel18);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel20);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel22);
-            guna2GroupBox1.Controls.Add(guna2HtmlLabel24);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel25);
             guna2GroupBox1.CustomBorderColor = Color.Gray;
             guna2GroupBox1.CustomizableEdges = customizableEdges9;
@@ -222,13 +218,13 @@
             Notes.Font = new Font("Segoe UI", 9F);
             Notes.ForeColor = Color.Black;
             Notes.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            Notes.Location = new Point(217, 156);
+            Notes.Location = new Point(217, 134);
             Notes.Multiline = true;
             Notes.Name = "Notes";
             Notes.PlaceholderText = "";
             Notes.SelectedText = "";
             Notes.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            Notes.Size = new Size(447, 58);
+            Notes.Size = new Size(447, 80);
             Notes.TabIndex = 45;
             // 
             // guna2HtmlLabel4
@@ -236,7 +232,7 @@
             guna2HtmlLabel4.BackColor = Color.Transparent;
             guna2HtmlLabel4.Font = new Font("Cambria", 11.25F);
             guna2HtmlLabel4.ForeColor = Color.DarkRed;
-            guna2HtmlLabel4.Location = new Point(114, 169);
+            guna2HtmlLabel4.Location = new Point(116, 134);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             guna2HtmlLabel4.Size = new Size(46, 19);
             guna2HtmlLabel4.TabIndex = 44;
@@ -274,17 +270,6 @@
             CreatedByLbl.Size = new Size(29, 19);
             CreatedByLbl.TabIndex = 39;
             CreatedByLbl.Text = "N/A";
-            // 
-            // totalfeesLbl
-            // 
-            totalfeesLbl.BackColor = Color.Transparent;
-            totalfeesLbl.Font = new Font("Cambria", 11.25F);
-            totalfeesLbl.ForeColor = Color.Black;
-            totalfeesLbl.Location = new Point(217, 130);
-            totalfeesLbl.Name = "totalfeesLbl";
-            totalfeesLbl.Size = new Size(29, 19);
-            totalfeesLbl.TabIndex = 37;
-            totalfeesLbl.Text = "N/A";
             // 
             // ApplicationFees
             // 
@@ -374,17 +359,6 @@
             guna2HtmlLabel22.TabIndex = 17;
             guna2HtmlLabel22.Text = "Craeetd By";
             // 
-            // guna2HtmlLabel24
-            // 
-            guna2HtmlLabel24.BackColor = Color.Transparent;
-            guna2HtmlLabel24.Font = new Font("Cambria", 11.25F);
-            guna2HtmlLabel24.ForeColor = Color.DarkRed;
-            guna2HtmlLabel24.Location = new Point(93, 130);
-            guna2HtmlLabel24.Name = "guna2HtmlLabel24";
-            guna2HtmlLabel24.Size = new Size(67, 19);
-            guna2HtmlLabel24.TabIndex = 15;
-            guna2HtmlLabel24.Text = "Total Fees";
-            // 
             // guna2HtmlLabel25
             // 
             guna2HtmlLabel25.BackColor = Color.Transparent;
@@ -464,7 +438,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel REP_L_ApplicationIDLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel15;
         private Guna.UI2.WinForms.Guna2HtmlLabel CreatedByLbl;
-        private Guna.UI2.WinForms.Guna2HtmlLabel totalfeesLbl;
         private Guna.UI2.WinForms.Guna2HtmlLabel ApplicationFees;
         private Guna.UI2.WinForms.Guna2HtmlLabel ReplacedLicenseIdLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel OldLicenseIdLbl;
@@ -473,7 +446,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel18;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel20;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel22;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel24;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel25;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
