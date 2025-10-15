@@ -20,9 +20,7 @@ namespace DesktopApp.InternationalDrivingLicense
         {
             DLMS.EntitiesNamespace.Entities.ClsInternationalLicense? internationalLicense = DLMS.BusinessLier.InternationDriLicense.InternationDriLicenseLogic.GetLicenseByInterNatID(Inter_Lic_ID);
             if (internationalLicense == null)
-                return false;
-            if (internationalLicense.Application == null)
-                return false;
+                return false;          
             DLMS.EntitiesNamespace.Entities.ClsDriver? Driver = DLMS.BusinessLier.Driver.DriverLogic.GetDriverById(internationalLicense.DriverID);
             if (Driver == null)
                 return false;

@@ -348,7 +348,7 @@ namespace DLMS.EntitiesNamespace
         public class ClsInternationalLicense
         {
             public int InternationLicenseID { get; private set; } = -1;
-            public DLMS.EntitiesNamespace.Entities.ClsApplication Application = new ClsApplication();
+            public int  ApplicationID = -1;
             public int DriverID { get; set; } = -1;
             public int IssueUsingLocLicID { get; set; } = -1;
             public DateTime IssueDate { get; set; } = DateTime.MinValue;
@@ -356,11 +356,13 @@ namespace DLMS.EntitiesNamespace
             public bool IsActive { get; set; } = false;
             public int CreatedByUserID { get; set; } = -1;
 
-            public ClsInternationalLicense(int InternationLicenseID, DLMS.EntitiesNamespace.Entities.ClsApplication Application, int DriverID, int IssueUsingLocalDriID,
+            public ClsUser? CreatedByUserInfo = null;
+            public ClsLicense? IssueUsingLicenseInfo = null;
+            public ClsInternationalLicense(int InternationLicenseID,int ApplicationID, int DriverID, int IssueUsingLocalDriID,
                              DateTime issueDate, DateTime expirationDate, bool isActive, int createdByUserID)
             {
                 this.InternationLicenseID = InternationLicenseID;
-                this.Application = Application;
+                this.ApplicationID = ApplicationID;
                 this.DriverID = DriverID;
                 this.IssueUsingLocLicID = IssueUsingLocalDriID;
                 this.IssueDate = issueDate;
@@ -386,6 +388,9 @@ namespace DLMS.EntitiesNamespace
             public int? ReleaseApplicationID { get; set; } = null;
 
             public ClsLicense? LicensenInfo = null;
+            public ClsUser? DetainedByUser = null;
+            public ClsUser? ReleasedByUser = null;
+
             public ClsDetainedLicense(int detainID, int licenseID, decimal fees,
                                        int createdByUserID, bool isReleased,
                                        DateTime detainDate, DateTime? releaseDate,

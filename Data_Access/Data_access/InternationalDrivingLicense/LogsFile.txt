@@ -272,3 +272,33 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
 
 
 ====================================================================================================================
+Date Time  :10/15/2025 7:30:00 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.InternationalDrivingLicense.InternationDriLicenseData.HasActiveInternationalLicense(Int32 DriverID, Int32& InternationalLicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\InternationDriLicenseData.cs:line 71
+
+
+====================================================================================================================
+Date Time  :10/15/2025 7:30:02 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.InternationalDrivingLicense.InternationDriLicenseData.HasActiveInternationalLicense(Int32 DriverID, Int32& InternationalLicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\InternationDriLicenseData.cs:line 71
+
+
+====================================================================================================================
+Date Time  :10/15/2025 7:31:30 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.InternationalDrivingLicense.InternationDriLicenseData.HasActiveInternationalLicense(Int32 DriverID, Int32& InternationalLicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\InternationDriLicenseData.cs:line 71
+
+
+====================================================================================================================
+Date Time  :10/15/2025 7:32:01 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.InternationalDrivingLicense.InternationDriLicenseData.HasActiveInternationalLicense(Int32 DriverID, Int32& InternationalLicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\InternationDriLicenseData.cs:line 71
+
+
+====================================================================================================================
+Date Time  :10/15/2025 7:32:36 PM
+Error      :Object reference not set to an instance of an object.
+StackTrace :   at DLMS.Data_access.InternationalDrivingLicense.InternationDriLicenseData.HasActiveInternationalLicense(Int32 DriverID, Int32& InternationalLicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\InternationDriLicenseData.cs:line 71
+
+
+====================================================================================================================

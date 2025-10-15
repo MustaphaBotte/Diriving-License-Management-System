@@ -122,7 +122,7 @@ namespace DesktopApp
 
         private void ManageInternaDrivingLicense_Click(object sender, EventArgs e)
         {
-            InternationalDrivingLicense.IssueInternationalDrivingLicenseFrm Frm = new InternationalDrivingLicense.IssueInternationalDrivingLicenseFrm();
+            InternationalDrivingLicense.InternationlLicensesManagement Frm = new InternationalDrivingLicense.InternationlLicensesManagement();
             Frm.ShowDialog();
         }
 

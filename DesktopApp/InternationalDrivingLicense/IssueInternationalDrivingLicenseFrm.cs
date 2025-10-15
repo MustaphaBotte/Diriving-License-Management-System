@@ -1,16 +1,19 @@
 ﻿using DLMS.EntitiesNamespace;
 using System.ComponentModel.Design;
+using System.Security.Cryptography;
 
 namespace DesktopApp.InternationalDrivingLicense
 {
     public partial class IssueInternationalDrivingLicenseFrm : Form
     {
+        public delegate void _OnLicenseIssued(int LicenseID,Form sender);
+        public event _OnLicenseIssued OnLicenseIssued = delegate { };
         public IssueInternationalDrivingLicenseFrm()
         {
             InitializeComponent();
         }
-        DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
-        DLMS.EntitiesNamespace.Entities.ClsDriver? Driver = null;
+        Entities.ClsLicense? License = null;
+        Entities.ClsDriver? Driver = null;
         int InterNatLicID = -1;
         private void FindButton_Click(object sender, EventArgs e)
         {
@@ -95,40 +98,30 @@ namespace DesktopApp.InternationalDrivingLicense
         }
         private void IssueButton_Click(object sender, EventArgs e)
         {
+   
+            if (this.License == null)
+                return;
+            int Int_LicID = DLMS.BusinessLier.InternationDriLicense.InternationDriLicenseLogic.GetActiveInternationalID(License.DriverID);
+            if (Int_LicID>0)
+            {
+                MessageBox.Show($"Driver already has an active international license with id ={Int_LicID}", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DialogResult Res = MessageBox.Show("Are you sure you want to save ?", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Question);
             if (Res != DialogResult.OK)
             {
                 return;
             }
-            DLMS.EntitiesNamespace.Entities.ClsInternationalLicense internationalLicense = new DLMS.EntitiesNamespace.Entities.ClsInternationalLicense();
-            internationalLicense.Application.ApplicantionDate = DateTime.Now;
-            internationalLicense.Application.LastStatusDate = DateTime.Now;
-            internationalLicense.Application.ApplicantPersonId = this.Driver.PersonID;
-            internationalLicense.Application.ApplicationStatus = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationStatus.New; //new
-            internationalLicense.Application.ApplicationType = DLMS.EntitiesNamespace.Entities.ClsApplication.enApplicationType.NewInternationalLicense; ; //International License
-            internationalLicense.Application.CreatedByUserId = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-            internationalLicense.Application.PaidFees = 
-            DLMS.BusinessLier.ApplicationTypes.ApplicationTypesLogic.GetApplicationFees(Entities.ClsApplication.enApplicationType.NewInternationalLicense);
-
-            internationalLicense.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-            internationalLicense.DriverID = this.Driver.DriverID;
-            internationalLicense.IssueUsingLocLicID = this.License.LicenseID;
-            internationalLicense.IsActive = true;
-            internationalLicense.IssueDate = DateTime.Now;
-            internationalLicense.ExpirationDate = DateTime.Now.AddYears(1);
-
-            internationalLicense.Application.ApplicationId = DLMS.BusinessLier.InternationDriLicense.InternationDriLicenseLogic.AddNewInternationLicenseApplication(internationalLicense.Application);
-            string ERROR = "";
-
-            int Result = DLMS.BusinessLier.InternationDriLicense.InternationDriLicenseLogic.AddNewInternationDrivingLicense(internationalLicense, ref ERROR);
+            int Result = DLMS.BusinessLier.InternationDriLicense.InternationDriLicenseLogic.AddNewInternationDrivingLicense(this.License.LicenseID,LogedInUser.ClslogedInUser.logedInUser.UserId,out int ApplicationID);
             if (Result > 0)
             {
                 MessageBox.Show($"New Internationl License Issued SuccessFylly with ID= {Result}", "Opeartion Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.I_L_ApplicationIDLbl.Text = internationalLicense.Application.ApplicationId.ToString();
+                this.I_L_ApplicationIDLbl.Text = ApplicationID.ToString();
                 this.I_L_LicenseIDLbl.Text = Result.ToString();
                 this.ShowLicenseInfo.Enabled = true;
                 this.IssueButton.Enabled = false;
                 this.InterNatLicID = Result;
+                this.OnLicenseIssued?.Invoke(Result,this);
                 return;
             }
             if (Result == -2)
@@ -169,11 +162,6 @@ namespace DesktopApp.InternationalDrivingLicense
         {
             ShowInternationalLicenseFrm Frm = new ShowInternationalLicenseFrm(this.InterNatLicID);
             Frm.ShowDialog();
-        }
-
-        private void FilterValueTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)

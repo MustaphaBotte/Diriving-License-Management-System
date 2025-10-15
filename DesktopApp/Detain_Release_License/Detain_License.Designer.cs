@@ -186,6 +186,8 @@
             FineFeesTextBox1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             FineFeesTextBox1.Size = new Size(130, 28);
             FineFeesTextBox1.TabIndex = 46;
+            FineFeesTextBox1.TextChanged += FineFeesTextBox1_TextChanged;
+            FineFeesTextBox1.KeyPress += FineFeesTextBox1_KeyPress;
             // 
             // Notes
             // 

@@ -31,11 +31,11 @@ namespace DesktopApp.Detain_Release_License
         {
             this.Cursor = Cursors.Hand;
         }
-
         private void RefreshButton_MouseLeave(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
         }
+
         private void FillFilterList()
         {
             FilterChoices.Items.Add("None"); ;
@@ -122,6 +122,7 @@ namespace DesktopApp.Detain_Release_License
         }
         private void FilterValueTextBox_TextChanged(object sender, EventArgs e)
         {
+            // i did a manual filter just to learn how it works :)
             string? Filter = FilterChoices.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(Filter))
                 return;

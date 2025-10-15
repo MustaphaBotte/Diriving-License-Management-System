@@ -10,7 +10,7 @@ namespace DesktopApp.LocDrivingLicense
             InitializeComponent();
         }
         private int _LicenseID = -1;
-        public Entities.ClsLicense _License;
+        public Entities.ClsLicense? _License;
         public int LicenseID
         {
             get
@@ -18,7 +18,7 @@ namespace DesktopApp.LocDrivingLicense
                 return this._LicenseID;
             }
         }
-        public Entities.ClsLicense License
+        public Entities.ClsLicense? License
         {
             get
             {
@@ -28,7 +28,7 @@ namespace DesktopApp.LocDrivingLicense
 
         private void LoadPersonImg()
         {
-            if (File.Exists(License.DriverInfo?.PersonInfo?.ImagePath??""))
+            if (File.Exists(License?.DriverInfo?.PersonInfo?.ImagePath??""))
             {
                 this.DriverPictureBox.BackgroundImage = Image.FromFile(License?.DriverInfo?.PersonInfo?.ImagePath ?? "");
             }
@@ -49,6 +49,8 @@ namespace DesktopApp.LocDrivingLicense
             if(License==null)
             {
                 MessageBox.Show("License Not Found PLease check your License ID", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _LicenseID = -1;
+                _License = null;
                 return false;
             }         
             if (License.DriverInfo == null)

@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +16,14 @@ namespace DLMS.Data_access.InternationalDrivingLicense
         private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\LogsFile.txt";
         public static int IssueNewInternationDrivingLicense(Entities.ClsInternationalLicense internationalLicense)
         {
-            string Query = $"Insert into internationalLicenses values (@ApplicationID,@DriverID," +
+            string Query = $"update internationalLicenses set isactive =0 where @DriverID= DriverID ;" +
+                $"Insert into internationalLicenses values (@ApplicationID,@DriverID," +
                 $"@IssueUsingLocalLicenseID,@IssueDate,@ExpirationDate,@IsActive,@CreatedByUserID); SELECT SCOPE_IDENTITY();";
 
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(connection: connection, cmdText: Query);
 
-            command.Parameters.AddWithValue("@ApplicationID", internationalLicense.Application?.ApplicationId);
+            command.Parameters.AddWithValue("@ApplicationID", internationalLicense.ApplicationID);
             command.Parameters.AddWithValue("@DriverID", internationalLicense.DriverID);
             command.Parameters.AddWithValue("@IssueUsingLocalLicenseID", internationalLicense.IssueUsingLocLicID);
             command.Parameters.AddWithValue("@IssueDate", internationalLicense.IssueDate);
@@ -55,19 +57,21 @@ namespace DLMS.Data_access.InternationalDrivingLicense
             return 0;
 
         }
-        public static bool HasActiveInternationalLicense(int DriverID)
+        public static bool HasActiveInternationalLicense(int DriverID,out int InternationalLicenseID)
         {
+            InternationalLicenseID = -1;
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = "select case when exists (select top 1 1 from InternationalLicenses where " +
-                           "  DriverID = @ID and IsActive =1) then 1 else 0 end as result";
+            string Query = "select isnull((select InternationalLicenseID from InternationalLicenses where  " +
+                           "  DriverID = @ID and IsActive =1 and ExpirationDate>GETDATE()),0)";
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
             command.Parameters.AddWithValue("@ID", DriverID);
             try
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
-                int Result = int.TryParse(result.ToString(), out int Res) ? Res : 0;
-                return (Result == 1);
+                int Result = int.TryParse(result?.ToString(), out int Res) ? Res : 0;
+                InternationalLicenseID = Result;
+                return (Result >0);
             }
             catch (Exception EX)
             {
@@ -79,7 +83,6 @@ namespace DLMS.Data_access.InternationalDrivingLicense
             }
             return false;
         }
-
         public static Entities.ClsInternationalLicense? GetLicenseByInterNatID(int InterNationalLicID)
         {
             
@@ -97,7 +100,7 @@ namespace DLMS.Data_access.InternationalDrivingLicense
                 {
                     return new Entities.ClsInternationalLicense(
                            reader.GetInt32(reader.GetOrdinal("InterNationalLicenseID")),
-                           Applications.ApplicationData.GetApplicationByID(Convert.ToInt32(reader.GetInt32(reader.GetOrdinal("ApplicationID")))),
+                           Convert.ToInt32(reader.GetInt32(reader.GetOrdinal("ApplicationID"))),
                            reader.GetInt32(reader.GetOrdinal("DriverID")),
                            reader.GetInt32(reader.GetOrdinal("IssuedUsingLocalLicenseID")),
                            reader.GetDateTime(reader.GetOrdinal("IssueDate")),
@@ -107,6 +110,37 @@ namespace DLMS.Data_access.InternationalDrivingLicense
                            );
                 }
                 
+                return null;
+            }
+            catch (Exception ex)
+            {
+                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, ex);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return null;
+        }
+
+        public static DataTable? GetAllInternationalLicenses()
+        {
+            string query = "select  * from InternationalLicenses order by IssueDate,isactive";
+            SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.CommandText = query;
+            try
+            {
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                if(Reader.Read()&& Reader.HasRows)
+                {
+                    DataTable DataLicenses= new DataTable();
+                    DataLicenses.Load(Reader);
+                    return DataLicenses;
+                }
+
                 return null;
             }
             catch (Exception ex)

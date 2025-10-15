@@ -1,5 +1,6 @@
 ﻿using DesktopApp.AllLicensesHistory;
 using DesktopApp.LocDrivingLicense;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,21 +17,26 @@ namespace DesktopApp.Detain_Release_License
     {
         public delegate void LicenseDetained(int LicID, Form Sender);
         public event LicenseDetained OnLicenseDetained = delegate { };
-
         DLMS.EntitiesNamespace.Entities.ClsLicense? License = null;
+
         int CurrentLinseceId = -1;
         public DetainLicenseFrm(int LicenseID = -1)
         {
             InitializeComponent();
             if (LicenseID != -1)
             {
-                this.licenseControlWithFilter1.FindByID(LicenseID);              
+                this.licenseControlWithFilter1.FindByID(LicenseID);
             }
         }
         private void DetainLicenseFrm_Load(object sender, EventArgs e)
         {
             this.licenseControlWithFilter1.OnLicenseSelected += (int LicenseID) =>
             {
+                if (LicenseID < 1)
+                {
+                    LockTheForm();
+                    return;
+                }
                 this.License = licenseControlWithFilter1.License;
                 this.CurrentLinseceId = LicenseID;
                 CheckLicenseStatus();
@@ -38,7 +44,7 @@ namespace DesktopApp.Detain_Release_License
 
 
         }
-      
+
         private void CheckLicenseStatus()
         {
             this.ShowLicenseInfo.Enabled = true;
@@ -48,9 +54,13 @@ namespace DesktopApp.Detain_Release_License
             {
                 MessageBox.Show($"License Already in detain", "System rules violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.IssueButton.Enabled = false;
+                FineFeesTextBox1.Enabled = false;
                 return;
-            }           
+            }
             this.IssueButton.Enabled = true;
+            FineFeesTextBox1.Enabled = true; ;
+            FineFeesTextBox1.Focus();
+
         }
         private void FillAppInfo()
         {
@@ -71,28 +81,20 @@ namespace DesktopApp.Detain_Release_License
 
         private void IssueButton_Click(object sender, EventArgs e)
         {
-            DialogResult Res = MessageBox.Show("Are you sure you want to detain this license", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (Res == DialogResult.No)
-            {
-                return;
-            }
-            DLMS.EntitiesNamespace.Entities.ClsDetainedLicense DLicense = new DLMS.EntitiesNamespace.Entities.ClsDetainedLicense();
             decimal FineFees = decimal.TryParse(this.FineFeesTextBox1.Text, out decimal Fees) ? Fees : 0;
             if (FineFees == 0)
             {
                 MessageBox.Show($"Please enter a valid fine fees", "Wrong Fees", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DLicense.DetainDate = DateTime.Now;
-            DLicense.ReleaseDate = null;
-            DLicense.CreatedByUserID = DesktopApp.LogedInUser.ClslogedInUser.logedInUser.UserId;
-            DLicense.IsReleased = false;
-            DLicense.LicenseID = this.License.LicenseID;
-            DLicense.Fees = FineFees;
-            DLicense.ReleaseApplicationID = null;
-            DLicense.ReleasedByUserID = null;
-            DLicense.ReleaseApplicationID = null;
-            int DetainID = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.DetainLicense(DLicense);
+            DialogResult Res = MessageBox.Show("Are you sure you want to detain this license", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Res == DialogResult.No)
+            {
+                return;
+            }
+
+
+            int DetainID = DLMS.BusinessLier.Release_Detain_License.Release_Detain_LicenseLogic.DetainLicense(CurrentLinseceId, LogedInUser.ClslogedInUser.logedInUser.UserId, FineFees);
             if (DetainID > 0)
             {
                 MessageBox.Show($"license Detain SuccessFully\n Detain ID ={DetainID}", "Operation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -107,6 +109,11 @@ namespace DesktopApp.Detain_Release_License
                 MessageBox.Show($"This License already in detain", "System Rules Violation", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (DetainID == -3)
+            {
+                MessageBox.Show($"This License is not exists any more please refresh", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (DetainID == -1)
             {
                 MessageBox.Show($"We cannot detain this license in the moment please refresh and try again", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -115,7 +122,7 @@ namespace DesktopApp.Detain_Release_License
 
         }
 
-       
+
 
         private void ShowLicensesHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -130,10 +137,28 @@ namespace DesktopApp.Detain_Release_License
             Frm.ShowDialog();
         }
 
-        private void FilterValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void LockTheForm()
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            this.IssueButton.Enabled = false;
+            this.FineFeesTextBox1.Enabled = false;
+            this.ShowLicenseInfo.Enabled = false;
+            this.ShowLicensesHistory.Enabled = false;
+        }
+
+        private void FineFeesTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)&& (char)e.KeyChar!='.')
                 e.Handled = true;
+
+        }
+
+        private void FineFeesTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!decimal.TryParse(FineFeesTextBox1.Text, out decimal res))
+            {
+                FineFeesTextBox1.Text = "";
+            }
         }
     }
 }

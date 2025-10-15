@@ -23,7 +23,7 @@ namespace DLMS.Data_access.LocalDrivingLicense
             command.Parameters.AddWithValue("@LicenseClass", license.LicenseClassID);
             command.Parameters.AddWithValue("@IssueDate", license.IssueDate);
             command.Parameters.AddWithValue("@ExpirationDate", license.ExpirationDate);
-            command.Parameters.AddWithValue("@Notes", (object)license.Notes ?? DBNull.Value);
+            command.Parameters.AddWithValue("@Notes", license.Notes=="" ? DBNull.Value : license.Notes);
             command.Parameters.AddWithValue("@Paidfees", license.PaidFees);
             command.Parameters.AddWithValue("@IsActive", license.IsActive);
             command.Parameters.AddWithValue("@IssueReason", license.IssueReason);

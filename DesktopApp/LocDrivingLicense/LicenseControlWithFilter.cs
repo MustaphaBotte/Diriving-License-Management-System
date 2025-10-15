@@ -18,6 +18,7 @@ namespace DesktopApp.LocDrivingLicense
         {
             InitializeComponent();
             this.FilterChoices.SelectedIndex = 0;
+            this.FilterValueTextBox.Focus();
         }
 
 
@@ -61,17 +62,14 @@ namespace DesktopApp.LocDrivingLicense
             int ID = Convert.ToInt32(this.FilterValueTextBox.Text);
             if (this.FilterChoices.SelectedIndex == 0)
             {
-                if (this.licenseControl1.LoadByLicenseID(ID))
-                {
-                    this.OnLicenseSelected?.Invoke(licenseControl1.LicenseID);
-                }
+                this.licenseControl1.LoadByLicenseID(ID);        
+                this.OnLicenseSelected?.Invoke(licenseControl1.LicenseID);
+                
             }
             else
             {
-                if (this.licenseControl1.LoadByLocDriID(ID))
-                {
-                    this.OnLicenseSelected?.Invoke(licenseControl1.LicenseID);
-                }
+                this.licenseControl1.LoadByLocDriID(ID);
+                this.OnLicenseSelected?.Invoke(licenseControl1.LicenseID);
             }
         }
 
@@ -101,8 +99,7 @@ namespace DesktopApp.LocDrivingLicense
             if(! int.TryParse(((Guna2TextBox)sender).Text,out int res))
             {
                 FilterValueTextBox.Text = "";
-            }
-                 
+            }                
         }
 
         public void LicenseTextFocus()

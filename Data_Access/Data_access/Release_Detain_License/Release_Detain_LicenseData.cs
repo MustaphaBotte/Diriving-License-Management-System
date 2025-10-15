@@ -60,7 +60,8 @@ namespace DLMS.Data_access.Release_Detain_License
         {
             string Query = "SELECT top 1 DetainID, LicenseID, FineFees, CreatedByUserID, IsReleased, " +
                            "DetainDate, ReleaseDate, ReleaseApplicationID, ReleasedByUserID " +
-                           "FROM DetainedLicenses WHERE LicenseID = @LicenseID";
+                           "FROM DetainedLicenses WHERE LicenseID = @LicenseID order by DetainDate Desc";
+            //in this function we get it using order by DetainDate Desc cause the license my be detained multiple times so we get last one
 
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(Query, connection);
@@ -104,6 +105,8 @@ namespace DLMS.Data_access.Release_Detain_License
                            "DetainDate, ReleaseDate, ReleaseApplicationID, ReleasedByUserID " +
                            "FROM DetainedLicenses WHERE DetainID = @DetainID ";
 
+            //in this function we get it using DetainID
+
             SqlConnection connection = new SqlConnection(ConnectionString.GetConnectionString());
             SqlCommand command = new SqlCommand(Query, connection);
             command.Parameters.AddWithValue("@DetainID", DetainID);
@@ -140,15 +143,11 @@ namespace DLMS.Data_access.Release_Detain_License
 
             return null;
         }
-
-
-
-        public static DataTable? GetCompletedInfoByDetainedID(int DetainID)
+        public static DataTable? GetAllDetainedLicenses()
         {
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = @$"select * from Detained_License_View where detainid=@DetainID";         
+            string Query = @$"select * from Detained_License_View order by DetainDate desc";
             SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            command.Parameters.AddWithValue("@DetainID", DetainID);
             SqlDataReader? Reader = null;
             try
             {
@@ -174,6 +173,8 @@ namespace DLMS.Data_access.Release_Detain_License
             return null;
 
         }
+
+
         public static bool ReleaseLicense(int LicenseID,DateTime ReleaseDate,int ReleasedBy,int ReleasedAppID)
         {
 
@@ -204,36 +205,6 @@ namespace DLMS.Data_access.Release_Detain_License
                 connection.Close();
             }
             return false;
-        }
-        public static DataTable? GetAllDetainedLicenses()
-        {
-            SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());
-            string Query = @$"select * from Detained_License_View order by DetainDate desc";
-            SqlCommand command = new SqlCommand(cmdText: Query, connection: connection);
-            SqlDataReader? Reader = null;
-            try
-            {
-                connection.Open();
-                Reader = command.ExecuteReader();
-                DataTable DriverLicenses = new DataTable();
-                if (Reader != null && Reader.HasRows)
-                {
-                    DriverLicenses.Load(Reader);
-                    return DriverLicenses;
-                }
-                return null;
-            }
-            catch (Exception EX)
-            {
-                DLMS.Data_access.SharedFunctions.WriteError(LogFilePath, EX);
-            }
-            finally
-            {
-                Reader?.Close();
-                connection.Close();
-            }
-            return null;
-
         }
     }
 }

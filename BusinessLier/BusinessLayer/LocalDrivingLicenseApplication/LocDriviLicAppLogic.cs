@@ -63,9 +63,7 @@ namespace DLMS.BusinessLier.LocalDrivingLicenseApplication
                 DLMS.Data_access.Applications.ApplicationData.DeleteApplication(LocalAppId);
 
              return new ClsResultProvider(1, "Operation Success",
-             @$"Local Driving license app with Id= {LocalAppId} added successfully", LocalAppId, true);
-
-           
+             @$"Local Driving license app with Id= {LocalAppId} added successfully", LocalAppId, true);        
         }
         public static ClsResultProvider EditLocalDriLicApplicationClass(int Loc_DLA_ID, int NewLicenseClassID)
         {
