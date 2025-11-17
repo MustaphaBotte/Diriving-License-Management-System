@@ -40,7 +40,7 @@ The project implements essential driving license services with custom features t
 - All services support **full CRUD operations**.
 
 ### Security Features
-- Secure login with username and password, with optional local credential storage.
+- Secure login with username and password, with optional local credential storage (Json and windows registry).
 - Password hashing using BCrypt algorithm with work factor 14
 - **SQL Injection protection** via input validation with(Ado.net).
 
