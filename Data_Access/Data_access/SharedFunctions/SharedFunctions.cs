@@ -2,7 +2,9 @@
 using System.Data;
 using System.Reflection;
 using DLMS.Data_access.ConnectionSettings;
-
+using System.Diagnostics;
+using System.Threading;
+using Microsoft.IdentityModel.Abstractions;
 
 namespace DLMS.Data_access
 {
@@ -18,13 +20,26 @@ namespace DLMS.Data_access
             {
                 return;
             }
-
-            using (StreamWriter writer = new StreamWriter(LogFilePath, true))
+            try
             {
-                writer.WriteLine("Date Time  :" + DateTime.Now.ToString());
-                writer.WriteLine("Error      :" + EX.Message);
-                writer.WriteLine("StackTrace :" + EX.StackTrace);
-                writer.WriteLine("\n\n====================================================================================================================");
+                using (StreamWriter writer = new StreamWriter(LogFilePath, true))
+                {
+                    writer.WriteLine("Date Time  :" + DateTime.Now.ToString());
+                    writer.WriteLine("Error      :" + EX.Message);
+                    writer.WriteLine("StackTrace :" + EX.StackTrace);
+                    writer.WriteLine("\n\n====================================================================================================================");
+                }
+                string source = "Driving License Management System";
+                if (!EventLog.SourceExists(source))
+                    EventLog.CreateEventSource(source,"Application");
+
+                EventLog.WriteEntry(source, EX.Message, EventLogEntryType.Error);
+                //this feature needs run as administrator
+
+            }
+            catch(Exception ex)
+            {
+                // log the log error if you want
             }
 
         }
