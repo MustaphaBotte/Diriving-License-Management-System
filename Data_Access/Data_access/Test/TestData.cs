@@ -13,7 +13,7 @@ namespace DLMS.Data_access.Test
 {
     public class TestData
     {
-      private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Test\Logs.txt";
+      private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Test\Logs.txt";
       
        
         public static Entities.ClsTest? GetTestByAppointmentID(int TestAppointmentid)

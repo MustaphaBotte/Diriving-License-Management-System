@@ -12,7 +12,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.LicenceClasses.LicenceClass.GetLicenseClassByID(Int32 LicenseClassId) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LicenceClasses\LicenceClasses.cs:line 105
+   at DLMS.Data_access.LicenceClasses.LicenceClass.GetLicenseClassByID(Int32 LicenseClassId) in ..\..\..\..\Data_Access\Data_access\LicenceClasses\LicenceClasses.cs:line 105
 
 
 ====================================================================================================================
@@ -20,7 +20,7 @@ Date Time  :8/24/2025 7:47:00 PM
 Error      :Unable to cast object of type 'System.Decimal' to type 'System.String'.
 StackTrace :   at Microsoft.Data.SqlClient.SqlBuffer.get_String()
    at Microsoft.Data.SqlClient.SqlDataReader.GetString(Int32 i)
-   at DLMS.Data_access.LicenceClasses.LicenceClass.GetLicenseClassByID(Int32 LicenseClassId) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LicenceClasses\LicenceClasses.cs:line 109
+   at DLMS.Data_access.LicenceClasses.LicenceClass.GetLicenseClassByID(Int32 LicenseClassId) in ..\..\..\..\Data_Access\Data_access\LicenceClasses\LicenceClasses.cs:line 109
 
 
 ====================================================================================================================

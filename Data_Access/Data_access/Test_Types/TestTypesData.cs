@@ -9,7 +9,7 @@ namespace DLMS.Data_access.Test_Types
 {
     public class TestTypesData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\LogFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Applications_Types\LogFile.txt";
         public static Entities.ClsTestType? GetTestTypeById(int TestTypeID)
         {
             if (TestTypeID <=0)

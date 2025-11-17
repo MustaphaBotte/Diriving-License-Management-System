@@ -12,7 +12,7 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Person\DataAccess.cs:line 370
+   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in ..\..\..\..\DLMS\Data_access\Person\DataAccess.cs:line 370
 
 
 ====================================================================================================================
@@ -27,7 +27,7 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Person\DataAccess.cs:line 370
+   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in ..\..\..\..\DLMS\Data_access\Person\DataAccess.cs:line 370
 
 
 ====================================================================================================================
@@ -42,7 +42,7 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Person\DataAccess.cs:line 371
+   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in ..\..\..\..\DLMS\Data_access\Person\DataAccess.cs:line 371
 
 
 ====================================================================================================================
@@ -53,7 +53,7 @@ StackTrace :   at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, 
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Person\DataAccess.cs:line 374
+   at DLMS.Data_access.PersonData.AddPerson(ClsPerson NewObj, String& message) in ..\..\..\..\DLMS\Data_access\Person\DataAccess.cs:line 374
 
 
 ====================================================================================================================
@@ -64,7 +64,7 @@ StackTrace :   at System.Data.SqlClient.SqlCommand.ValidateCommand(String method
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.PersonData.GetAllPeople(String& Errors) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Person\DataAccess.cs:line 393
+   at DLMS.Data_access.PersonData.GetAllPeople(String& Errors) in ..\..\..\..\DLMS\Data_access\Person\DataAccess.cs:line 393
 
 
 ====================================================================================================================
@@ -82,163 +82,163 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.PersonData.GetAllPeople(String& Errors) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Person\DataAccess.cs:line 398
+   at DLMS.Data_access.PersonData.GetAllPeople(String& Errors) in ..\..\..\..\DLMS\Data_access\Person\DataAccess.cs:line 398
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:02:08 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:02:13 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:02:21 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:02:27 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:02:41 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:02:56 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:10 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:34 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:35 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:36 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:37 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:38 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:39 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:03:39 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:04:15 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:05:47 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:06:53 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:07:35 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :7/17/2025 5:20:47 PM
 Error      :Unable to cast object of type 'System.DBNull' to type 'System.String'.
-StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 30
+StackTrace :   at DLMS.Data_access.Person.PersonData.FindPerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 30
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 9:07:44 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 10:46:09 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 10:46:25 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 10:46:28 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 10:46:28 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 10:46:29 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
 Date Time  :8/28/2025 10:46:58 PM
 Error      :Object reference not set to an instance of an object.
-StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 73
+StackTrace :   at DLMS.Data_access.Person.PersonData.DeletePerson(Int32 ID, String NationalNo) in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 73
 
 
 ====================================================================================================================
@@ -256,7 +256,25 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Person.PersonData.GetAllPeople() in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 256
+   at DLMS.Data_access.Person.PersonData.GetAllPeople() in ..\..\..\..\Data_Access\Data_access\Person\Persondata.cs:line 256
+
+
+====================================================================================================================
+Date Time  :11/17/2025 8:27:37 PM
+Error      :Invalid column name 'PersonIbD'.
+StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
+   at DLMS.Data_access.Person.PersonData.GetAllPeople() in F:\Programming Advices\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Persondata.cs:line 256
 
 
 ====================================================================================================================

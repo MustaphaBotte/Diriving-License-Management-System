@@ -14,7 +14,7 @@ namespace DLMS.Data_access.Release_Detain_License
 {
     public class Release_Detain_LicenseData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\LogFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Release_Detain_License\LogFile.txt";
         public static int DetainLicense(ClsDetainedLicense DLicense)
         {
 

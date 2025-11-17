@@ -8,7 +8,7 @@ namespace DLMS.Data_access.Applications
 {
     public static class ApplicationData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications\Logs.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Applications\Logs.txt";
       
         public static bool Exists(int AppId)
         {

@@ -11,7 +11,7 @@ namespace DLMS.Data_access
         private static Dictionary<string, string> CachedTableSchema = null;
         private static string TableName = "";
 
-        private static string LogPath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\SharedFunctions\Log.txt";
+        private static string LogPath = @"..\..\..\..\Data_Access\Data_access\SharedFunctions\Log.txt";
         public static void WriteError(string LogFilePath, Exception EX)
         {
             if(!File.Exists(LogFilePath))

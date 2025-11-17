@@ -12,7 +12,7 @@ namespace DLMS.Data_access.Appointments
 {
     public class TestAppointmentsData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\LogFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\TestAppointments\LogFile.txt";
 
         public static DataTable? GetAllAppointmentsBy_LDLAID_AndTestTypeID(int LocDLA_ID, int TestTypeID)
         {

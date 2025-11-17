@@ -9,7 +9,7 @@ namespace DLMS.Data_access.Driver
 {
     public class DriverData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\LogFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Drivers\LogFile.txt";
 
         public static DataTable? GetAllDrivers()
         {

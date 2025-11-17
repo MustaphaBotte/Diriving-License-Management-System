@@ -8,7 +8,7 @@ namespace DLMS.Data_access.LicenceClasses
 {
     public class LicenceClass
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LicenceClasses\LogsFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\LicenceClasses\LogsFile.txt";
 
         public static DataTable? GetAllLicenseClasses()
         {

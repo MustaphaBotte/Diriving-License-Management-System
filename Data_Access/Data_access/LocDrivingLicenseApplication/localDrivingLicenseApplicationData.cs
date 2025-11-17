@@ -13,7 +13,7 @@ namespace DLMS.Data_access.localDrivingLicenseApplication
 {
     public class localDrivingLicenseApplicationData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\LocDrivingLicenseApplication\Logs.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\LocDrivingLicenseApplication\Logs.txt";
         public static DataTable? GetAllLocalApplications()
         {
             SqlConnection connection = new SqlConnection(connectionString: ConnectionString.GetConnectionString());

@@ -8,7 +8,7 @@ namespace DLMS.Data_access.LocalDrivingLicense
 {
     public class LocalDriLicenseData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\IssueLocalDrivingLicenseData\LogFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\IssueLocalDrivingLicenseData\LogFile.txt";
         public static int AddNewLocalDrivinLicense(Entities.ClsLicense license)
         {
             string Query = "INSERT INTO Licenses " +

@@ -12,7 +12,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 detainID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 71
+   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 detainID) in ..\..\..\..\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 71
 
 
 ====================================================================================================================
@@ -30,7 +30,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 detainID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 71
+   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 detainID) in ..\..\..\..\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 71
 
 
 ====================================================================================================================
@@ -39,7 +39,7 @@ Error      :Fees
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 LicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 75
+   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 LicenseID) in ..\..\..\..\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 75
 
 
 ====================================================================================================================
@@ -48,7 +48,7 @@ Error      :Fees
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 LicenseID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 75
+   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.FindByID(Int32 LicenseID) in ..\..\..\..\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 75
 
 
 ====================================================================================================================
@@ -63,7 +63,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.ReleaseLicense(Int32 LicenseID, DateTime ReleaseDate, Int32 ReleasedBy, Int32 ReleasedAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 119
+   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.ReleaseLicense(Int32 LicenseID, DateTime ReleaseDate, Int32 ReleasedBy, Int32 ReleasedAppID) in ..\..\..\..\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 119
 
 
 ====================================================================================================================
@@ -78,7 +78,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.ReleaseLicense(Int32 LicenseID, DateTime ReleaseDate, Int32 ReleasedBy, Int32 ReleasedAppID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 119
+   at DLMS.Data_access.Release_Detain_License.Release_Detain_LicenseData.ReleaseLicense(Int32 LicenseID, DateTime ReleaseDate, Int32 ReleasedBy, Int32 ReleasedAppID) in ..\..\..\..\Data_Access\Data_access\Release_Detain_License\Release_Detain_LicenseData.cs:line 119
 
 
 ====================================================================================================================

@@ -13,7 +13,7 @@ namespace DLMS.Data_access.InternationalDrivingLicense
 {
     public class InternationDriLicenseData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\InternationalDrivingLicense\LogsFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\InternationalDrivingLicense\LogsFile.txt";
         public static int IssueNewInternationDrivingLicense(Entities.ClsInternationalLicense internationalLicense)
         {
             string Query = $"update internationalLicenses set isactive =0 where @DriverID= DriverID ;" +

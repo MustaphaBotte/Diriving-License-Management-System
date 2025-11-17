@@ -11,7 +11,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(ClsTestAppointment TestAppointment) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 34
+   at DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(ClsTestAppointment TestAppointment) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 34
 
 
 ====================================================================================================================
@@ -28,7 +28,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(ClsTestAppointment TestAppointment) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 34
+   at DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(ClsTestAppointment TestAppointment) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 34
 
 
 ====================================================================================================================
@@ -45,7 +45,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(ClsTestAppointment TestAppointment) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 34
+   at DLMS.Data_access.Appointments.TestAppointmentsData.AddNewAppointment(ClsTestAppointment TestAppointment) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 34
 
 
 ====================================================================================================================
@@ -64,7 +64,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 61
+   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 61
 
 
 ====================================================================================================================
@@ -83,7 +83,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 61
+   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 61
 
 
 ====================================================================================================================
@@ -98,7 +98,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.EditTestAppointmentDate(Int32 AppointmentID, DateTime NewDate) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 195
+   at DLMS.Data_access.Appointments.TestAppointmentsData.EditTestAppointmentDate(Int32 AppointmentID, DateTime NewDate) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 195
 
 
 ====================================================================================================================
@@ -115,7 +115,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
+   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
 
 
 ====================================================================================================================
@@ -132,7 +132,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
+   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
 
 
 ====================================================================================================================
@@ -149,7 +149,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
+   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
 
 
 ====================================================================================================================
@@ -166,7 +166,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
+   at DLMS.Data_access.Appointments.TestAppointmentsData.IsAppointmentLocked(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 168
 
 
 ====================================================================================================================
@@ -175,7 +175,7 @@ Error      :RetakeApplicationID
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 133
+   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 133
 
 
 ====================================================================================================================
@@ -216,7 +216,7 @@ Error      :RetakeApplicationID
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 133
+   at DLMS.Data_access.Appointments.TestAppointmentsData.GetAppointmentById(Int32 AppointmentID) in ..\..\..\..\Data_Access\Data_access\TestAppointments\TestAppointmentsData.cs:line 133
 
 
 ====================================================================================================================

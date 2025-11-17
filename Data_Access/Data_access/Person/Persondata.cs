@@ -7,7 +7,7 @@ namespace DLMS.Data_access.Person
 {         
     public static class PersonData
     {
-        public static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Person\Logs.txt";
+        public static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Person\Logs.txt";
         public static Entities.ClsPerson? FindPerson(int ID = -1, string NationalNo = "")
         {
             if (ID <=0 && string.IsNullOrEmpty(NationalNo))

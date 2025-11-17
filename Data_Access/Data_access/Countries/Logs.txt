@@ -12,7 +12,7 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Country.CountryData.FindCountry(Int32 ID, String CountryName) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Countries\CountryData.cs:line 42
+   at DLMS.Data_access.Country.CountryData.FindCountry(Int32 ID, String CountryName) in ..\..\..\..\DLMS\Data_access\Countries\CountryData.cs:line 42
 
 
 ====================================================================================================================
@@ -30,7 +30,7 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Country.CountryData.FindCountry(Int32 ID, String CountryName) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Countries\CountryData.cs:line 42
+   at DLMS.Data_access.Country.CountryData.FindCountry(Int32 ID, String CountryName) in ..\..\..\..\DLMS\Data_access\Countries\CountryData.cs:line 42
 
 
 ====================================================================================================================
@@ -48,7 +48,7 @@ StackTrace :   at System.Data.SqlClient.SqlConnection.OnError(SqlException excep
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Country.CountryData.FindCountry(Int32 ID, String CountryName) in D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Countries\CountryData.cs:line 42
+   at DLMS.Data_access.Country.CountryData.FindCountry(Int32 ID, String CountryName) in ..\..\..\..\DLMS\Data_access\Countries\CountryData.cs:line 42
 
 
 ====================================================================================================================

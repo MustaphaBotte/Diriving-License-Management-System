@@ -3,7 +3,7 @@ Error      :applicationTypefee
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
+   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
 
 
 ====================================================================================================================
@@ -12,7 +12,7 @@ Error      :applicationTypefee
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
+   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
 
 
 ====================================================================================================================
@@ -21,7 +21,7 @@ Error      :applicationTypefee
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
+   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
 
 
 ====================================================================================================================
@@ -30,7 +30,7 @@ Error      :applicationTypefee
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
+   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
 
 
 ====================================================================================================================
@@ -39,7 +39,7 @@ Error      :applicationTypefees
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
+   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
 
 
 ====================================================================================================================
@@ -48,7 +48,7 @@ Error      :applicationTypefees
 StackTrace :   at Microsoft.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
    at Microsoft.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
    at Microsoft.Data.SqlClient.SqlDataReader.get_Item(String name)
-   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
+   at Data_access.Applications_Types.AppLicationsTypesData.GetApplicationTypeByIdOrName(Int32 AppTypeID, String AppTypeName) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 28
 
 
 ====================================================================================================================
@@ -63,7 +63,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -78,7 +78,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -93,7 +93,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -108,7 +108,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -123,7 +123,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -138,7 +138,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -153,7 +153,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -168,7 +168,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -183,7 +183,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 108
 
 
 ====================================================================================================================
@@ -198,7 +198,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
+   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
 
 
 ====================================================================================================================
@@ -213,7 +213,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
+   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
 
 
 ====================================================================================================================
@@ -228,7 +228,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
+   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
 
 
 ====================================================================================================================
@@ -243,7 +243,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
+   at Data_access.Test_Types.TestTypesData.UpdateTestType(ClsTestType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Test_Types\TestTypesData.cs:line 110
 
 
 ====================================================================================================================
@@ -258,7 +258,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 109
+   at Data_access.Applications_Types.AppLicationsTypesData.UpdateApplicationType(ClsApplicationType UpdatedObj) in ..\..\..\..\Data_Access\Data_access\Applications_Types\AppLicationsTypesData.cs:line 109
 
 
 ====================================================================================================================

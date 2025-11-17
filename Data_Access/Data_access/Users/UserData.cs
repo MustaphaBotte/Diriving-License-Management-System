@@ -7,8 +7,7 @@ namespace DLMS.Data_access.Users
 {
     public static class UserData
     {
-        public static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Users\Logs.txt";
-
+        public static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Users\Logs.txt";
         public static Entities.ClsUser? GetUserByIdOrUsername(int ID =-1 ,string username="")
         {
             if (ID <=0 && string.IsNullOrEmpty(username))

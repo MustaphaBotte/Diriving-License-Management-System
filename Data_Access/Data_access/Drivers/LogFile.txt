@@ -11,7 +11,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 122
+   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 122
 
 
 ====================================================================================================================
@@ -27,7 +27,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 122
+   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 122
 
 
 ====================================================================================================================
@@ -42,7 +42,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 122
+   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 122
 
 
 ====================================================================================================================
@@ -57,7 +57,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 122
+   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 122
 
 
 ====================================================================================================================
@@ -74,7 +74,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 122
+   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 122
 
 
 ====================================================================================================================
@@ -91,7 +91,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 122
+   at DLMS.Data_access.Driver.DriverData.AddNewDriver(ClsDriver Driver) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 122
 
 
 ====================================================================================================================
@@ -108,7 +108,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 89
+   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 89
 
 
 ====================================================================================================================
@@ -125,7 +125,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 89
+   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 89
 
 
 ====================================================================================================================
@@ -142,7 +142,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 89
+   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 89
 
 
 ====================================================================================================================
@@ -159,7 +159,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteScalar()
-   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 89
+   at DLMS.Data_access.Driver.DriverData.GetDriverID(Int32 PersonID) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 89
 
 
 ====================================================================================================================
@@ -170,7 +170,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlCommand.ValidateCommand(Boolean is
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Driver.DriverData.GetDriverById(Int32 DriverID) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 193
+   at DLMS.Data_access.Driver.DriverData.GetDriverById(Int32 DriverID) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 193
 
 
 ====================================================================================================================
@@ -188,7 +188,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Driver.DriverData.GetAllLicenses(Int32 DriverID, Boolean Local, Boolean International) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 233
+   at DLMS.Data_access.Driver.DriverData.GetAllLicenses(Int32 DriverID, Boolean Local, Boolean International) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 233
 
 
 ====================================================================================================================
@@ -206,7 +206,7 @@ StackTrace :   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException ex
    at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
    at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader()
-   at DLMS.Data_access.Driver.DriverData.GetAllLicenses(Int32 DriverID, Boolean Local, Boolean International) in D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Drivers\DriverData.cs:line 233
+   at DLMS.Data_access.Driver.DriverData.GetAllLicenses(Int32 DriverID, Boolean Local, Boolean International) in ..\..\..\..\Data_Access\Data_access\Drivers\DriverData.cs:line 233
 
 
 ====================================================================================================================

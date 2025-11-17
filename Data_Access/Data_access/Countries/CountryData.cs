@@ -10,7 +10,7 @@ namespace DLMS.Data_access.Country
     public static class CountryData
     {
         private static DataTable Countries = new DataTable();
-        public static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\DLMS\Data_access\Countries\Logs.txt";
+        public static readonly string LogFilePath = @"..\..\..\..\DLMS\Data_access\Countries\Logs.txt";
         public static Entities.ClsCountry? FindCountry(short ID=-1 ,string CountryName="")
         {
             if (ID == -1 && string.IsNullOrEmpty(CountryName))

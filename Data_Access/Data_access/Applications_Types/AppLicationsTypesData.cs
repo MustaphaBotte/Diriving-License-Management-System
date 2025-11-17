@@ -9,7 +9,7 @@ namespace DLMS.Data_access.Applications_Types
 {
     public class AppLicationsTypesData
     {
-        private static readonly string LogFilePath = @"D:\C# Projects\Course 19\DLMS\DLMS\Data_Access\Data_access\Applications_Types\LogFile.txt";
+        private static readonly string LogFilePath = @"..\..\..\..\Data_Access\Data_access\Applications_Types\LogFile.txt";
         public static Entities.ClsApplicationType? GetAppTypeById(int AppTypeID)
         {
             if (AppTypeID <=0 )
