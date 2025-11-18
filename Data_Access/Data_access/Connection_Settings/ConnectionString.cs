@@ -17,7 +17,7 @@ namespace DLMS.Data_access.ConnectionSettings
             // dont use this method in the web development
             try
             {
-                string? Connection = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString ??"";
+                string? Connection = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString ??"";
                 return Connection;                                     
             }
             catch
