@@ -40,6 +40,7 @@ namespace DLMS.Data_access
             catch(Exception ex)
             {
                 // log the log error if you want
+                // but be careful from stackoverfow (recursion)
             }
 
         }
