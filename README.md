@@ -75,7 +75,7 @@ Update the connection string in the application to match your SQL Server credent
 
 ## Usage
 1. Launch the application.
-2. Login with the following credentials:
+2. You mustLogin with the following credentials:
    - **Username:** Msaqer44
    - **Password:** 1234
 3. Navigate the application to manage licenses, users, and tests etc.
